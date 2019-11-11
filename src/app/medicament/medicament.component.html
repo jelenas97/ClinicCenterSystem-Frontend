@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div class="container register-form pt-4">
+  <div class="form">
+    <div class="note">
+      <p>Create Medicament</p>
+    </div>
+
+    <div class="card my-5">
+      <div class="card-body">
+        <form (ngSubmit)="onSubmit()" #medicamentForm="ngForm">
+
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" [(ngModel)]="medicament.name"
+                   class="form-control"
+                   id="name"
+                   name="name"
+                   placeholder="Enter your name"
+                   required #name="ngModel">
+          </div>
+
+          <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" [(ngModel)]="medicament.description"
+                   class="form-control"
+                   id="description"
+                   name="description"
+                   placeholder="Enter description"
+                   required #name="ngModel">
+          </div>
+
+
+          <div class="form-group">
+            <label for="purpose">Purpose</label>
+            <input type="text" [(ngModel)]="medicament.purpose"
+                   class="form-control"
+                   id="purpose"
+                   name="purpose"
+                   placeholder="Enter purpose"
+                   required #name="ngModel">
+          </div>
+
+          <div class="form-group">
+            <label for="onPrescription">On Prescription</label>
+            <input type="checkbox" [(ngModel)]="medicament.onPrescription"
+                   class="form-control"
+                   id="onPrescription"
+                   name="onPrescription"
+                   required #name="ngModel">
+          </div>
+
+          <button type="submit" [disabled]="!medicamentForm.form.valid"
+                  class="btn btn-info">Submit</button>
+        </form>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>
+</body>
+</html>
+<router-outlet></router-outlet>
