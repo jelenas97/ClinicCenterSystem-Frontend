@@ -1,35 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <title>Title</title>
 </head>
 <body>
 <div class="container register-form pt-4">
   <div class="form">
     <div class="note">
-      <p>Register here</p>
+      <h2>Register here</h2>
     </div>
 
     <div class="card my-5">
       <div class="card-body">
         <form (ngSubmit)="onSubmit()" #userForm="ngForm">
           <div class="form-group">
-            <label for="name">Name</label>
+            <label for="ssn">Social security number</label>
+            <input type="email" [(ngModel)]="user.ssn"
+                   class="form-control"
+                   id="ssn"
+                   name="ssn"
+                   placeholder="Enter your social security number"
+                   required #name="ngModel">
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" [(ngModel)]="user.email"
+                   class="form-control"
+                   id="email"
+                   name="email"
+                   placeholder="Enter your email"
+                   required #name="ngModel">
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" [(ngModel)]="user.password"
+                   class="form-control"
+                   id="password"
+                   name="password"
+                   placeholder="Enter your password"
+                   required #name="ngModel">
+          </div>
+
+          <div class="form-group">
+            <label for="Repassword">Password</label>
+            <input type="password"
+                   class="form-control"
+                   id="Repassword"
+                   name="password"
+                   placeholder="Re-enter your password"
+                   required>
+          </div>
+
+          <div class="form-group">
+            <label for="firstName">First name</label>
             <input type="text" [(ngModel)]="user.firstName"
                    class="form-control"
-                   id="name"
-                   name="name"
-                   placeholder="Enter your name"
+                   id="firstName"
+                   name="firstName"
+                   placeholder="Enter your first name"
+                   required #name="ngModel">
+          </div>
+
+          <div class="form-group">
+            <label for="lastName">Last name</label>
+            <input type="text" [(ngModel)]="user.lastName"
+                   class="form-control"
+                   id="lastName"
+                   name="lastName"
+                   placeholder="Enter your last name"
+                   required #name="ngModel">
+          </div>
+
+          <div class="form-group">
+            <label for="country">Country</label>
+            <input type="text" [(ngModel)]="user.country"
+                   class="form-control"
+                   id="country"
+                   name="country"
+                   placeholder="Enter the country You live in"
+                   required #name="ngModel">
+          </div>
+
+          <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" [(ngModel)]="user.city"
+                   class="form-control"
+                   id="city"
+                   name="city"
+                   placeholder="Enter the city You live in"
+                   required #name="ngModel">
+          </div>
+
+          <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" [(ngModel)]="user.address"
+                   class="form-control"
+                   id="address"
+                   name="address"
+                   placeholder="Enter the address of residence"
+                   required #name="ngModel">
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="phone" [(ngModel)]="user.phone"
+                   class="form-control"
+                   id="phone"
+                   name="phone"
+                   placeholder="Enter Your phone number"
                    required #name="ngModel">
           </div>
 
           <button type="submit" [disabled]="!userForm.form.valid"
-                  class="btn btn-info">Submit</button>
+                  class="btn btn-info">Submit
+          </button>
         </form>
       </div>
     </div>
-
 
 
   </div>

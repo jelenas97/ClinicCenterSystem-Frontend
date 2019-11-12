@@ -9,12 +9,15 @@ import {RegistrationService} from './registration/registration.service';
 import {HttpClientModule} from '@angular/common/http';
 import {MedicamentComponent} from './medicament/medicament.component';
 import {MedicamentService} from './medicament/medicament.service';
+import {LoginComponent} from './login/login.component';
+import {LoginService} from './login/login.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegistrationComponent,
-    MedicamentComponent
+    MedicamentComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +26,7 @@ import {MedicamentService} from './medicament/medicament.service';
     HttpClientModule,
     FormsModule
   ],
-  providers: [RegistrationService, MedicamentService],
+  providers: [RegistrationService, MedicamentService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
