@@ -13,108 +13,119 @@
 
     <div class="card my-5">
       <div class="card-body">
-        <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+        <form (ngSubmit)="onSubmit()" [formGroup]="userData">
+
           <div class="form-group">
-            <label for="ssn">Social security number</label>
-            <input type="email" [(ngModel)]="user.ssn"
+            <label for="inputSsn">Social security number</label>
+            <input [(ngModel)]="user.ssn"
+                   [ngClass]="{'is-invalid': f.ssn.touched && f.ssn.errors, 'is-valid': f.ssn.touched && f.ssn.valid}"
                    class="form-control"
-                   id="ssn"
-                   name="ssn"
+                   id="inputSsn"
+                   name="ssn" formControlName="ssn"
                    placeholder="Enter your social security number"
-                   required #name="ngModel">
+                   required>
+            <span *ngIf="f.ssn.invalid && f.ssn.touched && f.ssn.errors.minlength">Please enter valid ssn</span>
           </div>
 
           <div class="form-group">
-            <label for="email">Email</label>
+            <label for="inputEmail">Email</label>
             <input type="email" [(ngModel)]="user.email"
+                   [ngClass]="{'is-invalid': f.email.touched && f.email.errors, 'is-valid': f.email.touched && f.email.valid}"
                    class="form-control"
-                   id="email"
-                   name="email"
+                   id="inputEmail"
+                   name="email" formControlName="email"
                    placeholder="Enter your email"
-                   required #name="ngModel">
-          </div>
-
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" [(ngModel)]="user.password"
-                   class="form-control"
-                   id="password"
-                   name="password"
-                   placeholder="Enter your password"
-                   required #name="ngModel">
-          </div>
-
-          <div class="form-group">
-            <label for="Repassword">Password</label>
-            <input type="password"
-                   class="form-control"
-                   id="Repassword"
-                   name="password"
-                   placeholder="Re-enter your password"
                    required>
           </div>
 
           <div class="form-group">
-            <label for="firstName">First name</label>
+            <label for="inputPassword">Password</label>
+            <input type="password" [(ngModel)]="user.password"
+                   [ngClass]="{'is-invalid': f.password.touched && f.password.errors, 'is-valid': f.password.touched && f.password.valid}"
+                   class="form-control"
+                   id="inputPassword"
+                   name="password" formControlName="password"
+                   placeholder="Enter your password"
+                   required>
+          </div>
+<!--
+          <div class="form-group">
+            <label for="inputPasswordRepeat">Password</label>
+            <input type="password"
+                   class="form-control"
+                   id="inputPasswordRepeat"
+                   name="passwordRepeat" formControlName="passwordRepeat"
+                   placeholder="Re-enter your password"
+                   required>
+          </div>
+-->
+          <div class="form-group">
+            <label for="InputFirstName">First name</label>
             <input type="text" [(ngModel)]="user.firstName"
+                   [ngClass]="{'is-invalid': f.firstName.touched && f.firstName.errors, 'is-valid': f.firstName.touched && f.firstName.valid}"
                    class="form-control"
-                   id="firstName"
-                   name="firstName"
+                   id="InputFirstName"
+                   name="firstName" formControlName="firstName"
                    placeholder="Enter your first name"
-                   required #name="ngModel">
+                   required>
           </div>
 
           <div class="form-group">
-            <label for="lastName">Last name</label>
+            <label for="InputLastName">Last name</label>
             <input type="text" [(ngModel)]="user.lastName"
+                   [ngClass]="{'is-invalid': f.lastName.touched && f.lastName.errors, 'is-valid': f.lastName.touched && f.lastName.valid}"
                    class="form-control"
-                   id="lastName"
-                   name="lastName"
+                   id="InputLastName"
+                   name="lastName" formControlName="lastName"
                    placeholder="Enter your last name"
-                   required #name="ngModel">
+                   required>
           </div>
 
           <div class="form-group">
-            <label for="country">Country</label>
+            <label for="inputCountry">Country</label>
             <input type="text" [(ngModel)]="user.country"
+                   [ngClass]="{'is-invalid': f.country.touched && f.country.errors, 'is-valid': f.country.touched && f.country.valid}"
                    class="form-control"
-                   id="country"
-                   name="country"
+                   id="inputCountry"
+                   name="country" formControlName="country"
                    placeholder="Enter the country You live in"
-                   required #name="ngModel">
+                   required>
           </div>
 
           <div class="form-group">
-            <label for="city">City</label>
+            <label for="inputCity">City</label>
             <input type="text" [(ngModel)]="user.city"
+                   [ngClass]="{'is-invalid': f.city.touched && f.city.errors, 'is-valid': f.city.touched && f.city.valid}"
                    class="form-control"
-                   id="city"
-                   name="city"
+                   id="inputCity"
+                   name="city" formControlName="city"
                    placeholder="Enter the city You live in"
-                   required #name="ngModel">
+                   required>
           </div>
 
           <div class="form-group">
-            <label for="address">Address</label>
+            <label for="inputAddress">Address</label>
             <input type="text" [(ngModel)]="user.address"
+                   [ngClass]="{'is-invalid': f.address.touched && f.address.errors, 'is-valid': f.address.touched && f.address.valid}"
                    class="form-control"
-                   id="address"
-                   name="address"
+                   id="inputAddress"
+                   name="address" formControlName="address"
                    placeholder="Enter the address of residence"
-                   required #name="ngModel">
+                   required>
           </div>
 
           <div class="form-group">
-            <label for="phone">Phone</label>
+            <label for="inputPhone">Phone</label>
             <input type="phone" [(ngModel)]="user.phone"
+                   [ngClass]="{'is-invalid': f.phone.touched && f.phone.errors, 'is-valid': f.phone.touched && f.phone.valid}"
                    class="form-control"
-                   id="phone"
-                   name="phone"
+                   id="inputPhone"
+                   name="phone" formControlName="phone"
                    placeholder="Enter Your phone number"
-                   required #name="ngModel">
+                   required>
           </div>
 
-          <button type="submit" [disabled]="!userForm.form.valid"
+          <button type="submit" [disabled]="userData.invalid"
                   class="btn btn-info">Submit
           </button>
         </form>

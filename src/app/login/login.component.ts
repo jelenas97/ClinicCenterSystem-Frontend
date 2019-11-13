@@ -8,7 +8,7 @@ import {ActivatedRoute, Router} from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   user: User;
 
   constructor(private loginService: LoginService, private route: ActivatedRoute, private router: Router) {
@@ -21,6 +21,10 @@ export class LoginComponent {
 
   gotoLogin() {
     this.router.navigate(['/login']);
+  }
+
+  ngOnInit(): void {
+
   }
 }
 
