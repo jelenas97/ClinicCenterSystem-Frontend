@@ -17,7 +17,7 @@
         <td>{{ request.firstName }}</td>
         <td>{{ request.lastName }}</td>
         <td><a href="mailto:{{ request.email }}">{{ request.email }}</a></td>
-        <td><button class="btn-info">See more info</button></td>
+        <td><button class="btn-info" routerLink="/registrationRequest/{{request.id}}">See more info</button></td>
         <td><button class="btn-danger">Reject</button></td>
         <td><button class="btn-success">Accept</button></td>
       </tr>
