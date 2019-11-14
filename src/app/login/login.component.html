@@ -13,29 +13,33 @@
 
     <div class="card my-5">
       <div class="card-body">
-        <form (ngSubmit)="login()" #userForm="ngForm">
+        <form (ngSubmit)="login()" [formGroup]="userData" >
 
           <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" [(ngModel)]="user.email"
+            <label for="inputEmail">Email</label>
+            <input [(ngModel)]="user.email"
+                   [ngClass]="{'is-invalid': f.email.touched && f.email.errors, 'is-valid': f.email.touched && f.email.valid}"
                    class="form-control"
-                   id="email"
-                   name="email"
+                   id="inputEmail"
+                   name="email" formControlName="email"
                    placeholder="Enter your email"
-                   required #name="ngModel">
+                   required>
+            <span style="color: red" *ngIf="f.email.touched && f.email.invalid">Valid email must contain @ and some of the domains : gmail.com, yahoo.com, uns.ac.rs</span>
           </div>
 
           <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" [(ngModel)]="user.password"
+            <label for="inputPassword">Password</label>
+            <input [(ngModel)]="user.password"
+                   [ngClass]="{'is-invalid': f.password.touched && f.password.invalid, 'is-valid': f.password.touched && f.password.valid}"
                    class="form-control"
-                   id="password"
+                   id="inputPassword" formControlName="password"
                    name="password"
                    placeholder="Enter your password"
-                   required #name="ngModel">
+                   required>
+            <span style="color: red" *ngIf="f.password.invalid && f.password.touched">Password must contain at least 5 characters</span>
           </div>
 
-          <button type="submit" [disabled]="!userForm.form.valid"
+          <button type="submit" [disabled]="userData.invalid"
                   class="btn btn-info">Submit
           </button>
         </form>

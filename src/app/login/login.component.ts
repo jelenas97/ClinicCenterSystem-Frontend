@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {User} from '../model/user';
 import {LoginService} from './login.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -10,8 +11,9 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   user: User;
+  userData: FormGroup;
 
-  constructor(private loginService: LoginService, private route: ActivatedRoute, private router: Router) {
+  constructor(private loginService: LoginService, private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder) {
     this.user = new User();
   }
 
@@ -24,7 +26,28 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userData = this.formBuilder.group({
+      email: ['', [Validators.required, this.emailDomainValidator]],
+      password: ['', [Validators.required, Validators.minLength(5)]]
+    });
+  }
 
+  emailDomainValidator(control: FormControl) {
+    const email = control.value;
+    const [name, domain] = email.split('@');
+    if (domain !== 'gmail.com' && domain !== 'yahoo.com' && domain !== 'uns.ac.rs') {
+      return {
+        emailDomain: {
+          parsedDomain: domain
+        }
+      };
+    } else {
+      return null;
+    }
+  }
+
+  get f() {
+    return this.userData.controls;
   }
 }
 

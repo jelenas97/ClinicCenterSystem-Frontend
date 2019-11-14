@@ -24,105 +24,115 @@
                    name="ssn" formControlName="ssn"
                    placeholder="Enter your social security number"
                    required>
-            <span *ngIf="f.ssn.invalid && f.ssn.touched && f.ssn.errors.minlength">Please enter valid ssn</span>
+            <span style="color: red" *ngIf="f.ssn.invalid && f.ssn.touched">Please enter excatly 13 digits for social security number</span>
           </div>
 
           <div class="form-group">
             <label for="inputEmail">Email</label>
-            <input type="email" [(ngModel)]="user.email"
-                   [ngClass]="{'is-invalid': f.email.touched && f.email.errors, 'is-valid': f.email.touched && f.email.valid}"
+            <input [(ngModel)]="user.email"
+                   [ngClass]="{'is-invalid': f.email.touched && f.email.errors && f.email.errors.emailDomain, 'is-valid': f.email.touched && f.email.valid}"
                    class="form-control"
                    id="inputEmail"
                    name="email" formControlName="email"
                    placeholder="Enter your email"
                    required>
+            <span style="color: red" *ngIf="f.email.touched && f.email.invalid">Valid email must contain @ and some of the domains : gmail.com, yahoo.com, uns.ac.rs</span>
           </div>
 
           <div class="form-group">
             <label for="inputPassword">Password</label>
-            <input type="password" [(ngModel)]="user.password"
-                   [ngClass]="{'is-invalid': f.password.touched && f.password.errors, 'is-valid': f.password.touched && f.password.valid}"
+            <input [(ngModel)]="user.password"
+                   [ngClass]="{'is-invalid': (f.password.touched && f.password.errors) || userData.hasError('notSame'), 'is-valid': f.password.touched && f.password.valid && !userData.hasError('notSame')}"
                    class="form-control"
                    id="inputPassword"
                    name="password" formControlName="password"
                    placeholder="Enter your password"
                    required>
+            <span style="color: red" *ngIf="f.password.invalid && f.password.touched">Password must contain at least 5 characters</span>
           </div>
-<!--
+
           <div class="form-group">
-            <label for="inputPasswordRepeat">Password</label>
-            <input type="password"
+            <label for="inputPasswordRepeat">Repeat password</label>
+            <input [(ngModel)]="passwordRepeat"
+                   [ngClass]="{'is-invalid': (f.passwordRepeat.touched && f.passwordRepeat.errors) || userData.hasError('notSame'), 'is-valid': f.passwordRepeat.touched && f.passwordRepeat.valid && !userData.hasError('notSame')}"
                    class="form-control"
                    id="inputPasswordRepeat"
                    name="passwordRepeat" formControlName="passwordRepeat"
                    placeholder="Re-enter your password"
                    required>
+            <span style="color: red" *ngIf="f.passwordRepeat.invalid && f.passwordRepeat.touched">Passwords must match</span>
           </div>
--->
+
           <div class="form-group">
             <label for="InputFirstName">First name</label>
-            <input type="text" [(ngModel)]="user.firstName"
+            <input [(ngModel)]="user.firstName"
                    [ngClass]="{'is-invalid': f.firstName.touched && f.firstName.errors, 'is-valid': f.firstName.touched && f.firstName.valid}"
                    class="form-control"
                    id="InputFirstName"
                    name="firstName" formControlName="firstName"
                    placeholder="Enter your first name"
                    required>
+            <span style="color: red" *ngIf="f.firstName.invalid && f.firstName.touched">First name must contain only letters</span>
           </div>
 
           <div class="form-group">
             <label for="InputLastName">Last name</label>
-            <input type="text" [(ngModel)]="user.lastName"
+            <input [(ngModel)]="user.lastName"
                    [ngClass]="{'is-invalid': f.lastName.touched && f.lastName.errors, 'is-valid': f.lastName.touched && f.lastName.valid}"
                    class="form-control"
                    id="InputLastName"
                    name="lastName" formControlName="lastName"
                    placeholder="Enter your last name"
                    required>
+            <span style="color: red" *ngIf="f.lastName.invalid && f.lastName.touched">Last name must contain only letters</span>
           </div>
 
           <div class="form-group">
             <label for="inputCountry">Country</label>
-            <input type="text" [(ngModel)]="user.country"
+            <input [(ngModel)]="user.country"
                    [ngClass]="{'is-invalid': f.country.touched && f.country.errors, 'is-valid': f.country.touched && f.country.valid}"
                    class="form-control"
                    id="inputCountry"
                    name="country" formControlName="country"
                    placeholder="Enter the country You live in"
                    required>
+            <span style="color: red" *ngIf="f.country.invalid && f.country.touched">Country must contain only letters</span>
           </div>
 
           <div class="form-group">
             <label for="inputCity">City</label>
-            <input type="text" [(ngModel)]="user.city"
+            <input [(ngModel)]="user.city"
                    [ngClass]="{'is-invalid': f.city.touched && f.city.errors, 'is-valid': f.city.touched && f.city.valid}"
                    class="form-control"
                    id="inputCity"
                    name="city" formControlName="city"
                    placeholder="Enter the city You live in"
                    required>
+            <span style="color: red" *ngIf="f.city.invalid && f.city.touched">City must contain only letters</span>
           </div>
 
           <div class="form-group">
             <label for="inputAddress">Address</label>
-            <input type="text" [(ngModel)]="user.address"
+            <input [(ngModel)]="user.address"
                    [ngClass]="{'is-invalid': f.address.touched && f.address.errors, 'is-valid': f.address.touched && f.address.valid}"
                    class="form-control"
                    id="inputAddress"
                    name="address" formControlName="address"
                    placeholder="Enter the address of residence"
                    required>
+            <span style="color: red" *ngIf="f.address.invalid && f.address.touched">Address must contain only letters</span>
           </div>
 
           <div class="form-group">
             <label for="inputPhone">Phone</label>
-            <input type="phone" [(ngModel)]="user.phone"
+            <input [(ngModel)]="user.phone"
                    [ngClass]="{'is-invalid': f.phone.touched && f.phone.errors, 'is-valid': f.phone.touched && f.phone.valid}"
                    class="form-control"
                    id="inputPhone"
                    name="phone" formControlName="phone"
                    placeholder="Enter Your phone number"
                    required>
+            <span style="color: red" *ngIf="f.phone.invalid && f.phone.touched">Phone must contain 9 od 10 digits</span>
           </div>
 
           <button type="submit" [disabled]="userData.invalid"
