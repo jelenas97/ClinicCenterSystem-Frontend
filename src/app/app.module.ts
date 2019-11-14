@@ -15,6 +15,8 @@ import {RegistrationRequestComponent} from './registration-request/registrationR
 import {RegistrationRequestService} from './registration-request/registrationRequest.service';
 import {MedicalStaffProfileService} from './medical-staff-profile/medicalStaffProfile.service';
 import {MedicalStaffProfileComponent} from './medical-staff-profile/medicalStaffProfile.component';
+import {EditMedicalStaffComponent} from './edit-medical-staff/editMedicalStaff.component';
+import {EditMedicalStaffService} from './edit-medical-staff/editMedicalStaff.service';
 import {MoreInfoRegisterRequestComponent} from './more-info/more-info-register-request/moreInfoRegisterRequest.component';
 import {MoreInfoRegisterRequestService} from './more-info/more-info-register-request/moreInfoRegisterRequest.service';
 
@@ -25,6 +27,8 @@ import {MoreInfoRegisterRequestService} from './more-info/more-info-register-req
     MedicamentComponent,
     LoginComponent,
     RegistrationRequestComponent,
+    MedicalStaffProfileComponent,
+    EditMedicalStaffComponent,
     MoreInfoRegisterRequestComponent,
     RegistrationRequestComponent,
     MedicalStaffProfileComponent
@@ -36,8 +40,8 @@ import {MoreInfoRegisterRequestService} from './more-info/more-info-register-req
     HttpClientModule,
     FormsModule
   ],
-  providers: [RegistrationService, MedicamentService, LoginService, RegistrationRequestService, MedicalStaffProfileService,
-     MoreInfoRegisterRequestService],
+  providers: [RegistrationService, MedicamentService, LoginService, RegistrationRequestService,
+    MedicalStaffProfileService, EditMedicalStaffService, MoreInfoRegisterRequestService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
