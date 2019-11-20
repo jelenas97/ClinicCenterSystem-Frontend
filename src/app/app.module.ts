@@ -19,6 +19,8 @@ import {EditMedicalStaffComponent} from './edit-medical-staff/editMedicalStaff.c
 import {EditMedicalStaffService} from './edit-medical-staff/editMedicalStaff.service';
 import {MoreInfoRegisterRequestComponent} from './more-info/more-info-register-request/moreInfoRegisterRequest.component';
 import {MoreInfoRegisterRequestService} from './more-info/more-info-register-request/moreInfoRegisterRequest.service';
+import {ClinicComponent} from './clinic/clinic.component';
+import {ClinicService} from './clinic/clinic.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import {MoreInfoRegisterRequestService} from './more-info/more-info-register-req
     EditMedicalStaffComponent,
     MoreInfoRegisterRequestComponent,
     RegistrationRequestComponent,
-    MedicalStaffProfileComponent
+    MedicalStaffProfileComponent,
+    ClinicComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,7 @@ import {MoreInfoRegisterRequestService} from './more-info/more-info-register-req
     FormsModule
   ],
   providers: [RegistrationService, MedicamentService, LoginService, RegistrationRequestService,
-    MedicalStaffProfileService, EditMedicalStaffService, MoreInfoRegisterRequestService],
+    MedicalStaffProfileService, EditMedicalStaffService, MoreInfoRegisterRequestService, ClinicService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

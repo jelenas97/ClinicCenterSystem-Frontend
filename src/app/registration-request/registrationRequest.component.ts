@@ -13,13 +13,21 @@ export class RegistrationRequestComponent implements OnInit {
 
   requests: RegistrationRequest[] = [];
 
-  constructor(private registrationRequestService: RegistrationRequestService , private router: Router) {
+  constructor(private registrationRequestService: RegistrationRequestService, private route: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit(): void {
     this.registrationRequestService.getAll().subscribe(data => {
       this.requests = data;
     });
+  }
+
+  acceptRequest(request: RegistrationRequest) {
+    this.registrationRequestService.save(request).subscribe(result => this.gotoUser());
+  }
+
+  gotoUser() {
+    return this.router.navigate(['/acceptRequest']);
   }
 
 
