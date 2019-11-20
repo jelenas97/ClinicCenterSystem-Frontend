@@ -43,6 +43,7 @@
             <label for="inputPassword">Password</label>
             <input [(ngModel)]="user.password"
                    [ngClass]="{'is-invalid': (f.password.touched && f.password.errors) || userData.hasError('notSame'), 'is-valid': f.password.touched && f.password.valid && !userData.hasError('notSame')}"
+                   type = "password"
                    class="form-control"
                    id="inputPassword"
                    name="password" formControlName="password"
@@ -55,6 +56,7 @@
             <label for="inputPasswordRepeat">Repeat password</label>
             <input [(ngModel)]="passwordRepeat"
                    [ngClass]="{'is-invalid': (f.passwordRepeat.touched && f.passwordRepeat.errors) || userData.hasError('notSame'), 'is-valid': f.passwordRepeat.touched && f.passwordRepeat.valid && !userData.hasError('notSame')}"
+                   type = "password"
                    class="form-control"
                    id="inputPasswordRepeat"
                    name="passwordRepeat" formControlName="passwordRepeat"

@@ -15,7 +15,8 @@ export class RegistrationComponent implements OnInit {
   userData: FormGroup;
   passwordRepeat: string;
 
-  constructor(private registerService: RegistrationService, private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder) {
+  constructor(private registerService: RegistrationService, private route: ActivatedRoute, private router: Router,
+              private formBuilder: FormBuilder) {
     this.user = new User();
   }
 
