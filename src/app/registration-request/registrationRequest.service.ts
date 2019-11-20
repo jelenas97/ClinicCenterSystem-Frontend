@@ -17,4 +17,10 @@ export class RegistrationRequestService {
     return this.http.get<RegistrationRequest[]>(this.registrationRequestsUrl);
   }
 
+
+  removeRequest(id: number) {
+    console.log('obriso');
+    return this.http.delete(this.registrationRequestsUrl + '/removeRequest/' + id);
+    console.log('obriso');
+  }
 }
