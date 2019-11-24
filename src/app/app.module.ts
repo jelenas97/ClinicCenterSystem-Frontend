@@ -15,6 +15,7 @@ import {RegistrationRequestComponent} from './registration-request/registrationR
 import {RegistrationRequestService} from './registration-request/registrationRequest.service';
 import {MoreInfoRegisterRequestComponent} from './more-info/more-info-register-request/moreInfoRegisterRequest.component';
 import {MoreInfoRegisterRequestService} from './more-info/more-info-register-request/moreInfoRegisterRequest.service';
+import {AuthService} from './service/auth.service';
 
 @NgModule({
   declarations: [
@@ -30,9 +31,10 @@ import {MoreInfoRegisterRequestService} from './more-info/more-info-register-req
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
-  providers: [RegistrationService, MedicamentService, LoginService, RegistrationRequestService, MoreInfoRegisterRequestService],
+  providers: [RegistrationService, MedicamentService, LoginService, RegistrationRequestService, MoreInfoRegisterRequestService,
+    AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
