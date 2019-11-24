@@ -19,6 +19,7 @@ import {EditMedicalStaffComponent} from './edit-medical-staff/editMedicalStaff.c
 import {EditMedicalStaffService} from './edit-medical-staff/editMedicalStaff.service';
 import {MoreInfoRegisterRequestComponent} from './more-info/more-info-register-request/moreInfoRegisterRequest.component';
 import {MoreInfoRegisterRequestService} from './more-info/more-info-register-request/moreInfoRegisterRequest.service';
+import {AuthService} from './service/auth.service';
 import {PatientHomePageComponent} from './patient-home-page/patientHomePage.component';
 import {PatientHomePageService} from './patient-home-page/patientHomePage.service';
 import { ProfilePageComponent } from './patient-home-page/profile-page/profile-page.component';
@@ -45,10 +46,11 @@ import { AllClinicsComponent } from './patient-home-page/all-clinics/all-clinics
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
-  providers: [RegistrationService, MedicamentService, LoginService, RegistrationRequestService,
-    MedicalStaffProfileService, EditMedicalStaffService, MoreInfoRegisterRequestService, PatientHomePageService],
+  providers: [RegistrationService, MedicamentService, LoginService, RegistrationRequestService, MoreInfoRegisterRequestService,
+    AuthService, MedicalStaffProfileService, EditMedicalStaffService, MoreInfoRegisterRequestService, PatientHomePageService],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
