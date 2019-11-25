@@ -10,11 +10,18 @@ import {ClinicService} from './clinic.service';
   templateUrl: './clinic.component.html',
   styleUrls: ['./clinic.component.css']
 })
-export class ClinicComponent {
+export class ClinicComponent implements OnInit{
   clinic: Clinic;
+  clinicAdmins: string[] = [];
 
   constructor(private clinicService: ClinicService, private route: ActivatedRoute, private router: Router) {
     this.clinic = new Clinic();
+  }
+
+  ngOnInit(): void {
+    this.clinicService.getAllAdmins().subscribe(data => {
+      this.clinicAdmins = data;
+    });
   }
 
   onSubmit() {
