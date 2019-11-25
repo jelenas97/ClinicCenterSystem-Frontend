@@ -7,6 +7,7 @@ import {RegistrationRequestComponent} from './registration-request/registrationR
 import {MoreInfoRegisterRequestComponent} from './more-info/more-info-register-request/moreInfoRegisterRequest.component';
 import {MedicalStaffProfileComponent} from './medical-staff-profile/medicalStaffProfile.component';
 import {EditMedicalStaffComponent} from './edit-medical-staff/editMedicalStaff.component';
+import {PatientHomePageComponent} from './patient-home-page/patientHomePage.component';
 
 
 const routes: Routes = [{path: 'register', component: RegistrationComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
                         {path: 'registrationRequests', component: RegistrationRequestComponent},
                         {path: 'medicalStaffProfile', component: MedicalStaffProfileComponent},
                         {path: 'editMedicalStaff', component: EditMedicalStaffComponent},
-                        {path: 'registrationRequest/:id', component: MoreInfoRegisterRequestComponent}];
+                        {path: 'registrationRequest/:id', component: MoreInfoRegisterRequestComponent},
+                        {path: 'patientHomePage', component: PatientHomePageComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
