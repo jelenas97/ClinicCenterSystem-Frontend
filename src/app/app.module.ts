@@ -1,8 +1,8 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RegistrationComponent} from './registration/registration.component';
 import {RegistrationService} from './registration/registration.service';
@@ -53,8 +53,11 @@ import { AllClinicsComponent } from './patient-home-page/all-clinics/all-clinics
     FormsModule
   ],
   providers: [RegistrationService, MedicamentService, LoginService, RegistrationRequestService, MoreInfoRegisterRequestService,
-    AuthService, MedicalStaffProfileService, EditMedicalStaffService, MoreInfoRegisterRequestService, PatientHomePageService, ClinicService],
+    MedicalStaffProfileService, EditMedicalStaffService, MoreInfoRegisterRequestService, ClinicService, AuthService,
+    PatientHomePageService],
+
 
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
