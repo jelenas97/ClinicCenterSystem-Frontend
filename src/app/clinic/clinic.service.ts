@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Clinic} from '../model/clinic';
-import {Observable} from "rxjs";
+import {Observable} from 'rxjs';
+import {User} from '../model/user';
 
 @Injectable()
 export class ClinicService {
@@ -18,8 +19,8 @@ export class ClinicService {
     return this.httpClient.post<Clinic>(this.registerUrl, clinic);
   }
 
-  public getAllAdmins(): Observable<string[]> {
-    return this.httpClient.get<string[]>(this.userTypeUrl);
+  public getAllAdmins(): Observable<User[]> {
+    return this.httpClient.get<User[]>(this.userTypeUrl);
   }
 
 }
