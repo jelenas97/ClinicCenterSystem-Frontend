@@ -27,7 +27,7 @@ export class AuthService {
     });
     // const body = `username=${user.username}&password=${user.password}`;
     const body = {
-      'email' : user.email,
+      'username' : user.email,
       'password' : user.password
     };
     return this.apiService.post(this.config.login_url, JSON.stringify(body), loginHeaders)
