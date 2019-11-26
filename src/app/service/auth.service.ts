@@ -34,6 +34,7 @@ export class AuthService {
       .pipe(map((res) => {
         console.log('Login success');
         this.access_token = res.accessToken;
+        console.log(this.access_token);
       }));
   }
 
