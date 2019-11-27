@@ -21,6 +21,8 @@ import {MoreInfoRegisterRequestComponent} from './more-info/more-info-register-r
 import {MoreInfoRegisterRequestService} from './more-info/more-info-register-request/moreInfoRegisterRequest.service';
 import {PatientHomePageComponent} from './patient-home-page/patientHomePage.component';
 import {PatientHomePageService} from './patient-home-page/patientHomePage.service';
+import { ProfilePageComponent } from './patient-home-page/profile-page/profile-page.component';
+import { AllClinicsComponent } from './patient-home-page/all-clinics/all-clinics.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import {PatientHomePageService} from './patient-home-page/patientHomePage.servic
     MoreInfoRegisterRequestComponent,
     RegistrationRequestComponent,
     MedicalStaffProfileComponent,
-    PatientHomePageComponent
+    PatientHomePageComponent,
+    ProfilePageComponent,
+    AllClinicsComponent
   ],
   imports: [
     BrowserModule,
