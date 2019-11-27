@@ -26,13 +26,6 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
     }, {path: 'allClinics', component: AllClinicsComponent}]
   }
 ];
-                        {path: 'medicament', component: MedicamentComponent},
-                        {path: 'login', component: LoginComponent},
-                        {path: 'registrationRequests', component: RegistrationRequestComponent},
-                        {path: 'medicalStaffProfile', component: MedicalStaffProfileComponent},
-                        {path: 'editMedicalStaff', component: EditMedicalStaffComponent},
-                        {path: 'registrationRequest/:id', component: MoreInfoRegisterRequestComponent},
-                        {path: 'newClinic', component: ClinicComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -39,7 +39,7 @@ import {AuthService} from './service/auth.service';
     MoreInfoRegisterRequestComponent,
     RegistrationRequestComponent,
     MedicalStaffProfileComponent,
-    ClinicComponent
+    ClinicComponent,
     MedicalStaffProfileComponent,
     PatientHomePageComponent,
     ProfilePageComponent,
@@ -53,7 +53,7 @@ import {AuthService} from './service/auth.service';
     FormsModule
   ],
   providers: [RegistrationService, MedicamentService, LoginService, RegistrationRequestService,
-    MedicalStaffProfileService, EditMedicalStaffService, MoreInfoRegisterRequestService, ClinicService, AuthService],
+    MedicalStaffProfileService, EditMedicalStaffService, MoreInfoRegisterRequestService, ClinicService, AuthService,
     MedicalStaffProfileService, EditMedicalStaffService, MoreInfoRegisterRequestService, PatientHomePageService],
   bootstrap: [AppComponent]
 })
