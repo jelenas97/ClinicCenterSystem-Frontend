@@ -3,6 +3,11 @@ import {User} from '../model/user';
 import {RegistrationService} from './registration.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {DisplayMessage} from '../shared/models/display-message';
+import {Subject} from 'rxjs';
+import {UserService} from '../service/user.service';
+import {AuthService} from '../service/auth.service';
+import {takeUntil} from 'rxjs/operators';
 
 
 @Component({
@@ -15,13 +20,31 @@ export class RegistrationComponent implements OnInit {
   userData: FormGroup;
   passwordRepeat: string;
 
-  constructor(private registerService: RegistrationService, private route: ActivatedRoute, private router: Router,
-              private formBuilder: FormBuilder) {
+  submitted = false;
+  notification: DisplayMessage;
+  returnUrl: string;
+  private ngUnsubscribe: Subject<void> = new Subject<void>();
+
+  // tslint:disable-next-line:max-line-length
+  constructor(private userService: UserService, private registerService: RegistrationService, private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder, private authService: AuthService) {
     this.user = new User();
   }
 
-  onSubmit() {
-    this.registerService.save(this.user).subscribe(result => this.gotoUser());
+  register() {
+    this.notification = undefined;
+    this.submitted = true;
+
+    this.authService.registration(this.userData.value)
+      .subscribe(data => {
+          this.userService.getMyInfo().subscribe();
+          this.router.navigate([this.returnUrl]);
+        },
+        error => {
+          this.submitted = false;
+          this.notification = {msgType: 'error', msgBody: 'Incorrect email or password'};
+        });
+
+    // this.registerService.save(this.user).subscribe(result => this.gotoUser());
   }
 
   gotoUser() {
@@ -29,18 +52,23 @@ export class RegistrationComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.route.params.pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((params: DisplayMessage) => {
+        this.notification = params;
+      });
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     this.userData = this.formBuilder.group({
-      ssn: ['', [Validators.required, Validators.minLength(13), Validators.maxLength(13), Validators.pattern(/^[0-9]*$/)]],
-      email: ['', [Validators.required, this.emailDomainValidator, Validators.pattern(/[^ @]*@[^ @]*/)]],
-      password: ['', [Validators.required, Validators.minLength(5)]],
-      passwordRepeat: ['', [Validators.required, Validators.minLength(5)]],
-      firstName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]],
-      lastName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]],
-      country: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]],
-      city: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]],
-      address: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]],
-      phone: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.minLength(9), Validators.maxLength(10)]]
-    },
+        ssn: ['', [Validators.required, Validators.minLength(13), Validators.maxLength(13), Validators.pattern(/^[0-9]*$/)]],
+        email: ['', [Validators.required, this.emailDomainValidator, Validators.pattern(/[^ @]*@[^ @]*/)]],
+        password: ['', [Validators.required, Validators.minLength(5)]],
+        passwordRepeat: ['', [Validators.required, Validators.minLength(5)]],
+        firstName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]],
+        lastName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]],
+        country: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]],
+        city: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]],
+        address: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]],
+        phone: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.minLength(9), Validators.maxLength(10)]]
+      },
       {validator: this.checkPasswords});
   }
 
@@ -63,9 +91,9 @@ export class RegistrationComponent implements OnInit {
         }
       };
     } else {
-        return null;
-      }
+      return null;
     }
+  }
 
   get f() {
     return this.userData.controls;

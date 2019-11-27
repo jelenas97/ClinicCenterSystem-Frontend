@@ -1,5 +1,5 @@
-import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 import {RegistrationComponent} from './registration/registration.component';
 import {MedicamentComponent} from './medicament/medicament.component';
 import {LoginComponent} from './login/login.component';
@@ -10,6 +10,7 @@ import {EditMedicalStaffComponent} from './edit-medical-staff/editMedicalStaff.c
 import {PatientHomePageComponent} from './patient-home-page/patientHomePage.component';
 import {ProfilePageComponent} from './patient-home-page/profile-page/profile-page.component';
 import {AllClinicsComponent} from './patient-home-page/all-clinics/all-clinics.component';
+import {ClinicComponent} from './clinic/clinic.component';
 
 
 const routes: Routes = [{path: 'register', component: RegistrationComponent},
@@ -25,10 +26,16 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
     }, {path: 'allClinics', component: AllClinicsComponent}]
   }
 ];
+                        {path: 'medicament', component: MedicamentComponent},
+                        {path: 'login', component: LoginComponent},
+                        {path: 'registrationRequests', component: RegistrationRequestComponent},
+                        {path: 'medicalStaffProfile', component: MedicalStaffProfileComponent},
+                        {path: 'editMedicalStaff', component: EditMedicalStaffComponent},
+                        {path: 'registrationRequest/:id', component: MoreInfoRegisterRequestComponent},
+                        {path: 'newClinic', component: ClinicComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule { }

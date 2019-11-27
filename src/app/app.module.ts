@@ -23,6 +23,9 @@ import {PatientHomePageComponent} from './patient-home-page/patientHomePage.comp
 import {PatientHomePageService} from './patient-home-page/patientHomePage.service';
 import { ProfilePageComponent } from './patient-home-page/profile-page/profile-page.component';
 import { AllClinicsComponent } from './patient-home-page/all-clinics/all-clinics.component';
+import {ClinicComponent} from './clinic/clinic.component';
+import {ClinicService} from './clinic/clinic.service';
+import {AuthService} from './service/auth.service';
 
 @NgModule({
   declarations: [
@@ -36,6 +39,8 @@ import { AllClinicsComponent } from './patient-home-page/all-clinics/all-clinics
     MoreInfoRegisterRequestComponent,
     RegistrationRequestComponent,
     MedicalStaffProfileComponent,
+    ClinicComponent
+    MedicalStaffProfileComponent,
     PatientHomePageComponent,
     ProfilePageComponent,
     AllClinicsComponent
@@ -48,6 +53,7 @@ import { AllClinicsComponent } from './patient-home-page/all-clinics/all-clinics
     FormsModule
   ],
   providers: [RegistrationService, MedicamentService, LoginService, RegistrationRequestService,
+    MedicalStaffProfileService, EditMedicalStaffService, MoreInfoRegisterRequestService, ClinicService, AuthService],
     MedicalStaffProfileService, EditMedicalStaffService, MoreInfoRegisterRequestService, PatientHomePageService],
   bootstrap: [AppComponent]
 })
