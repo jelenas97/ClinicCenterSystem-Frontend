@@ -52,7 +52,7 @@ import { AllClinicsComponent } from './patient-home-page/all-clinics/all-clinics
     HttpClientModule,
     FormsModule
   ],
-  providers: [RegistrationService, MedicamentService, LoginService, RegistrationRequestService, MoreInfoRegisterRequestService,
+  providers: [RegistrationService, MedicamentService, LoginService, RegistrationRequestService,
     MedicalStaffProfileService, EditMedicalStaffService, MoreInfoRegisterRequestService, ClinicService, AuthService,
     PatientHomePageService],
 
