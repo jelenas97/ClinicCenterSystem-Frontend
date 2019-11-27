@@ -1,0 +1,21 @@
+<table class="table table-bordered table-striped">
+  <thead class="thead-dark">
+  <tr>
+    <th scope="col">Name/th>
+    <th scope="col">Description</th>
+    <th scope="col">City</th>
+    <th scope="col">Address</th>
+    <th scope="col">Average rating</th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let clinic of clinics">
+    <td>{{ clinic.name }}</td>
+    <td>{{ clinic.description }}</td>
+    <td>{{ clinic.city }}</td>
+    <td>{{ clinic.address }}</td>
+    <td>{{ clinic.averageRating }}</td>
+  </tr>
+  </tbody>
+</table>
