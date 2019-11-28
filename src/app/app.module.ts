@@ -30,6 +30,8 @@ import {AuthService} from './service/auth.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './interceptor/TokenInterceptor';
 import { DoctorHomePageComponent } from './doctor-home-page/doctor-home-page.component';
+import { DoctorProfilePageComponent } from './doctor-home-page/doctor-profile-page/doctor-profile-page.component';
+import { DoctorProfilePageService } from './doctor-home-page/doctor-profile-page/doctor-profile-page.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,8 @@ import { DoctorHomePageComponent } from './doctor-home-page/doctor-home-page.com
     PatientHomePageComponent,
     ProfilePageComponent,
     AllClinicsComponent,
-    DoctorHomePageComponent
+    DoctorHomePageComponent,
+    DoctorProfilePageComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +68,7 @@ import { DoctorHomePageComponent } from './doctor-home-page/doctor-home-page.com
     },
     RegistrationService, MedicamentService, LoginService, RegistrationRequestService,
     MedicalStaffProfileService, EditMedicalStaffService, MoreInfoRegisterRequestService, ClinicService, AuthService,
-    MedicalStaffProfileService, EditMedicalStaffService, MoreInfoRegisterRequestService, PatientHomePageService],
+    MedicalStaffProfileService, EditMedicalStaffService, MoreInfoRegisterRequestService, PatientHomePageService, DoctorProfilePageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

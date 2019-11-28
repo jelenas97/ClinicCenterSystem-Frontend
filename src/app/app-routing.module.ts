@@ -11,6 +11,8 @@ import {PatientHomePageComponent} from './patient-home-page/patientHomePage.comp
 import {ProfilePageComponent} from './patient-home-page/profile-page/profile-page.component';
 import {AllClinicsComponent} from './patient-home-page/all-clinics/all-clinics.component';
 import {ClinicComponent} from './clinic/clinic.component';
+import {DoctorHomePageComponent} from './doctor-home-page/doctor-home-page.component';
+import {DoctorProfilePageComponent} from './doctor-home-page/doctor-profile-page/doctor-profile-page.component';
 
 
 const routes: Routes = [{path: 'register', component: RegistrationComponent},
@@ -24,6 +26,11 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
     path: 'patientHomePage', component: PatientHomePageComponent, children: [{
       path: 'patientProfilePage', component: ProfilePageComponent
     }, {path: 'allClinics', component: AllClinicsComponent}]
+  },
+  {
+    path: 'doctorHomePage', component: DoctorHomePageComponent, children: [{
+      path: 'doctorProfilePage', component: DoctorProfilePageComponent
+    }]
   }
 ];
 
