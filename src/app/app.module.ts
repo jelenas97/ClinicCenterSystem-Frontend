@@ -27,6 +27,10 @@ import {PatientHomePageService} from './patient-home-page/patientHomePage.servic
 import { ProfilePageComponent } from './patient-home-page/profile-page/profile-page.component';
 import { AllClinicsComponent } from './patient-home-page/all-clinics/all-clinics.component';
 
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './interceptor/TokenInterceptor';
+import { DoctorHomePageComponent } from './doctor-home-page/doctor-home-page.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +47,8 @@ import { AllClinicsComponent } from './patient-home-page/all-clinics/all-clinics
     MedicalStaffProfileComponent,
     PatientHomePageComponent,
     ProfilePageComponent,
-    AllClinicsComponent
+    AllClinicsComponent,
+    DoctorHomePageComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +57,13 @@ import { AllClinicsComponent } from './patient-home-page/all-clinics/all-clinics
     HttpClientModule,
     FormsModule
   ],
-  providers: [RegistrationService, MedicamentService, LoginService, RegistrationRequestService,
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    RegistrationService, MedicamentService, LoginService, RegistrationRequestService,
     MedicalStaffProfileService, EditMedicalStaffService, MoreInfoRegisterRequestService, ClinicService, AuthService,
     PatientHomePageService],
 
