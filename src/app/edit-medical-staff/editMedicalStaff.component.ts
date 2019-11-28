@@ -3,6 +3,7 @@ import {User} from '../model/user';
 import {EditMedicalStaffService} from './editMedicalStaff.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UserService} from '../service/user.service';
 
 @Component({
   selector: 'app-edit-medical-staff',
@@ -13,13 +14,13 @@ export class EditMedicalStaffComponent implements  OnInit {
   userData: FormGroup;
 
   constructor(private editMedicalStaffService: EditMedicalStaffService, private route: ActivatedRoute, private router: Router,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder, private userService: UserService) {
     this.user = new User();
 
   }
 
   onSubmit() {
-    this.editMedicalStaffService.update(this.user, 1).subscribe(result => this.gotoUser());
+    this.editMedicalStaffService.update(this.user).subscribe(result => this.gotoUser());
   }
 
   gotoUser() {
@@ -37,9 +38,9 @@ export class EditMedicalStaffComponent implements  OnInit {
       phone: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.minLength(9), Validators.maxLength(10)]]
     });
 
-    // this.editMedicalStaffService.getById(1).subscribe(data => {
-    //  this.user = data;
-   // });
+    this.userService.getMyInfo();
+    this.user = this.userService.currentUser;
+    console.log(this.user);
 
 
   }

@@ -38,6 +38,8 @@ export class LoginComponent implements OnInit {
           this.userService.getMyInfo().subscribe();
           if (sessionStorage.getItem('role') === 'ROLE_PATIENT') {
               this.router.navigate(['/patientHomePage']);
+          } else if (sessionStorage.getItem('role') === 'ROLE_DOCTOR') {
+            this.router.navigate(['/doctorHomePage']);
           }
         },
         error => {
