@@ -27,6 +27,10 @@ import {ClinicComponent} from './clinic/clinic.component';
 import {ClinicService} from './clinic/clinic.service';
 import {AuthService} from './service/auth.service';
 
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './interceptor/TokenInterceptor';
+import { DoctorHomePageComponent } from './doctor-home-page/doctor-home-page.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +47,8 @@ import {AuthService} from './service/auth.service';
     MedicalStaffProfileComponent,
     PatientHomePageComponent,
     ProfilePageComponent,
-    AllClinicsComponent
+    AllClinicsComponent,
+    DoctorHomePageComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +57,13 @@ import {AuthService} from './service/auth.service';
     HttpClientModule,
     FormsModule
   ],
-  providers: [RegistrationService, MedicamentService, LoginService, RegistrationRequestService,
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    RegistrationService, MedicamentService, LoginService, RegistrationRequestService,
     MedicalStaffProfileService, EditMedicalStaffService, MoreInfoRegisterRequestService, ClinicService, AuthService,
     MedicalStaffProfileService, EditMedicalStaffService, MoreInfoRegisterRequestService, PatientHomePageService],
   bootstrap: [AppComponent]
