@@ -26,6 +26,8 @@ import { AllClinicsComponent } from './patient-home-page/all-clinics/all-clinics
 import {ClinicComponent} from './clinic/clinic.component';
 import {ClinicService} from './clinic/clinic.service';
 import {AuthService} from './service/auth.service';
+import { ConfirmationMessageComponent } from './confirmation-message/confirmation-message.component';
+import {ConfirmationMessageService} from "./confirmation-message/confirmation-message.service";
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import {AuthService} from './service/auth.service';
     MedicalStaffProfileComponent,
     PatientHomePageComponent,
     ProfilePageComponent,
-    AllClinicsComponent
+    AllClinicsComponent,
+    ConfirmationMessageComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +57,8 @@ import {AuthService} from './service/auth.service';
   ],
   providers: [RegistrationService, MedicamentService, LoginService, RegistrationRequestService,
     MedicalStaffProfileService, EditMedicalStaffService, MoreInfoRegisterRequestService, ClinicService, AuthService,
-    MedicalStaffProfileService, EditMedicalStaffService, MoreInfoRegisterRequestService, PatientHomePageService],
+    MedicalStaffProfileService, EditMedicalStaffService, MoreInfoRegisterRequestService, PatientHomePageService,
+    ConfirmationMessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

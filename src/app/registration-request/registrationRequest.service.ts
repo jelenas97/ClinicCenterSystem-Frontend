@@ -22,7 +22,7 @@ export class RegistrationRequestService {
     location.reload();
 
   }
- public removeRequest(id: number) {
-    return this.http.delete(this.registrationRequestsUrl + '/removeRequest/' + id);
+ public removeRequest(id: number, message: string) {
+    return this.http.delete(this.registrationRequestsUrl + '/removeRequest/' + id + '/' + message);
   }
 }

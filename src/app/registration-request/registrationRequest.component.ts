@@ -12,6 +12,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class RegistrationRequestComponent implements OnInit {
 
   requests: RegistrationRequest[] = [];
+  reason: string;
 
   constructor(private registrationRequestService: RegistrationRequestService, private route: ActivatedRoute, private router: Router) {
   }
@@ -31,12 +32,13 @@ export class RegistrationRequestComponent implements OnInit {
   }
 
 
-  rejectRequest(id: number) {
-    this.registrationRequestService.removeRequest(id).subscribe(result => this.gotoRegistrationRequest());
+  rejectRequest(id: number, message: string) {
+    this.registrationRequestService.removeRequest(id, message).subscribe(result => this.gotoRegistrationRequest());
     console.log(id);
   }
 
   private gotoRegistrationRequest() {
     this.router.navigate(['/registrationRequests']);
   }
+
 }

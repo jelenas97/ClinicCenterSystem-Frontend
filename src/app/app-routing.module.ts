@@ -11,6 +11,7 @@ import {PatientHomePageComponent} from './patient-home-page/patientHomePage.comp
 import {ProfilePageComponent} from './patient-home-page/profile-page/profile-page.component';
 import {AllClinicsComponent} from './patient-home-page/all-clinics/all-clinics.component';
 import {ClinicComponent} from './clinic/clinic.component';
+import {ConfirmationMessageComponent} from './confirmation-message/confirmation-message.component';
 
 
 const routes: Routes = [{path: 'register', component: RegistrationComponent},
@@ -20,6 +21,7 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'medicalStaffProfile', component: MedicalStaffProfileComponent},
   {path: 'editMedicalStaff', component: EditMedicalStaffComponent},
   {path: 'registrationRequest/:id', component: MoreInfoRegisterRequestComponent},
+  {path: 'activateUser/:id', component: ConfirmationMessageComponent},
   {
     path: 'patientHomePage', component: PatientHomePageComponent, children: [{
       path: 'patientProfilePage', component: ProfilePageComponent

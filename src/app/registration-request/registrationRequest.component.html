@@ -17,9 +17,17 @@
         <td>{{ request.firstName }}</td>
         <td>{{ request.lastName }}</td>
         <td><a href="mailto:{{ request.email }}">{{ request.email }}</a></td>
-        <td><button class="btn-info" routerLink="/registrationRequest/{{request.id}}">See more info</button></td>
-        <td><button class="btn-danger" (click)="rejectRequest(request.id)">Reject</button></td>
-        <td><button class="btn-success" (click)="acceptRequest(request)">Accept</button></td>
+        <td>
+          <button class="btn-info" routerLink="/registrationRequest/{{request.id}}">See more info</button>
+        </td>
+        <td>
+          <form><input type="text" placeholder="Reason for rejecting" required id="reason" #reason>
+            <button class="btn-danger" (click)="rejectRequest(request.id, reason.value)">Reject</button>
+          </form>
+        </td>
+        <td>
+          <button class="btn-success" (click)="acceptRequest(request)">Accept</button>
+        </td>
       </tr>
       </tbody>
     </table>
