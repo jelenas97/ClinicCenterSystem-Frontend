@@ -101,3 +101,4 @@ export class RegistrationComponent implements OnInit {
           this.notification = {msgType: 'error', msgBody: 'Incorrect email or password'};
         });
 }
+}
