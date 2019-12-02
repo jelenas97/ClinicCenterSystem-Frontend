@@ -16,6 +16,7 @@ import {takeUntil} from 'rxjs/operators';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
+
   user: User;
   userData: FormGroup;
   passwordRepeat: string;
@@ -27,38 +28,23 @@ export class RegistrationComponent implements OnInit {
 
   // tslint:disable-next-line:max-line-length
   constructor(private userService: UserService, private registerService: RegistrationService, private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder, private authService: AuthService) {
-{
-    this.user = new User();
-  }
+      this.user = new User();
+    }
 
-  register() {
-    this.notification = undefined;
-    this.submitted = true;
 
-    this.authService.registration(this.userData.value)
-      .subscribe(data => {
-          this.userService.getMyInfo().subscribe();
-          this.router.navigate([this.returnUrl]);
-        },
-        error => {
-          this.submitted = false;
-          this.notification = {msgType: 'error', msgBody: 'Incorrect email or password'};
+
+
+    gotoUser() {
+      this.router.navigate(['/registration']);
+    }
+
+    ngOnInit(): void {
+      this.route.params.pipe(takeUntil(this.ngUnsubscribe))
+        .subscribe((params: DisplayMessage) => {
+          this.notification = params;
         });
-
-    // this.registerService.save(this.user).subscribe(result => this.gotoUser());
-  }
-
-gotoUser() {
-    this.router.navigate(['/registration']);
-  }
-
-ngOnInit(): void {
-    this.route.params.pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe((params: DisplayMessage) => {
-        this.notification = params;
-      });
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-    this.userData = this.formBuilder.group({
+      this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+      this.userData = this.formBuilder.group({
         ssn: ['', [Validators.required, Validators.minLength(13), Validators.maxLength(13), Validators.pattern(/^[0-9]*$/)]],
         email: ['', [Validators.required, this.emailDomainValidator, Validators.pattern(/[^ @]*@[^ @]*/)]],
         password: ['', [Validators.required, Validators.minLength(5)]],
@@ -71,7 +57,7 @@ ngOnInit(): void {
         phone: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.minLength(9), Validators.maxLength(10)]]
       },
       {validator: this.checkPasswords});
-  }
+    }
 
   checkPasswords(group: FormGroup) {
     if (!group.controls.password.touched) {
@@ -99,4 +85,24 @@ ngOnInit(): void {
   get f() {
     return this.userData.controls;
   }
+
+  register() {
+    this.notification = undefined;
+    this.submitted = true;
+
+    this.authService.registration(this.userData.value)
+      .subscribe(data => {
+          this.userService.getMyInfo().subscribe();
+          this.router.navigate([this.returnUrl]);
+        },
+        error => {
+          this.submitted = false;
+          this.notification = {msgType: 'error', msgBody: 'Incorrect email or password'};
+        });
 }
+
+
+
+
+}
+
