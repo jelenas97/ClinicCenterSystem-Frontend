@@ -29,28 +29,19 @@
         <a class="nav-link" href="/home">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/about">About</a>
+        <a class="nav-link" href="/about" *ngIf="this.role != null">About</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/register">Registration</a>
+        <a class="nav-link" routerLink="/register" *ngIf="this.role == null">Registration</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/login">Login</a>
+        <a class="nav-link" routerLink="/login" *ngIf="this.role == null">Login</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/medicament">New Medicament</a>
+        <a class="nav-link" routerLink="/registrationRequests">Requests</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/registrationRequests">Registration requests</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/medicalStaffProfile">Profile</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/newClinic">Create Clinic</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/patientHomePage">Home page</a>
+        <button class="nav-link"  (click)="this.authService.logout()" *ngIf="this.role != null">Logout</button>
       </li>
     </ul>
   </div>

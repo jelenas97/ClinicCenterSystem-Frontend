@@ -10,7 +10,7 @@ export class MedicalStaffProfileService {
   private readonly url: string;
 
   constructor(private http: HttpClient) {
-    this.url = 'http://localhost:8080/medicalStaffProfile/';
+    this.url = 'http://localhost:8080/auth/medicalStaffProfile/';
   }
 
   public getById(id: number): Observable<User> {

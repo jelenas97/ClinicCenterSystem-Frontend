@@ -17,7 +17,7 @@ export class EditMedicalStaffService {
     return this.http.get<User>(this.url + id);
   }
 
-  public update(user: User, id: 1): Observable<User> {
-    return this.http.put<User>(this.url + id, user);
+  public update(user: User): Observable<User> {
+    return this.http.put<User>(this.url, user);
   }
 }

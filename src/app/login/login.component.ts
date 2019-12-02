@@ -36,7 +36,11 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.userData.value)
       .subscribe(data => {
           this.userService.getMyInfo().subscribe();
-          this.router.navigate([this.returnUrl]);
+          if (sessionStorage.getItem('role') === 'ROLE_PATIENT') {
+              this.router.navigate(['/patientHomePage']);
+          } else if (sessionStorage.getItem('role') === 'ROLE_DOCTOR') {
+            this.router.navigate(['/doctorHomePage']);
+          }
         },
         error => {
           this.submitted = false;

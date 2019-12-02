@@ -29,6 +29,13 @@ import {AuthService} from './service/auth.service';
 import { ConfirmationMessageComponent } from './confirmation-message/confirmation-message.component';
 import {ConfirmationMessageService} from "./confirmation-message/confirmation-message.service";
 
+
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './interceptor/TokenInterceptor';
+import { DoctorHomePageComponent } from './doctor-home-page/doctor-home-page.component';
+import { DoctorProfilePageComponent } from './doctor-home-page/doctor-profile-page/doctor-profile-page.component';
+import { DoctorProfilePageService } from './doctor-home-page/doctor-profile-page/doctor-profile-page.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +53,9 @@ import {ConfirmationMessageService} from "./confirmation-message/confirmation-me
     PatientHomePageComponent,
     ProfilePageComponent,
     AllClinicsComponent,
-    ConfirmationMessageComponent
+    ConfirmationMessageComponent,
+    DoctorHomePageComponent,
+    DoctorProfilePageComponent
   ],
   imports: [
     BrowserModule,
@@ -55,10 +64,15 @@ import {ConfirmationMessageService} from "./confirmation-message/confirmation-me
     HttpClientModule,
     FormsModule
   ],
-  providers: [RegistrationService, MedicamentService, LoginService, RegistrationRequestService,
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    RegistrationService, MedicamentService, LoginService, RegistrationRequestService,
     MedicalStaffProfileService, EditMedicalStaffService, MoreInfoRegisterRequestService, ClinicService, AuthService,
-    MedicalStaffProfileService, EditMedicalStaffService, MoreInfoRegisterRequestService, PatientHomePageService,
-    ConfirmationMessageService],
+    PatientHomePageService,  ConfirmationMessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
