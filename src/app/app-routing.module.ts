@@ -23,7 +23,7 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'registrationRequests', component: RegistrationRequestComponent},
   {path: 'medicalStaffProfile', component: MedicalStaffProfileComponent},
   {path: 'newClinic', component: ClinicComponent},
-  {path: 'activateUser/:id', component: ConfirmationMessageComponent},,
+  {path: 'activateUser/:id', component: ConfirmationMessageComponent},
   {path: 'editMedicalStaff', component: EditMedicalStaffComponent},
   {path: 'registrationRequest/:id', component: MoreInfoRegisterRequestComponent},
   {

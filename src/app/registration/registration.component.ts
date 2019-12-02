@@ -5,9 +5,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {DisplayMessage} from '../shared/models/display-message';
 import {Subject} from 'rxjs';
-import {UserService} from '../service/user.service';
 import {AuthService} from '../service/auth.service';
-import {takeUntil} from 'rxjs/operators';
+import {UserService} from '../service/user.service';
 
 
 @Component({
@@ -16,7 +15,6 @@ import {takeUntil} from 'rxjs/operators';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-
   user: User;
   userData: FormGroup;
   passwordRepeat: string;
@@ -26,26 +24,21 @@ export class RegistrationComponent implements OnInit {
   returnUrl: string;
   private ngUnsubscribe: Subject<void> = new Subject<void>();
 
-  // tslint:disable-next-line:max-line-length
-  constructor(private userService: UserService, private registerService: RegistrationService, private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder, private authService: AuthService) {
-      this.user = new User();
-    }
+  constructor(private registerService: RegistrationService, private route: ActivatedRoute, private router: Router,
+              private formBuilder: FormBuilder, private authService: AuthService, private userService: UserService) {
+    this.user = new User();
+  }
 
+  onSubmit() {
+    this.registerService.save(this.user).subscribe(result => this.gotoUser());
+  }
 
+  gotoUser() {
+    this.router.navigate(['/registration']);
+  }
 
-
-
-    gotoUser() {
-      this.router.navigate(['/registration']);
-    }
-
-    ngOnInit(): void {
-      this.route.params.pipe(takeUntil(this.ngUnsubscribe))
-        .subscribe((params: DisplayMessage) => {
-          this.notification = params;
-        });
-      this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-      this.userData = this.formBuilder.group({
+  ngOnInit(): void {
+    this.userData = this.formBuilder.group({
         ssn: ['', [Validators.required, Validators.minLength(13), Validators.maxLength(13), Validators.pattern(/^[0-9]*$/)]],
         email: ['', [Validators.required, this.emailDomainValidator, Validators.pattern(/[^ @]*@[^ @]*/)]],
         password: ['', [Validators.required, Validators.minLength(5)]],
@@ -93,12 +86,12 @@ export class RegistrationComponent implements OnInit {
 
     this.authService.registration(this.userData.value)
       .subscribe(data => {
-          this.userService.getMyInfo().subscribe();
+          // this.userService.getMyInfo().subscribe();
           this.router.navigate([this.returnUrl]);
         },
         error => {
           this.submitted = false;
           this.notification = {msgType: 'error', msgBody: 'Incorrect email or password'};
         });
-}
+  }
 }
