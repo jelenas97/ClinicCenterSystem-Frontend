@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {User} from '../model/user';
 import {ActivatedRoute} from '@angular/router';
 import {PatientHomePageService} from './patientHomePage.service';
+import {UserService} from '../service/user.service';
 
 @Component({
   templateUrl: 'patientHomePage.component.html',
@@ -13,14 +14,13 @@ export class PatientHomePageComponent implements OnInit {
 
   user: User;
 
-  constructor(private patientHomePageService: PatientHomePageService, private activatedRoute: ActivatedRoute) {
+  constructor(private patientHomePageService: PatientHomePageService, private activatedRoute: ActivatedRoute,
+              private userService: UserService) {
   }
 
   ngOnInit(): void {
-
-    this.patientHomePageService.getById(1).subscribe(data => {
-      this.user = data;
-    });
+    this.userService.getMyInfo();
+    this.user = this.userService.currentUser;
   }
 
 }

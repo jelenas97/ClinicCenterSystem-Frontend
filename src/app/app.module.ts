@@ -27,7 +27,7 @@ import {ClinicComponent} from './clinic/clinic.component';
 import {ClinicService} from './clinic/clinic.service';
 import {AuthService} from './service/auth.service';
 import { ConfirmationMessageComponent } from './confirmation-message/confirmation-message.component';
-import {ConfirmationMessageService} from "./confirmation-message/confirmation-message.service";
+import {ConfirmationMessageService} from './confirmation-message/confirmation-message.service';
 
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -35,6 +35,7 @@ import { TokenInterceptor } from './interceptor/TokenInterceptor';
 import { DoctorHomePageComponent } from './doctor-home-page/doctor-home-page.component';
 import { DoctorProfilePageComponent } from './doctor-home-page/doctor-profile-page/doctor-profile-page.component';
 import { DoctorProfilePageService } from './doctor-home-page/doctor-profile-page/doctor-profile-page.service';
+import { RatingsComponent } from './patient-home-page/ratings/ratings.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { DoctorProfilePageService } from './doctor-home-page/doctor-profile-page
     AllClinicsComponent,
     ConfirmationMessageComponent,
     DoctorHomePageComponent,
-    DoctorProfilePageComponent
+    DoctorProfilePageComponent,
+    RatingsComponent
   ],
   imports: [
     BrowserModule,

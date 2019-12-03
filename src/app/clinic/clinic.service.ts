@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Clinic} from '../model/clinic';
-import {Observable} from "rxjs";
+import {Observable} from 'rxjs';
 
 @Injectable()
 export class ClinicService {

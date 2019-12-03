@@ -1,0 +1,58 @@
+<h2>Rate the clinics you have been to</h2>
+<table class="table table-bordered table-striped">
+  <thead class="thead-dark">
+  <tr>
+    <th scope="col">Name</th>
+    <th scope="col">Description</th>
+    <th scope="col">City</th>
+    <th scope="col">Address</th>
+    <th scope="col">Rate</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let clinic of clinics">
+    <td>{{ clinic.name }}</td>
+    <td>{{ clinic.description }}</td>
+    <td>{{ clinic.city }}</td>
+    <td>{{ clinic.address }}</td>
+    <td><label>
+      <select [(ngModel)]="selectedOption" (change)="onChangeSelect($event)" id="clinicOption">
+        <option>10</option>
+        <option>9</option>
+        <option>8</option>
+        <option>7</option>
+        <option>6</option>
+        <option>5</option>
+        <option>4</option>
+        <option>3</option>
+        <option>2</option>
+        <option>1</option>
+      </select>
+    </label>
+      <button [disabled]="!buttonDisabled" type="button" (click)="rateClinic(clinic.id, selectedOption)"> Rate ! </button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<h2>Rate the doctors that have examined you</h2>
+<table class="table table-bordered table-striped">
+  <thead class="thead-dark">
+  <tr>
+    <th scope="col">First name</th>
+    <th scope="col">Last name</th>
+    <th scope="col">Country</th>
+    <th scope="col">City</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let doctor of doctors">
+    <td>{{ doctor.firstName }}</td>
+    <td>{{ doctor.lastName }}</td>
+    <td>{{ doctor.country }}</td>
+    <td>{{ doctor.city }}</td>
+  </tr>
+  </tbody>
+</table>
+
+

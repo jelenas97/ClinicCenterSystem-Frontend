@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
 import {RegistrationComponent} from './registration/registration.component';
 import {MedicamentComponent} from './medicament/medicament.component';
 import {LoginComponent} from './login/login.component';
@@ -14,7 +14,7 @@ import {ClinicComponent} from './clinic/clinic.component';
 import {ConfirmationMessageComponent} from './confirmation-message/confirmation-message.component';
 import {DoctorHomePageComponent} from './doctor-home-page/doctor-home-page.component';
 import {DoctorProfilePageComponent} from './doctor-home-page/doctor-profile-page/doctor-profile-page.component';
-
+import {RatingsComponent} from "./patient-home-page/ratings/ratings.component";
 
 
 const routes: Routes = [{path: 'register', component: RegistrationComponent},
@@ -27,9 +27,10 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'editMedicalStaff', component: EditMedicalStaffComponent},
   {path: 'registrationRequest/:id', component: MoreInfoRegisterRequestComponent},
   {
-    path: 'patientHomePage', component: PatientHomePageComponent, children: [{
-      path: 'patientProfilePage', component: ProfilePageComponent
-    }, {path: 'allClinics', component: AllClinicsComponent}]
+    path: 'patientHomePage', component: PatientHomePageComponent, children: [
+      {path: 'patientProfilePage', component: ProfilePageComponent},
+      {path: 'allClinics', component: AllClinicsComponent},
+      {path: 'ratings', component: RatingsComponent}]
   },
   {
     path: 'doctorHomePage', component: DoctorHomePageComponent, children: [{
@@ -42,4 +43,5 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
