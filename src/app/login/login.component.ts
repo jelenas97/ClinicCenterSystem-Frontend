@@ -40,6 +40,8 @@ export class LoginComponent implements OnInit {
               this.router.navigate(['/patientHomePage']);
           } else if (sessionStorage.getItem('role') === 'ROLE_DOCTOR') {
             this.router.navigate(['/doctorHomePage']);
+          } else if (sessionStorage.getItem('role') === 'ROLE_CLINIC_ADMIN') {
+            this.router.navigate(['/clinicAdministratorHomePage']);
           }
         },
         error => {
