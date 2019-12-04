@@ -6,6 +6,7 @@
     <th scope="col">Description</th>
     <th scope="col">City</th>
     <th scope="col">Address</th>
+    <th scope="col">Average rating</th>
     <th scope="col">Rate</th>
   </tr>
   </thead>
@@ -15,6 +16,7 @@
     <td>{{ clinic.description }}</td>
     <td>{{ clinic.city }}</td>
     <td>{{ clinic.address }}</td>
+    <td>{{ clinic.clinicAverageRating }}</td>
     <td><label>
       <select [(ngModel)]="selectedOption" (change)="onChangeSelect($event)" id="clinicOption">
         <option>10</option>
@@ -43,6 +45,8 @@
     <th scope="col">Last name</th>
     <th scope="col">Country</th>
     <th scope="col">City</th>
+    <th scope="col">Average rating</th>
+    <th scope="col">Rate</th>
   </tr>
   </thead>
   <tbody>
@@ -51,6 +55,24 @@
     <td>{{ doctor.lastName }}</td>
     <td>{{ doctor.country }}</td>
     <td>{{ doctor.city }}</td>
+    <td>{{doctor.averageRating }}</td>
+    <td><label>
+      <select [(ngModel)]="selectedOption2" (change)="onChangeSelect2($event)" id="doctorOption">
+        <option>10</option>
+        <option>9</option>
+        <option>8</option>
+        <option>7</option>
+        <option>6</option>
+        <option>5</option>
+        <option>4</option>
+        <option>3</option>
+        <option>2</option>
+        <option>1</option>
+      </select>
+    </label>
+      <button [disabled]="!buttonDisabled2" type="button" (click)="rateDoctor(doctor.id, selectedOption2)"> Rate ! </button>
+
+    </td>
   </tr>
   </tbody>
 </table>

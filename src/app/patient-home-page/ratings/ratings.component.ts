@@ -15,12 +15,17 @@ export class RatingsComponent implements OnInit {
   doctors: User[] = [];
   buttonDisabled: boolean;
   selectedOption: string;
+  selectedOption2: string;
+  buttonDisabled2: boolean;
 
   constructor(private patientHomePageService: PatientHomePageService, private router: Router) { }
 
   ngOnInit() {
     this.patientHomePageService.getAllClinics().subscribe(data => {
       this.clinics = data;
+    });
+    this.patientHomePageService.getDoctors().subscribe(data => {
+      this.doctors = data;
     });
   }
 
@@ -31,5 +36,14 @@ export class RatingsComponent implements OnInit {
 
   rateClinic(id: string, selectedOption: string) {
     this.patientHomePageService.rateClinic(id, selectedOption);
+  }
+
+  onChangeSelect2($event: Event) {
+    console.log(this.selectedOption2);
+    this.buttonDisabled2 = true;
+  }
+
+  rateDoctor(id: string, selectedOption2: string) {
+    this.patientHomePageService.rateDoctor(id, selectedOption2);
   }
 }

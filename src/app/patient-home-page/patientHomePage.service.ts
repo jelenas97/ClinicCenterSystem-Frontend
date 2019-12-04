@@ -24,8 +24,17 @@ export class PatientHomePageService {
     return this.http.get<Clinic[]>('http://localhost:8080/auth/getAllClinics');
   }
 
+  getDoctors() {
+    return this.http.get<User[]>('http://localhost:8080/auth/getDoctors');
+  }
+
   rateClinic(id: string, selectedOption: string) {
     return this.http.put<any>('http://localhost:8080/auth/rateClinic/' + id + '/' + selectedOption, any).subscribe();
   }
+
+  rateDoctor(id2: string, selectedOption2: string) {
+    return this.http.put<any>('http://localhost:8080/auth/rateDoctor/' + id2 + '/' + selectedOption2, any).subscribe();
+  }
+
 
 }
