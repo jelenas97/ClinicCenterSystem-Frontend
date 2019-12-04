@@ -14,8 +14,9 @@ import {ClinicComponent} from './clinic/clinic.component';
 import {ConfirmationMessageComponent} from './confirmation-message/confirmation-message.component';
 import {DoctorHomePageComponent} from './doctor-home-page/doctor-home-page.component';
 import {DoctorProfilePageComponent} from './doctor-home-page/doctor-profile-page/doctor-profile-page.component';
-
-
+import {ClinicAdministratorHomePageComponent} from './clinic-administrator-home-page/clinic-administrator-home-page.component';
+// tslint:disable-next-line:max-line-length
+import {ClinicAdministratorProfilePageComponent} from './clinic-administrator-home-page/clinic-administrator-profile-page/clinic-administrator-profile-page.component';
 
 const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'medicament', component: MedicamentComponent},
@@ -34,7 +35,14 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {
     path: 'doctorHomePage', component: DoctorHomePageComponent, children: [{
       path: 'doctorProfilePage', component: DoctorProfilePageComponent
-    }]
+    },
+    ]
+  },
+  {
+    path: 'clinicAdministratorHomePage', component: ClinicAdministratorHomePageComponent, children: [{
+      path: 'clinicAdministratorProfilePage', component: ClinicAdministratorProfilePageComponent
+    },
+    ]
   }
 ];
 
