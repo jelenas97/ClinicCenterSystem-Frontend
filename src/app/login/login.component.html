@@ -20,8 +20,8 @@
             <input [(ngModel)]="user.email"
                    [ngClass]="{'is-invalid': f.email.touched && f.email.errors, 'is-valid': f.email.touched && f.email.valid}"
                    class="form-control"
-                   id="inputEmail"
-                   name="email" formControlName="email"
+                   id="inputEmail" formControlName="email"
+                   name="email"
                    placeholder="Enter your email"
                    required>
             <span style="color: red" *ngIf="f.email.touched && f.email.invalid">Valid email must contain @ and some of the domains : gmail.com, yahoo.com, uns.ac.rs</span>

@@ -14,6 +14,7 @@ import {ClinicComponent} from './clinic/clinic.component';
 import {ConfirmationMessageComponent} from './confirmation-message/confirmation-message.component';
 import {DoctorHomePageComponent} from './doctor-home-page/doctor-home-page.component';
 import {DoctorProfilePageComponent} from './doctor-home-page/doctor-profile-page/doctor-profile-page.component';
+import {NurseHomePageComponent} from './nurse-home-page/nurseHomePage.component';
 
 
 
@@ -24,6 +25,7 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'medicalStaffProfile', component: MedicalStaffProfileComponent},
   {path: 'newClinic', component: ClinicComponent},
   {path: 'activateUser/:id', component: ConfirmationMessageComponent},
+  {path: 'nurseHomePage', component: NurseHomePageComponent},
   {path: 'editMedicalStaff', component: EditMedicalStaffComponent},
   {path: 'registrationRequest/:id', component: MoreInfoRegisterRequestComponent},
   {

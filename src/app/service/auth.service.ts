@@ -5,9 +5,14 @@ import {UserService} from './user.service';
 import {ConfigService} from './config.service';
 import {map} from 'rxjs/operators';
 import { Router } from '@angular/router';
+import {BehaviorSubject} from 'rxjs';
+import {AppComponent} from '../app.component';
 
 @Injectable()
 export class AuthService {
+
+  private comp: AppComponent;
+  private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(
     private apiService: ApiService,
@@ -23,48 +28,42 @@ export class AuthService {
 
   login(user) {
     const loginHeaders = new HttpHeaders({
-      'Accept': 'application/json',
+      Accept: 'application/json',
       'Content-Type': 'application/json'
     });
-    // const body = `username=${user.username}&password=${user.password}`;
     const body = {
-      'username' : user.email,
-      'password' : user.password
+      username : user.email,
+      password : user.password
     };
+
     return this.apiService.post(this.config.login_url, JSON.stringify(body), loginHeaders)
       .pipe(map((res) => {
-        console.log('Login success');
         this.access_token = res.accessToken;
         this.role = res.role;
         sessionStorage.setItem('role', this.role);
         sessionStorage.setItem('key', res.accessToken);
-        console.log(this.role);
-
-        console.log(this.access_token);
+        this.loggedIn.next(true);
       }));
+
   }
 
   registration(user) {
     const registrationHeaders = new HttpHeaders({
-      'Accept': 'application/json',
+      Accept: 'application/json',
       'Content-Type': 'application/json'
     });
     return this.apiService.post(this.config.registration_url, JSON.stringify(user), registrationHeaders)
       .pipe(map(() => {
-        console.log('Registration success');
       }));
   }
 
-  logout() {
-    this.userService.currentUser = null;
-    this.access_token = null;
-    sessionStorage.clear();
-    this.router.navigate(['/login']);
+  get isLoggedIn() {
+    return this.loggedIn.asObservable();
   }
 
   changePassowrd(passwordChanger) {
     const passwordChangerHeaders = new HttpHeaders({
-      'Accept': 'application/json',
+      Accept: 'application/json',
       'Content-Type': 'application/json'
     });
     return this.apiService.post(this.config.change_password_url, JSON.stringify(passwordChanger), passwordChangerHeaders)
@@ -74,7 +73,7 @@ export class AuthService {
   }
 
   tokenIsPresent() {
-    return this.access_token != undefined && this.access_token != null;
+    return this.access_token !== undefined && this.access_token != null;
   }
 
   getToken() {

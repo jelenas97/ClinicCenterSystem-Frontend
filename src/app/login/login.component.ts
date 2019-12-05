@@ -8,6 +8,7 @@ import {AuthService} from '../service/auth.service';
 import {takeUntil} from 'rxjs/operators';
 import {DisplayMessage} from '../shared/models/display-message';
 import {UserService} from '../service/user.service';
+import {AppComponent} from '../app.component';
 
 @Component({
   selector: 'app-login',
@@ -24,8 +25,8 @@ export class LoginComponent implements OnInit {
   returnUrl: string;
   private ngUnsubscribe: Subject<void> = new Subject<void>();
 
-  // tslint:disable-next-line:max-line-length
-  constructor(private userService: UserService, private loginService: LoginService, private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder, private authService: AuthService) {
+  constructor(private userService: UserService, private loginService: LoginService, private route: ActivatedRoute, private router: Router,
+              private formBuilder: FormBuilder, private authService: AuthService, private appComponent: AppComponent) {
     this.user = new User();
   }
 
@@ -36,10 +37,13 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.userData.value)
       .subscribe(data => {
           this.userService.getMyInfo().subscribe();
+          this.appComponent.ngOnInit();
           if (sessionStorage.getItem('role') === 'ROLE_PATIENT') {
               this.router.navigate(['/patientHomePage']);
           } else if (sessionStorage.getItem('role') === 'ROLE_DOCTOR') {
             this.router.navigate(['/doctorHomePage']);
+          } else if (sessionStorage.getItem('role') === 'ROLE_NURSE') {
+            this.router.navigate(['/nurseHomePage']);
           }
         },
         error => {
@@ -47,18 +51,16 @@ export class LoginComponent implements OnInit {
           this.notification = {msgType: 'error', msgBody: 'Incorrect email or password'};
         }
       );
-  }
 
-  gotoLogin() {
-    this.router.navigate(['/login']);
   }
 
   ngOnInit(): void {
+
     this.route.params.pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((params: DisplayMessage) => {
         this.notification = params;
       });
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
     this.userData = this.formBuilder.group({
       email: ['', [Validators.required, this.emailDomainValidator]],
       password: ['', [Validators.required, Validators.minLength(5)]]
