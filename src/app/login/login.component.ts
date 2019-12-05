@@ -44,6 +44,8 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/doctorHomePage']);
           } else if (sessionStorage.getItem('role') === 'ROLE_NURSE') {
             this.router.navigate(['/nurseHomePage']);
+          } else if (sessionStorage.getItem('role') === 'ROLE_CLINIC_ADMIN') {
+            this.router.navigate(['/clinicAdministratorHomePage']);
           }
         },
         error => {
@@ -51,7 +53,10 @@ export class LoginComponent implements OnInit {
           this.notification = {msgType: 'error', msgBody: 'Incorrect email or password'};
         }
       );
+  }
 
+  gotoLogin() {
+    this.router.navigate(['/login']);
   }
 
   ngOnInit(): void {

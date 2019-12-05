@@ -38,6 +38,15 @@ import { DoctorProfilePageService } from './doctor-home-page/doctor-profile-page
 import {NurseHomePageComponent} from './nurse-home-page/nurseHomePage.component';
 import {NurseHomePageService} from './nurse-home-page/nurseHomePage.service';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import { ClinicAdministratorHomePageComponent } from './clinic-administrator-home-page/clinic-administrator-home-page.component';
+// tslint:disable-next-line:max-line-length
+import { ClinicAdministratorProfilePageComponent } from './clinic-administrator-home-page/clinic-administrator-profile-page/clinic-administrator-profile-page.component';
+// tslint:disable-next-line:max-line-length
+import { EditClinicAdministratorComponent } from './clinic-administrator-home-page/edit-clinic-administrator/edit-clinic-administrator.component';
+import {EditClinicAdministrator} from './clinic-administrator-home-page/edit-clinic-administrator/edit-clinic-administrator.service';
+import { RatingsComponent } from './patient-home-page/ratings/ratings.component';
+import { EditPatientProfilePageComponent } from './patient-home-page/edit-patient-profile-page/edit-patient-profile-page.component';
+import {EditPatientProfilePageService} from './patient-home-page/edit-patient-profile-page/edit-patient-profile-page.service';
 
 @NgModule({
   declarations: [
@@ -60,6 +69,13 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
     DoctorHomePageComponent,
     DoctorProfilePageComponent,
     NurseHomePageComponent,
+    DoctorProfilePageComponent,
+    RatingsComponent,
+    EditPatientProfilePageComponent,
+    DoctorProfilePageComponent,
+    ClinicAdministratorHomePageComponent,
+    ClinicAdministratorProfilePageComponent,
+    EditClinicAdministratorComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +93,7 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
     },
     RegistrationService, MedicamentService, LoginService, RegistrationRequestService,
     MedicalStaffProfileService, EditMedicalStaffService, MoreInfoRegisterRequestService, ClinicService, AuthService,
-    PatientHomePageService,  ConfirmationMessageService, NurseHomePageService],
+    PatientHomePageService,  ConfirmationMessageService, DoctorProfilePageService, EditClinicAdministrator, EditPatientProfilePageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
