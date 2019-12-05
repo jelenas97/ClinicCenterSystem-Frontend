@@ -41,6 +41,9 @@ import { ClinicAdministratorProfilePageComponent } from './clinic-administrator-
 // tslint:disable-next-line:max-line-length
 import { EditClinicAdministratorComponent } from './clinic-administrator-home-page/edit-clinic-administrator/edit-clinic-administrator.component';
 import {EditClinicAdministrator} from './clinic-administrator-home-page/edit-clinic-administrator/edit-clinic-administrator.service';
+import { RatingsComponent } from './patient-home-page/ratings/ratings.component';
+import { EditPatientProfilePageComponent } from './patient-home-page/edit-patient-profile-page/edit-patient-profile-page.component';
+import {EditPatientProfilePageService} from './patient-home-page/edit-patient-profile-page/edit-patient-profile-page.service';
 
 @NgModule({
   declarations: [
@@ -62,6 +65,9 @@ import {EditClinicAdministrator} from './clinic-administrator-home-page/edit-cli
     ConfirmationMessageComponent,
     DoctorHomePageComponent,
     DoctorProfilePageComponent,
+    RatingsComponent,
+    EditPatientProfilePageComponent,
+    DoctorProfilePageComponent,
     ClinicAdministratorHomePageComponent,
     ClinicAdministratorProfilePageComponent,
     EditClinicAdministratorComponent
@@ -81,7 +87,7 @@ import {EditClinicAdministrator} from './clinic-administrator-home-page/edit-cli
     },
     RegistrationService, MedicamentService, LoginService, RegistrationRequestService,
     MedicalStaffProfileService, EditMedicalStaffService, MoreInfoRegisterRequestService, ClinicService, AuthService,
-    PatientHomePageService,  ConfirmationMessageService, DoctorProfilePageService, EditClinicAdministrator],
-  bootstrap: [AppComponent],
+    PatientHomePageService,  ConfirmationMessageService, DoctorProfilePageService, EditClinicAdministrator, EditPatientProfilePageService],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

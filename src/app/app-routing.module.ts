@@ -19,6 +19,9 @@ import {ClinicAdministratorHomePageComponent} from './clinic-administrator-home-
 import {ClinicAdministratorProfilePageComponent} from './clinic-administrator-home-page/clinic-administrator-profile-page/clinic-administrator-profile-page.component';
 // tslint:disable-next-line:max-line-length
 import {EditClinicAdministratorComponent} from './clinic-administrator-home-page/edit-clinic-administrator/edit-clinic-administrator.component';
+import {RatingsComponent} from './patient-home-page/ratings/ratings.component';
+import {EditPatientProfilePageComponent} from './patient-home-page/edit-patient-profile-page/edit-patient-profile-page.component';
+
 
 const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'medicament', component: MedicamentComponent},
@@ -30,9 +33,11 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'editMedicalStaff', component: EditMedicalStaffComponent},
   {path: 'registrationRequest/:id', component: MoreInfoRegisterRequestComponent},
   {
-    path: 'patientHomePage', component: PatientHomePageComponent, children: [{
-      path: 'patientProfilePage', component: ProfilePageComponent
-    }, {path: 'allClinics', component: AllClinicsComponent}]
+    path: 'patientHomePage', component: PatientHomePageComponent, children: [
+      {path: 'patientProfilePage', component: ProfilePageComponent},
+      {path: 'allClinics', component: AllClinicsComponent},
+      {path: 'ratings', component: RatingsComponent},
+      {path: 'editPatientProfilePage', component: EditPatientProfilePageComponent}]
   },
   {
     path: 'doctorHomePage', component: DoctorHomePageComponent, children: [{

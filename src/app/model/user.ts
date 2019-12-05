@@ -1,4 +1,5 @@
 export class User {
+  id: string;
   email: string;
   password: string;
   firstName: string;
@@ -8,4 +9,5 @@ export class User {
   country: string;
   phone: string;
   ssn: string;
+  averageRating: string;
 }
