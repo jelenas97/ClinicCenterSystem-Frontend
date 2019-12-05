@@ -36,6 +36,8 @@ import { DoctorHomePageComponent } from './doctor-home-page/doctor-home-page.com
 import { DoctorProfilePageComponent } from './doctor-home-page/doctor-profile-page/doctor-profile-page.component';
 import { DoctorProfilePageService } from './doctor-home-page/doctor-profile-page/doctor-profile-page.service';
 import { RatingsComponent } from './patient-home-page/ratings/ratings.component';
+import { EditPatientProfilePageComponent } from './patient-home-page/edit-patient-profile-page/edit-patient-profile-page.component';
+import {EditPatientProfilePageService} from './patient-home-page/edit-patient-profile-page/edit-patient-profile-page.service';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,8 @@ import { RatingsComponent } from './patient-home-page/ratings/ratings.component'
     ConfirmationMessageComponent,
     DoctorHomePageComponent,
     DoctorProfilePageComponent,
-    RatingsComponent
+    RatingsComponent,
+    EditPatientProfilePageComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +77,7 @@ import { RatingsComponent } from './patient-home-page/ratings/ratings.component'
     },
     RegistrationService, MedicamentService, LoginService, RegistrationRequestService,
     MedicalStaffProfileService, EditMedicalStaffService, MoreInfoRegisterRequestService, ClinicService, AuthService,
-    PatientHomePageService,  ConfirmationMessageService],
+    PatientHomePageService,  ConfirmationMessageService, EditPatientProfilePageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

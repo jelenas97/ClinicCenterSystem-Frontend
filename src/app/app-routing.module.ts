@@ -14,7 +14,8 @@ import {ClinicComponent} from './clinic/clinic.component';
 import {ConfirmationMessageComponent} from './confirmation-message/confirmation-message.component';
 import {DoctorHomePageComponent} from './doctor-home-page/doctor-home-page.component';
 import {DoctorProfilePageComponent} from './doctor-home-page/doctor-profile-page/doctor-profile-page.component';
-import {RatingsComponent} from "./patient-home-page/ratings/ratings.component";
+import {RatingsComponent} from './patient-home-page/ratings/ratings.component';
+import {EditPatientProfilePageComponent} from './patient-home-page/edit-patient-profile-page/edit-patient-profile-page.component';
 
 
 const routes: Routes = [{path: 'register', component: RegistrationComponent},
@@ -30,7 +31,8 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
     path: 'patientHomePage', component: PatientHomePageComponent, children: [
       {path: 'patientProfilePage', component: ProfilePageComponent},
       {path: 'allClinics', component: AllClinicsComponent},
-      {path: 'ratings', component: RatingsComponent}]
+      {path: 'ratings', component: RatingsComponent},
+      {path: 'editPatientProfilePage', component: EditPatientProfilePageComponent}]
   },
   {
     path: 'doctorHomePage', component: DoctorHomePageComponent, children: [{
