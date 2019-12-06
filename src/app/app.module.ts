@@ -48,6 +48,8 @@ import { RatingsComponent } from './patient-home-page/ratings/ratings.component'
 import { EditPatientProfilePageComponent } from './patient-home-page/edit-patient-profile-page/edit-patient-profile-page.component';
 import {EditPatientProfilePageService} from './patient-home-page/edit-patient-profile-page/edit-patient-profile-page.service';
 
+// @ts-ignore
+// @ts-ignore
 @NgModule({
   declarations: [
     AppComponent,
@@ -93,7 +95,8 @@ import {EditPatientProfilePageService} from './patient-home-page/edit-patient-pr
     },
     RegistrationService, MedicamentService, LoginService, RegistrationRequestService,
     MedicalStaffProfileService, EditMedicalStaffService, MoreInfoRegisterRequestService, ClinicService, AuthService,
-    PatientHomePageService,  ConfirmationMessageService, DoctorProfilePageService, EditClinicAdministrator, EditPatientProfilePageService],
+    PatientHomePageService,  ConfirmationMessageService, DoctorProfilePageService, EditClinicAdministrator,
+    EditPatientProfilePageService, NurseHomePageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
