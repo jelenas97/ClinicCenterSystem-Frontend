@@ -19,7 +19,6 @@ export class RegistrationRequestService {
 
   public save(registration: RegistrationRequest) {
     return this.http.post<RegistrationRequest>(this.registrationRequestsUrl + '/acceptRequest', registration);
-    location.reload();
 
   }
  public removeRequest(id: number, message: string) {
