@@ -47,6 +47,8 @@ import {EditClinicAdministrator} from './clinic-administrator-home-page/edit-cli
 import { RatingsComponent } from './patient-home-page/ratings/ratings.component';
 import { EditPatientProfilePageComponent } from './patient-home-page/edit-patient-profile-page/edit-patient-profile-page.component';
 import {EditPatientProfilePageService} from './patient-home-page/edit-patient-profile-page/edit-patient-profile-page.service';
+import {TypesOfMedicalExamComponent} from './clinic-administrator-home-page/types-of-medical-exam/types-of-medical-exam.component';
+import {TypesOfMedicalExamService} from './clinic-administrator-home-page/types-of-medical-exam/types-of-medical-exam.service';
 
 // @ts-ignore
 // @ts-ignore
@@ -77,7 +79,8 @@ import {EditPatientProfilePageService} from './patient-home-page/edit-patient-pr
     DoctorProfilePageComponent,
     ClinicAdministratorHomePageComponent,
     ClinicAdministratorProfilePageComponent,
-    EditClinicAdministratorComponent
+    EditClinicAdministratorComponent,
+    TypesOfMedicalExamComponent
   ],
   imports: [
     BrowserModule,
@@ -96,7 +99,7 @@ import {EditPatientProfilePageService} from './patient-home-page/edit-patient-pr
     RegistrationService, MedicamentService, LoginService, RegistrationRequestService,
     MedicalStaffProfileService, EditMedicalStaffService, MoreInfoRegisterRequestService, ClinicService, AuthService,
     PatientHomePageService,  ConfirmationMessageService, DoctorProfilePageService, EditClinicAdministrator,
-    EditPatientProfilePageService, NurseHomePageService],
+    EditPatientProfilePageService, NurseHomePageService, TypesOfMedicalExamService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
