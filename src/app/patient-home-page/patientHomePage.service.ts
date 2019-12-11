@@ -5,6 +5,7 @@ import {User} from '../model/user';
 import {RegistrationRequest} from '../model/registrationRequest';
 import {Clinic} from '../model/clinic';
 import {any} from 'codelyzer/util/function';
+import {ExaminationType} from '../model/examinationType';
 
 
 @Injectable()
@@ -37,4 +38,7 @@ export class PatientHomePageService {
   }
 
 
+  getAllTypes() {
+    return this.http.get<ExaminationType[]>('http://localhost:8080/getAllMedicalExaminationTypes');
+  }
 }

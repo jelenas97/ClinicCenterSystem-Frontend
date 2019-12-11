@@ -37,6 +37,7 @@ import { DoctorProfilePageComponent } from './doctor-home-page/doctor-profile-pa
 import { DoctorProfilePageService } from './doctor-home-page/doctor-profile-page/doctor-profile-page.service';
 import {NurseHomePageComponent} from './nurse-home-page/nurseHomePage.component';
 import {NurseHomePageService} from './nurse-home-page/nurseHomePage.service';
+// @ts-ignore
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import { ClinicAdministratorHomePageComponent } from './clinic-administrator-home-page/clinic-administrator-home-page.component';
 // tslint:disable-next-line:max-line-length
@@ -47,6 +48,7 @@ import {EditClinicAdministrator} from './clinic-administrator-home-page/edit-cli
 import { RatingsComponent } from './patient-home-page/ratings/ratings.component';
 import { EditPatientProfilePageComponent } from './patient-home-page/edit-patient-profile-page/edit-patient-profile-page.component';
 import {EditPatientProfilePageService} from './patient-home-page/edit-patient-profile-page/edit-patient-profile-page.service';
+import { ScheduleExamComponent } from './patient-home-page/schedule-exam/schedule-exam.component';
 
 // @ts-ignore
 // @ts-ignore
@@ -77,7 +79,8 @@ import {EditPatientProfilePageService} from './patient-home-page/edit-patient-pr
     DoctorProfilePageComponent,
     ClinicAdministratorHomePageComponent,
     ClinicAdministratorProfilePageComponent,
-    EditClinicAdministratorComponent
+    EditClinicAdministratorComponent,
+    ScheduleExamComponent
   ],
   imports: [
     BrowserModule,

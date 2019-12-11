@@ -23,6 +23,7 @@ import {ClinicAdministratorProfilePageComponent} from './clinic-administrator-ho
 import {EditClinicAdministratorComponent} from './clinic-administrator-home-page/edit-clinic-administrator/edit-clinic-administrator.component';
 import {RatingsComponent} from './patient-home-page/ratings/ratings.component';
 import {EditPatientProfilePageComponent} from './patient-home-page/edit-patient-profile-page/edit-patient-profile-page.component';
+import {ScheduleExamComponent} from './patient-home-page/schedule-exam/schedule-exam.component';
 
 
 const routes: Routes = [{path: 'register', component: RegistrationComponent},
@@ -40,7 +41,8 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
       {path: 'patientProfilePage', component: ProfilePageComponent},
       {path: 'allClinics', component: AllClinicsComponent},
       {path: 'ratings', component: RatingsComponent},
-      {path: 'editPatientProfilePage', component: EditPatientProfilePageComponent}]
+      {path: 'editPatientProfilePage', component: EditPatientProfilePageComponent},
+      {path: 'scheduleExam', component: ScheduleExamComponent}]
   },
   {
     path: 'doctorHomePage', component: DoctorHomePageComponent, children: [{
