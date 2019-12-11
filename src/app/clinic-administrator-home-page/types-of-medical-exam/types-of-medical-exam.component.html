@@ -1,0 +1,29 @@
+<div class="card my-5">
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">Type Name</th>
+        <th scope="col">Price</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let type of types">
+        <td contenteditable="true" (blur)="changeName(type, $event)">{{ type.name }}</td>
+        <td contenteditable="true" (blur)="changeprice(type, $event)">{{ type.price }}</td>
+        <td>
+          <button class="btn-primary" (click)="editType(type)">Edit Type</button>
+        </td>
+        <td>
+          <button class="btn-danger" (click)="removeType(type)">Remove Type</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <button type="button" class="btn btn-info btn-lg btn-block" (click)="ngOnInit()">Reset table</button>
+    <button type="button" class="btn btn-success btn-lg btn-block">Add new type</button>
+
+  </div>
+</div>
