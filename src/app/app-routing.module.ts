@@ -23,6 +23,9 @@ import {ClinicAdministratorProfilePageComponent} from './clinic-administrator-ho
 import {EditClinicAdministratorComponent} from './clinic-administrator-home-page/edit-clinic-administrator/edit-clinic-administrator.component';
 import {RatingsComponent} from './patient-home-page/ratings/ratings.component';
 import {EditPatientProfilePageComponent} from './patient-home-page/edit-patient-profile-page/edit-patient-profile-page.component';
+import {CcaHomePageComponent} from './clinic-center-administrator-home-page/ccaHomePage.component';
+import {RecipesComponent} from './recipes/recipes.component';
+import {ValidatedRecipesComponent} from './validated-recipes/validatedRecipes.component';
 
 
 const routes: Routes = [{path: 'register', component: RegistrationComponent},
@@ -33,6 +36,9 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'newClinic', component: ClinicComponent},
   {path: 'activateUser/:id', component: ConfirmationMessageComponent},
   {path: 'nurseHomePage', component: NurseHomePageComponent},
+  {path: 'ccaHomePage', component: CcaHomePageComponent},
+  {path: 'allValidatedRecipes', component: ValidatedRecipesComponent},
+  {path: 'allRecipes', component: RecipesComponent},
   {path: 'editMedicalStaff', component: EditMedicalStaffComponent},
   {path: 'registrationRequest/:id', component: MoreInfoRegisterRequestComponent},
   {

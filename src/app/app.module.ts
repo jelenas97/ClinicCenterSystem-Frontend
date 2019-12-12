@@ -47,9 +47,13 @@ import {EditClinicAdministrator} from './clinic-administrator-home-page/edit-cli
 import { RatingsComponent } from './patient-home-page/ratings/ratings.component';
 import { EditPatientProfilePageComponent } from './patient-home-page/edit-patient-profile-page/edit-patient-profile-page.component';
 import {EditPatientProfilePageService} from './patient-home-page/edit-patient-profile-page/edit-patient-profile-page.service';
+import {CcaHomePageComponent} from './clinic-center-administrator-home-page/ccaHomePage.component';
+import {CcaHomePageService} from './clinic-center-administrator-home-page/ccaHomePage.service';
+import {RecipesService} from './recipes/recipes.service';
+import {RecipesComponent} from './recipes/recipes.component';
+import {ValidatedRecipesComponent} from './validated-recipes/validatedRecipes.component';
+import {ValidatedRecipesService} from './validated-recipes/validatedRecipes.service';
 
-// @ts-ignore
-// @ts-ignore
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,7 +81,10 @@ import {EditPatientProfilePageService} from './patient-home-page/edit-patient-pr
     DoctorProfilePageComponent,
     ClinicAdministratorHomePageComponent,
     ClinicAdministratorProfilePageComponent,
-    EditClinicAdministratorComponent
+    EditClinicAdministratorComponent,
+    CcaHomePageComponent,
+    RecipesComponent,
+    ValidatedRecipesComponent
   ],
   imports: [
     BrowserModule,
@@ -96,7 +103,7 @@ import {EditPatientProfilePageService} from './patient-home-page/edit-patient-pr
     RegistrationService, MedicamentService, LoginService, RegistrationRequestService,
     MedicalStaffProfileService, EditMedicalStaffService, MoreInfoRegisterRequestService, ClinicService, AuthService,
     PatientHomePageService,  ConfirmationMessageService, DoctorProfilePageService, EditClinicAdministrator,
-    EditPatientProfilePageService, NurseHomePageService],
+    EditPatientProfilePageService, NurseHomePageService, CcaHomePageService, RecipesService, ValidatedRecipesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

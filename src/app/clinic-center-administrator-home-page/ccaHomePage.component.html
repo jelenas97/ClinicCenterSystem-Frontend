@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home Page</title>
+  <style>
+    nav .navbar-nav li a {
+      color: white !important;
+    }
+
+    nav .navbar-brand {
+      color: white !important;
+    }
+  </style>
+</head>
+<body>
+<div class="col-lg-2 bg-white mt-3 bg-danger" >
+  <div style="height: 15px" class="col-lg-6">
+    <a  style="color:black" routerLink="/allClinics">Clinics</a>
+  </div>
+  <br>
+  <div style="height: 15px" class="col-lg-6">
+    <a style="color:black" routerLink="/allPatients">Patients</a>
+  </div>
+  <br>
+  <div style="height: 15px" class="col-lg-12">
+    <a style="color:black;" routerLink="/allRecipes">Recipes for Validation</a>
+  </div>
+  <br>
+  <div style="height: 15px" class="col-lg-12">
+    <a style="color:black;" routerLink="/allValidatedRecipes">Validated Recipes</a>
+  </div>
+  <br>
+  <div style="height: 15px" class="col-lg-8">
+    <a style="color:black" routerLink="/admins">Admins</a>
+  </div>
+  <br>
+  <div style="height: 15px" class="col-lg-8">
+    <a  style="color:black" routerLink="/medicament">New Medicament</a>
+  </div>
+
+
+</div>
+
+
+<router-outlet></router-outlet>
+</body>
+</html>
