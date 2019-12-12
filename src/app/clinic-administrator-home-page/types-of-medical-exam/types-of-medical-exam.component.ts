@@ -21,7 +21,9 @@ export class TypesOfMedicalExamComponent implements OnInit {
   }
 
   editType(type: any) {
-    console.log(type);
+    this.typesOfMedicalExamService.update(type).subscribe(data =>{
+      this.ngOnInit();
+    });
   }
 
   removeType(type: any) {

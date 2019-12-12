@@ -21,4 +21,8 @@ export class TypesOfMedicalExamService {
   public remove(id: number) {
     return this.http.delete(this.url + 'removeType/' + id);
   }
+
+  public update(type: any) {
+    return this.http.put<TypeOfMedicalExam>(this.url, type);
+  }
 }
