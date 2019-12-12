@@ -1,6 +1,7 @@
 <h2>Search by date and type</h2>
 <form id="searchClinic" (ngSubmit)="onSearchSubmit(selectedOption)">
-  <select name="types" [(ngModel)]="selectedOption" [selectedIndex]="1" (change)="onSelectChange($event)" required="true">
+
+  <select name="types" [(ngModel)]="selectedOption" [selectedIndex]="1" (change)="onSelectChange($event)">
     <option *ngFor="let type of examinationTypes">{{type.id}}</option>
   </select>
 
@@ -9,7 +10,8 @@
   <button type="submit">Search</button>
 </form>
 
-
+<br>
+<h2>All available clinics </h2>
 <table class="table table-bordered table-striped">
   <thead class="thead-dark">
   <tr>
@@ -18,7 +20,7 @@
     <th scope="col">City</th>
     <th scope="col">Address</th>
     <th scope="col">Average rating</th>
-
+    <th scope="col">Select a clinic</th>
   </tr>
   </thead>
   <tbody>
@@ -29,6 +31,28 @@
     <td>{{ clinic.address }}</td>
     <td *ngIf="clinic.clinicAverageRating != null">{{ clinic.clinicAverageRating }}</td>
     <td *ngIf="clinic.clinic_average_rating != null">{{ clinic.clinic_average_rating }}</td>
+    <td> <input type="radio" name="selectClinicRadio" (change)="getDoctorFromSelectedClinic(selectedOption, clinic.id)"> </td>
+  </tr>
+  </tbody>
+</table>
+
+<h2>All available doctors </h2>
+<table class="table table-bordered table-striped">
+  <thead class="thead-dark">
+  <tr>
+    <th scope="col">First name</th>
+    <th scope="col">Last name</th>
+    <th scope="col">Country</th>
+    <th scope="col">Average rating</th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let doctor of doctors">
+    <td>{{ doctor.first_name }}</td>
+    <td>{{ doctor.last_name }}</td>
+    <td>{{ doctor.country }}</td>
+    <td>{{ doctor.average_rating }}</td>
   </tr>
   </tbody>
 </table>

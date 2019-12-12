@@ -6,6 +6,7 @@ import {RegistrationRequest} from '../model/registrationRequest';
 import {Clinic} from '../model/clinic';
 import {any} from 'codelyzer/util/function';
 import {ExaminationType} from '../model/examinationType';
+import {UserMapperTwo} from '../model/userMapperTwo';
 
 
 @Injectable()
@@ -44,5 +45,9 @@ export class PatientHomePageService {
 
   getSearchedClinics(selectedOption: string) {
     return this.http.get<Clinic[]>('http://localhost:8080/auth/getSearchedClinics/' + selectedOption);
+  }
+
+  getSearchedDoctors(selectedOption: string, id: string) {
+    return this.http.get<UserMapperTwo[]>('http://localhost:8080/auth/getSearchedDoctors/' + selectedOption + '/' + id);
   }
 }
