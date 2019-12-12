@@ -39,4 +39,8 @@ export class TypesOfMedicalExamComponent implements OnInit {
   changeprice(type: TypeOfMedicalExam, event: any) {
     type.price = event.target.textContent;
   }
+
+  addTypePage() {
+    this.router.navigate(['/clinicAdministratorHomePage/addTypeOfMedicalExam']);
+  }
 }

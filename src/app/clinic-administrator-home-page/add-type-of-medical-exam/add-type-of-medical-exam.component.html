@@ -1,0 +1,43 @@
+<div class="container register-form pt-4">
+  <div class="form">
+    <div class="note">
+      <h2>Add type of medical exam</h2>
+    </div>
+
+    <div class="card my-5">
+      <div class="card-body">
+        <form (ngSubmit)="addType()">
+
+          <div class="form-group">
+            <label for="inputName">Name</label>
+            <input [(ngModel)]="type.name"
+                   [ngModelOptions]="{standalone:true}"
+                   class="form-control"
+                   id="inputName"
+                   name="name"
+                   placeholder="Enter name of type of medical exam"
+                   required>
+          </div>
+
+          <div class="form-group">
+            <label for="inputPrice">Price</label>
+            <input [(ngModel)]="type.price"
+                   [ngModelOptions]="{standalone:true}"
+
+                   class="form-control"
+                   id="inputPrice"
+                   name="price"
+                   placeholder="Enter price of type of medical exam"
+                   required>
+          </div>
+
+          <button type="submit"
+                  class="btn btn-info">Add
+          </button>
+        </form>
+      </div>
+    </div>
+
+
+  </div>
+</div>
