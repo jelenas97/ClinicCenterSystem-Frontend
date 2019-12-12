@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User} from '../model/user';
 import {RegistrationRequest} from '../model/registrationRequest';
@@ -21,7 +21,7 @@ export class PatientHomePageService {
     return this.http.get<User>(this.url + id);
   }
 
-  getAllClinics(): Observable<Clinic[]>  {
+  getAllClinics(): Observable<Clinic[]> {
     return this.http.get<Clinic[]>('http://localhost:8080/auth/getAllClinics');
   }
 
@@ -40,5 +40,9 @@ export class PatientHomePageService {
 
   getAllTypes() {
     return this.http.get<ExaminationType[]>('http://localhost:8080/getAllMedicalExaminationTypes');
+  }
+
+  getSearchedClinics(selectedOption: string) {
+    return this.http.get<Clinic[]>('http://localhost:8080/auth/getSearchedClinics/' + selectedOption);
   }
 }

@@ -5,4 +5,5 @@ export class Clinic {
   city: string;
   description: string;
   clinicAverageRating: number;
+  clinic_average_rating: number;
 }

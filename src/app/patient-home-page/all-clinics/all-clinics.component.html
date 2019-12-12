@@ -1,12 +1,12 @@
 <h2>Search by date and type</h2>
-<form id="searchClinic">
-  <select name="types">
-    <option *ngFor="let type of examinationTypes">{{type.name}}</option>
+<form id="searchClinic" (ngSubmit)="onSearchSubmit(selectedOption)">
+  <select name="types" [(ngModel)]="selectedOption" [selectedIndex]="1" (change)="onSelectChange($event)" required="true">
+    <option *ngFor="let type of examinationTypes">{{type.id}}</option>
   </select>
 
   <input type="date">
 
-  <input type="submit" value="Search">
+  <button type="submit">Search</button>
 </form>
 
 
@@ -27,7 +27,8 @@
     <td>{{ clinic.description }}</td>
     <td>{{ clinic.city }}</td>
     <td>{{ clinic.address }}</td>
-    <td>{{ clinic.clinicAverageRating }}</td>
+    <td *ngIf="clinic.clinicAverageRating != null">{{ clinic.clinicAverageRating }}</td>
+    <td *ngIf="clinic.clinic_average_rating != null">{{ clinic.clinic_average_rating }}</td>
   </tr>
   </tbody>
 </table>

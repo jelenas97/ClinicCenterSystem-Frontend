@@ -13,6 +13,7 @@ export class AllClinicsComponent implements OnInit {
 
   clinics: Clinic[] = [];
   examinationTypes: ExaminationType[] = [];
+  selectedOption: string;
 
   constructor(private patientHomePageService: PatientHomePageService , private router: Router) { }
 
@@ -26,4 +27,13 @@ export class AllClinicsComponent implements OnInit {
     });
   }
 
+  onSearchSubmit(selectedOption: string) {
+    this.patientHomePageService.getSearchedClinics(selectedOption).subscribe(data => {
+      this.clinics = data;
+    });
+  }
+
+  onSelectChange($event: Event) {
+    console.log(this.selectedOption);
+  }
 }
