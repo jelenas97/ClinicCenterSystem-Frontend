@@ -17,4 +17,8 @@ export class TypesOfMedicalExamService {
   getAll(): Observable<TypeOfMedicalExam[]> {
       return this.http.get<TypeOfMedicalExam[]>(this.url);
   }
+
+  public remove(id: number) {
+    return this.http.delete(this.url + 'removeType/' + id);
+  }
 }
