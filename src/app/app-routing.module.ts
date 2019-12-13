@@ -35,19 +35,18 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'medicalStaffProfile', component: MedicalStaffProfileComponent},
   {path: 'newClinic', component: ClinicComponent},
   {path: 'activateUser/:id', component: ConfirmationMessageComponent},
-  {path: 'nurseHomePage', component: NurseHomePageComponent},
+  {path: 'nurseHomePage', component: NurseHomePageComponent, children: [
+      {path: 'patientProfilePage', component: ProfilePageComponent}]},
   {path: 'ccaHomePage', component: CcaHomePageComponent},
   {path: 'allValidatedRecipes', component: ValidatedRecipesComponent},
   {path: 'allRecipes', component: RecipesComponent},
   {path: 'editMedicalStaff', component: EditMedicalStaffComponent},
   {path: 'registrationRequest/:id', component: MoreInfoRegisterRequestComponent},
-  {
-    path: 'patientHomePage', component: PatientHomePageComponent, children: [
-      {path: 'patientProfilePage', component: ProfilePageComponent},
-      {path: 'allClinics', component: AllClinicsComponent},
-      {path: 'ratings', component: RatingsComponent},
-      {path: 'editPatientProfilePage', component: EditPatientProfilePageComponent}]
-  },
+  {path: 'patientProfilePage', component: ProfilePageComponent},
+  {path: 'ratings', component: RatingsComponent},
+  {path: 'allClinics', component: AllClinicsComponent},
+  {path: 'patientHomePage', component: PatientHomePageComponent},
+  {path: 'editPatientProfilePage', component: EditPatientProfilePageComponent},
   {
     path: 'doctorHomePage', component: DoctorHomePageComponent, children: [{
       path: 'doctorProfilePage', component: DoctorProfilePageComponent

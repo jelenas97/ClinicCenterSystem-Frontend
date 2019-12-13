@@ -5,13 +5,15 @@ import {Observable} from 'rxjs';
 import {ApiService} from './service/api.service';
 import {Router} from '@angular/router';
 import {
+  faBookMedical,
+  faClinicMedical,
   faCoffee,
-  faHome, faInfo, faInfoCircle,
+  faHome, faInfo, faInfoCircle, faNotesMedical, faPrescriptionBottleAlt,
   faSign,
   faSignInAlt,
   faSignOutAlt,
-  faUserAlt,
-  faUserPlus
+  faUserAlt, faUserCircle,
+  faUserPlus, faUsers
 } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -29,6 +31,12 @@ export class AppComponent implements OnInit {
   faLogin = faSignInAlt;
   faHome = faHome;
   faInfo = faInfoCircle;
+  faClinics = faClinicMedical;
+  faPatients = faUsers;
+  faPrescription = faPrescriptionBottleAlt;
+  faUserCircle = faUserCircle;
+  faBook = faBookMedical;
+  faRecord = faNotesMedical;
 
   isLoggedIn: Observable<boolean>;
 

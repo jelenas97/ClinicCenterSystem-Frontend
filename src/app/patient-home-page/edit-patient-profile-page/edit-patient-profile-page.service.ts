@@ -12,6 +12,7 @@ export class EditPatientProfilePageService {
   }
 
   public update(user: User): Observable<User> {
+    console.log(user.address);
     return this.http.put<User>(this.url, user);
   }
 }

@@ -53,6 +53,7 @@ import {RecipesService} from './recipes/recipes.service';
 import {RecipesComponent} from './recipes/recipes.component';
 import {ValidatedRecipesComponent} from './validated-recipes/validatedRecipes.component';
 import {ValidatedRecipesService} from './validated-recipes/validatedRecipes.service';
+import {MaterialModule} from '../material.module';
 
 @NgModule({
   declarations: [
@@ -92,7 +93,9 @@ import {ValidatedRecipesService} from './validated-recipes/validatedRecipes.serv
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    FontAwesomeModule
+    MaterialModule,
+    FontAwesomeModule,
+
   ],
   providers: [
     {

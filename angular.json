@@ -26,7 +26,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": ["../my-app/node_modules/jquery/dist/jquery.min.js","../my-app/node_modules/bootstrap/dist/js/bootstrap.js"]
           },
           "configurations": {
             "production": {
