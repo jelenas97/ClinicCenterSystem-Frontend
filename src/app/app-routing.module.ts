@@ -24,6 +24,8 @@ import {EditClinicAdministratorComponent} from './clinic-administrator-home-page
 import {RatingsComponent} from './patient-home-page/ratings/ratings.component';
 import {EditPatientProfilePageComponent} from './patient-home-page/edit-patient-profile-page/edit-patient-profile-page.component';
 import {ScheduleExamComponent} from './patient-home-page/schedule-exam/schedule-exam.component';
+import {TypesOfMedicalExamComponent} from './clinic-administrator-home-page/types-of-medical-exam/types-of-medical-exam.component';
+import {AddTypeOfMedicalExamComponent} from './clinic-administrator-home-page/add-type-of-medical-exam/add-type-of-medical-exam.component';
 
 
 const routes: Routes = [{path: 'register', component: RegistrationComponent},
@@ -54,6 +56,10 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
     path: 'clinicAdministratorHomePage', component: ClinicAdministratorHomePageComponent, children: [{
       path: 'clinicAdministratorProfilePage', component: ClinicAdministratorProfilePageComponent } ,
       {path: 'editClinicAdministrator', component: EditClinicAdministratorComponent
+      },
+      {path: 'typesOfMedicalExam', component: TypesOfMedicalExamComponent
+      },
+      {path: 'addTypeOfMedicalExam', component: AddTypeOfMedicalExamComponent
       },
     ]
   }

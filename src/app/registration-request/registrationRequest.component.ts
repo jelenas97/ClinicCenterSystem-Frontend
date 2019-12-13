@@ -24,7 +24,7 @@ export class RegistrationRequestComponent implements OnInit {
   }
 
   acceptRequest(request: RegistrationRequest) {
-    this.registrationRequestService.save(request).subscribe(result => this.gotoUser());
+    this.registrationRequestService.save(request).subscribe(result => this.ngOnInit());
   }
 
   gotoUser() {
@@ -33,7 +33,7 @@ export class RegistrationRequestComponent implements OnInit {
 
 
   rejectRequest(id: number, message: string) {
-    this.registrationRequestService.removeRequest(id, message).subscribe(result => this.gotoRegistrationRequest());
+    this.registrationRequestService.removeRequest(id, message).subscribe(result => this.ngOnInit());
     console.log(id);
   }
 

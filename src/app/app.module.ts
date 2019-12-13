@@ -49,6 +49,10 @@ import { RatingsComponent } from './patient-home-page/ratings/ratings.component'
 import { EditPatientProfilePageComponent } from './patient-home-page/edit-patient-profile-page/edit-patient-profile-page.component';
 import {EditPatientProfilePageService} from './patient-home-page/edit-patient-profile-page/edit-patient-profile-page.service';
 import { ScheduleExamComponent } from './patient-home-page/schedule-exam/schedule-exam.component';
+import {TypesOfMedicalExamComponent} from './clinic-administrator-home-page/types-of-medical-exam/types-of-medical-exam.component';
+import {TypesOfMedicalExamService} from './clinic-administrator-home-page/types-of-medical-exam/types-of-medical-exam.service';
+import {AddTypeOfMedicalExamComponent} from './clinic-administrator-home-page/add-type-of-medical-exam/add-type-of-medical-exam.component';
+import {AddTypeOfMedicalExamService} from './clinic-administrator-home-page/add-type-of-medical-exam/add-type-of-medical-exam.service';
 
 // @ts-ignore
 // @ts-ignore
@@ -80,7 +84,10 @@ import { ScheduleExamComponent } from './patient-home-page/schedule-exam/schedul
     ClinicAdministratorHomePageComponent,
     ClinicAdministratorProfilePageComponent,
     EditClinicAdministratorComponent,
-    ScheduleExamComponent
+    ScheduleExamComponent,
+    EditClinicAdministratorComponent,
+    TypesOfMedicalExamComponent,
+    AddTypeOfMedicalExamComponent
   ],
   imports: [
     BrowserModule,
@@ -99,7 +106,7 @@ import { ScheduleExamComponent } from './patient-home-page/schedule-exam/schedul
     RegistrationService, MedicamentService, LoginService, RegistrationRequestService,
     MedicalStaffProfileService, EditMedicalStaffService, MoreInfoRegisterRequestService, ClinicService, AuthService,
     PatientHomePageService,  ConfirmationMessageService, DoctorProfilePageService, EditClinicAdministrator,
-    EditPatientProfilePageService, NurseHomePageService],
+    EditPatientProfilePageService, NurseHomePageService, TypesOfMedicalExamService, AddTypeOfMedicalExamService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
