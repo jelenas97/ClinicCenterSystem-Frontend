@@ -16,6 +16,9 @@ export class AllClinicsComponent implements OnInit {
   examinationTypes: ExaminationType[] = [];
   selectedOption: string;
   doctors: UserMapperTwo[] = [];
+  hiddenSend: boolean;
+  isAnyClinicSelected: boolean;
+  isTypeSelected: boolean;
 
   constructor(private patientHomePageService: PatientHomePageService , private router: Router) { }
 
@@ -31,9 +34,15 @@ export class AllClinicsComponent implements OnInit {
   }
 
   onSearchSubmit(selectedOption: string) {
-    this.patientHomePageService.getSearchedClinics(selectedOption).subscribe(data => {
-      this.clinics = data;
-    });
+    this.isTypeSelected = true;
+    if (selectedOption === 'No type') {
+      this.selectedOption = 'No type';
+      this.resetAllForm();
+    } else {
+      this.patientHomePageService.getSearchedClinics(selectedOption).subscribe(data => {
+        this.clinics = data;
+      });
+    }
   }
 
   onSelectChange($event: Event) {
@@ -41,9 +50,22 @@ export class AllClinicsComponent implements OnInit {
   }
 
   getDoctorFromSelectedClinic(selectedOption: string, id: string) {
-    console.log('menjam radio butin');
+    this.isAnyClinicSelected = true;
     this.patientHomePageService.getSearchedDoctors(selectedOption, id).subscribe(data => {
       this.doctors = data;
+    });
+  }
+
+  showSendRequestButton() {
+    this.hiddenSend = true;
+  }
+
+  resetAllForm() {
+    this.hiddenSend = false;
+    this.isTypeSelected = false;
+    this.isAnyClinicSelected = false;
+    this.patientHomePageService.getAllClinics().subscribe(data => {
+      this.clinics = data;
     });
   }
 }

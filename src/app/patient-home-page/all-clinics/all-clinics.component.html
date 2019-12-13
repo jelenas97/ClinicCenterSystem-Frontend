@@ -1,58 +1,74 @@
+
 <h2>Search by date and type</h2>
 <form id="searchClinic" (ngSubmit)="onSearchSubmit(selectedOption)">
 
-  <select name="types" [(ngModel)]="selectedOption" [selectedIndex]="1" (change)="onSelectChange($event)">
+  <select name="types" [(ngModel)]="selectedOption" (change)="onSelectChange($event)" [disabled]="isAnyClinicSelected">
+    <option>No type</option>
     <option *ngFor="let type of examinationTypes">{{type.id}}</option>
   </select>
 
-  <input type="date">
+  <input type="date" [disabled]="isAnyClinicSelected">
 
-  <button type="submit">Search</button>
+  <button type="submit" [disabled]="isAnyClinicSelected || selectedOption === undefined">Search</button>
+  <button type="button" [hidden]="!isAnyClinicSelected" (click)="resetAllForm()">Reset</button>
 </form>
 
-<br>
-<h2>All available clinics </h2>
-<table class="table table-bordered table-striped">
-  <thead class="thead-dark">
-  <tr>
-    <th scope="col">Name</th>
-    <th scope="col">Description</th>
-    <th scope="col">City</th>
-    <th scope="col">Address</th>
-    <th scope="col">Average rating</th>
-    <th scope="col">Select a clinic</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let clinic of clinics">
-    <td>{{ clinic.name }}</td>
-    <td>{{ clinic.description }}</td>
-    <td>{{ clinic.city }}</td>
-    <td>{{ clinic.address }}</td>
-    <td *ngIf="clinic.clinicAverageRating != null">{{ clinic.clinicAverageRating }}</td>
-    <td *ngIf="clinic.clinic_average_rating != null">{{ clinic.clinic_average_rating }}</td>
-    <td> <input type="radio" name="selectClinicRadio" (change)="getDoctorFromSelectedClinic(selectedOption, clinic.id)"> </td>
-  </tr>
-  </tbody>
-</table>
+<div>
+  <br>
+  <h2>All available clinics </h2>
+  <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">City</th>
+      <th scope="col">Address</th>
+      <th scope="col">Average rating</th>
+      <th scope="col" [hidden]="!isTypeSelected" >Select a clinic</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let clinic of clinics">
+      <td>{{ clinic.name }}</td>
+      <td>{{ clinic.description }}</td>
+      <td>{{ clinic.city }}</td>
+      <td>{{ clinic.address }}</td>
+      <td *ngIf="clinic.clinicAverageRating != null">{{ clinic.clinicAverageRating }}</td>
+      <td *ngIf="clinic.clinic_average_rating != null">{{ clinic.clinic_average_rating }}</td>
+      <td  [hidden]="!isTypeSelected"><input type="radio" name="selectClinicRadio"
+                 (change)="getDoctorFromSelectedClinic(selectedOption, clinic.id)">
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
 
-<h2>All available doctors </h2>
-<table class="table table-bordered table-striped">
-  <thead class="thead-dark">
-  <tr>
-    <th scope="col">First name</th>
-    <th scope="col">Last name</th>
-    <th scope="col">Country</th>
-    <th scope="col">Average rating</th>
+<div [hidden]="!isAnyClinicSelected">
+  <h2>All available doctors from selected clinic </h2>
+  <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">First name</th>
+      <th scope="col">Last name</th>
+      <th scope="col">Country</th>
+      <th scope="col">Average rating</th>
+      <th scope="col">Select a doctor</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let doctor of doctors">
+      <td>{{ doctor.first_name }}</td>
+      <td>{{ doctor.last_name }}</td>
+      <td>{{ doctor.country }}</td>
+      <td>{{ doctor.average_rating }}</td>
+      <td><input type="radio" name="selectDoctorRadio" (change)="showSendRequestButton()"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
 
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let doctor of doctors">
-    <td>{{ doctor.first_name }}</td>
-    <td>{{ doctor.last_name }}</td>
-    <td>{{ doctor.country }}</td>
-    <td>{{ doctor.average_rating }}</td>
-  </tr>
-  </tbody>
-</table>
+<div class="col-lg-4 text-center">
+  <button class="btn btn-primary" [hidden]="!hiddenSend" style="align-content: center; alignment: center"> Send
+    request
+  </button>
+</div>
