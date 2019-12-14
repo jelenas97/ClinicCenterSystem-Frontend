@@ -7,6 +7,7 @@ import {Clinic} from '../model/clinic';
 import {any} from 'codelyzer/util/function';
 import {ExaminationType} from '../model/examinationType';
 import {UserMapperTwo} from '../model/userMapperTwo';
+import {Router} from '@angular/router';
 
 
 @Injectable()
@@ -14,7 +15,7 @@ export class PatientHomePageService {
 
   private readonly url: string;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.url = 'http://localhost:8080/auth/medicalStaffProfile/';
   }
 
@@ -27,7 +28,7 @@ export class PatientHomePageService {
   }
 
   getDoctors() {
-    return this.http.get<User[]>('http://localhost:8080/auth/getDoctors');
+    return this.http.get<UserMapperTwo[]>('http://localhost:8080/auth/getDoctors');
   }
 
   rateClinic(id: string, selectedOption: string) {
@@ -40,7 +41,7 @@ export class PatientHomePageService {
 
 
   getAllTypes() {
-    return this.http.get<ExaminationType[]>('http://localhost:8080/getAllMedicalExaminationTypes');
+    return this.http.get<ExaminationType[]>('http://localhost:8080/getAllTypesOfMedicalExam');
   }
 
   getSearchedClinics(selectedOption: string) {

@@ -51,11 +51,11 @@
   </thead>
   <tbody>
   <tr *ngFor="let doctor of doctors">
-    <td>{{ doctor.firstName }}</td>
-    <td>{{ doctor.lastName }}</td>
+    <td>{{ doctor.first_name }}</td>
+    <td>{{ doctor.last_name }}</td>
     <td>{{ doctor.country }}</td>
     <td>{{ doctor.city }}</td>
-    <td>{{doctor.averageRating }}</td>
+    <td>{{doctor.average_rating }}</td>
     <td><label>
       <select [(ngModel)]="selectedOption2" (change)="onChangeSelect2($event)" id="doctorOption">
         <option>10</option>

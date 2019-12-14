@@ -3,6 +3,7 @@ import {Clinic} from '../../model/clinic';
 import {PatientHomePageService} from '../patientHomePage.service';
 import {Router} from '@angular/router';
 import {User} from '../../model/user';
+import {UserMapperTwo} from "../../model/userMapperTwo";
 
 @Component({
   selector: 'app-ratings',
@@ -12,7 +13,7 @@ import {User} from '../../model/user';
 export class RatingsComponent implements OnInit {
 
   clinics: Clinic[] = [];
-  doctors: User[] = [];
+  doctors: UserMapperTwo[] = [];
   buttonDisabled: boolean;
   selectedOption: string;
   selectedOption2: string;
@@ -36,6 +37,7 @@ export class RatingsComponent implements OnInit {
 
   rateClinic(id: string, selectedOption: string) {
     this.patientHomePageService.rateClinic(id, selectedOption);
+    this.router.navigate(['/patientHomePage/allClinics']);
   }
 
   onChangeSelect2($event: Event) {
