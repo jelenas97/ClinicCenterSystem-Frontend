@@ -24,7 +24,7 @@ export class EditMedicalStaffComponent implements  OnInit {
   }
 
   gotoUser() {
-    this.router.navigate(['/editMedicalStaff']);
+    this.router.navigate(['/doctorProfilePage']);
   }
 
   ngOnInit(): void {

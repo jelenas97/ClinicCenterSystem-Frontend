@@ -2,7 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {User} from '../model/user';
 import {ActivatedRoute} from '@angular/router';
 import {NurseHomePageService} from './nurseHomePage.service';
-
+import {UserService} from '../service/user.service';
+import {map} from 'rxjs/operators';
+import {ApiService} from '../service/api.service';
+import {ConfigService} from '../service/config.service';
+import {Observable, of} from 'rxjs';
 
 @Component({
   templateUrl: 'nurseHomePage.component.html',
@@ -11,15 +15,15 @@ import {NurseHomePageService} from './nurseHomePage.service';
 
 export class NurseHomePageComponent implements OnInit {
 
-  user: User;
-  constructor(private nurseHomePageService: NurseHomePageService, private activatedRoute: ActivatedRoute) {
+  user: Observable<User>;
+  currentUser: User;
+  firstName: Observable<string>;
+  constructor(private nurseHomePageService: NurseHomePageService, private activatedRoute: ActivatedRoute,
+              private userService: UserService) {
   }
 
   ngOnInit(): void {
-
-    this.nurseHomePageService.getById(4).subscribe(data => {
-      this.user = data;
-    });
-  }
+    this.user = this.userService.getMyInfo();
+    }
 
 }

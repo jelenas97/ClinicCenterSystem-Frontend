@@ -1,0 +1,19 @@
+<div class="card my-5 col-lg-6 offset-3">
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">Medicament Name</th>
+        <th scope="col">Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let recipe of validatedRecipes">
+        <td>{{recipe.medicamentName}}</td>
+        <td>{{ recipe.description }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

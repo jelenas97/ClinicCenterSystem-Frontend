@@ -53,9 +53,22 @@ import {TypesOfMedicalExamComponent} from './clinic-administrator-home-page/type
 import {TypesOfMedicalExamService} from './clinic-administrator-home-page/types-of-medical-exam/types-of-medical-exam.service';
 import {AddTypeOfMedicalExamComponent} from './clinic-administrator-home-page/add-type-of-medical-exam/add-type-of-medical-exam.component';
 import {AddTypeOfMedicalExamService} from './clinic-administrator-home-page/add-type-of-medical-exam/add-type-of-medical-exam.service';
+import {CcaHomePageComponent} from './clinic-center-administrator-home-page/ccaHomePage.component';
+import {CcaHomePageService} from './clinic-center-administrator-home-page/ccaHomePage.service';
+import {RecipesService} from './recipes/recipes.service';
+import {RecipesComponent} from './recipes/recipes.component';
+import {ValidatedRecipesComponent} from './validated-recipes/validatedRecipes.component';
+import {ValidatedRecipesService} from './validated-recipes/validatedRecipes.service';
+import {MaterialModule} from '../material.module';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+// tslint:disable-next-line:import-spacing
+import {CcaProfilePageComponent} from
+    './clinic-center-administrator-home-page/clinic-center-administrator-profile-page/ccaProfilePage.component';
+// tslint:disable-next-line:import-spacing
+import {CcaProfilePageService} from
+    './clinic-center-administrator-home-page/clinic-center-administrator-profile-page/ccaProfilePage.service';
 
-// @ts-ignore
-// @ts-ignore
 @NgModule({
   declarations: [
     AppComponent,
@@ -88,6 +101,11 @@ import {AddTypeOfMedicalExamService} from './clinic-administrator-home-page/add-
     EditClinicAdministratorComponent,
     TypesOfMedicalExamComponent,
     AddTypeOfMedicalExamComponent
+    EditClinicAdministratorComponent,
+    CcaHomePageComponent,
+    RecipesComponent,
+    ValidatedRecipesComponent,
+    CcaProfilePageComponent
   ],
   imports: [
     BrowserModule,
@@ -95,7 +113,11 @@ import {AddTypeOfMedicalExamService} from './clinic-administrator-home-page/add-
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    FontAwesomeModule
+    MaterialModule,
+    FontAwesomeModule,
+    FlexLayoutModule,
+    MatCheckboxModule,
+
   ],
   providers: [
     {
@@ -106,7 +128,8 @@ import {AddTypeOfMedicalExamService} from './clinic-administrator-home-page/add-
     RegistrationService, MedicamentService, LoginService, RegistrationRequestService,
     MedicalStaffProfileService, EditMedicalStaffService, MoreInfoRegisterRequestService, ClinicService, AuthService,
     PatientHomePageService,  ConfirmationMessageService, DoctorProfilePageService, EditClinicAdministrator,
-    EditPatientProfilePageService, NurseHomePageService, TypesOfMedicalExamService, AddTypeOfMedicalExamService],
+    EditPatientProfilePageService, NurseHomePageService, TypesOfMedicalExamService, AddTypeOfMedicalExamService, CcaHomePageService, RecipesService,
+    ValidatedRecipesService, CcaProfilePageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

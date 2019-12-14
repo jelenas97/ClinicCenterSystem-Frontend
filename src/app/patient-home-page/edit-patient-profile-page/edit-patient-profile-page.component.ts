@@ -42,7 +42,7 @@ export class EditPatientProfilePageComponent implements OnInit {
   }
 
   gotoUser() {
-    this.router.navigate(['/patientHomePage/patientProfilePage']);
+    this.router.navigate(['/patientProfilePage']);
   }
 
 }

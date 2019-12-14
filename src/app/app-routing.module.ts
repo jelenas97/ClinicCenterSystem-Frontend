@@ -26,6 +26,12 @@ import {EditPatientProfilePageComponent} from './patient-home-page/edit-patient-
 import {ScheduleExamComponent} from './patient-home-page/schedule-exam/schedule-exam.component';
 import {TypesOfMedicalExamComponent} from './clinic-administrator-home-page/types-of-medical-exam/types-of-medical-exam.component';
 import {AddTypeOfMedicalExamComponent} from './clinic-administrator-home-page/add-type-of-medical-exam/add-type-of-medical-exam.component';
+import {CcaHomePageComponent} from './clinic-center-administrator-home-page/ccaHomePage.component';
+import {RecipesComponent} from './recipes/recipes.component';
+import {ValidatedRecipesComponent} from './validated-recipes/validatedRecipes.component';
+// tslint:disable-next-line:import-spacing
+import {CcaProfilePageComponent} from
+    './clinic-center-administrator-home-page/clinic-center-administrator-profile-page/ccaProfilePage.component';
 
 
 const routes: Routes = [{path: 'register', component: RegistrationComponent},
@@ -36,6 +42,10 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'newClinic', component: ClinicComponent},
   {path: 'activateUser/:id', component: ConfirmationMessageComponent},
   {path: 'nurseHomePage', component: NurseHomePageComponent},
+  {path: 'ccaHomePage', component: CcaHomePageComponent},
+  {path: 'ccaProfilePage', component: CcaProfilePageComponent},
+  {path: 'allValidatedRecipes', component: ValidatedRecipesComponent},
+  {path: 'allRecipes', component: RecipesComponent},
   {path: 'editMedicalStaff', component: EditMedicalStaffComponent},
   {path: 'registrationRequest/:id', component: MoreInfoRegisterRequestComponent},
   {
@@ -63,6 +73,16 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
       },
     ]
   }
+  {path: 'patientProfilePage', component: ProfilePageComponent},
+  {path: 'ratings', component: RatingsComponent},
+  {path: 'allClinics', component: AllClinicsComponent},
+  {path: 'patientHomePage', component: PatientHomePageComponent},
+  {path: 'editPatientProfilePage', component: EditPatientProfilePageComponent},
+  {path: 'doctorHomePage', component: DoctorHomePageComponent},
+  {path: 'doctorProfilePage', component: DoctorProfilePageComponent},
+  {path: 'clinicAdministratorHomePage', component: ClinicAdministratorHomePageComponent},
+  {path: 'clinicAdministratorProfilePage', component: ClinicAdministratorProfilePageComponent},
+  {path: 'editClinicAdministrator', component: EditClinicAdministratorComponent},
 ];
 
 @NgModule({

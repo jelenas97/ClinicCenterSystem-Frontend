@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {ApiService} from './api.service';
 import {ConfigService} from './config.service';
 import {map} from 'rxjs/operators';
+import {User} from '../model/user';
+import {Observable, of} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,12 +11,12 @@ import {map} from 'rxjs/operators';
 export class UserService {
 
   currentUser;
+  myself$: Observable<User>;
 
   constructor(
     private apiService: ApiService,
     private config: ConfigService
-  ) {
-  }
+  ) {}
 
   initUser() {
     const promise = this.apiService.get(this.config.refresh_token_url).toPromise()

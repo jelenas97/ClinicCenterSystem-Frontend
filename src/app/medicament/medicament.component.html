@@ -47,12 +47,7 @@
           </div>
 
           <div class="form-group">
-            <label for="onPrescription">On Prescription</label>
-            <input type="checkbox" [(ngModel)]="medicament.onPrescription"
-                   class="form-control"
-                   id="onPrescription"
-                   name="onPrescription"
-                   required #name="ngModel">
+          <mat-checkbox id="onPrescription" >On prescription</mat-checkbox>
           </div>
 
           <button type="submit" [disabled]="!medicamentForm.form.valid"
