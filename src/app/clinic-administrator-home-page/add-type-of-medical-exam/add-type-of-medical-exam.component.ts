@@ -27,7 +27,7 @@ export class AddTypeOfMedicalExamComponent implements OnInit {
   addType() {
     console.log(this.type);
     this.addTypeOfMedicalExamService.addType(this.type).subscribe(data => {
-      this.router.navigate(['/clinicAdministratorHomePage/typesOfMedicalExam']);
+      this.router.navigate(['/typesOfMedicalExam']);
     });
 
   }

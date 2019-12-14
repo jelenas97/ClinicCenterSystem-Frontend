@@ -1,18 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from './service/user.service';
-import {AuthService} from './service/auth.service';
 import {Observable} from 'rxjs';
 import {ApiService} from './service/api.service';
 import {Router} from '@angular/router';
 import {
   faBookMedical,
   faClinicMedical, faClipboardList,
-  faCoffee, faExternalLinkAlt,
-  faHome, faInfo, faInfoCircle, faNotesMedical, faPlusSquare, faPrescriptionBottleAlt,
-  faSign,
+  faExternalLinkAlt,
+  faHome, faInfoCircle, faNotesMedical, faPlusSquare, faPrescriptionBottleAlt,
   faSignInAlt,
   faSignOutAlt,
-  faUserAlt, faUserCircle,
+  faUserCircle,
   faUserPlus, faUsers, faUsersCog
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -41,8 +39,6 @@ export class AppComponent implements OnInit {
   faStartExam = faExternalLinkAlt;
   faAdmins = faUsersCog;
   faMedicament = faPlusSquare;
-
-  isLoggedIn: Observable<boolean>;
 
   constructor( private apiService: ApiService, private userService: UserService, private router: Router) {}
 

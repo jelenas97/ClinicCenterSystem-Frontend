@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {User} from '../model/user';
 import {RegistrationService} from './registration.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -7,6 +7,7 @@ import {DisplayMessage} from '../shared/models/display-message';
 import {Subject} from 'rxjs';
 import {AuthService} from '../service/auth.service';
 import {UserService} from '../service/user.service';
+
 
 
 @Component({

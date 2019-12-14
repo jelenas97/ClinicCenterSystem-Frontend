@@ -10,7 +10,7 @@ export class TypesOfMedicalExamService {
   private readonly url: string;
 
   constructor(private http: HttpClient) {
-    this.url = 'http://localhost:8080/typesOfMedicalExam/';
+    this.url = 'http://localhost:8080/typesOfMedicalExam';
   }
 
 
@@ -19,7 +19,7 @@ export class TypesOfMedicalExamService {
   }
 
   public remove(id: number) {
-    return this.http.delete(this.url + 'removeType/' + id);
+    return this.http.delete(this.url + '/removeType/' + id);
   }
 
   public update(type: any) {

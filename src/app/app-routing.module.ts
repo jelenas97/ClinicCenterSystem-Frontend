@@ -48,41 +48,19 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'allRecipes', component: RecipesComponent},
   {path: 'editMedicalStaff', component: EditMedicalStaffComponent},
   {path: 'registrationRequest/:id', component: MoreInfoRegisterRequestComponent},
-  {
-    path: 'patientHomePage', component: PatientHomePageComponent, children: [
-      {path: 'patientProfilePage', component: ProfilePageComponent},
-      {path: 'allClinics', component: AllClinicsComponent},
-      {path: 'ratings', component: RatingsComponent},
-      {path: 'editPatientProfilePage', component: EditPatientProfilePageComponent},
-      {path: 'scheduleExam', component: ScheduleExamComponent}]
-  },
-  {
-    path: 'doctorHomePage', component: DoctorHomePageComponent, children: [{
-      path: 'doctorProfilePage', component: DoctorProfilePageComponent
-    },
-    ]
-  },
-  {
-    path: 'clinicAdministratorHomePage', component: ClinicAdministratorHomePageComponent, children: [{
-      path: 'clinicAdministratorProfilePage', component: ClinicAdministratorProfilePageComponent } ,
-      {path: 'editClinicAdministrator', component: EditClinicAdministratorComponent
-      },
-      {path: 'typesOfMedicalExam', component: TypesOfMedicalExamComponent
-      },
-      {path: 'addTypeOfMedicalExam', component: AddTypeOfMedicalExamComponent
-      },
-    ]
-  }
+  {path: 'patientHomePage', component: PatientHomePageComponent},
+  {path: 'scheduleExam', component: ScheduleExamComponent},
+  {path: 'typesOfMedicalExam', component: TypesOfMedicalExamComponent},
+  {path: 'addTypeOfMedicalExam', component: AddTypeOfMedicalExamComponent},
   {path: 'patientProfilePage', component: ProfilePageComponent},
   {path: 'ratings', component: RatingsComponent},
   {path: 'allClinics', component: AllClinicsComponent},
-  {path: 'patientHomePage', component: PatientHomePageComponent},
   {path: 'editPatientProfilePage', component: EditPatientProfilePageComponent},
   {path: 'doctorHomePage', component: DoctorHomePageComponent},
   {path: 'doctorProfilePage', component: DoctorProfilePageComponent},
   {path: 'clinicAdministratorHomePage', component: ClinicAdministratorHomePageComponent},
   {path: 'clinicAdministratorProfilePage', component: ClinicAdministratorProfilePageComponent},
-  {path: 'editClinicAdministrator', component: EditClinicAdministratorComponent},
+  {path: 'editClinicAdministrator', component: EditClinicAdministratorComponent}
 ];
 
 @NgModule({

@@ -171,6 +171,16 @@
             <a class="dropdown-item bg-dark" routerLink="/medicalSurgeryScheduling">Medical surgery</a>
           </div>
         </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink45" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <fa-icon [icon]="faSchedule" class="mr-1" ></fa-icon>Medical Exam Types
+          </a>
+          <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink4">
+            <a class="dropdown-item bg-dark" routerLink="/addTypeOfMedicalExam">New</a>
+            <a class="dropdown-item bg-dark" routerLink="/typesOfMedicalExam">Show All</a>
+          </div>
+        </li>
       </ul>
 
 
@@ -183,7 +193,7 @@
           <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink2">
             <a class="dropdown-item bg-dark" routerLink="/annualLeave">Annual Leave</a>
             <a class="dropdown-item bg-dark" routerLink="/absence">Absence</a>
-            <a class="dropdown-item bg-dark" routerLink="/personalInfo">Personal info</a>
+            <a class="dropdown-item bg-dark" routerLink="/nurseProfilePage">Personal info</a>
           </div>
         </li>
 
@@ -235,9 +245,6 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/register" *ngIf="this.role == null"><fa-icon [icon]="faRegister" class="mr-1" ></fa-icon>Register</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/registrationRequests" class="mr-1" >Regisration requests</a>
         </li>
       </ul>
 

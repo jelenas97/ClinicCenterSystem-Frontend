@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { ModalModule } from 'ngb-modal';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -100,7 +100,7 @@ import {CcaProfilePageService} from
     ScheduleExamComponent,
     EditClinicAdministratorComponent,
     TypesOfMedicalExamComponent,
-    AddTypeOfMedicalExamComponent
+    AddTypeOfMedicalExamComponent,
     EditClinicAdministratorComponent,
     CcaHomePageComponent,
     RecipesComponent,
@@ -117,6 +117,7 @@ import {CcaProfilePageService} from
     FontAwesomeModule,
     FlexLayoutModule,
     MatCheckboxModule,
+    ModalModule
 
   ],
   providers: [
@@ -128,7 +129,8 @@ import {CcaProfilePageService} from
     RegistrationService, MedicamentService, LoginService, RegistrationRequestService,
     MedicalStaffProfileService, EditMedicalStaffService, MoreInfoRegisterRequestService, ClinicService, AuthService,
     PatientHomePageService,  ConfirmationMessageService, DoctorProfilePageService, EditClinicAdministrator,
-    EditPatientProfilePageService, NurseHomePageService, TypesOfMedicalExamService, AddTypeOfMedicalExamService, CcaHomePageService, RecipesService,
+    EditPatientProfilePageService, NurseHomePageService, TypesOfMedicalExamService, AddTypeOfMedicalExamService,
+    CcaHomePageService, RecipesService,
     ValidatedRecipesService, CcaProfilePageService],
   bootstrap: [AppComponent]
 })

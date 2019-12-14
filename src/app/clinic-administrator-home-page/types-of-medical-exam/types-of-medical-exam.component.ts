@@ -21,7 +21,7 @@ export class TypesOfMedicalExamComponent implements OnInit {
   }
 
   editType(type: any) {
-    this.typesOfMedicalExamService.update(type).subscribe(data =>{
+    this.typesOfMedicalExamService.update(type).subscribe(data => {
       this.ngOnInit();
     });
   }
@@ -41,6 +41,6 @@ export class TypesOfMedicalExamComponent implements OnInit {
   }
 
   addTypePage() {
-    this.router.navigate(['/clinicAdministratorHomePage/addTypeOfMedicalExam']);
+    this.router.navigate(['/addTypeOfMedicalExam']);
   }
 }
