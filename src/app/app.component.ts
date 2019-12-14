@@ -6,14 +6,14 @@ import {ApiService} from './service/api.service';
 import {Router} from '@angular/router';
 import {
   faBookMedical,
-  faClinicMedical,
-  faCoffee,
-  faHome, faInfo, faInfoCircle, faNotesMedical, faPrescriptionBottleAlt,
+  faClinicMedical, faClipboardList,
+  faCoffee, faExternalLinkAlt,
+  faHome, faInfo, faInfoCircle, faNotesMedical, faPlusSquare, faPrescriptionBottleAlt,
   faSign,
   faSignInAlt,
   faSignOutAlt,
   faUserAlt, faUserCircle,
-  faUserPlus, faUsers
+  faUserPlus, faUsers, faUsersCog
 } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -37,6 +37,10 @@ export class AppComponent implements OnInit {
   faUserCircle = faUserCircle;
   faBook = faBookMedical;
   faRecord = faNotesMedical;
+  faSchedule = faClipboardList;
+  faStartExam = faExternalLinkAlt;
+  faAdmins = faUsersCog;
+  faMedicament = faPlusSquare;
 
   isLoggedIn: Observable<boolean>;
 

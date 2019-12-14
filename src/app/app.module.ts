@@ -54,6 +54,14 @@ import {RecipesComponent} from './recipes/recipes.component';
 import {ValidatedRecipesComponent} from './validated-recipes/validatedRecipes.component';
 import {ValidatedRecipesService} from './validated-recipes/validatedRecipes.service';
 import {MaterialModule} from '../material.module';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+// tslint:disable-next-line:import-spacing
+import {CcaProfilePageComponent} from
+    './clinic-center-administrator-home-page/clinic-center-administrator-profile-page/ccaProfilePage.component';
+// tslint:disable-next-line:import-spacing
+import {CcaProfilePageService} from
+    './clinic-center-administrator-home-page/clinic-center-administrator-profile-page/ccaProfilePage.service';
 
 @NgModule({
   declarations: [
@@ -85,7 +93,8 @@ import {MaterialModule} from '../material.module';
     EditClinicAdministratorComponent,
     CcaHomePageComponent,
     RecipesComponent,
-    ValidatedRecipesComponent
+    ValidatedRecipesComponent,
+    CcaProfilePageComponent
   ],
   imports: [
     BrowserModule,
@@ -95,6 +104,8 @@ import {MaterialModule} from '../material.module';
     FormsModule,
     MaterialModule,
     FontAwesomeModule,
+    FlexLayoutModule,
+    MatCheckboxModule,
 
   ],
   providers: [
@@ -106,7 +117,8 @@ import {MaterialModule} from '../material.module';
     RegistrationService, MedicamentService, LoginService, RegistrationRequestService,
     MedicalStaffProfileService, EditMedicalStaffService, MoreInfoRegisterRequestService, ClinicService, AuthService,
     PatientHomePageService,  ConfirmationMessageService, DoctorProfilePageService, EditClinicAdministrator,
-    EditPatientProfilePageService, NurseHomePageService, CcaHomePageService, RecipesService, ValidatedRecipesService],
+    EditPatientProfilePageService, NurseHomePageService, CcaHomePageService, RecipesService,
+    ValidatedRecipesService, CcaProfilePageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from '../model/user';
 import {ActivatedRoute} from '@angular/router';
 import {CcaHomePageService} from './ccaHomePage.service';
+import {UserService} from '../service/user.service';
+import {Observable} from 'rxjs';
 
 
 @Component({
@@ -11,15 +12,13 @@ import {CcaHomePageService} from './ccaHomePage.service';
 
 export class CcaHomePageComponent implements OnInit {
 
-  user: User;
-  constructor(private ccaHomePageService: CcaHomePageService, private activatedRoute: ActivatedRoute) {
+  user: Observable<any>;
+  constructor(private ccaHomePageService: CcaHomePageService, private activatedRoute: ActivatedRoute,
+              private userService: UserService) {
   }
 
   ngOnInit(): void {
-
-    this.ccaHomePageService.getById(10).subscribe(data => {
-      this.user = data;
-    });
+    this.user = this.userService.getMyInfo();
   }
 
 }

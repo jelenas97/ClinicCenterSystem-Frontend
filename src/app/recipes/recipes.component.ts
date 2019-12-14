@@ -24,10 +24,11 @@ export class RecipesComponent implements OnInit {
 
 
   validateRecipe(id: number) {
-    this.recipesService.validate(id).subscribe(result => this.gotoRecipes(id));
+    this.recipesService.validate(id).subscribe(result => this.gotoRecipes());
+    window.location.reload();
   }
 
-  public gotoRecipes(id) {
+  public gotoRecipes() {
     this.router.navigate(['/allRecipes']);
   }
 }

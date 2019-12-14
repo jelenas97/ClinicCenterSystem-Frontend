@@ -16,6 +16,7 @@ export class AllClinicsComponent implements OnInit {
 
   ngOnInit() {
     this.patientHomePageService.getAllClinics().subscribe(data => {
+      console.log(data.length);
       this.clinics = data;
     });
   }

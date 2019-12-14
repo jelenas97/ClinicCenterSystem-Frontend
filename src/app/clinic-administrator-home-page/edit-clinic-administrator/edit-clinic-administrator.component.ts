@@ -27,7 +27,7 @@ export class EditClinicAdministratorComponent implements OnInit {
   }
 
   gotoUser() {
-    this.router.navigate(['/clinicAdministratorHomePage/clinicAdministratorProfilePage']);
+    this.router.navigate(['/clinicAdministratorProfilePage']);
   }
 
   ngOnInit(): void {

@@ -11,7 +11,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let recipe of recipes">
+      <tr *ngFor="let recipe of recipes" >
         <td>{{ recipe.medicamentName }}</td>
         <td>{{ recipe.description }}</td>
         <td><button class="btn btn-success" (click)="validateRecipe(recipe.id)"  type="button">Validate</button></td>
