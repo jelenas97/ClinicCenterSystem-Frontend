@@ -70,6 +70,7 @@ import {CcaProfilePageService} from
     './clinic-center-administrator-home-page/clinic-center-administrator-profile-page/ccaProfilePage.service';
 import {ShowAllMedicamentsComponent} from './showAllMedicaments/showAllMedicaments.component';
 import {ShowAllMedicamentsService} from './showAllMedicaments/showAllMedicaments.service';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -120,8 +121,8 @@ import {ShowAllMedicamentsService} from './showAllMedicaments/showAllMedicaments
     FontAwesomeModule,
     FlexLayoutModule,
     MatCheckboxModule,
-    ModalModule
-
+    ModalModule,
+    NgbModule
   ],
   providers: [
     {
