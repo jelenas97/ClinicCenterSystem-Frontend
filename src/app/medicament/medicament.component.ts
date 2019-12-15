@@ -21,6 +21,6 @@ export class MedicamentComponent {
   }
 
   gotoMedicament() {
-    this.router.navigate(['/medicament']);
+    this.router.navigate(['/allMedicaments']);
   }
 }

@@ -32,6 +32,7 @@ import {ValidatedRecipesComponent} from './validated-recipes/validatedRecipes.co
 // tslint:disable-next-line:import-spacing
 import {CcaProfilePageComponent} from
     './clinic-center-administrator-home-page/clinic-center-administrator-profile-page/ccaProfilePage.component';
+import {ShowAllMedicamentsComponent} from './showAllMedicaments/showAllMedicaments.component';
 
 
 const routes: Routes = [{path: 'register', component: RegistrationComponent},
@@ -60,7 +61,8 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'doctorProfilePage', component: DoctorProfilePageComponent},
   {path: 'clinicAdministratorHomePage', component: ClinicAdministratorHomePageComponent},
   {path: 'clinicAdministratorProfilePage', component: ClinicAdministratorProfilePageComponent},
-  {path: 'editClinicAdministrator', component: EditClinicAdministratorComponent}
+  {path: 'editClinicAdministrator', component: EditClinicAdministratorComponent},
+  {path: 'allMedicaments', component: ShowAllMedicamentsComponent}
 ];
 
 @NgModule({

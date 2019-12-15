@@ -1,0 +1,21 @@
+<div class="card my-5 col-lg-6 offset-3">
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">Medicament Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Purpose</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let medicament of medicaments">
+        <td>{{medicament.name}}</td>
+        <td>{{ medicament.description }}</td>
+        <td>{{medicament.purpose}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

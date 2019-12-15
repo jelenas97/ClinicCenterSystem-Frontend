@@ -68,6 +68,8 @@ import {CcaProfilePageComponent} from
 // tslint:disable-next-line:import-spacing
 import {CcaProfilePageService} from
     './clinic-center-administrator-home-page/clinic-center-administrator-profile-page/ccaProfilePage.service';
+import {ShowAllMedicamentsComponent} from './showAllMedicaments/showAllMedicaments.component';
+import {ShowAllMedicamentsService} from './showAllMedicaments/showAllMedicaments.service';
 
 @NgModule({
   declarations: [
@@ -105,7 +107,8 @@ import {CcaProfilePageService} from
     CcaHomePageComponent,
     RecipesComponent,
     ValidatedRecipesComponent,
-    CcaProfilePageComponent
+    CcaProfilePageComponent,
+    ShowAllMedicamentsComponent
   ],
   imports: [
     BrowserModule,
@@ -131,7 +134,7 @@ import {CcaProfilePageService} from
     PatientHomePageService,  ConfirmationMessageService, DoctorProfilePageService, EditClinicAdministrator,
     EditPatientProfilePageService, NurseHomePageService, TypesOfMedicalExamService, AddTypeOfMedicalExamService,
     CcaHomePageService, RecipesService,
-    ValidatedRecipesService, CcaProfilePageService],
+    ValidatedRecipesService, CcaProfilePageService, ShowAllMedicamentsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
