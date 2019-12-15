@@ -7,7 +7,7 @@ import {DisplayMessage} from '../shared/models/display-message';
 import {Subject} from 'rxjs';
 import {AuthService} from '../service/auth.service';
 import {UserService} from '../service/user.service';
-
+import {ModalDismissReasons, NgbModal, NgbModalOptions} from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -24,10 +24,17 @@ export class RegistrationComponent implements OnInit {
   notification: DisplayMessage;
   returnUrl: string;
   private ngUnsubscribe: Subject<void> = new Subject<void>();
+  closeResult: string;
+  modalOptions: NgbModalOptions;
 
   constructor(private registerService: RegistrationService, private route: ActivatedRoute, private router: Router,
-              private formBuilder: FormBuilder, private authService: AuthService, private userService: UserService) {
+              private formBuilder: FormBuilder, private authService: AuthService, private userService: UserService,
+              private modalService: NgbModal) {
     this.user = new User();
+    this.modalOptions = {
+      backdrop: 'static',
+      backdropClass: 'customBackdrop'
+    };
   }
 
   onSubmit() {
@@ -81,18 +88,35 @@ export class RegistrationComponent implements OnInit {
     return this.userData.controls;
   }
 
-  register() {
+  register(mymodal) {
     this.notification = undefined;
     this.submitted = true;
+
 
     this.authService.registration(this.userData.value)
       .subscribe(data => {
           // this.userService.getMyInfo().subscribe();
-          this.router.navigate([this.returnUrl]);
+          this.router.navigate(['/login']);
         },
         error => {
           this.submitted = false;
           this.notification = {msgType: 'error', msgBody: 'Incorrect email or password'};
         });
+
+    this.modalService.open(mymodal, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
   }
 }

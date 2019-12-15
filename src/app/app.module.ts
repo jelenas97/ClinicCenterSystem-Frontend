@@ -68,6 +68,7 @@ import {CcaProfilePageComponent} from
 // tslint:disable-next-line:import-spacing
 import {CcaProfilePageService} from
     './clinic-center-administrator-home-page/clinic-center-administrator-profile-page/ccaProfilePage.service';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -117,8 +118,8 @@ import {CcaProfilePageService} from
     FontAwesomeModule,
     FlexLayoutModule,
     MatCheckboxModule,
-    ModalModule
-
+    ModalModule,
+    NgbModule
   ],
   providers: [
     {
