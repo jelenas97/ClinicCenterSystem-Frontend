@@ -7,12 +7,13 @@ import {
   faBookMedical,
   faClinicMedical, faClipboardList,
   faExternalLinkAlt,
-  faHome, faInfoCircle, faNotesMedical, faPlusSquare, faPrescriptionBottleAlt,
+  faHome, faInfoCircle, faNotesMedical, faPlaneDeparture, faPlusSquare, faPrescriptionBottleAlt,
   faSignInAlt,
   faSignOutAlt,
   faUserCircle,
   faUserPlus, faUsers, faUsersCog
 } from '@fortawesome/free-solid-svg-icons';
+import {VacationAndAbsenceViewService} from './clinic-administrator-home-page/vacation-and-absence-view/vacationAndAbsenceView.service';
 
 
 
@@ -39,8 +40,10 @@ export class AppComponent implements OnInit {
   faStartExam = faExternalLinkAlt;
   faAdmins = faUsersCog;
   faMedicament = faPlusSquare;
+  faAnnualLeave = faPlaneDeparture;
 
-  constructor( private apiService: ApiService, private userService: UserService, private router: Router) {}
+  constructor( private apiService: ApiService, private userService: UserService, private router: Router,
+               private vacationAndAbsenceViewService: VacationAndAbsenceViewService) {}
 
   ngOnInit(): void {
     this.role = sessionStorage.getItem('role');

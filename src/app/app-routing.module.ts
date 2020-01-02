@@ -33,6 +33,8 @@ import {ValidatedRecipesComponent} from './validated-recipes/validatedRecipes.co
 import {CcaProfilePageComponent} from
     './clinic-center-administrator-home-page/clinic-center-administrator-profile-page/ccaProfilePage.component';
 import {ShowAllMedicamentsComponent} from './showAllMedicaments/showAllMedicaments.component';
+import {AnnualLeaveAndAbsenceComponent} from './annual-leave-and-absence/annualLeaveAndAbsence.component';
+import {VacationAndAbsenceViewComponent} from './clinic-administrator-home-page/vacation-and-absence-view/vacationAndAbsenceView.component';
 
 
 const routes: Routes = [{path: 'register', component: RegistrationComponent},
@@ -62,7 +64,11 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'clinicAdministratorHomePage', component: ClinicAdministratorHomePageComponent},
   {path: 'clinicAdministratorProfilePage', component: ClinicAdministratorProfilePageComponent},
   {path: 'editClinicAdministrator', component: EditClinicAdministratorComponent},
-  {path: 'allMedicaments', component: ShowAllMedicamentsComponent}
+  {path: 'allMedicaments', component: ShowAllMedicamentsComponent},
+  {path: 'vacation', component: AnnualLeaveAndAbsenceComponent},
+  {path: 'vacationRequests', component: VacationAndAbsenceViewComponent},
+  {path: 'absenceRequests', component: VacationAndAbsenceViewComponent}
+
 ];
 
 @NgModule({

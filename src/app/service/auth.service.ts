@@ -25,6 +25,7 @@ export class AuthService {
   // tslint:disable-next-line:variable-name
   private access_token = null;
   private role = null;
+  private id = null;
 
   login(user) {
     const loginHeaders = new HttpHeaders({
@@ -40,6 +41,7 @@ export class AuthService {
       .pipe(map((res) => {
         this.access_token = res.accessToken;
         this.role = res.role;
+        console.log(this.role);
         sessionStorage.setItem('role', this.role);
         sessionStorage.setItem('key', res.accessToken);
         this.loggedIn.next(true);

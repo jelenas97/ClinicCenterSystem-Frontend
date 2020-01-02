@@ -10,7 +10,7 @@ import {ClinicService} from './clinic.service';
   templateUrl: './clinic.component.html',
   styleUrls: ['./clinic.component.css']
 })
-export class ClinicComponent implements OnInit{
+export class ClinicComponent implements OnInit {
   clinic: Clinic;
   clinicAdmins: string[] = [];
 
@@ -29,6 +29,6 @@ export class ClinicComponent implements OnInit{
   }
 
   gotoClinic() {
-    this.router.navigate(['/createClinic']);
+    this.router.navigate(['/allClinics']);
   }
 }

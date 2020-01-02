@@ -4,6 +4,7 @@ import {ConfigService} from './config.service';
 import {map} from 'rxjs/operators';
 import {User} from '../model/user';
 import {Observable, of} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +12,16 @@ import {Observable, of} from 'rxjs';
 export class UserService {
 
   currentUser;
-  myself$: Observable<User>;
+  private readonly userByIdUrl: string;
+
 
   constructor(
     private apiService: ApiService,
-    private config: ConfigService
-  ) {}
+    private config: ConfigService,
+    private http: HttpClient,
+  ) {
+    this.userByIdUrl = 'http://localhost:8080/users/';
+  }
 
   initUser() {
     const promise = this.apiService.get(this.config.refresh_token_url).toPromise()
@@ -46,6 +51,10 @@ export class UserService {
 
   getAll() {
     return this.apiService.get(this.config.users_url);
+  }
+
+  getById(id: number): Observable<User> {
+    return this.http.get<User>(this.userByIdUrl + id);
   }
 
 }

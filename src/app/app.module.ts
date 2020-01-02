@@ -71,6 +71,17 @@ import {CcaProfilePageService} from
 import {ShowAllMedicamentsComponent} from './showAllMedicaments/showAllMedicaments.component';
 import {ShowAllMedicamentsService} from './showAllMedicaments/showAllMedicaments.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {AnnualLeaveAndAbsenceComponent} from './annual-leave-and-absence/annualLeaveAndAbsence.component';
+import {AnnualLeaveAndAbsenceService} from './annual-leave-and-absence/annualLeaveAndAbsence.service';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatNativeDateModule, NativeDateModule} from '@angular/material/core';
+import {MatInputModule} from '@angular/material/input';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatRadioModule} from '@angular/material/radio';
+import {VacationAndAbsenceViewComponent} from './clinic-administrator-home-page/vacation-and-absence-view/vacationAndAbsenceView.component';
+import {VacationAndAbsenceViewService} from './clinic-administrator-home-page/vacation-and-absence-view/vacationAndAbsenceView.service';
+import {DatePipe} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -109,7 +120,9 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     RecipesComponent,
     ValidatedRecipesComponent,
     CcaProfilePageComponent,
-    ShowAllMedicamentsComponent
+    ShowAllMedicamentsComponent,
+    AnnualLeaveAndAbsenceComponent,
+    VacationAndAbsenceViewComponent
   ],
   imports: [
     BrowserModule,
@@ -122,7 +135,13 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     FlexLayoutModule,
     MatCheckboxModule,
     ModalModule,
-    NgbModule
+    NgbModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatInputModule,
+    BrowserAnimationsModule,
+    MatRadioModule,
   ],
   providers: [
     {
@@ -135,7 +154,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     PatientHomePageService,  ConfirmationMessageService, DoctorProfilePageService, EditClinicAdministrator,
     EditPatientProfilePageService, NurseHomePageService, TypesOfMedicalExamService, AddTypeOfMedicalExamService,
     CcaHomePageService, RecipesService,
-    ValidatedRecipesService, CcaProfilePageService, ShowAllMedicamentsService],
+    ValidatedRecipesService, CcaProfilePageService, ShowAllMedicamentsService, AnnualLeaveAndAbsenceService,
+    VacationAndAbsenceViewService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

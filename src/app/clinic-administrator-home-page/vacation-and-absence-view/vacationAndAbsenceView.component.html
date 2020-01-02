@@ -1,0 +1,26 @@
+
+<div layout="row" class="col-lg-8 offset-2 mt-5" *ngFor="let request of requests">
+  <div class="card">
+    <div class="card-body">
+      <p class="card-text"><b>{{request.user.firstName}} {{request.user.lastName}}</b> wants to get permit for {{request.flag}} from <b>{{request.leaveDate | date: 'dd. MMMM yyyy'}}</b>
+        until <b>{{request.returnDate | date: 'dd. MMMM yyyy'}}</b>
+        because {{request.reason}} </p>
+      <div class="text-right">
+        <button class="btn btn-success" (click)="sendApproveMailtoUser(request, request.id)">Approve</button>
+        <button class="btn btn-danger ml-3" (click)="sendRejectMailtoUser(request, mymodal)" >Reject</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mt-5 text-center">
+  <ng-template #mymodal let-modal>
+    <div class="modal-body">
+      <p>Write reason for rejection: </p>
+      <textarea class="ml-4" [formControl]="subscriptionFormModalReason" rows="4" cols="55"></textarea>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Send</button>
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,68 @@
+<div class="d-flex justify-content-center mt-5">
+  <h3>Create request for annual leave or absence</h3>
+</div>
+
+  <form (ngSubmit)="onSubmit(mymodal)" #requestForm="ngForm">
+  <div fxLayout="row" class="col-lg-6 offset-3 mt-5 ">
+  <div fxFlex="50" class="mr-4 ml-3">
+      <div class="form-group">
+        <div class="input-group">
+          <input id="leaveDate" class="form-control" placeholder="Choose leave date"
+                 name="dp" [(ngModel)]="leaveDate" ngbDatepicker #d="ngbDatepicker">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">
+              <fa-icon [icon]="faCalendar"></fa-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div fxFlex="50" class="ml-4 mr-3">
+      <div class="form-group">
+        <div class="input-group">
+          <input class="form-control" placeholder="Choose return date"
+                 name="dp" [(ngModel)]="returnDate" ngbDatepicker #d1="ngbDatepicker">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="d1.toggle()" type="button">
+              <fa-icon [icon]="faCalendar"></fa-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div fxLayout="row" class="col-lg-6 offset-3 mt-3">
+    <div class="form-group col-lg-12">
+      <label for="reason">Reason: </label>
+      <textarea [(ngModel)]="reason"  id="reason" name="reason" rows="5" class="col-lg-12 form-control"></textarea>
+    </div>
+  </div>
+
+  <div fxLayout="row" class="col-lg-4 offset-4 mt-4">
+    <div fxFlex="70">
+      <input id="vacationRadio" [(ngModel)]="vacationRadio" (change)="onItemChange($event)" style="transform: scale(1.3)" type="radio" value="vacation" name="requestFor" >
+      <label for="vacationRadio" class="ml-2">Vacation </label>
+    </div>
+
+    <div fxFlex="30">
+      <input id="absence" [(ngModel)]="absenceRadio" (change)="onItemChange($event)" style="transform: scale(1.3)" type="radio" value="absence" name="requestFor">
+      <label for="absence" class="ml-2">Absence</label>
+    </div>
+  </div>
+
+  <div fxLayout="row" class="col-lg-9 offset-8 ">
+     <button type="submit" [disabled]="!requestForm.form.valid" class="btn btn-info ml-2 mt-5">Submit</button>
+  </div>
+  </form>
+
+<div class="mt-5 text-center">
+<ng-template #mymodal let-modal>
+  <div class="modal-body">
+    Your request is successfully send!
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+  </div>
+</ng-template>
+</div>
