@@ -4,6 +4,7 @@ import {ActivatedRoute} from '@angular/router';
 import {PatientHomePageService} from './patientHomePage.service';
 import {UserService} from '../service/user.service';
 
+
 @Component({
   templateUrl: 'patientHomePage.component.html',
   styleUrls: ['patientHomePage.component.css'],
@@ -12,10 +13,11 @@ import {UserService} from '../service/user.service';
 
 export class PatientHomePageComponent implements OnInit {
 
-  user: User;
+  public user: User;
 
   constructor(private patientHomePageService: PatientHomePageService, private activatedRoute: ActivatedRoute,
               private userService: UserService) {
+    this.user = new User();
   }
 
   ngOnInit(): void {

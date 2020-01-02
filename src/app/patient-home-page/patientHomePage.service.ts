@@ -7,15 +7,21 @@ import {Clinic} from '../model/clinic';
 import {any} from 'codelyzer/util/function';
 import {ExaminationType} from '../model/examinationType';
 import {UserMapperTwo} from '../model/userMapperTwo';
+import {PatientHomePageComponent} from './patientHomePage.component';
 
 
 @Injectable()
 export class PatientHomePageService {
 
   private readonly url: string;
+  private loggedUserId: string;
 
   constructor(private http: HttpClient) {
     this.url = 'http://localhost:8080/auth/medicalStaffProfile/';
+  }
+
+  public setLoggedUser(value: string) {
+    this.loggedUserId = value;
   }
 
   public getById(id: number): Observable<User> {
@@ -49,5 +55,10 @@ export class PatientHomePageService {
 
   getSearchedDoctors(selectedOption: string, id: string) {
     return this.http.get<UserMapperTwo[]>('http://localhost:8080/auth/getSearchedDoctors/' + selectedOption + '/' + id);
+  }
+
+  sendRequest(selectedType: string, selectedDate: string, selectedClinicId: string, selectedDoctorId: string) {
+    return this.http.put<any>('http://localhost:8080/auth/sendMedicalExamRequest/' + selectedType + '/' + selectedDate +
+      '/' + selectedClinicId + '/' + selectedDoctorId, any).subscribe();
   }
 }

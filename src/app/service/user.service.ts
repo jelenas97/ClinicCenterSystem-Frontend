@@ -16,7 +16,8 @@ export class UserService {
   constructor(
     private apiService: ApiService,
     private config: ConfigService
-  ) {}
+  ) {
+  }
 
   initUser() {
     const promise = this.apiService.get(this.config.refresh_token_url).toPromise()
@@ -43,6 +44,7 @@ export class UserService {
         return user;
       }));
   }
+
 
   getAll() {
     return this.apiService.get(this.config.users_url);

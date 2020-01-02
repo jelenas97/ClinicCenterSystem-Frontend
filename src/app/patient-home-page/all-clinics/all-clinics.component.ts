@@ -15,12 +15,17 @@ export class AllClinicsComponent implements OnInit {
   clinics: Clinic[] = [];
   examinationTypes: ExaminationType[] = [];
   selectedOption: string;
+  selectedDate: any;
+  selectedClinicId: string;
+  selectedDoctorId: string;
   doctors: UserMapperTwo[] = [];
   hiddenSend: boolean;
   isAnyClinicSelected: boolean;
   isTypeSelected: boolean;
 
-  constructor(private patientHomePageService: PatientHomePageService , private router: Router) { }
+  constructor(private patientHomePageService: PatientHomePageService , private router: Router) {
+    this.selectedDate = new Date();
+  }
 
   ngOnInit() {
     this.patientHomePageService.getAllClinics().subscribe(data => {
@@ -52,12 +57,14 @@ export class AllClinicsComponent implements OnInit {
 
   getDoctorFromSelectedClinic(selectedOption: string, id: string) {
     this.isAnyClinicSelected = true;
+    this.selectedClinicId = id;
     this.patientHomePageService.getSearchedDoctors(selectedOption, id).subscribe(data => {
       this.doctors = data;
     });
   }
 
-  showSendRequestButton() {
+  showSendRequestButton(id: string) {
+    this.selectedDoctorId = id;
     this.hiddenSend = true;
   }
 
@@ -68,5 +75,9 @@ export class AllClinicsComponent implements OnInit {
     this.patientHomePageService.getAllClinics().subscribe(data => {
       this.clinics = data;
     });
+  }
+
+  sendRequest(selectedType: string, selectedDate: string) {
+    this.patientHomePageService.sendRequest(selectedType, selectedDate, this.selectedClinicId, this.selectedDoctorId);
   }
 }
