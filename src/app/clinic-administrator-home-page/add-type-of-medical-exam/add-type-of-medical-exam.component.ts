@@ -16,8 +16,6 @@ export class AddTypeOfMedicalExamComponent implements OnInit {
 
   constructor(private addTypeOfMedicalExamService: AddTypeOfMedicalExamService, private route: ActivatedRoute, private router: Router) {
     this.type = new TypeOfMedicalExam();
-
-
   }
 
   ngOnInit() {

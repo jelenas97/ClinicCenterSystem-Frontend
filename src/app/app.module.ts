@@ -71,6 +71,8 @@ import {CcaProfilePageService} from
 import {ShowAllMedicamentsComponent} from './showAllMedicaments/showAllMedicaments.component';
 import {ShowAllMedicamentsService} from './showAllMedicaments/showAllMedicaments.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { AddDoctorComponent } from './clinic-administrator-home-page/add-doctor/add-doctor.component';
+import {AddDoctorService} from './clinic-administrator-home-page/add-doctor/add-doctor.service';
 
 @NgModule({
   declarations: [
@@ -109,7 +111,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     RecipesComponent,
     ValidatedRecipesComponent,
     CcaProfilePageComponent,
-    ShowAllMedicamentsComponent
+    ShowAllMedicamentsComponent,
+    AddDoctorComponent
   ],
   imports: [
     BrowserModule,
@@ -135,7 +138,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     PatientHomePageService,  ConfirmationMessageService, DoctorProfilePageService, EditClinicAdministrator,
     EditPatientProfilePageService, NurseHomePageService, TypesOfMedicalExamService, AddTypeOfMedicalExamService,
     CcaHomePageService, RecipesService,
-    ValidatedRecipesService, CcaProfilePageService, ShowAllMedicamentsService],
+    ValidatedRecipesService, CcaProfilePageService, ShowAllMedicamentsService, AddDoctorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

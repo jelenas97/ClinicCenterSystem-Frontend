@@ -33,6 +33,7 @@ import {ValidatedRecipesComponent} from './validated-recipes/validatedRecipes.co
 import {CcaProfilePageComponent} from
     './clinic-center-administrator-home-page/clinic-center-administrator-profile-page/ccaProfilePage.component';
 import {ShowAllMedicamentsComponent} from './showAllMedicaments/showAllMedicaments.component';
+import {AddDoctorComponent} from './clinic-administrator-home-page/add-doctor/add-doctor.component';
 
 
 const routes: Routes = [{path: 'register', component: RegistrationComponent},
@@ -62,7 +63,8 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'clinicAdministratorHomePage', component: ClinicAdministratorHomePageComponent},
   {path: 'clinicAdministratorProfilePage', component: ClinicAdministratorProfilePageComponent},
   {path: 'editClinicAdministrator', component: EditClinicAdministratorComponent},
-  {path: 'allMedicaments', component: ShowAllMedicamentsComponent}
+  {path: 'allMedicaments', component: ShowAllMedicamentsComponent},
+  {path: 'addDoctor', component: AddDoctorComponent}
 ];
 
 @NgModule({
