@@ -36,6 +36,7 @@ import {ShowAllMedicamentsComponent} from './showAllMedicaments/showAllMedicamen
 import {AnnualLeaveAndAbsenceComponent} from './annual-leave-and-absence/annualLeaveAndAbsence.component';
 import {VacationAndAbsenceViewComponent} from './clinic-administrator-home-page/vacation-and-absence-view/vacationAndAbsenceView.component';
 import {AddDoctorComponent} from './clinic-administrator-home-page/add-doctor/add-doctor.component';
+import {ShowAndRemoveDoctorsComponent} from "./clinic-administrator-home-page/show-and-remove-doctors/show-and-remove-doctors.component";
 
 
 const routes: Routes = [{path: 'register', component: RegistrationComponent},
@@ -69,7 +70,8 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'vacation', component: AnnualLeaveAndAbsenceComponent},
   {path: 'vacationRequests', component: VacationAndAbsenceViewComponent},
   {path: 'absenceRequests', component: VacationAndAbsenceViewComponent},
-  {path: 'addDoctor', component: AddDoctorComponent}
+  {path: 'addDoctor', component: AddDoctorComponent},
+  {path: 'showAllDoctors', component: ShowAndRemoveDoctorsComponent}
 ];
 
 @NgModule({

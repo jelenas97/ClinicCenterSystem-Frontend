@@ -16,4 +16,5 @@ export class AddDoctorService {
   getAllClinics() {
     return this.http.get<Clinic[]>('http://localhost:8080/auth/getAllClinics');
   }
+
 }
