@@ -8,8 +8,8 @@ export class ShowAndRemoveDoctorsService {
   constructor(private http: HttpClient) {
   }
 
-  getDoctors() {
-    return this.http.get<User[]>('http://localhost:8080/auth/getDoctorsFromClinic');
+  getDoctors(id: string) {
+    return this.http.get<User[]>('http://localhost:8080/auth/getDoctorsFromClinic/' + id);
   }
 
   removeDoctor(id: string) {

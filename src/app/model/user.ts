@@ -1,4 +1,6 @@
 import {Optional} from '@angular/core';
+import {MedicalExamination} from './medicalExamination';
+
 
 export class User {
   id: string;
@@ -12,4 +14,5 @@ export class User {
   phone: string;
   ssn: string;
   averageRating: string;
+  examinationRequests: MedicalExamination[];
 }
