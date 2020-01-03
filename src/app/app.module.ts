@@ -82,6 +82,8 @@ import {MatRadioModule} from '@angular/material/radio';
 import {VacationAndAbsenceViewComponent} from './clinic-administrator-home-page/vacation-and-absence-view/vacationAndAbsenceView.component';
 import {VacationAndAbsenceViewService} from './clinic-administrator-home-page/vacation-and-absence-view/vacationAndAbsenceView.service';
 import {DatePipe} from '@angular/common';
+import { AddDoctorComponent } from './clinic-administrator-home-page/add-doctor/add-doctor.component';
+import {AddDoctorService} from './clinic-administrator-home-page/add-doctor/add-doctor.service';
 
 @NgModule({
   declarations: [
@@ -123,6 +125,7 @@ import {DatePipe} from '@angular/common';
     ShowAllMedicamentsComponent,
     AnnualLeaveAndAbsenceComponent,
     VacationAndAbsenceViewComponent
+    AddDoctorComponent
   ],
   imports: [
     BrowserModule,
@@ -154,7 +157,7 @@ import {DatePipe} from '@angular/common';
     PatientHomePageService,  ConfirmationMessageService, DoctorProfilePageService, EditClinicAdministrator,
     EditPatientProfilePageService, NurseHomePageService, TypesOfMedicalExamService, AddTypeOfMedicalExamService,
     CcaHomePageService, RecipesService,
-    ValidatedRecipesService, CcaProfilePageService, ShowAllMedicamentsService, AnnualLeaveAndAbsenceService,
+    ValidatedRecipesService, CcaProfilePageService, ShowAllMedicamentsService, AddDoctorService, AnnualLeaveAndAbsenceService,
     VacationAndAbsenceViewService, DatePipe],
   bootstrap: [AppComponent]
 })

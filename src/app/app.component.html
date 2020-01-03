@@ -5,11 +5,11 @@
   <title>Title</title>
 
   <style>
-    nav .navbar-nav li a{
+    nav .navbar-nav li a {
       color: white !important;
     }
 
-    nav .navbar-brand{
+    nav .navbar-brand {
       color: white !important;
     }
 
@@ -21,35 +21,48 @@
 <div id="app">
   <nav class="navbar navbar-expand-lg navbar-light bg-dark">
     <a class="navbar-brand ml-3" href="/home">Clinic Centar System</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div id="navbarNavDropdown" class="navbar-collapse collapse navbar-responsive-collapse">
 
       <ul class="navbar-nav mr-auto" *ngIf="role==null">
         <li class="nav-item active">
-          <a class="nav-link" href="/home"><fa-icon [icon]="faHome" class="mr-1" ></fa-icon>Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/home">
+            <fa-icon [icon]="faHome" class="mr-1"></fa-icon>
+            Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><fa-icon [icon]="faInfo" class="mr-1" ></fa-icon>About</a>
+          <a class="nav-link" href="#">
+            <fa-icon [icon]="faInfo" class="mr-1"></fa-icon>
+            About</a>
         </li>
       </ul>
 
       <!--ROLE CLINIC CENTER ADMIN-->
       <ul class="navbar-nav mr-auto" *ngIf="role=='ROLE_CLINIC_CENTER_ADMIN'">
         <li class="nav-item active">
-          <a class="nav-link" href="/ccaHomePage"><fa-icon [icon]="faHome" class="mr-1" ></fa-icon>Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/ccaHomePage">
+            <fa-icon [icon]="faHome" class="mr-1"></fa-icon>
+            Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/registrationRequests"><fa-icon [icon]="" class="mr-1" ></fa-icon>Requests</a>
+          <a class="nav-link" href="/registrationRequests">
+            <fa-icon [icon]="" class="mr-1"></fa-icon>
+            Requests</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="/allPatients"><fa-icon [icon]="faPatients" class="mr-1" ></fa-icon>Patients <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/allPatients">
+            <fa-icon [icon]="faPatients" class="mr-1"></fa-icon>
+            Patients <span class="sr-only">(current)</span></a>
         </li>
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink19" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <fa-icon [icon]="faClinics" class="mr-1" ></fa-icon>Clinics
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink19" data-toggle="dropdown" aria-haspopup="true"
+             aria-expanded="false">
+            <fa-icon [icon]="faClinics" class="mr-1"></fa-icon>
+            Clinics
           </a>
           <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink19">
             <a class="dropdown-item bg-dark" routerLink="/newClinic">New</a>
@@ -58,12 +71,16 @@
         </li>
 
         <li class="nav-item active">
-          <a class="nav-link" href="/allAdmins"><fa-icon [icon]="faAdmins" class="mr-1" ></fa-icon>Admins <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/allAdmins">
+            <fa-icon [icon]="faAdmins" class="mr-1"></fa-icon>
+            Admins <span class="sr-only">(current)</span></a>
         </li>
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink9" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <fa-icon [icon]="faMedicament" class="mr-1" ></fa-icon>Medicament
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink9" data-toggle="dropdown" aria-haspopup="true"
+             aria-expanded="false">
+            <fa-icon [icon]="faMedicament" class="mr-1"></fa-icon>
+            Medicament
           </a>
           <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink9">
             <a class="dropdown-item bg-dark" routerLink="/medicament">New</a>
@@ -77,19 +94,27 @@
       <!--ROLE NURSE-->
       <ul class="navbar-nav mr-auto" *ngIf="role=='ROLE_NURSE'">
         <li class="nav-item active">
-          <a class="nav-link" href="/nurseHomePage"><fa-icon [icon]="faHome" class="mr-1" ></fa-icon>Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/nurseHomePage">
+            <fa-icon [icon]="faHome" class="mr-1"></fa-icon>
+            Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><fa-icon [icon]="faInfo" class="mr-1" ></fa-icon>About</a>
+          <a class="nav-link" href="#">
+            <fa-icon [icon]="faInfo" class="mr-1"></fa-icon>
+            About</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="/allPatients"><fa-icon [icon]="faPatients" class="mr-1" ></fa-icon>Patients <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/allPatients">
+            <fa-icon [icon]="faPatients" class="mr-1"></fa-icon>
+            Patients <span class="sr-only">(current)</span></a>
         </li>
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <fa-icon [icon]="faPrescription" class="mr-1" ></fa-icon>Recipes
-           </a>
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+             aria-expanded="false">
+            <fa-icon [icon]="faPrescription" class="mr-1"></fa-icon>
+            Recipes
+          </a>
           <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
             <a class="dropdown-item bg-dark" routerLink="/allRecipes">For Validation</a>
             <a class="dropdown-item bg-dark" routerLink="/allValidatedRecipes">Validated</a>
@@ -101,19 +126,35 @@
       <!--ROLE_CLINIC_ADMIN-->
       <ul class="navbar-nav mr-auto" *ngIf="role=='ROLE_CLINIC_ADMIN'">
         <li class="nav-item active">
-          <a class="nav-link" href="/clinicAdministratorHomePage"><fa-icon [icon]="faHome" class="mr-1" ></fa-icon>Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/clinicAdministratorHomePage">
+            <fa-icon [icon]="faHome" class="mr-1"></fa-icon>
+            Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><fa-icon [icon]="faInfo" class="mr-1" ></fa-icon>About</a>
+          <a class="nav-link" href="#">
+            <fa-icon [icon]="faInfo" class="mr-1"></fa-icon>
+            About</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="/allClinics"><fa-icon [icon]="faClinics" class="mr-1" ></fa-icon>Clinics <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/allClinics">
+            <fa-icon [icon]="faClinics" class="mr-1"></fa-icon>
+            Clinics <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink10" data-toggle="dropdown" aria-haspopup="true"
+             aria-expanded="false">
+            <fa-icon [icon]="faPatients" class="mr-1"></fa-icon>
+            Doctors <span class="sr-only">(current)</span>
+          </a>
+          <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink10">
+            <a class="dropdown-item bg-dark" routerLink="/addDoctor">Add doctor</a>
+            <a class="dropdown-item bg-dark" routerLink="/allDoctors">Show all</a>
+          </div>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="/allDoctors"><fa-icon [icon]="faPatients" class="mr-1" ></fa-icon>Doctors <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="/typesOfMedicalExam"><fa-icon [icon]="faPatients" class="mr-1" ></fa-icon>Examination types <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/typesOfMedicalExam">
+            <fa-icon [icon]="faPatients" class="mr-1"></fa-icon>
+            Examination types <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink27" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -131,18 +172,26 @@
       <!--ROLE PATIENT-->
       <ul class="navbar-nav mr-auto" *ngIf="role=='ROLE_PATIENT'">
         <li class="nav-item active">
-          <a class="nav-link" href="/patientHomePage"><fa-icon [icon]="faHome" class="mr-1" ></fa-icon>Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/patientHomePage">
+            <fa-icon [icon]="faHome" class="mr-1"></fa-icon>
+            Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><fa-icon [icon]="faInfo" class="mr-1" ></fa-icon>About</a>
+          <a class="nav-link" href="#">
+            <fa-icon [icon]="faInfo" class="mr-1"></fa-icon>
+            About</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="/allClinics"><fa-icon [icon]="faClinics" class="mr-1" ></fa-icon>Clinics <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/allClinics">
+            <fa-icon [icon]="faClinics" class="mr-1"></fa-icon>
+            Clinics <span class="sr-only">(current)</span></a>
         </li>
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <fa-icon [icon]="faBook" class="mr-1" ></fa-icon>History records
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true"
+             aria-expanded="false">
+            <fa-icon [icon]="faBook" class="mr-1"></fa-icon>
+            History records
           </a>
           <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink1">
             <a class="dropdown-item bg-dark" routerLink="/medicalExams">Medical exam</a>
@@ -151,7 +200,9 @@
         </li>
 
         <li class="nav-item active">
-          <a class="nav-link" href="/medicalRecord"><fa-icon [icon]="faRecord" class="mr-1" ></fa-icon>Medical record <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/medicalRecord">
+            <fa-icon [icon]="faRecord" class="mr-1"></fa-icon>
+            Medical record <span class="sr-only">(current)</span></a>
         </li>
       </ul>
 
@@ -159,22 +210,32 @@
       <!--ROLE DOCTOR-->
       <ul class="navbar-nav mr-auto" *ngIf="role=='ROLE_DOCTOR'">
         <li class="nav-item active">
-          <a class="nav-link" href="/doctorHomePage"><fa-icon [icon]="faHome" class="mr-1" ></fa-icon>Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/doctorHomePage">
+            <fa-icon [icon]="faHome" class="mr-1"></fa-icon>
+            Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><fa-icon [icon]="faInfo" class="mr-1" ></fa-icon>About</a>
+          <a class="nav-link" href="#">
+            <fa-icon [icon]="faInfo" class="mr-1"></fa-icon>
+            About</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="/allPatients"><fa-icon [icon]="faPatients" class="mr-1" ></fa-icon>Patients <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/allPatients">
+            <fa-icon [icon]="faPatients" class="mr-1"></fa-icon>
+            Patients <span class="sr-only">(current)</span></a>
         </li>
 
         <li class="nav-item active">
-            <a class="nav-link" href="/newMedicalExam"><fa-icon [icon]="faStartExam" class="mr-1" ></fa-icon>Start medical exam <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/newMedicalExam">
+            <fa-icon [icon]="faStartExam" class="mr-1"></fa-icon>
+            Start medical exam <span class="sr-only">(current)</span></a>
         </li>
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <fa-icon [icon]="faSchedule" class="mr-1" ></fa-icon>Scheduling
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink4" data-toggle="dropdown" aria-haspopup="true"
+             aria-expanded="false">
+            <fa-icon [icon]="faSchedule" class="mr-1"></fa-icon>
+            Scheduling
           </a>
           <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink4">
             <a class="dropdown-item bg-dark" routerLink="/medicalExamScheduling">Medical exam</a>
@@ -183,8 +244,10 @@
         </li>
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink45" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <fa-icon [icon]="faSchedule" class="mr-1" ></fa-icon>Medical Exam Types
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink45" data-toggle="dropdown" aria-haspopup="true"
+             aria-expanded="false">
+            <fa-icon [icon]="faSchedule" class="mr-1"></fa-icon>
+            Medical Exam Types
           </a>
           <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink4">
             <a class="dropdown-item bg-dark" routerLink="/addTypeOfMedicalExam">New</a>
@@ -197,9 +260,11 @@
 
       <!--ROLE NURSE-->
       <ul class="navbar-nav">
-        <li class="nav-item dropdown" *ngIf="role == 'ROLE_NURSE'" >
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <fa-icon [icon]="faUserCircle" class="mr-1" ></fa-icon>Profile
+        <li class="nav-item dropdown" *ngIf="role == 'ROLE_NURSE'">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true"
+             aria-expanded="false">
+            <fa-icon [icon]="faUserCircle" class="mr-1"></fa-icon>
+            Profile
           </a>
           <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink25">
             <a class="dropdown-item bg-dark" routerLink="/nurseProfilePage">Personal info</a>
@@ -207,9 +272,25 @@
           </div>
         </li>
 
+        <li class="nav-item dropdown" *ngIf="role == 'ROLE_DOCTOR'">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink5" data-toggle="dropdown" aria-haspopup="true"
+             aria-expanded="false">
+            <fa-icon [icon]="faUserCircle" class="mr-1"></fa-icon>
+            Profile
+          </a>
+          <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink5">
+            <a class="dropdown-item bg-dark" routerLink="/absence">Absence</a>
+            <a class="dropdown-item bg-dark" routerLink="/annualLeave">Annual Leave</a>
+            <a class="dropdown-item bg-dark" routerLink="/doctorProfilePage">Personal info</a>
+            <a class="dropdown-item bg-dark" routerLink="/workCalendarDoctor">Work Calendar</a>
+          </div>
+        </li>
+
         <li class="nav-item dropdown" *ngIf="role == 'ROLE_PATIENT'">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <fa-icon [icon]="faUserCircle" class="mr-1" ></fa-icon>Profile
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink3" data-toggle="dropdown" aria-haspopup="true"
+             aria-expanded="false">
+            <fa-icon [icon]="faUserCircle" class="mr-1"></fa-icon>
+            Profile
           </a>
           <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink3">
             <a class="dropdown-item bg-dark" routerLink="/ratings">Ratings</a>
@@ -218,8 +299,10 @@
         </li>
 
         <li class="nav-item dropdown" *ngIf="role == 'ROLE_CLINIC_CENTER_ADMIN'">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink7" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <fa-icon [icon]="faUserCircle" class="mr-1" ></fa-icon>Profile
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink7" data-toggle="dropdown" aria-haspopup="true"
+             aria-expanded="false">
+            <fa-icon [icon]="faUserCircle" class="mr-1"></fa-icon>
+            Profile
           </a>
           <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink7">
             <a class="dropdown-item bg-dark" routerLink="/ccaProfilePage">Personal info</a>
@@ -227,8 +310,10 @@
         </li>
 
         <li class="nav-item dropdown" *ngIf="role == 'ROLE_CLINIC_ADMIN'">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink77" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <fa-icon [icon]="faUserCircle" class="mr-1" ></fa-icon>Profile
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink77" data-toggle="dropdown" aria-haspopup="true"
+             aria-expanded="false">
+            <fa-icon [icon]="faUserCircle" class="mr-1"></fa-icon>
+            Profile
           </a>
           <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink7">
             <a class="dropdown-item bg-dark" routerLink="/clinicAdministratorProfilePage">Personal info</a>
@@ -247,13 +332,19 @@
         </li>
 
         <li class="nav-item" *ngIf="this.role != null">
-          <a class="btn btn-success" type="button"  (click)="logout()"><fa-icon [icon]="faSignOut" class="mr-2" ></fa-icon>Logout</a>
+          <a class="btn btn-success" type="button" (click)="logout()">
+            <fa-icon [icon]="faSignOut" class="mr-2"></fa-icon>
+            Logout</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/login" *ngIf="this.role == null"><fa-icon [icon]="faLogin" class="mr-1" ></fa-icon>Login</a>
+          <a class="nav-link" routerLink="/login" *ngIf="this.role == null">
+            <fa-icon [icon]="faLogin" class="mr-1"></fa-icon>
+            Login</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/register" *ngIf="this.role == null"><fa-icon [icon]="faRegister" class="mr-1" ></fa-icon>Register</a>
+          <a class="nav-link" routerLink="/register" *ngIf="this.role == null">
+            <fa-icon [icon]="faRegister" class="mr-1"></fa-icon>
+            Register</a>
         </li>
       </ul>
 

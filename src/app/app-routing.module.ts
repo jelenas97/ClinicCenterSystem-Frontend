@@ -35,6 +35,7 @@ import {CcaProfilePageComponent} from
 import {ShowAllMedicamentsComponent} from './showAllMedicaments/showAllMedicaments.component';
 import {AnnualLeaveAndAbsenceComponent} from './annual-leave-and-absence/annualLeaveAndAbsence.component';
 import {VacationAndAbsenceViewComponent} from './clinic-administrator-home-page/vacation-and-absence-view/vacationAndAbsenceView.component';
+import {AddDoctorComponent} from './clinic-administrator-home-page/add-doctor/add-doctor.component';
 
 
 const routes: Routes = [{path: 'register', component: RegistrationComponent},
@@ -67,8 +68,8 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'allMedicaments', component: ShowAllMedicamentsComponent},
   {path: 'vacation', component: AnnualLeaveAndAbsenceComponent},
   {path: 'vacationRequests', component: VacationAndAbsenceViewComponent},
-  {path: 'absenceRequests', component: VacationAndAbsenceViewComponent}
-
+  {path: 'absenceRequests', component: VacationAndAbsenceViewComponent},
+  {path: 'addDoctor', component: AddDoctorComponent}
 ];
 
 @NgModule({

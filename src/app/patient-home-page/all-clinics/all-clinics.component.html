@@ -2,7 +2,7 @@
 <h2>Search by date and type</h2>
 <form id="searchClinic" (ngSubmit)="onSearchSubmit(selectedOption)">
 
-  <select name="types" [(ngModel)]="selectedOption" (change)="onSelectChange($event)" [disabled]="isAnyClinicSelected">
+  <select name="types" [(ngModel)]="selectedOption" (change)="onSelectChange($event)" [disabled]="isAnyClinicSelected" class="custom-select">
     <option>No type</option>
     <option *ngFor="let type of examinationTypes">{{type.id}}</option>
   </select>
