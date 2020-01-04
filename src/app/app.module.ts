@@ -87,6 +87,10 @@ import {AddDoctorService} from './clinic-administrator-home-page/add-doctor/add-
 import { ShowAndRemoveDoctorsComponent } from './clinic-administrator-home-page/show-and-remove-doctors/show-and-remove-doctors.component';
 import {ShowAndRemoveDoctorsService} from './clinic-administrator-home-page/show-and-remove-doctors/show-and-remove-doctors.service';
 import {ClinicAdministratorHomePageService} from './clinic-administrator-home-page/clinic-administrator-home-page.service';
+import { EditMyClinicComponent } from './clinic-administrator-home-page/edit-my-clinic/edit-my-clinic.component';
+import {EditMyClinicService} from "./clinic-administrator-home-page/edit-my-clinic/edit-my-clinic.service";
+import { ShowMyClinicComponent } from './clinic-administrator-home-page/show-my-clinic/show-my-clinic.component';
+import {ShowMyClinicService} from "./clinic-administrator-home-page/show-my-clinic/show-my-clinic.service";
 
 @NgModule({
   declarations: [
@@ -129,7 +133,9 @@ import {ClinicAdministratorHomePageService} from './clinic-administrator-home-pa
     AnnualLeaveAndAbsenceComponent,
     VacationAndAbsenceViewComponent,
     AddDoctorComponent,
-    ShowAndRemoveDoctorsComponent
+    ShowAndRemoveDoctorsComponent,
+    EditMyClinicComponent,
+    ShowMyClinicComponent
   ],
   imports: [
     BrowserModule,
@@ -162,7 +168,8 @@ import {ClinicAdministratorHomePageService} from './clinic-administrator-home-pa
     EditPatientProfilePageService, NurseHomePageService, TypesOfMedicalExamService, AddTypeOfMedicalExamService,
     CcaHomePageService, RecipesService,
     ValidatedRecipesService, CcaProfilePageService, ShowAllMedicamentsService, AddDoctorService, AnnualLeaveAndAbsenceService,
-    VacationAndAbsenceViewService, DatePipe, ShowAndRemoveDoctorsService, ClinicAdministratorHomePageService],
+    VacationAndAbsenceViewService, DatePipe, ShowAndRemoveDoctorsService, ClinicAdministratorHomePageService, EditMyClinicService,
+    ShowMyClinicService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit</title>
+</head>
+<body>
+<div class="container register-form pt-4">
+  <div class="form">
+    <div class="note">
+      <h2>Edit clinic info here </h2>
+    </div>
+
+    <div class="card my-5">
+      <div class="card-body">
+        <form (ngSubmit)="onSubmit()" [formGroup]="userData">
+
+
+          <div class="form-group">
+            <label for="InputName">Name</label>
+            <input [(ngModel)]="clinic.name"
+                   [ngClass]="{'is-invalid': f.name.touched && f.name.errors, 'is-valid': f.name.valid || f.name.untouched}"
+                   class="form-control"
+                   id="InputName"
+                   name="name" formControlName="name"
+                   placeholder="Enter clinic name"
+                   required>
+            <span style="color: red"
+                  *ngIf="f.name.invalid && f.name.touched">Nme of clinic must contain only letters</span>
+          </div>
+
+          <div class="form-group">
+            <label for="description">Description</label>
+            <input [(ngModel)]="clinic.description"
+                   [ngClass]="{'is-invalid': f.description.touched && f.description.errors, 'is-valid': f.description.valid || f.description.untouched}"
+                   class="form-control"
+                   id="description"
+                   name="description" formControlName="description"
+                   placeholder="Enter clinic description"
+                   required>
+            <span style="color: red" *ngIf="f.description.invalid && f.description.touched">Description must contain only letters</span>
+
+          </div>
+
+          <div class="form-group">
+            <label for="city">City</label>
+            <input [(ngModel)]="clinic.city"
+                   [ngClass]="{'is-invalid': f.city.touched && f.city.errors, 'is-valid': f.city.valid || f.city.untouched}"
+                   class="form-control"
+                   id="city"
+                   name="city" formControlName="city"
+                   placeholder="Enter the city of clinic"
+                   required>
+            <span style="color: red" *ngIf="f.city.invalid && f.city.touched">City must contain only letters</span>
+          </div>
+
+          <div class="form-group">
+            <label for="address">Address</label>
+            <input [(ngModel)]="clinic.address"
+                   [ngClass]="{'is-invalid': f.address.touched && f.address.errors, 'is-valid': f.address.valid || f.address.untouched}"
+                   class="form-control"
+                   id="address"
+                   name="address" formControlName="address"
+                   placeholder="Enter the address of clinic"
+                   required>
+            <span style="color: red"
+                  *ngIf="f.address.invalid && f.address.touched">Address must contain only letters</span>
+          </div>
+
+          <button type="submit"
+                  class="btn btn-info">Edit
+          </button>
+        </form>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+</body>
+</html>
+<router-outlet></router-outlet>

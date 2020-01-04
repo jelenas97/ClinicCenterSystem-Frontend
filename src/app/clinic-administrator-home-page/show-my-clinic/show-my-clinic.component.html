@@ -1,0 +1,22 @@
+
+<div layout="row">
+  <div flex class="col-md-4 offset-4">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+      </mat-card-header>
+      <img mat-card-image height="300px" width="200px" src="/assets/img/clinic.jpg">
+      <mat-card-title><b>{{clinic.name}}</b></mat-card-title>
+      <mat-card-content>
+        <p class="border-bottom">Description: {{clinic.description}}</p>
+        <p class="border-bottom">Address: {{clinic.address}}</p>
+        <p class="border-bottom">City: {{clinic.city}}</p>
+        <p class="border-bottom">Clinic average rating: {{clinic.clinicAverageRating}}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button routerLink="/editMyClinic" mat-button>Edit</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+
