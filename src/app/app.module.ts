@@ -84,6 +84,8 @@ import {VacationAndAbsenceViewService} from './clinic-administrator-home-page/va
 import {DatePipe} from '@angular/common';
 import { AddDoctorComponent } from './clinic-administrator-home-page/add-doctor/add-doctor.component';
 import {AddDoctorService} from './clinic-administrator-home-page/add-doctor/add-doctor.service';
+import {RoomsComponent} from './clinic-administrator-home-page/rooms/rooms.component';
+import {RoomsService} from './clinic-administrator-home-page/rooms/rooms.service';
 
 @NgModule({
   declarations: [
@@ -124,8 +126,9 @@ import {AddDoctorService} from './clinic-administrator-home-page/add-doctor/add-
     CcaProfilePageComponent,
     ShowAllMedicamentsComponent,
     AnnualLeaveAndAbsenceComponent,
-    VacationAndAbsenceViewComponent
-    AddDoctorComponent
+    VacationAndAbsenceViewComponent,
+    AddDoctorComponent,
+    RoomsComponent
   ],
   imports: [
     BrowserModule,
@@ -158,7 +161,7 @@ import {AddDoctorService} from './clinic-administrator-home-page/add-doctor/add-
     EditPatientProfilePageService, NurseHomePageService, TypesOfMedicalExamService, AddTypeOfMedicalExamService,
     CcaHomePageService, RecipesService,
     ValidatedRecipesService, CcaProfilePageService, ShowAllMedicamentsService, AddDoctorService, AnnualLeaveAndAbsenceService,
-    VacationAndAbsenceViewService, DatePipe],
+    VacationAndAbsenceViewService, DatePipe, RoomsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -42,8 +42,8 @@ export class AuthService {
         this.access_token = res.accessToken;
         this.role = res.role;
         console.log(this.role);
-        sessionStorage.setItem('role', this.role);
-        sessionStorage.setItem('key', res.accessToken);
+        localStorage.setItem('role', this.role);
+        localStorage.setItem('key', res.accessToken);
         this.loggedIn.next(true);
       }));
 
