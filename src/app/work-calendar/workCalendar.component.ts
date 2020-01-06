@@ -41,8 +41,8 @@ const colors: any = {
 @Component({
   selector: 'app-work-calendar',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrls: ['styles.css'],
-  templateUrl: 'template.html'
+  styleUrls: ['./workCalendar.component.css'],
+  templateUrl: './workCalendar.component.html'
 })
 export class WorkCalendarComponent {
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
