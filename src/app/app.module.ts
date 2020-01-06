@@ -70,18 +70,23 @@ import {CcaProfilePageService} from
     './clinic-center-administrator-home-page/clinic-center-administrator-profile-page/ccaProfilePage.service';
 import {ShowAllMedicamentsComponent} from './showAllMedicaments/showAllMedicaments.component';
 import {ShowAllMedicamentsService} from './showAllMedicaments/showAllMedicaments.service';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModalModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {AnnualLeaveAndAbsenceComponent} from './annual-leave-and-absence/annualLeaveAndAbsence.component';
 import {AnnualLeaveAndAbsenceService} from './annual-leave-and-absence/annualLeaveAndAbsence.service';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatNativeDateModule, NativeDateModule} from '@angular/material/core';
+import {MatNativeDateModule} from '@angular/material/core';
 import {MatInputModule} from '@angular/material/input';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatRadioModule} from '@angular/material/radio';
 import {VacationAndAbsenceViewComponent} from './clinic-administrator-home-page/vacation-and-absence-view/vacationAndAbsenceView.component';
 import {VacationAndAbsenceViewService} from './clinic-administrator-home-page/vacation-and-absence-view/vacationAndAbsenceView.service';
-import {DatePipe} from '@angular/common';
+import {CommonModule, DatePipe} from '@angular/common';
+import {WorkCalendarComponent} from './work-calendar/workCalendar.component';
+import {CalendarModule, DateAdapter} from 'angular-calendar';
+import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
+import {FlatpickrModule} from 'angularx-flatpickr';
+import {WorkCalendarService} from './work-calendar/workCalendar.service';
 
 @NgModule({
   declarations: [
@@ -122,10 +127,12 @@ import {DatePipe} from '@angular/common';
     CcaProfilePageComponent,
     ShowAllMedicamentsComponent,
     AnnualLeaveAndAbsenceComponent,
-    VacationAndAbsenceViewComponent
+    VacationAndAbsenceViewComponent,
+    WorkCalendarComponent
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -136,12 +143,18 @@ import {DatePipe} from '@angular/common';
     MatCheckboxModule,
     ModalModule,
     NgbModule,
+    NgbModalModule,
     MatDatepickerModule,
     MatFormFieldModule,
     MatNativeDateModule,
     MatInputModule,
     BrowserAnimationsModule,
     MatRadioModule,
+    FlatpickrModule.forRoot(),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory
+    })
   ],
   providers: [
     {
@@ -155,7 +168,9 @@ import {DatePipe} from '@angular/common';
     EditPatientProfilePageService, NurseHomePageService, TypesOfMedicalExamService, AddTypeOfMedicalExamService,
     CcaHomePageService, RecipesService,
     ValidatedRecipesService, CcaProfilePageService, ShowAllMedicamentsService, AnnualLeaveAndAbsenceService,
-    VacationAndAbsenceViewService, DatePipe],
-  bootstrap: [AppComponent]
+    VacationAndAbsenceViewService, DatePipe, WorkCalendarService],
+  bootstrap: [AppComponent],
+  exports: [WorkCalendarComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
