@@ -37,6 +37,9 @@ import {AnnualLeaveAndAbsenceComponent} from './annual-leave-and-absence/annualL
 import {VacationAndAbsenceViewComponent} from './clinic-administrator-home-page/vacation-and-absence-view/vacationAndAbsenceView.component';
 import {AddDoctorComponent} from './clinic-administrator-home-page/add-doctor/add-doctor.component';
 import {MedicalExamRoomsComponent} from './clinic-administrator-home-page/rooms/medical-exam-rooms/medical-exam-rooms.component';
+import {OperationRoomsComponent} from './clinic-administrator-home-page/rooms/operation-rooms/operation-rooms.component';
+import {AddOperationRoomComponent} from './clinic-administrator-home-page/rooms/operation-rooms/add-operation-room/add-operation-room.component';
+import {AddMedicalExamRoomComponent} from './clinic-administrator-home-page/rooms/medical-exam-rooms/add-medical-exam-room/add-medical-exam-room.component';
 
 
 const routes: Routes = [{path: 'register', component: RegistrationComponent},
@@ -71,7 +74,12 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'vacationRequests', component: VacationAndAbsenceViewComponent},
   {path: 'absenceRequests', component: VacationAndAbsenceViewComponent},
   {path: 'addDoctor', component: AddDoctorComponent},
-  {path: 'rooms', component: MedicalExamRoomsComponent}
+  {path: 'medicalExamRooms', component: MedicalExamRoomsComponent},
+  {path: 'operationRooms', component: OperationRoomsComponent},
+  {path: 'addOperationRoom', component: AddOperationRoomComponent},
+  {path: 'addMedicalExamRoom', component: AddMedicalExamRoomComponent}
+
+
 ];
 
 @NgModule({

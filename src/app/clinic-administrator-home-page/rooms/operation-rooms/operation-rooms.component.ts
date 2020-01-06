@@ -1,17 +1,18 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {MedicalExamRoomsService} from './medical-exam-rooms.service';
 import {Room} from '../../../model/room';
+import {MedicalExamRoomsService} from '../medical-exam-rooms/medical-exam-rooms.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {OperationRoomsService} from './operation-rooms.service';
 
 @Component({
-  selector: 'app-medical-exam-rooms',
-  templateUrl: './medical-exam-rooms.component.html',
-  styleUrls: ['./medical-exam-rooms.component.css']
+  selector: 'app-operation-rooms',
+  templateUrl: './operation-rooms.component.html',
+  styleUrls: ['./operation-rooms.component.css']
 })
-export class MedicalExamRoomsComponent implements OnInit {
+export class OperationRoomsComponent implements OnInit {
   rooms: Room[] = [];
 
-  constructor(private roomsService: MedicalExamRoomsService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private roomsService: OperationRoomsService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.roomsService.getAll().subscribe(data => {
@@ -40,6 +41,6 @@ export class MedicalExamRoomsComponent implements OnInit {
   }
 
   addRoomPage() {
-    this.router.navigate(['/addMedicalExamRoom']);
+    this.router.navigate(['/addOperationRoom']);
   }
 }

@@ -86,6 +86,12 @@ import { AddDoctorComponent } from './clinic-administrator-home-page/add-doctor/
 import {AddDoctorService} from './clinic-administrator-home-page/add-doctor/add-doctor.service';
 import {MedicalExamRoomsComponent} from './clinic-administrator-home-page/rooms/medical-exam-rooms/medical-exam-rooms.component';
 import {MedicalExamRoomsService} from './clinic-administrator-home-page/rooms/medical-exam-rooms/medical-exam-rooms.service';
+import {OperationRoomsService} from './clinic-administrator-home-page/rooms/operation-rooms/operation-rooms.service';
+import {OperationRoomsComponent} from './clinic-administrator-home-page/rooms/operation-rooms/operation-rooms.component';
+import {AddOperationRoomComponent} from './clinic-administrator-home-page/rooms/operation-rooms/add-operation-room/add-operation-room.component';
+import {AddOperationRoomService} from './clinic-administrator-home-page/rooms/operation-rooms/add-operation-room/add-operation-room.service';
+import {AddMedicalExamRoomComponent} from './clinic-administrator-home-page/rooms/medical-exam-rooms/add-medical-exam-room/add-medical-exam-room.component';
+import {AddMedicalExamRoomService} from './clinic-administrator-home-page/rooms/medical-exam-rooms/add-medical-exam-room/add-medical-exam-room.service';
 
 @NgModule({
   declarations: [
@@ -128,7 +134,10 @@ import {MedicalExamRoomsService} from './clinic-administrator-home-page/rooms/me
     AnnualLeaveAndAbsenceComponent,
     VacationAndAbsenceViewComponent,
     AddDoctorComponent,
-    MedicalExamRoomsComponent
+    MedicalExamRoomsComponent,
+    OperationRoomsComponent,
+    AddOperationRoomComponent,
+    AddMedicalExamRoomComponent
   ],
   imports: [
     BrowserModule,
@@ -161,7 +170,7 @@ import {MedicalExamRoomsService} from './clinic-administrator-home-page/rooms/me
     EditPatientProfilePageService, NurseHomePageService, TypesOfMedicalExamService, AddTypeOfMedicalExamService,
     CcaHomePageService, RecipesService,
     ValidatedRecipesService, CcaProfilePageService, ShowAllMedicamentsService, AddDoctorService, AnnualLeaveAndAbsenceService,
-    VacationAndAbsenceViewService, DatePipe, MedicalExamRoomsService],
+    VacationAndAbsenceViewService, DatePipe, MedicalExamRoomsService, OperationRoomsService, AddOperationRoomService, AddMedicalExamRoomService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
