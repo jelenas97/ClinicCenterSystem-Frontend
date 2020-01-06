@@ -1,17 +1,17 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {RoomsService} from './rooms.service';
-import {Room} from '../../model/room';
+import {MedicalExamRoomsService} from './medical-exam-rooms.service';
+import {Room} from '../../../model/room';
 
 @Component({
   selector: 'app-rooms',
-  templateUrl: './rooms.component.html',
-  styleUrls: ['./rooms.component.css']
+  templateUrl: './medical-exam-rooms.component.html',
+  styleUrls: ['./medical-exam-rooms.component.css']
 })
-export class RoomsComponent implements OnInit {
+export class MedicalExamRoomsComponent implements OnInit {
   rooms: Room[] = [];
 
-  constructor(private roomsService: RoomsService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private roomsService: MedicalExamRoomsService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.roomsService.getAll().subscribe(data => {

@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Room} from '../../model/room';
+import {Room} from '../../../model/room';
 
 
 @Injectable()
-export class RoomsService {
+export class MedicalExamRoomsService {
 
   private readonly url: string;
 
   constructor(private http: HttpClient) {
-    this.url = 'http://localhost:8080/rooms';
+    this.url = 'http://localhost:8080/medicalExamRooms';
   }
 
   getAll(): Observable<Room[]> {
