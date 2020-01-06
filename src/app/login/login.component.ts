@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
   notification: DisplayMessage;
   returnUrl: string;
   private ngUnsubscribe: Subject<void> = new Subject<void>();
+  private role: string;
 
   constructor(private userService: UserService, private loginService: LoginService, private route: ActivatedRoute, private router: Router,
               private formBuilder: FormBuilder, private authService: AuthService, private appComponent: AppComponent) {
@@ -38,15 +39,16 @@ export class LoginComponent implements OnInit {
       .subscribe(data => {
           this.userService.getMyInfo().subscribe();
           this.appComponent.ngOnInit();
-          if (sessionStorage.getItem('role') === 'ROLE_PATIENT') {
+          this.role = localStorage.getItem('role');
+          if (this.role === 'ROLE_PATIENT') {
               this.router.navigate(['/patientHomePage']);
-          } else if (sessionStorage.getItem('role') === 'ROLE_DOCTOR') {
+          } else if (this.role === 'ROLE_DOCTOR') {
             this.router.navigate(['/doctorHomePage']);
-          } else if (sessionStorage.getItem('role') === 'ROLE_NURSE') {
+          } else if (this.role === 'ROLE_NURSE') {
             this.router.navigate(['/nurseHomePage']);
-          } else if (sessionStorage.getItem('role') === 'ROLE_CLINIC_ADMIN') {
+          } else if (this.role === 'ROLE_CLINIC_ADMIN') {
             this.router.navigate(['/clinicAdministratorHomePage']);
-          } else if (sessionStorage.getItem('role') === 'ROLE_CLINIC_CENTER_ADMIN') {
+          } else if (this.role === 'ROLE_CLINIC_CENTER_ADMIN') {
             this.router.navigate(['/ccaHomePage']);
           }
         },

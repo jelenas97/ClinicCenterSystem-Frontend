@@ -81,7 +81,7 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'showAllDoctors', component: ShowAndRemoveDoctorsComponent},
   {path: 'myClinic', component: ShowMyClinicComponent},
   {path: 'editMyClinic', component: EditMyClinicComponent},
-  {path: 'workCalendar', component: WorkCalendarComponent}
+  {path: 'workCalendar', component: WorkCalendarComponent},
   {path: 'addDoctor', component: AddDoctorComponent},
   {path: 'medicalExamRooms', component: MedicalExamRoomsComponent},
   {path: 'operationRooms', component: OperationRoomsComponent},

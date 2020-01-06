@@ -282,19 +282,6 @@
           </div>
         </li>
 
-        <li class="nav-item dropdown" *ngIf="role == 'ROLE_DOCTOR'">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink53" data-toggle="dropdown" aria-haspopup="true"
-             aria-expanded="false">
-            <fa-icon [icon]="faUserCircle" class="mr-1"></fa-icon>
-            Profile
-          </a>
-          <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink53">
-            <a class="dropdown-item bg-dark" routerLink="/absence">Absence</a>
-            <a class="dropdown-item bg-dark" routerLink="/annualLeave">Annual Leave</a>
-            <a class="dropdown-item bg-dark" routerLink="/doctorProfilePage">Personal info</a>
-            <a class="dropdown-item bg-dark" routerLink="/workCalendarDoctor">Work Calendar</a>
-          </div>
-        </li>
 
         <li class="nav-item dropdown" *ngIf="role == 'ROLE_PATIENT'">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink3" data-toggle="dropdown" aria-haspopup="true"

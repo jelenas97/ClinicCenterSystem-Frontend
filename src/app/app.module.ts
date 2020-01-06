@@ -85,7 +85,6 @@ import { AddDoctorComponent } from './clinic-administrator-home-page/add-doctor/
 import {AddDoctorService} from './clinic-administrator-home-page/add-doctor/add-doctor.service';
 import { ShowAndRemoveDoctorsComponent } from './clinic-administrator-home-page/show-and-remove-doctors/show-and-remove-doctors.component';
 import {ShowAndRemoveDoctorsService} from './clinic-administrator-home-page/show-and-remove-doctors/show-and-remove-doctors.service';
-import {ClinicAdministratorHomePageService} from './clinic-administrator-home-page/clinic-administrator-home-page.service';
 import { EditMyClinicComponent } from './clinic-administrator-home-page/edit-my-clinic/edit-my-clinic.component';
 import {EditMyClinicService} from './clinic-administrator-home-page/edit-my-clinic/edit-my-clinic.service';
 import { ShowMyClinicComponent } from './clinic-administrator-home-page/show-my-clinic/show-my-clinic.component';
@@ -102,9 +101,11 @@ import {MedicalExamRoomsService} from './clinic-administrator-home-page/rooms/me
 import {OperationRoomsService} from './clinic-administrator-home-page/rooms/operation-rooms/operation-rooms.service';
 import {OperationRoomsComponent} from './clinic-administrator-home-page/rooms/operation-rooms/operation-rooms.component';
 import {AddOperationRoomComponent} from './clinic-administrator-home-page/rooms/operation-rooms/add-operation-room/add-operation-room.component';
+// tslint:disable-next-line:max-line-length
 import {AddOperationRoomService} from './clinic-administrator-home-page/rooms/operation-rooms/add-operation-room/add-operation-room.service';
 import {AddMedicalExamRoomComponent} from './clinic-administrator-home-page/rooms/medical-exam-rooms/add-medical-exam-room/add-medical-exam-room.component';
 import {AddMedicalExamRoomService} from './clinic-administrator-home-page/rooms/medical-exam-rooms/add-medical-exam-room/add-medical-exam-room.service';
+import {ClinicAdministratorHomePageService} from './clinic-administrator-home-page/clinic-administrator-home-page.service';
 
 @NgModule({
   declarations: [
