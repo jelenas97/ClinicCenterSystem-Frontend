@@ -49,16 +49,23 @@ export class PatientHomePageService {
     return this.http.get<ExaminationType[]>('http://localhost:8080/getAllMedicalExaminationTypes');
   }
 
-  getSearchedClinics(selectedOption: string) {
-    return this.http.get<Clinic[]>('http://localhost:8080/auth/getSearchedClinics/' + selectedOption);
+  getSearchedClinics(selectedOption: string, selectedName: string, selectedRating: number) {
+    if (selectedName === undefined || selectedName === '') {
+      selectedName = ' ';
+    }
+    if (selectedRating === undefined || selectedRating === null) {
+      selectedRating = 0.0;
+    }
+    return this.http.get<Clinic[]>('http://localhost:8080/auth/getSearchedClinics/' + selectedOption + '/'
+      + selectedName + '/' + selectedRating);
   }
 
   getSearchedDoctors(selectedOption: string, id: string) {
     return this.http.get<UserMapperTwo[]>('http://localhost:8080/auth/getSearchedDoctors/' + selectedOption + '/' + id);
   }
 
-  sendRequest(selectedType: string, selectedDate: string, selectedClinicId: string, selectedDoctorId: string) {
+  sendRequest(selectedType: string, selectedDate: string, selectedClinicId: string, selectedDoctorId: string, patientId: string) {
     return this.http.put<any>('http://localhost:8080/auth/sendMedicalExamRequest/' + selectedType + '/' + selectedDate +
-      '/' + selectedClinicId + '/' + selectedDoctorId, any).subscribe();
+      '/' + selectedClinicId + '/' + selectedDoctorId + '/' + patientId, any).subscribe();
   }
 }
