@@ -22,6 +22,7 @@ import {
   CalendarEventTimesChangedEvent,
   CalendarView
 } from 'angular-calendar';
+import {faArrowLeft, faArrowRight} from '@fortawesome/free-solid-svg-icons';
 
 const colors: any = {
   red: {
@@ -47,6 +48,8 @@ const colors: any = {
 export class WorkCalendarComponent {
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
 
+  faPrevious = faArrowLeft;
+  faNext = faArrowRight;
   view: CalendarView = CalendarView.Month;
 
   CalendarView = CalendarView;
@@ -80,37 +83,12 @@ export class WorkCalendarComponent {
 
   events: CalendarEvent[] = [
     {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
+      start: startOfDay(new Date()),
+      end: endOfDay(new Date()),
       title: 'A 3 day event',
       color: colors.red,
       actions: this.actions,
       allDay: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      },
-      draggable: true
-    },
-    {
-      start: startOfDay(new Date()),
-      title: 'An event with no end date',
-      color: colors.yellow,
-      actions: this.actions
-    },
-    {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
-      color: colors.blue,
-      allDay: true
-    },
-    {
-      start: addHours(startOfDay(new Date()), 2),
-      end: addHours(new Date(), 2),
-      title: 'A draggable and resizable event',
-      color: colors.yellow,
-      actions: this.actions,
       resizable: {
         beforeStart: true,
         afterEnd: true

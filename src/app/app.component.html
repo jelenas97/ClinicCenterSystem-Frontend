@@ -20,7 +20,7 @@
 <body>
 <div id="app">
   <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-    <a class="navbar-brand ml-3" href="/home">Clinic Centar System</a>
+    <a class="navbar-brand ml-3" routerLink="/home">Clinic Centar System</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -29,12 +29,12 @@
 
       <ul class="navbar-nav mr-auto" *ngIf="role==null">
         <li class="nav-item active">
-          <a class="nav-link" href="/home">
+          <a class="nav-link" routerLink="/home">
             <fa-icon [icon]="faHome" class="mr-1"></fa-icon>
-            Home <span class="sr-only">(current)</span></a>
+            Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" routerLink="#">
             <fa-icon [icon]="faInfo" class="mr-1"></fa-icon>
             About</a>
         </li>
@@ -43,17 +43,17 @@
       <!--ROLE CLINIC CENTER ADMIN-->
       <ul class="navbar-nav mr-auto" *ngIf="role=='ROLE_CLINIC_CENTER_ADMIN'">
         <li class="nav-item active">
-          <a class="nav-link" href="/ccaHomePage">
+          <a class="nav-link" routerLink="/ccaHomePage">
             <fa-icon [icon]="faHome" class="mr-1"></fa-icon>
             Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/registrationRequests">
+          <a class="nav-link" routerLink="/registrationRequests">
             <fa-icon [icon]="" class="mr-1"></fa-icon>
             Requests</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="/allPatients">
+          <a class="nav-link" routerLink="/allPatients">
             <fa-icon [icon]="faPatients" class="mr-1"></fa-icon>
             Patients <span class="sr-only">(current)</span></a>
         </li>
@@ -71,7 +71,7 @@
         </li>
 
         <li class="nav-item active">
-          <a class="nav-link" href="/allAdmins">
+          <a class="nav-link" routerLink="/allAdmins">
             <fa-icon [icon]="faAdmins" class="mr-1"></fa-icon>
             Admins <span class="sr-only">(current)</span></a>
         </li>
@@ -94,17 +94,17 @@
       <!--ROLE NURSE-->
       <ul class="navbar-nav mr-auto" *ngIf="role=='ROLE_NURSE'">
         <li class="nav-item active">
-          <a class="nav-link" href="/nurseHomePage">
+          <a class="nav-link" routerLink="/nurseHomePage">
             <fa-icon [icon]="faHome" class="mr-1"></fa-icon>
-            Home <span class="sr-only">(current)</span></a>
+            Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" routerLink="#">
             <fa-icon [icon]="faInfo" class="mr-1"></fa-icon>
             About</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="/allPatients">
+          <a class="nav-link" routerLink="/allPatients">
             <fa-icon [icon]="faPatients" class="mr-1"></fa-icon>
             Patients <span class="sr-only">(current)</span></a>
         </li>
@@ -126,12 +126,12 @@
       <!--ROLE_CLINIC_ADMIN-->
       <ul class="navbar-nav mr-auto" *ngIf="role=='ROLE_CLINIC_ADMIN'">
         <li class="nav-item active">
-          <a class="nav-link" href="/clinicAdministratorHomePage">
+          <a class="nav-link" routerLink="/clinicAdministratorHomePage">
             <fa-icon [icon]="faHome" class="mr-1"></fa-icon>
             Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" routerLink="#">
             <fa-icon [icon]="faInfo" class="mr-1"></fa-icon>
             About</a>
         </li>
@@ -152,7 +152,7 @@
           </div>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="/typesOfMedicalExam">
+          <a class="nav-link" routerLink="/typesOfMedicalExam">
             <fa-icon [icon]="faPatients" class="mr-1"></fa-icon>
             Examination types <span class="sr-only">(current)</span></a>
         </li>
@@ -172,17 +172,17 @@
       <!--ROLE PATIENT-->
       <ul class="navbar-nav mr-auto" *ngIf="role=='ROLE_PATIENT'">
         <li class="nav-item active">
-          <a class="nav-link" href="/patientHomePage">
+          <a class="nav-link" routerLink="/patientHomePage">
             <fa-icon [icon]="faHome" class="mr-1"></fa-icon>
             Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" routerLink="#">
             <fa-icon [icon]="faInfo" class="mr-1"></fa-icon>
             About</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="/allClinics">
+          <a class="nav-link" routerLink="/allClinics">
             <fa-icon [icon]="faClinics" class="mr-1"></fa-icon>
             Clinics <span class="sr-only">(current)</span></a>
         </li>
@@ -200,7 +200,7 @@
         </li>
 
         <li class="nav-item active">
-          <a class="nav-link" href="/medicalRecord">
+          <a class="nav-link" routerLink="/medicalRecord">
             <fa-icon [icon]="faRecord" class="mr-1"></fa-icon>
             Medical record <span class="sr-only">(current)</span></a>
         </li>
@@ -210,23 +210,23 @@
       <!--ROLE DOCTOR-->
       <ul class="navbar-nav mr-auto" *ngIf="role=='ROLE_DOCTOR'">
         <li class="nav-item active">
-          <a class="nav-link" href="/doctorHomePage">
+          <a class="nav-link" routerLink="/doctorHomePage">
             <fa-icon [icon]="faHome" class="mr-1"></fa-icon>
             Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" routerLink="#">
             <fa-icon [icon]="faInfo" class="mr-1"></fa-icon>
             About</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="/allPatients">
+          <a class="nav-link" routerLink="/allPatients">
             <fa-icon [icon]="faPatients" class="mr-1"></fa-icon>
             Patients <span class="sr-only">(current)</span></a>
         </li>
 
         <li class="nav-item active">
-          <a class="nav-link" href="/newMedicalExam">
+          <a class="nav-link" routerLink="/newMedicalExam">
             <fa-icon [icon]="faStartExam" class="mr-1"></fa-icon>
             Start medical exam <span class="sr-only">(current)</span></a>
         </li>
@@ -274,12 +274,12 @@
         </li>
 
         <li class="nav-item dropdown" *ngIf="role == 'ROLE_DOCTOR'">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink5" data-toggle="dropdown" aria-haspopup="true"
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink53" data-toggle="dropdown" aria-haspopup="true"
              aria-expanded="false">
             <fa-icon [icon]="faUserCircle" class="mr-1"></fa-icon>
             Profile
           </a>
-          <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink5">
+          <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink53">
             <a class="dropdown-item bg-dark" routerLink="/absence">Absence</a>
             <a class="dropdown-item bg-dark" routerLink="/annualLeave">Annual Leave</a>
             <a class="dropdown-item bg-dark" routerLink="/doctorProfilePage">Personal info</a>
