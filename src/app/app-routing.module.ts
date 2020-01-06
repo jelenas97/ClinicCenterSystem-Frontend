@@ -40,6 +40,10 @@ import {ShowAndRemoveDoctorsComponent} from './clinic-administrator-home-page/sh
 import {EditMyClinicComponent} from './clinic-administrator-home-page/edit-my-clinic/edit-my-clinic.component';
 import {ShowMyClinicComponent} from './clinic-administrator-home-page/show-my-clinic/show-my-clinic.component';
 import {WorkCalendarComponent} from './work-calendar/workCalendar.component';
+import {MedicalExamRoomsComponent} from './clinic-administrator-home-page/rooms/medical-exam-rooms/medical-exam-rooms.component';
+import {OperationRoomsComponent} from './clinic-administrator-home-page/rooms/operation-rooms/operation-rooms.component';
+import {AddOperationRoomComponent} from './clinic-administrator-home-page/rooms/operation-rooms/add-operation-room/add-operation-room.component';
+import {AddMedicalExamRoomComponent} from './clinic-administrator-home-page/rooms/medical-exam-rooms/add-medical-exam-room/add-medical-exam-room.component';
 
 
 const routes: Routes = [{path: 'register', component: RegistrationComponent},
@@ -77,7 +81,15 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'showAllDoctors', component: ShowAndRemoveDoctorsComponent},
   {path: 'myClinic', component: ShowMyClinicComponent},
   {path: 'editMyClinic', component: EditMyClinicComponent},
-  {path: 'workCalendar', component: WorkCalendarComponent}];
+  {path: 'workCalendar', component: WorkCalendarComponent}
+  {path: 'addDoctor', component: AddDoctorComponent},
+  {path: 'medicalExamRooms', component: MedicalExamRoomsComponent},
+  {path: 'operationRooms', component: OperationRoomsComponent},
+  {path: 'addOperationRoom', component: AddOperationRoomComponent},
+  {path: 'addMedicalExamRoom', component: AddMedicalExamRoomComponent}
+
+
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

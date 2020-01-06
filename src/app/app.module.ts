@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { ModalModule } from 'ngb-modal';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RegistrationComponent} from './registration/registration.component';
 import {RegistrationService} from './registration/registration.service';
 import {HttpClientModule} from '@angular/common/http';
@@ -93,11 +93,18 @@ import {ShowMyClinicService} from './clinic-administrator-home-page/show-my-clin
 import {WorkCalendarComponent} from './work-calendar/workCalendar.component';
 import {WorkCalendarService} from './work-calendar/workCalendar.service';
 import {CommonModule, DatePipe} from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import {MedicalExamRoomsComponent} from './clinic-administrator-home-page/rooms/medical-exam-rooms/medical-exam-rooms.component';
+import {MedicalExamRoomsService} from './clinic-administrator-home-page/rooms/medical-exam-rooms/medical-exam-rooms.service';
+import {OperationRoomsService} from './clinic-administrator-home-page/rooms/operation-rooms/operation-rooms.service';
+import {OperationRoomsComponent} from './clinic-administrator-home-page/rooms/operation-rooms/operation-rooms.component';
+import {AddOperationRoomComponent} from './clinic-administrator-home-page/rooms/operation-rooms/add-operation-room/add-operation-room.component';
+import {AddOperationRoomService} from './clinic-administrator-home-page/rooms/operation-rooms/add-operation-room/add-operation-room.service';
+import {AddMedicalExamRoomComponent} from './clinic-administrator-home-page/rooms/medical-exam-rooms/add-medical-exam-room/add-medical-exam-room.component';
+import {AddMedicalExamRoomService} from './clinic-administrator-home-page/rooms/medical-exam-rooms/add-medical-exam-room/add-medical-exam-room.service';
 
 @NgModule({
   declarations: [
@@ -144,11 +151,16 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
     EditMyClinicComponent,
     ShowMyClinicComponent,
     VacationAndAbsenceViewComponent,
-    WorkCalendarComponent
+    WorkCalendarComponent,
+    VacationAndAbsenceViewComponent,
+    AddDoctorComponent,
+    MedicalExamRoomsComponent,
+    OperationRoomsComponent,
+    AddOperationRoomComponent,
+    AddMedicalExamRoomComponent
   ],
   imports: [
     BrowserModule,
-    CommonModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -183,10 +195,10 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
     PatientHomePageService,  ConfirmationMessageService, DoctorProfilePageService, EditClinicAdministrator,
     EditPatientProfilePageService, NurseHomePageService, TypesOfMedicalExamService, AddTypeOfMedicalExamService,
     CcaHomePageService, RecipesService,
-    ValidatedRecipesService, CcaProfilePageService, ShowAllMedicamentsService, AnnualLeaveAndAbsenceService,
+    ValidatedRecipesService, CcaProfilePageService, ShowAllMedicamentsService, AddDoctorService, AnnualLeaveAndAbsenceService,
     VacationAndAbsenceViewService, DatePipe, ShowAndRemoveDoctorsService, ClinicAdministratorHomePageService,
-    EditMyClinicService, AddDoctorService, ShowMyClinicService, WorkCalendarService
-  ],
+    EditMyClinicService, AddDoctorService, ShowMyClinicService, WorkCalendarService,
+    MedicalExamRoomsService, OperationRoomsService, AddOperationRoomService, AddMedicalExamRoomService],
   bootstrap: [AppComponent],
   exports: [WorkCalendarComponent]
 })

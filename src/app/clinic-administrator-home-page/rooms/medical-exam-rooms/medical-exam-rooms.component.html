@@ -1,0 +1,30 @@
+<div class="card my-5">
+  <div class="card-body">
+    <span class="navbar-brand mb-0 h1">Examination Rooms</span>
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">Examination Room Name</th>
+        <th scope="col">Examination Room Number</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let room of rooms">
+        <td contenteditable="true" (blur)="changeRoomName(room, $event)">{{ room.name }}</td>
+        <td contenteditable="true" (blur)="changeRoomNumber(room, $event)">{{ room.number }}</td>
+        <td>
+          <button class="btn-primary" (click)="editRoom(room)">Edit Examination Room</button>
+        </td>
+        <td>
+          <button class="btn-danger" (click)="removeRoom(room)">Remove Examination Room</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <button type="button" class="btn btn-info btn-lg btn-block" (click)="ngOnInit()">Reset table</button>
+    <button type="button" class="btn btn-success btn-lg btn-block" (click)="addRoomPage()">Add new medical exam room</button>
+
+  </div>
+</div>
