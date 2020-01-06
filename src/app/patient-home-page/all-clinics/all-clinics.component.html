@@ -1,21 +1,43 @@
+<button class="navbar-toggler" (click)="showSearch($event)">Search
+  <fa-icon [icon]="faArrow" class="mr-1"></fa-icon>
+</button>
+<br>
 
-<h2>Search by date and type</h2>
-<form id="searchClinic" (ngSubmit)="onSearchSubmit(selectedOption)">
+<div id="searchDiv" [@slideInOut]="animationState" class="border-bottom">
+  <br>
+  <form id="searchClinic" class="form-group" (ngSubmit)="onSearchSubmit(selectedOption, selectedName, selectedRating)">
 
-  <select name="types" [(ngModel)]="selectedOption" (change)="onSelectChange($event)" [disabled]="isAnyClinicSelected" class="custom-select">
-    <option>No type</option>
-    <option *ngFor="let type of examinationTypes">{{type.id}}</option>
-  </select>
+    <label style="padding-right: 20px;"> Select type : </label>
+    <select name="types" [(ngModel)]="selectedOption" (change)="onSelectChange($event)" [disabled]="isAnyClinicSelected"
+            class="form-control-sm" style="padding-left: 20px;">
+      <option>No type</option>
+      <option *ngFor="let type of examinationTypes ">{{type.name}}</option>
+    </select>
 
-  <input type="date" [(ngModel)]="selectedDate" [disabled]="isAnyClinicSelected">
+    <label style="padding-left: 20px; padding-right: 20px;"> Select date : </label>
+    <input required class="form-control-sm" type="date" [(ngModel)]="selectedDate" [disabled]="isAnyClinicSelected"
+           style="padding-left: 20px; padding-right: 20px;">
 
-  <button type="submit" [disabled]="isAnyClinicSelected || selectedOption === undefined">Search</button>
-  <button type="button" [hidden]="!isAnyClinicSelected" (click)="resetAllForm()">Reset</button>
-</form>
+    <label style="padding-left: 20px; padding-right: 20px;"> Enter name of clinic : </label>
+    <input type="text" [(ngModel)]="selectedName" [ngModelOptions]="{standalone: true}" style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
+
+    <label style="padding-left: 20px; padding-right: 20px;"> Enter lower limit of average rating : </label>
+    <input type="number" [(ngModel)]="selectedRating" [ngModelOptions]="{standalone: true}" min="0" max="10" style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
+
+    <br>
+    <br>
+    <button type="submit" [hidden]="isAnyClinicSelected" class="btn btn-primary"
+            style="margin-left: 45%; width: 150px;">Search
+    </button>
+    <button style="margin-left: 45%; width: 150px;" type="button" [hidden]="!isAnyClinicSelected"
+            (click)="resetAllForm()" class="btn btn-secondary">Reset
+    </button>
+  </form>
+</div>
 
 <div>
   <br>
-  <h2>All available clinics </h2>
+  <h2 style="text-align: center">All available clinics </h2>
   <table class="table table-bordered table-striped">
     <thead class="thead-dark">
     <tr>
@@ -24,7 +46,7 @@
       <th scope="col">City</th>
       <th scope="col">Address</th>
       <th scope="col">Average rating</th>
-      <th scope="col" [hidden]="!isTypeSelected" >Select a clinic</th>
+      <th scope="col" [hidden]="!isTypeSelected">Select a clinic</th>
     </tr>
     </thead>
     <tbody>
@@ -35,16 +57,18 @@
       <td>{{ clinic.address }}</td>
       <td *ngIf="clinic.clinicAverageRating != null">{{ clinic.clinicAverageRating }}</td>
       <td *ngIf="clinic.clinic_average_rating != null">{{ clinic.clinic_average_rating }}</td>
-      <td  [hidden]="!isTypeSelected"><input type="radio" name="selectClinicRadio"
-                 (change)="getDoctorFromSelectedClinic(selectedOption, clinic.id)">
+      <td [hidden]="!isTypeSelected"><input type="radio" name="selectClinicRadio"
+                                            (change)="getDoctorFromSelectedClinic(selectedOption, clinic.id)">
       </td>
     </tr>
     </tbody>
   </table>
 </div>
 
+<br>
+
 <div [hidden]="!isAnyClinicSelected">
-  <h2>All available doctors from selected clinic </h2>
+  <h2 style="text-align: center">All available doctors from selected clinic </h2>
   <table class="table table-bordered table-striped">
     <thead class="thead-dark">
     <tr>
@@ -67,8 +91,10 @@
   </table>
 </div>
 
-<div class="col-lg-4 text-center">
-  <button class="btn btn-primary" [hidden]="!hiddenSend" style="align-content: center; alignment: center" (click)="sendRequest(selectedOption, selectedDate)"> Send
-    request
+<div>
+  <button class="btn btn-primary" [hidden]="!hiddenSend" style="align-content: center; alignment: center"
+          (click)="sendRequest(selectedOption, selectedDate)" style="margin-left: 45%; width: 150px;"> Send request
   </button>
 </div>
+
+<notifier-container></notifier-container>
