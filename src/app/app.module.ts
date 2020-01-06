@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { ModalModule } from 'ngb-modal';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
 import {RegistrationComponent} from './registration/registration.component';
 import {RegistrationService} from './registration/registration.service';
 import {HttpClientModule} from '@angular/common/http';
@@ -75,22 +75,29 @@ import {AnnualLeaveAndAbsenceComponent} from './annual-leave-and-absence/annualL
 import {AnnualLeaveAndAbsenceService} from './annual-leave-and-absence/annualLeaveAndAbsence.service';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatNativeDateModule, NativeDateModule} from '@angular/material/core';
+import {MatNativeDateModule} from '@angular/material/core';
 import {MatInputModule} from '@angular/material/input';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatRadioModule} from '@angular/material/radio';
 import {VacationAndAbsenceViewComponent} from './clinic-administrator-home-page/vacation-and-absence-view/vacationAndAbsenceView.component';
 import {VacationAndAbsenceViewService} from './clinic-administrator-home-page/vacation-and-absence-view/vacationAndAbsenceView.service';
-import {DatePipe} from '@angular/common';
 import { AddDoctorComponent } from './clinic-administrator-home-page/add-doctor/add-doctor.component';
 import {AddDoctorService} from './clinic-administrator-home-page/add-doctor/add-doctor.service';
 import { ShowAndRemoveDoctorsComponent } from './clinic-administrator-home-page/show-and-remove-doctors/show-and-remove-doctors.component';
 import {ShowAndRemoveDoctorsService} from './clinic-administrator-home-page/show-and-remove-doctors/show-and-remove-doctors.service';
 import {ClinicAdministratorHomePageService} from './clinic-administrator-home-page/clinic-administrator-home-page.service';
 import { EditMyClinicComponent } from './clinic-administrator-home-page/edit-my-clinic/edit-my-clinic.component';
-import {EditMyClinicService} from "./clinic-administrator-home-page/edit-my-clinic/edit-my-clinic.service";
+import {EditMyClinicService} from './clinic-administrator-home-page/edit-my-clinic/edit-my-clinic.service';
 import { ShowMyClinicComponent } from './clinic-administrator-home-page/show-my-clinic/show-my-clinic.component';
-import {ShowMyClinicService} from "./clinic-administrator-home-page/show-my-clinic/show-my-clinic.service";
+import {ShowMyClinicService} from './clinic-administrator-home-page/show-my-clinic/show-my-clinic.service';
+import {WorkCalendarComponent} from './work-calendar/workCalendar.component';
+import {WorkCalendarService} from './work-calendar/workCalendar.service';
+import {CommonModule, DatePipe} from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { FlatpickrModule } from 'angularx-flatpickr';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -135,10 +142,13 @@ import {ShowMyClinicService} from "./clinic-administrator-home-page/show-my-clin
     AddDoctorComponent,
     ShowAndRemoveDoctorsComponent,
     EditMyClinicComponent,
-    ShowMyClinicComponent
+    ShowMyClinicComponent,
+    VacationAndAbsenceViewComponent,
+    WorkCalendarComponent
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -149,12 +159,18 @@ import {ShowMyClinicService} from "./clinic-administrator-home-page/show-my-clin
     MatCheckboxModule,
     ModalModule,
     NgbModule,
+    NgbModalModule,
     MatDatepickerModule,
     MatFormFieldModule,
     MatNativeDateModule,
     MatInputModule,
     BrowserAnimationsModule,
     MatRadioModule,
+    FlatpickrModule.forRoot(),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory
+    })
   ],
   providers: [
     {
@@ -167,9 +183,12 @@ import {ShowMyClinicService} from "./clinic-administrator-home-page/show-my-clin
     PatientHomePageService,  ConfirmationMessageService, DoctorProfilePageService, EditClinicAdministrator,
     EditPatientProfilePageService, NurseHomePageService, TypesOfMedicalExamService, AddTypeOfMedicalExamService,
     CcaHomePageService, RecipesService,
-    ValidatedRecipesService, CcaProfilePageService, ShowAllMedicamentsService, AddDoctorService, AnnualLeaveAndAbsenceService,
-    VacationAndAbsenceViewService, DatePipe, ShowAndRemoveDoctorsService, ClinicAdministratorHomePageService, EditMyClinicService,
-    ShowMyClinicService],
-  bootstrap: [AppComponent]
+    ValidatedRecipesService, CcaProfilePageService, ShowAllMedicamentsService, AnnualLeaveAndAbsenceService,
+    VacationAndAbsenceViewService, DatePipe, ShowAndRemoveDoctorsService, ClinicAdministratorHomePageService,
+    EditMyClinicService, AddDoctorService, ShowMyClinicService, WorkCalendarService
+  ],
+  bootstrap: [AppComponent],
+  exports: [WorkCalendarComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
