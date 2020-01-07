@@ -5,17 +5,18 @@
   <title>Title</title>
 </head>
 <body>
-<div class="container register-form pt-4">
+<div class="container register-form">
   <div class="form">
-    <div class="note">
+    <div class="note mt-5">
       <h2>Register here</h2>
     </div>
 
-    <div class="card my-5">
+    <div class="card ">
       <div class="card-body">
         <form (ngSubmit)="register(mymodal)" [formGroup]="userData">
 
-          <div class="form-group">
+          <div class="row">
+          <div class="form-group col-lg-6">
             <label for="inputSsn">Social security number</label>
             <input [(ngModel)]="user.ssn"
                    [ngClass]="{'is-invalid': f.ssn.touched && f.ssn.errors, 'is-valid': f.ssn.touched && f.ssn.valid}"
@@ -27,7 +28,7 @@
             <span style="color: red" *ngIf="f.ssn.invalid && f.ssn.touched">Please enter exactly 13 digits for social security number</span>
           </div>
 
-          <div class="form-group">
+          <div class="form-group col-lg-6">
             <label for="inputEmail">Email</label>
             <input [(ngModel)]="user.email"
                    [ngClass]="{'is-invalid': f.email.touched && f.email.errors && f.email.errors.emailDomain, 'is-valid': f.email.touched && f.email.valid}"
@@ -38,8 +39,10 @@
                    required>
             <span style="color: red" *ngIf="f.email.touched && f.email.invalid">Valid email must contain @ and some of the domains : gmail.com, yahoo.com, uns.ac.rs</span>
           </div>
+          </div>
 
-          <div class="form-group">
+          <div class="row">
+          <div class="form-group col-lg-6">
             <label for="inputPassword">Password</label>
             <input [(ngModel)]="user.password"
                    [ngClass]="{'is-invalid': (f.password.touched && f.password.errors) || userData.hasError('notSame'), 'is-valid': f.password.touched && f.password.valid && !userData.hasError('notSame')}"
@@ -52,7 +55,7 @@
             <span style="color: red" *ngIf="f.password.invalid && f.password.touched">Password must contain at least 5 characters</span>
           </div>
 
-          <div class="form-group">
+          <div class="form-group col-lg-6">
             <label for="inputPasswordRepeat">Repeat password</label>
             <input [(ngModel)]="passwordRepeat"
                    [ngClass]="{'is-invalid': (f.passwordRepeat.touched && f.passwordRepeat.errors) || userData.hasError('notSame'), 'is-valid': f.passwordRepeat.touched && f.passwordRepeat.valid && !userData.hasError('notSame')}"
@@ -65,8 +68,10 @@
             <span style="color: red"
                   *ngIf="f.passwordRepeat.invalid && f.passwordRepeat.touched">Passwords must match</span>
           </div>
+          </div>
 
-          <div class="form-group">
+          <div class="row">
+          <div class="form-group col-lg-6">
             <label for="InputFirstName">First name</label>
             <input [(ngModel)]="user.firstName"
                    [ngClass]="{'is-invalid': f.firstName.touched && f.firstName.errors, 'is-valid': f.firstName.touched && f.firstName.valid}"
@@ -78,7 +83,7 @@
             <span style="color: red" *ngIf="f.firstName.invalid && f.firstName.touched">First name must contain only letters</span>
           </div>
 
-          <div class="form-group">
+          <div class="form-group col-lg-6">
             <label for="InputLastName">Last name</label>
             <input [(ngModel)]="user.lastName"
                    [ngClass]="{'is-invalid': f.lastName.touched && f.lastName.errors, 'is-valid': f.lastName.touched && f.lastName.valid}"
@@ -89,8 +94,10 @@
                    required>
             <span style="color: red" *ngIf="f.lastName.invalid && f.lastName.touched">Last name must contain only letters</span>
           </div>
+          </div>
 
-          <div class="form-group">
+          <div class="row">
+          <div class="form-group col-lg-6">
             <label for="inputCountry">Country</label>
             <input [(ngModel)]="user.country"
                    [ngClass]="{'is-invalid': f.country.touched && f.country.errors, 'is-valid': f.country.touched && f.country.valid}"
@@ -102,7 +109,7 @@
             <span style="color: red" *ngIf="f.country.invalid && f.country.touched">Country must contain only letters</span>
           </div>
 
-          <div class="form-group">
+          <div class="form-group col-lg-6">
             <label for="inputCity">City</label>
             <input [(ngModel)]="user.city"
                    [ngClass]="{'is-invalid': f.city.touched && f.city.errors, 'is-valid': f.city.touched && f.city.valid}"
@@ -113,8 +120,10 @@
                    required>
             <span style="color: red" *ngIf="f.city.invalid && f.city.touched">City must contain only letters</span>
           </div>
+          </div>
 
-          <div class="form-group">
+          <div class="row">
+          <div class="form-group col-lg-6">
             <label for="inputAddress">Address</label>
             <input [(ngModel)]="user.address"
                    [ngClass]="{'is-invalid': f.address.touched && f.address.errors, 'is-valid': f.address.touched && f.address.valid}"
@@ -126,7 +135,7 @@
             <span style="color: red" *ngIf="f.address.invalid && f.address.touched">Address must contain only letters</span>
           </div>
 
-          <div class="form-group">
+          <div class="form-group col-lg-6">
             <label for="inputPhone">Phone</label>
             <input [(ngModel)]="user.phone"
                    [ngClass]="{'is-invalid': f.phone.touched && f.phone.errors, 'is-valid': f.phone.touched && f.phone.valid}"
@@ -137,10 +146,13 @@
                    required>
             <span style="color: red" *ngIf="f.phone.invalid && f.phone.touched">Phone must contain 9 od 10 digits</span>
           </div>
+          </div>
 
-          <button type="submit" [disabled]="userData.invalid"
-                  class="btn btn-info">Submit
-          </button>
+          <div class="text-right">
+            <button type="submit" [disabled]="userData.invalid"
+                    class="btn btn-success col-lg-1">Register
+            </button>
+          </div>
         </form>
       </div>
     </div>
