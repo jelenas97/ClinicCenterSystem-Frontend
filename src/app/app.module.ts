@@ -68,8 +68,6 @@ import {CcaProfilePageComponent} from
 // tslint:disable-next-line:import-spacing
 import {CcaProfilePageService} from
     './clinic-center-administrator-home-page/clinic-center-administrator-profile-page/ccaProfilePage.service';
-import {ShowAllMedicamentsComponent} from './showAllMedicaments/showAllMedicaments.component';
-import {ShowAllMedicamentsService} from './showAllMedicaments/showAllMedicaments.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {AnnualLeaveAndAbsenceComponent} from './annual-leave-and-absence/annualLeaveAndAbsence.component';
 import {AnnualLeaveAndAbsenceService} from './annual-leave-and-absence/annualLeaveAndAbsence.service';
@@ -136,7 +134,6 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
     RecipesComponent,
     ValidatedRecipesComponent,
     CcaProfilePageComponent,
-    ShowAllMedicamentsComponent,
     AnnualLeaveAndAbsenceComponent,
     VacationAndAbsenceViewComponent,
     AddDoctorComponent,
@@ -183,7 +180,7 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
     PatientHomePageService,  ConfirmationMessageService, DoctorProfilePageService, EditClinicAdministrator,
     EditPatientProfilePageService, NurseHomePageService, TypesOfMedicalExamService, AddTypeOfMedicalExamService,
     CcaHomePageService, RecipesService,
-    ValidatedRecipesService, CcaProfilePageService, ShowAllMedicamentsService, AnnualLeaveAndAbsenceService,
+    ValidatedRecipesService, CcaProfilePageService, AnnualLeaveAndAbsenceService,
     VacationAndAbsenceViewService, DatePipe, ShowAndRemoveDoctorsService, ClinicAdministratorHomePageService,
     EditMyClinicService, AddDoctorService, ShowMyClinicService, WorkCalendarService
   ],
