@@ -44,6 +44,7 @@ import {MedicalExamRoomsComponent} from './clinic-administrator-home-page/rooms/
 import {OperationRoomsComponent} from './clinic-administrator-home-page/rooms/operation-rooms/operation-rooms.component';
 import {AddOperationRoomComponent} from './clinic-administrator-home-page/rooms/operation-rooms/add-operation-room/add-operation-room.component';
 import {AddMedicalExamRoomComponent} from './clinic-administrator-home-page/rooms/medical-exam-rooms/add-medical-exam-room/add-medical-exam-room.component';
+import {MedicalExaminationRequestsComponent} from './clinic-administrator-home-page/medical-examination-requests/medical-examination-requests.component';
 
 
 const routes: Routes = [{path: 'register', component: RegistrationComponent},
@@ -86,8 +87,8 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'medicalExamRooms', component: MedicalExamRoomsComponent},
   {path: 'operationRooms', component: OperationRoomsComponent},
   {path: 'addOperationRoom', component: AddOperationRoomComponent},
-  {path: 'addMedicalExamRoom', component: AddMedicalExamRoomComponent}
-
+  {path: 'addMedicalExamRoom', component: AddMedicalExamRoomComponent},
+  {path: 'medicalExaminationRequests', component: MedicalExaminationRequestsComponent}
 
 ];
 
