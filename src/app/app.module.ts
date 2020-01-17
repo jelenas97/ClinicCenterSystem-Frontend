@@ -96,6 +96,8 @@ import { FlatpickrModule } from 'angularx-flatpickr';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import {DiagnosisComponent} from './diagnosis/diagnosis.component';
+import {DiagnosisService} from './diagnosis/diagnosis.service';
 
 @NgModule({
   declarations: [
@@ -141,7 +143,8 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
     EditMyClinicComponent,
     ShowMyClinicComponent,
     VacationAndAbsenceViewComponent,
-    WorkCalendarComponent
+    WorkCalendarComponent,
+    DiagnosisComponent
   ],
   imports: [
     BrowserModule,
@@ -182,7 +185,7 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
     CcaHomePageService, RecipesService,
     ValidatedRecipesService, CcaProfilePageService, AnnualLeaveAndAbsenceService,
     VacationAndAbsenceViewService, DatePipe, ShowAndRemoveDoctorsService, ClinicAdministratorHomePageService,
-    EditMyClinicService, AddDoctorService, ShowMyClinicService, WorkCalendarService
+    EditMyClinicService, AddDoctorService, ShowMyClinicService, WorkCalendarService, DiagnosisService
   ],
   bootstrap: [AppComponent],
   exports: [WorkCalendarComponent]

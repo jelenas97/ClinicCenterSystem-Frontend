@@ -39,6 +39,7 @@ import {ShowAndRemoveDoctorsComponent} from './clinic-administrator-home-page/sh
 import {EditMyClinicComponent} from './clinic-administrator-home-page/edit-my-clinic/edit-my-clinic.component';
 import {ShowMyClinicComponent} from './clinic-administrator-home-page/show-my-clinic/show-my-clinic.component';
 import {WorkCalendarComponent} from './work-calendar/workCalendar.component';
+import {DiagnosisComponent} from './diagnosis/diagnosis.component';
 
 
 const routes: Routes = [{path: 'register', component: RegistrationComponent},
@@ -75,7 +76,9 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'showAllDoctors', component: ShowAndRemoveDoctorsComponent},
   {path: 'myClinic', component: ShowMyClinicComponent},
   {path: 'editMyClinic', component: EditMyClinicComponent},
-  {path: 'workCalendar', component: WorkCalendarComponent}];
+  {path: 'workCalendar', component: WorkCalendarComponent},
+  {path: 'diagnosis', component: DiagnosisComponent}];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

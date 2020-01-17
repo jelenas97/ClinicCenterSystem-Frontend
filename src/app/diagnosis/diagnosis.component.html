@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div class="container register-form pt-4">
+  <div class="form col-lg-10 offset-1">
+    <div class="note ">
+      <h4>Add New Diagnosis</h4>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <form (ngSubmit)="onSubmit()" #diagnosisForm="ngForm">
+
+          <div class="row">
+            <div class="form-group col-lg-6">
+              <label for="code">Code</label>
+              <input type="text" [(ngModel)]="diagnosis.code"
+                     class="form-control"
+                     id="code"
+                     name="code"
+                     placeholder="Enter code"
+                     required #name="ngModel">
+            </div>
+
+            <div class="form-group col-lg-6">
+              <label for="name">Name</label>
+              <input type="text" [(ngModel)]="diagnosis.name"
+                     class="form-control"
+                     id="name"
+                     name="name"
+                     placeholder="Enter name"
+                     required #name="ngModel">
+            </div>
+          </div>
+
+          <div class="row">
+
+            <div class="form-group col-lg-6">
+              <label for="group">Group</label>
+              <input type="text" [(ngModel)]="diagnosis.group"
+                     class="form-control"
+                     id="group"
+                     name="group"
+                     placeholder="Enter group"
+                     required #name="ngModel">
+            </div>
+
+            <div class="form-group col-lg-6">
+              <label for="description">Description</label>
+              <input type="text" [(ngModel)]="diagnosis.description"
+                     class="form-control"
+                     id="description"
+                     name="description"
+                     placeholder="Enter description"
+                     required #name="ngModel">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="text-right col-lg-12">
+              <button type="submit" class="btn btn-success col-lg-2">Save</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-10 offset-1 mt-4">
+    <table class="table table-borderless table-sm table-striped">
+      <thead class="bg-success text-white">
+      <tr>
+        <th scope="col">Group</th>
+        <th scope="col">Code</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let diag of diagnoses">
+        <td>{{diag.group}}</td>
+        <td>{{diag.code}}</td>
+        <td>{{diag.name}}</td>
+        <td>{{ diag.description}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+</body>
+</html>
+<router-outlet></router-outlet>
