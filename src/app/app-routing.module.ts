@@ -32,7 +32,6 @@ import {ValidatedRecipesComponent} from './validated-recipes/validatedRecipes.co
 // tslint:disable-next-line:import-spacing
 import {CcaProfilePageComponent} from
     './clinic-center-administrator-home-page/clinic-center-administrator-profile-page/ccaProfilePage.component';
-import {ShowAllMedicamentsComponent} from './showAllMedicaments/showAllMedicaments.component';
 import {AnnualLeaveAndAbsenceComponent} from './annual-leave-and-absence/annualLeaveAndAbsence.component';
 import {VacationAndAbsenceViewComponent} from './clinic-administrator-home-page/vacation-and-absence-view/vacationAndAbsenceView.component';
 import {AddDoctorComponent} from './clinic-administrator-home-page/add-doctor/add-doctor.component';
@@ -44,6 +43,7 @@ import {MedicalExamRoomsComponent} from './clinic-administrator-home-page/rooms/
 import {OperationRoomsComponent} from './clinic-administrator-home-page/rooms/operation-rooms/operation-rooms.component';
 import {AddOperationRoomComponent} from './clinic-administrator-home-page/rooms/operation-rooms/add-operation-room/add-operation-room.component';
 import {AddMedicalExamRoomComponent} from './clinic-administrator-home-page/rooms/medical-exam-rooms/add-medical-exam-room/add-medical-exam-room.component';
+import {DiagnosisComponent} from './diagnosis/diagnosis.component';
 
 
 const routes: Routes = [{path: 'register', component: RegistrationComponent},
@@ -73,7 +73,6 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'clinicAdministratorHomePage', component: ClinicAdministratorHomePageComponent},
   {path: 'clinicAdministratorProfilePage', component: ClinicAdministratorProfilePageComponent},
   {path: 'editClinicAdministrator', component: EditClinicAdministratorComponent},
-  {path: 'allMedicaments', component: ShowAllMedicamentsComponent},
   {path: 'vacation', component: AnnualLeaveAndAbsenceComponent},
   {path: 'vacationRequests', component: VacationAndAbsenceViewComponent},
   {path: 'absenceRequests', component: VacationAndAbsenceViewComponent},
@@ -81,6 +80,8 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'showAllDoctors', component: ShowAndRemoveDoctorsComponent},
   {path: 'myClinic', component: ShowMyClinicComponent},
   {path: 'editMyClinic', component: EditMyClinicComponent},
+  {path: 'workCalendar', component: WorkCalendarComponent},
+  {path: 'diagnosis', component: DiagnosisComponent},
   {path: 'workCalendar', component: WorkCalendarComponent},
   {path: 'addDoctor', component: AddDoctorComponent},
   {path: 'medicalExamRooms', component: MedicalExamRoomsComponent},
