@@ -69,8 +69,6 @@ import {CcaProfilePageComponent} from
 import {CcaProfilePageService} from
     './clinic-center-administrator-home-page/clinic-center-administrator-profile-page/ccaProfilePage.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {ShowAllMedicamentsComponent} from './showAllMedicaments/showAllMedicaments.component';
-import {ShowAllMedicamentsService} from './showAllMedicaments/showAllMedicaments.service';
 import {AnnualLeaveAndAbsenceComponent} from './annual-leave-and-absence/annualLeaveAndAbsence.component';
 import {AnnualLeaveAndAbsenceService} from './annual-leave-and-absence/annualLeaveAndAbsence.service';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -108,7 +106,6 @@ import {AddOperationRoomComponent} from './clinic-administrator-home-page/rooms/
 import {AddOperationRoomService} from './clinic-administrator-home-page/rooms/operation-rooms/add-operation-room/add-operation-room.service';
 import {AddMedicalExamRoomComponent} from './clinic-administrator-home-page/rooms/medical-exam-rooms/add-medical-exam-room/add-medical-exam-room.component';
 import {AddMedicalExamRoomService} from './clinic-administrator-home-page/rooms/medical-exam-rooms/add-medical-exam-room/add-medical-exam-room.service';
-import {ClinicAdministratorHomePageService} from './clinic-administrator-home-page/clinic-administrator-home-page.service';
 import { NotifierModule, NotifierOptions } from 'angular-notifier';
 
 /**
@@ -202,7 +199,7 @@ const customNotifierOptions: NotifierOptions = {
     ShowMyClinicComponent,
     VacationAndAbsenceViewComponent,
     WorkCalendarComponent,
-    DiagnosisComponent
+    DiagnosisComponent,
     WorkCalendarComponent,
     VacationAndAbsenceViewComponent,
     AddDoctorComponent,
@@ -248,10 +245,10 @@ const customNotifierOptions: NotifierOptions = {
     PatientHomePageService,  ConfirmationMessageService, DoctorProfilePageService, EditClinicAdministrator,
     EditPatientProfilePageService, NurseHomePageService, TypesOfMedicalExamService, AddTypeOfMedicalExamService,
     CcaHomePageService, RecipesService,
-    ValidatedRecipesService, CcaProfilePageService, ShowAllMedicamentsService, AnnualLeaveAndAbsenceService,
-    VacationAndAbsenceViewService, DatePipe, ShowAndRemoveDoctorsService, AddDoctorService,ClinicAdministratorHomePageService,
+    ValidatedRecipesService, CcaProfilePageService, AnnualLeaveAndAbsenceService,
+    VacationAndAbsenceViewService, DatePipe, ShowAndRemoveDoctorsService, AddDoctorService, ClinicAdministratorHomePageService,
     EditMyClinicService, AddDoctorService, ShowMyClinicService, WorkCalendarService, AddOperationRoomService, AddMedicalExamRoomService,
-    MedicalExamRoomsService, OperationRoomsService,DiagnosisService
+    MedicalExamRoomsService, OperationRoomsService, DiagnosisService
   ],
   bootstrap: [AppComponent],
   exports: [WorkCalendarComponent]
