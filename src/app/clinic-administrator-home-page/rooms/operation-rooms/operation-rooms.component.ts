@@ -11,6 +11,8 @@ import {OperationRoomsService} from './operation-rooms.service';
 })
 export class OperationRoomsComponent implements OnInit {
   rooms: Room[] = [];
+  selectedName: string;
+  selectedNumber: number;
 
   constructor(private roomsService: OperationRoomsService, private route: ActivatedRoute, private router: Router) { }
 
@@ -42,5 +44,11 @@ export class OperationRoomsComponent implements OnInit {
 
   addRoomPage() {
     this.router.navigate(['/addOperationRoom']);
+  }
+
+  onSearchSubmit(selectedName: string, selectedNumber: number) {
+    this.roomsService.searchRoom(selectedName, selectedNumber).subscribe(data => {
+      this.rooms = data;
+    });
   }
 }
