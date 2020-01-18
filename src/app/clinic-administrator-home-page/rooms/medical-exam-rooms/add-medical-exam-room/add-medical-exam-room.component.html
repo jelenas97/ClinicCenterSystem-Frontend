@@ -6,29 +6,33 @@
 
     <div class="card my-5">
       <div class="card-body">
-        <form (ngSubmit)="addMedicalExamRoom()">
+        <form (ngSubmit)="addMedicalExamRoom()" [formGroup]="userData">
 
           <div class="form-group">
             <label for="inputName">Name</label>
             <input [(ngModel)]="room.name"
-                   [ngModelOptions]="{standalone:true}"
+                   [ngClass]="{'is-invalid': f.name.touched && f.name.errors, 'is-valid': f.name.valid}"
                    class="form-control"
                    id="inputName"
-                   name="name"
+                   name="name" formControlName="name"
                    placeholder="Enter name of medical exam room"
                    required>
+            <span style="color: red"
+                  *ngIf="f.name.invalid && f.name.touched">Name of examination room must contain only letters and have min 3 characters</span>
           </div>
 
           <div class="form-group">
             <label for="inputNumber">Number</label>
             <input [(ngModel)]="room.number"
-                   [ngModelOptions]="{standalone:true}"
+                   [ngClass]="{'is-invalid': f.number.touched && f.number.errors, 'is-valid': f.number.valid }"
 
                    class="form-control"
                    id="inputNumber"
-                   name="number"
+                   name="number" formControlName="number"
                    placeholder="Enter number of medical exam room"
                    required>
+            <span style="color: red"
+                  *ngIf="f.number.invalid && f.number.touched">Number of examination room must contain only numbers</span>
           </div>
 
           <button type="submit"
