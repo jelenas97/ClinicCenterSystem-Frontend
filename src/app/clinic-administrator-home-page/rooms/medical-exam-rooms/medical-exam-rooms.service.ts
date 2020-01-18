@@ -24,4 +24,8 @@ export class MedicalExamRoomsService {
   public update(room: any) {
     return this.http.put<Room>(this.url, room);
   }
+
+  public searchRoom(selectedName: string, selectedNumber: number): Observable<Room[]> {
+    return this.http.get<Room[]>(this.url + '/search?name=' + selectedName + '&number=' + selectedNumber);
+  }
 }

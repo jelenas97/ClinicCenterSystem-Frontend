@@ -10,6 +10,8 @@ import {Room} from '../../../model/room';
 })
 export class MedicalExamRoomsComponent implements OnInit {
   rooms: Room[] = [];
+  selectedName: string;
+  selectedNumber: number;
 
   constructor(private roomsService: MedicalExamRoomsService, private route: ActivatedRoute, private router: Router) { }
 
@@ -41,5 +43,11 @@ export class MedicalExamRoomsComponent implements OnInit {
 
   addRoomPage() {
     this.router.navigate(['/addMedicalExamRoom']);
+  }
+
+  onSearchSubmit(selectedName: string, selectedNumber: number) {
+    this.roomsService.searchRoom(selectedName, selectedNumber).subscribe(data => {
+      this.rooms = data;
+    });
   }
 }
