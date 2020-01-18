@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ScheduleExaminationService} from './schedule-examination.service';
 import {MedicalExaminationRequest} from '../../model/medicalExaminationRequest';
 import {User} from '../../model/user';
 import {UserService} from '../../service/user.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Room} from '../../model/room';
 
 @Component({
   selector: 'app-schedule-examination',
@@ -19,15 +20,17 @@ export class ScheduleExaminationComponent implements OnInit {
   requestId: string;
   request: MedicalExaminationRequest;
   availableDoctors: User[];
+  examinationRooms: Room[];
 
   selectedDoctor: string;
   selectedDate: any;
   selectedPrice: string;
   selectedDiscount: string;
+  selectedRoom: string;
   hiddenChange: boolean;
 
   constructor(private route: ActivatedRoute, private scheduleExaminationService: ScheduleExaminationService,
-              private userService: UserService, private formBuilder: FormBuilder) {
+              private userService: UserService, private formBuilder: FormBuilder, private router: Router) {
     this.route.queryParams.subscribe(params => {
       this.requestId = params.request;
     });
@@ -48,7 +51,9 @@ export class ScheduleExaminationComponent implements OnInit {
       selectedDiscount: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.minLength(1), Validators.maxLength(2)]],
       selectedDate: ['', [Validators.required]]
     });
-
+    this.scheduleExaminationService.getAvailableRooms(this.loggedUser.id).subscribe(data => {
+      this.examinationRooms = data;
+    });
   }
 
   get f() {
@@ -97,5 +102,18 @@ export class ScheduleExaminationComponent implements OnInit {
     document.getElementById('btnChange').hidden = false;
     document.getElementById('btnConfirm').hidden = true;
     document.getElementById('btnReset').hidden = true;
+  }
+
+  selectRoom(id: string) {
+    this.selectedRoom = id;
+    document.getElementById('btnSchedule').hidden = false;
+  }
+
+  scheduleExamination() {
+    document.getElementById('btnSchedule').hidden = true;
+    this.scheduleExaminationService.saveExamination(this.selectedRoom, this.request.date, this.request.price,
+      this.request.duration, this.request.discount, this.request.clinic.id,
+      this.request.doctor.id, this.request.patient.id, this.request.type.id, this.requestId);
+    this.router.navigate(['/clinicAdministratorHomePage']);
   }
 }

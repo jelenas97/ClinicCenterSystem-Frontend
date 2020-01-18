@@ -1,7 +1,7 @@
-<div class="container register-form pt-3">
+<div class="container register-form pt-lg-4">
   <div class="form">
     <div class="note">
-      <h2>Schedule an examination </h2>
+      <h2>Change info if necessary </h2>
     </div>
 
     <div class="card my-5">
@@ -61,7 +61,8 @@
           </button>
 
           <button type="submit" id="btnConfirm"
-                  class="btn btn-success" (click)="confirmChanges()" hidden [disabled]="userData.invalid" style="margin-left: 42%;"> Confirm
+                  class="btn btn-success" (click)="confirmChanges()" hidden [disabled]="userData.invalid"
+                  style="margin-left: 42%;"> Confirm
           </button>
 
           <button type="submit" id="btnReset"
@@ -71,6 +72,45 @@
         </form>
       </div>
     </div>
+
+
+  </div>
+</div>
+
+<div class="container register-form pt-lg-4">
+  <div class="form">
+    <div class="note">
+      <h2>Select a room </h2>
+    </div>
+
+    <div class="card my-5">
+      <div class="card-body">
+        <table class="table table-bordered table-striped">
+          <thead class="thead-dark">
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Number</th>
+            <th scope="col">Select a room</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let room of examinationRooms">
+            <td>{{ room.id }}</td>
+            <td>{{ room.name}}</td>
+            <td>{{ room.number }}</td>
+            <td><input type="radio" name="selectClinicRadio"
+                       (change)="selectRoom(room.id)">
+          </tr>
+          </tbody>
+        </table>
+        <button type="submit" id="btnSchedule"
+                class="btn btn-success" (click)="scheduleExamination()" style="margin-left: 40%;" hidden> Schedule examination
+        </button>
+      </div>
+    </div>
+
+
 
 
   </div>
