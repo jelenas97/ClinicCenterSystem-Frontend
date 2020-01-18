@@ -6,37 +6,39 @@
 </head>
 <body>
 <div class="container register-form pt-4">
-  <div class="form">
-    <div class="note">
-      <p>Create Medicament</p>
+  <div class="form col-lg-10 offset-1">
+    <div class="note ">
+      <h4>Add New Medicament</h4>
     </div>
 
-    <div class="card my-5">
+    <div class="card">
       <div class="card-body">
         <form (ngSubmit)="onSubmit()" #medicamentForm="ngForm">
 
-          <div class="form-group">
+          <div class="row">
+          <div class="form-group col-lg-6">
+            <label for="code">Code</label>
+            <input type="text" [(ngModel)]="medicament.code"
+                   class="form-control"
+                   id="code"
+                   name="code"
+                   placeholder="Enter medicament code"
+                   required #name="ngModel">
+          </div>
+
+          <div class="form-group col-lg-6">
             <label for="name">Name</label>
             <input type="text" [(ngModel)]="medicament.name"
                    class="form-control"
                    id="name"
                    name="name"
-                   placeholder="Enter your name"
+                   placeholder="Enter medicament name"
                    required #name="ngModel">
           </div>
-
-          <div class="form-group">
-            <label for="description">Description</label>
-            <input type="text" [(ngModel)]="medicament.description"
-                   class="form-control"
-                   id="description"
-                   name="description"
-                   placeholder="Enter description"
-                   required #name="ngModel">
           </div>
 
-
-          <div class="form-group">
+          <div class="row">
+          <div class="form-group col-lg-6">
             <label for="purpose">Purpose</label>
             <input type="text" [(ngModel)]="medicament.purpose"
                    class="form-control"
@@ -46,25 +48,58 @@
                    required #name="ngModel">
           </div>
 
-          <div class="form-group">
-            <label for="onPrescription">On Prescription</label>
-            <input type="checkbox" [(ngModel)]="medicament.onPrescription"
+          <div class="form-group col-lg-6">
+            <label for="description">Description</label>
+            <input type="text" [(ngModel)]="medicament.description"
                    class="form-control"
-                   id="onPrescription"
-                   name="onPrescription"
-                   placeholder="Enter purpose"
+                   id="description"
+                   name="description"
+                   placeholder="Enter description"
                    required #name="ngModel">
           </div>
+          </div>
 
-          <button type="submit" [disabled]="!medicamentForm.form.valid"
-                  class="btn btn-info">Submit</button>
+          <div class="row">
+          <div class="form-check col-lg-6">
+            <input type="checkbox" [(ngModel)]="medicament.onPrescription" class="form-check-input mt-2 ml-1"
+                   id="onPrescription" name="onPrescription"
+                   style="width: 18px; height: 18px" required #name="ngModel">
+            <label class="form-check-label ml-4 mt-1 pl-2" for="onPrescription">On Prescription</label>
+          </div>
+
+          <div class="text-right col-lg-6">
+            <button type="submit" class="btn btn-success col-lg-3">Save</button>
+          </div>
+          </div>
+
         </form>
       </div>
     </div>
-
-
-
   </div>
+
+  <div class="col-lg-10 offset-1 mt-4">
+      <table class="table table-borderless table-sm table-striped">
+        <thead class="bg-success text-white">
+        <tr>
+          <th scope="col">Code</th>
+          <th scope="col">Medicament Name</th>
+          <th scope="col">Purpose</th>
+          <th scope="col">Description</th>
+          <th scope="col">On Prescription</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let medicament of medicaments">
+          <td>{{medicament.code}}</td>
+          <td>{{medicament.name}}</td>
+          <td>{{medicament.purpose}}</td>
+          <td>{{ medicament.description}}</td>
+          <td>{{medicament.onPrescriptionWord}}</td>
+        </tr>
+        </tbody>
+      </table>
+  </div>
+
 </div>
 </body>
 </html>

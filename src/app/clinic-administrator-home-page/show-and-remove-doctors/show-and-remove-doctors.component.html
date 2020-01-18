@@ -1,8 +1,9 @@
 <div>
   <br>
-  <h2>All doctors from your clinic </h2>
+  <h2 class="col-lg-10 offset-1">All doctors from your clinic </h2>
+  <div class="col-lg-10 offset-1">
   <table class="table table-bordered table-striped">
-    <thead class="thead-dark">
+    <thead class="bg-success text-white">
     <tr>
       <th scope="col">First Name</th>
       <th scope="col">Last Name</th>
@@ -12,7 +13,6 @@
       <th scope="col">City</th>
       <th scope="col">Address</th>
       <th scope="col">Average rating</th>
-      <th scope="col">Exams</th>
       <th scope="col">Remove</th>
     </tr>
     </thead>
@@ -26,9 +26,9 @@
       <td>{{ doctor.city }}</td>
       <td>{{ doctor.address }}</td>
       <td>{{ doctor.averageRating }}</td>
-      <td>{{ doctor.examinationRequests }}</td>
       <td> <button class="btn-danger" (click)="removeDoctor(doctor.id)"> Remove from system </button> </td>
     </tr>
     </tbody>
   </table>
+  </div>
 </div>
