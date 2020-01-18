@@ -109,6 +109,8 @@ import {ClinicAdministratorHomePageService} from './clinic-administrator-home-pa
 import { NotifierModule, NotifierOptions } from 'angular-notifier';
 import {MedicalExaminationRequestsComponent} from './clinic-administrator-home-page/medical-examination-requests/medical-examination-requests.component';
 import {MedicalExaminationRequestsService} from './clinic-administrator-home-page/medical-examination-requests/medical-examination-requests.service';
+import { ScheduleExaminationComponent } from './clinic-administrator-home-page/schedule-examination/schedule-examination.component';
+import {ScheduleExaminationService} from './clinic-administrator-home-page/schedule-examination/schedule-examination.service';
 
 /**
  * Custom angular notifier options
@@ -206,7 +208,8 @@ const customNotifierOptions: NotifierOptions = {
     OperationRoomsComponent,
     AddOperationRoomComponent,
     AddMedicalExamRoomComponent,
-    MedicalExaminationRequestsComponent
+    MedicalExaminationRequestsComponent,
+    ScheduleExaminationComponent
   ],
   imports: [
     BrowserModule,
@@ -248,7 +251,8 @@ const customNotifierOptions: NotifierOptions = {
     ValidatedRecipesService, CcaProfilePageService, ShowAllMedicamentsService, AddDoctorService, AnnualLeaveAndAbsenceService,
     VacationAndAbsenceViewService, DatePipe, ShowAndRemoveDoctorsService, ClinicAdministratorHomePageService,
     EditMyClinicService, AddDoctorService, ShowMyClinicService, WorkCalendarService,
-    MedicalExamRoomsService, OperationRoomsService, AddOperationRoomService, AddMedicalExamRoomService, MedicalExaminationRequestsService],
+    MedicalExamRoomsService, OperationRoomsService, AddOperationRoomService, AddMedicalExamRoomService, MedicalExaminationRequestsService,
+    ScheduleExaminationService],
   bootstrap: [AppComponent],
   exports: [WorkCalendarComponent]
 })
