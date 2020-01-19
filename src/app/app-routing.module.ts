@@ -46,6 +46,8 @@ import {AddOperationRoomComponent} from './clinic-administrator-home-page/rooms/
 import {AddMedicalExamRoomComponent} from './clinic-administrator-home-page/rooms/medical-exam-rooms/add-medical-exam-room/add-medical-exam-room.component';
 import {MedicalExaminationRequestsComponent} from './clinic-administrator-home-page/medical-examination-requests/medical-examination-requests.component';
 import {ScheduleExaminationComponent} from './clinic-administrator-home-page/schedule-examination/schedule-examination.component';
+import {ConfirmationScheduleMessageComponent} from "./schedule-examination-messages/confirmation-schedule-message/confirmation-schedule-message.component";
+import {DeclineScheduleMessageComponent} from "./schedule-examination-messages/decline-schedule-message/decline-schedule-message.component";
 
 
 const routes: Routes = [{path: 'register', component: RegistrationComponent},
@@ -90,7 +92,9 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'addOperationRoom', component: AddOperationRoomComponent},
   {path: 'addMedicalExamRoom', component: AddMedicalExamRoomComponent},
   {path: 'medicalExaminationRequests', component: MedicalExaminationRequestsComponent},
-  {path: 'scheduleExamination', component: ScheduleExaminationComponent}
+  {path: 'scheduleExamination', component: ScheduleExaminationComponent},
+  {path: 'confirmScheduledExamination/:id', component: ConfirmationScheduleMessageComponent},
+  {path: 'declineScheduledExamination/:id', component: DeclineScheduleMessageComponent}
 ];
 
 @NgModule({

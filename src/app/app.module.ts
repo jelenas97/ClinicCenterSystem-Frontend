@@ -111,6 +111,10 @@ import {MedicalExaminationRequestsComponent} from './clinic-administrator-home-p
 import {MedicalExaminationRequestsService} from './clinic-administrator-home-page/medical-examination-requests/medical-examination-requests.service';
 import { ScheduleExaminationComponent } from './clinic-administrator-home-page/schedule-examination/schedule-examination.component';
 import {ScheduleExaminationService} from './clinic-administrator-home-page/schedule-examination/schedule-examination.service';
+import { ConfirmationScheduleMessageComponent } from './schedule-examination-messages/confirmation-schedule-message/confirmation-schedule-message.component';
+import { DeclineScheduleMessageComponent } from './schedule-examination-messages/decline-schedule-message/decline-schedule-message.component';
+import {ConfirmationScheduleMessageService} from "./schedule-examination-messages/confirmation-schedule-message/confirmation-schedule-message.service";
+import {DeclineScheduleMessageService} from "./schedule-examination-messages/decline-schedule-message/decline-schedule-message.service";
 
 /**
  * Custom angular notifier options
@@ -209,7 +213,9 @@ const customNotifierOptions: NotifierOptions = {
     AddOperationRoomComponent,
     AddMedicalExamRoomComponent,
     MedicalExaminationRequestsComponent,
-    ScheduleExaminationComponent
+    ScheduleExaminationComponent,
+    ConfirmationScheduleMessageComponent,
+    DeclineScheduleMessageComponent
   ],
   imports: [
     BrowserModule,
@@ -252,7 +258,7 @@ const customNotifierOptions: NotifierOptions = {
     VacationAndAbsenceViewService, DatePipe, ShowAndRemoveDoctorsService, ClinicAdministratorHomePageService,
     EditMyClinicService, AddDoctorService, ShowMyClinicService, WorkCalendarService,
     MedicalExamRoomsService, OperationRoomsService, AddOperationRoomService, AddMedicalExamRoomService, MedicalExaminationRequestsService,
-    ScheduleExaminationService],
+    ScheduleExaminationService, ConfirmationScheduleMessageService, DeclineScheduleMessageService],
   bootstrap: [AppComponent],
   exports: [WorkCalendarComponent]
 })
