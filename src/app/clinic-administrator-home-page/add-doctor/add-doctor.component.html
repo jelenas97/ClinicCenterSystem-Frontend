@@ -130,6 +130,29 @@
             <span style="color: red" *ngIf="f.clinic.invalid && f.clinic.touched">Please select a clinic</span>
           </div>
 
+          <div class="form-group">
+            <label for="inputStartWork">Start work</label>
+            <input [(ngModel)]="doctor.startWork"
+                   [ngClass]="{'is-invalid': f.startWork.touched && f.startWork.errors, 'is-valid': f.startWork.touched && f.startWork.valid}"
+                   class="form-control"
+                   id="inputStartWork"
+                   name="startWork" formControlName="startWork"
+                   placeholder="Enter time when doctor starts work"
+                   required>
+            <span style="color: red" *ngIf="f.startWork.invalid && f.startWork.touched">Work must start between 6 and 15</span>
+          </div>
+
+          <div class="form-group">
+            <label for="inputEndWork">End work</label>
+            <input [(ngModel)]="doctor.endWork"
+                   [ngClass]="{'is-invalid': f.endWork.touched && f.endWork.errors, 'is-valid': f.endWork.touched && f.endWork.valid}"
+                   class="form-control"
+                   id="inputEndWork"
+                   name="endWork" formControlName="endWork"
+                   placeholder="Enter time when doctor ends work"
+                   required>
+            <span style="color: red" *ngIf="f.endWork.invalid && f.endWork.touched">Work must end between 14 and 23</span>
+          </div>
 
           <button type="submit"
                   class="btn btn-info" [disabled]="userData.invalid">Add

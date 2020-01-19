@@ -15,4 +15,6 @@ export class User {
   ssn: string;
   averageRating: string;
   examinationRequests: MedicalExamination[];
+  startWork: number;
+  endWork: number;
 }
