@@ -10,7 +10,7 @@ export class AddDoctorService {
   }
 
   addDoctor(doctor: User, selectedClinic: string) {
-    return this.http.post<User>('http://localhost:8080/addDoctor/' + selectedClinic, doctor);
+    return this.http.post<User>('http://localhost:8080/auth/addDoctor/' + selectedClinic, doctor);
   }
 
   getAllClinics() {

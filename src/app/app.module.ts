@@ -68,8 +68,6 @@ import {CcaProfilePageComponent} from
 // tslint:disable-next-line:import-spacing
 import {CcaProfilePageService} from
     './clinic-center-administrator-home-page/clinic-center-administrator-profile-page/ccaProfilePage.service';
-import {ShowAllMedicamentsComponent} from './showAllMedicaments/showAllMedicaments.component';
-import {ShowAllMedicamentsService} from './showAllMedicaments/showAllMedicaments.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {AnnualLeaveAndAbsenceComponent} from './annual-leave-and-absence/annualLeaveAndAbsence.component';
 import {AnnualLeaveAndAbsenceService} from './annual-leave-and-absence/annualLeaveAndAbsence.service';
@@ -85,7 +83,6 @@ import { AddDoctorComponent } from './clinic-administrator-home-page/add-doctor/
 import {AddDoctorService} from './clinic-administrator-home-page/add-doctor/add-doctor.service';
 import { ShowAndRemoveDoctorsComponent } from './clinic-administrator-home-page/show-and-remove-doctors/show-and-remove-doctors.component';
 import {ShowAndRemoveDoctorsService} from './clinic-administrator-home-page/show-and-remove-doctors/show-and-remove-doctors.service';
-import {ClinicAdministratorHomePageService} from './clinic-administrator-home-page/clinic-administrator-home-page.service';
 import { EditMyClinicComponent } from './clinic-administrator-home-page/edit-my-clinic/edit-my-clinic.component';
 import {EditMyClinicService} from './clinic-administrator-home-page/edit-my-clinic/edit-my-clinic.service';
 import { ShowMyClinicComponent } from './clinic-administrator-home-page/show-my-clinic/show-my-clinic.component';
@@ -116,8 +113,8 @@ import { ScheduleExaminationComponent } from './clinic-administrator-home-page/s
 import {ScheduleExaminationService} from './clinic-administrator-home-page/schedule-examination/schedule-examination.service';
 import { ConfirmationScheduleMessageComponent } from './schedule-examination-messages/confirmation-schedule-message/confirmation-schedule-message.component';
 import { DeclineScheduleMessageComponent } from './schedule-examination-messages/decline-schedule-message/decline-schedule-message.component';
-import {ConfirmationScheduleMessageService} from "./schedule-examination-messages/confirmation-schedule-message/confirmation-schedule-message.service";
-import {DeclineScheduleMessageService} from "./schedule-examination-messages/decline-schedule-message/decline-schedule-message.service";
+import {ConfirmationScheduleMessageService} from './schedule-examination-messages/confirmation-schedule-message/confirmation-schedule-message.service';
+import {DeclineScheduleMessageService} from './schedule-examination-messages/decline-schedule-message/decline-schedule-message.service';
 
 /**
  * Custom angular notifier options
@@ -202,7 +199,6 @@ const customNotifierOptions: NotifierOptions = {
     RecipesComponent,
     ValidatedRecipesComponent,
     CcaProfilePageComponent,
-    ShowAllMedicamentsComponent,
     AnnualLeaveAndAbsenceComponent,
     VacationAndAbsenceViewComponent,
     AddDoctorComponent,
@@ -261,7 +257,7 @@ const customNotifierOptions: NotifierOptions = {
     PatientHomePageService,  ConfirmationMessageService, DoctorProfilePageService, EditClinicAdministrator,
     EditPatientProfilePageService, NurseHomePageService, TypesOfMedicalExamService, AddTypeOfMedicalExamService,
     CcaHomePageService, RecipesService,
-    ValidatedRecipesService, CcaProfilePageService, ShowAllMedicamentsService, AddDoctorService, AnnualLeaveAndAbsenceService,
+    ValidatedRecipesService, CcaProfilePageService, AddDoctorService, AnnualLeaveAndAbsenceService,
     VacationAndAbsenceViewService, DatePipe, ShowAndRemoveDoctorsService, ClinicAdministratorHomePageService,
     EditMyClinicService, AddDoctorService, ShowMyClinicService, WorkCalendarService,
     MedicalExamRoomsService, OperationRoomsService, AddOperationRoomService, AddMedicalExamRoomService, MedicalExaminationRequestsService,

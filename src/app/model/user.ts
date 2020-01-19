@@ -17,4 +17,6 @@ export class User {
   examinationRequests: MedicalExamination[];
   startWork: number;
   endWork: number;
+  // this field is for number of exams that doctor have.. It is not from Spring model
+  hasExam: boolean;
 }

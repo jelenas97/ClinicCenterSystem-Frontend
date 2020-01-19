@@ -34,7 +34,7 @@ export class MedicalExaminationRequestsComponent implements OnInit {
       queryParams: {
         request: request.id
       }
-    }
+    };
     this.router.navigate(['scheduleExamination'], navigationExtras);
   }
 }
