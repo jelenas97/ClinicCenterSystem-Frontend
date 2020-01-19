@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AddDoctorService} from './add-doctor.service';
 import {User} from '../../model/user';
@@ -25,20 +25,48 @@ export class AddDoctorComponent implements OnInit {
 
   ngOnInit() {
     this.userData = this.formBuilder.group({
-        ssn: ['', [Validators.required, Validators.minLength(13), Validators.maxLength(13), Validators.pattern(/^[0-9]*$/)]],
-        email: ['', [Validators.required, this.emailDomainValidator, Validators.pattern(/[^ @]*@[^ @]*/)]],
-        password: ['', [Validators.required, Validators.minLength(5)]],
-        firstName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]],
-        lastName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]],
-        country: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]],
-        city: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]],
-        address: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]],
-        phone: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.minLength(9), Validators.maxLength(10)]],
-        clinic: ['', [Validators.required]]
-      });
+      ssn: ['', [Validators.required, Validators.minLength(13), Validators.maxLength(13), Validators.pattern(/^[0-9]*$/)]],
+      email: ['', [Validators.required, this.emailDomainValidator, Validators.pattern(/[^ @]*@[^ @]*/)]],
+      password: ['', [Validators.required, Validators.minLength(5)]],
+      firstName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]],
+      lastName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]],
+      country: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]],
+      city: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]],
+      address: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]],
+      phone: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.minLength(9), Validators.maxLength(10)]],
+      clinic: ['', [Validators.required]],
+      startWork: ['', [Validators.required, this.startWorkValidator, Validators.pattern(/^[0-9]*$/)]],
+      endWork: ['', [Validators.required, this.endWorkValidator, Validators.pattern(/^[0-9]*$/)]]
+    });
     this.addDoctorService.getAllClinics().subscribe(data => {
       this.clinics = data;
     });
+  }
+
+  endWorkValidator(control: FormControl) {
+    const endWork = control.value;
+    if (endWork < 14 || endWork > 23) {
+      return {
+        startWorkDomain: {
+          parsedStartWorkDomain: endWork
+        }
+      };
+    } else {
+      return null;
+    }
+  }
+
+  startWorkValidator(control: FormControl) {
+    const startWork = control.value;
+    if (startWork < 6 || startWork > 15) {
+      return {
+        startWorkDomain: {
+          parsedStartWorkDomain: startWork
+        }
+      };
+    } else {
+      return null;
+    }
   }
 
   emailDomainValidator(control: FormControl) {
