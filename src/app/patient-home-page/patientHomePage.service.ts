@@ -68,4 +68,21 @@ export class PatientHomePageService {
     return this.http.put<any>('http://localhost:8080/auth/sendMedicalExamRequest/' + selectedType + '/' + selectedDate +
       '/' + selectedClinicId + '/' + selectedDoctorId + '/' + patientId, any).subscribe();
   }
+
+  getSearchedDoctorsExtended(realSelectedOptionById: string, selectedClinicId: string, selectedFirstName: string, selectedLastName: string,
+                             selectedDoctorRating: number) {
+
+    if (selectedDoctorRating === undefined || selectedDoctorRating === null) {
+      selectedDoctorRating = 0.0;
+    }
+    if (selectedFirstName === undefined || selectedFirstName === null) {
+      selectedFirstName = '';
+    }
+    if (selectedLastName === undefined || selectedLastName === null) {
+      selectedLastName = '';
+    }
+    return this.http.get<UserMapperTwo[]>('http://localhost:8080/getSearchedDoctorsExtended/search?firstName=' + selectedFirstName + '&lastName=' +
+      selectedLastName + '&rating=' + selectedDoctorRating + '&type=' + realSelectedOptionById + '&clinic=' + selectedClinicId);
+
+  }
 }

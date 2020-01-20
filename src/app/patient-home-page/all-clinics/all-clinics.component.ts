@@ -25,7 +25,11 @@ export class AllClinicsComponent implements OnInit {
 
 
   faArrow = faArrowDown;
+  faArrow2 = faArrowDown;
+
   animationState = 'out';
+  animationState2 = 'out';
+
 
   clinics: Clinic[] = [];
   examinationTypes: ExaminationType[] = [];
@@ -41,6 +45,10 @@ export class AllClinicsComponent implements OnInit {
   isAnyClinicSelected: boolean;
   isTypeSelected: boolean;
   isSearchHidden = false;
+  isSearchDoctorHidden = false;
+  selectedFirstName: string;
+  selectedLastName: string;
+  selectedDoctorRating: number;
 
   public user: User;
 
@@ -67,8 +75,6 @@ export class AllClinicsComponent implements OnInit {
   }
 
   onSearchSubmit(selectedOption: string, selectedName: string, selectedRating: number) {
-    console.log('Da vidim jel prezume ime : ' + this.selectedName);
-    console.log('Da vidim jel preuzme rating : ' + this.selectedRating);
     this.isTypeSelected = true;
     if (selectedOption === 'No type') {
       this.selectedOption = 'No type';
@@ -130,7 +136,25 @@ export class AllClinicsComponent implements OnInit {
     }
   }
 
+  showSearchDoctor($event: MouseEvent) {
+    this.animationState2 = this.animationState2 === 'out' ? 'in' : 'out';
+    if (this.isSearchDoctorHidden) {
+      this.isSearchDoctorHidden = false;
+      this.faArrow2 = faArrowDown;
+    } else {
+      this.isSearchDoctorHidden = true;
+      this.faArrow2 = faArrowUp;
+    }
+  }
+
   public showNotification( type: string, message: string ): void {
     this.notifier.notify( type, message );
+  }
+
+  onSearchDoctorSubmit(selectedFirstName: string, selectedLastName: string, selectedDoctorRating: number) {
+    this.patientHomePageService.getSearchedDoctorsExtended(this.realSelectedOptionById,
+      this.selectedClinicId, this.selectedFirstName, this.selectedLastName, this.selectedDoctorRating).subscribe(data => {
+      this.doctors = data;
+    });
   }
 }
