@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit</title>
+</head>
+<body>
 <div class="container register-form pt-4">
   <div class="form">
     <div class="note">
@@ -8,83 +15,88 @@
       <div class="card-body">
         <form (ngSubmit)="onSubmit()" [formGroup]="userData">
 
-          <div class="form-group">
-            <label for="InputFirstName">First name</label>
-            <input [(ngModel)]="user.firstName"
-                   [ngClass]="{'is-invalid': f.firstName.touched && f.firstName.errors, 'is-valid': f.firstName.touched && f.firstName.valid}"
-                   class="form-control"
-                   id="InputFirstName"
-                   name="firstName" formControlName="firstName"
-                   placeholder="Enter your first name"
-                   required >
-            <span style="color: red" *ngIf="f.firstName.invalid && f.firstName.touched">First name must contain only letters</span>
+          <div class="row">
+            <div class="form-group col-lg-6">
+              <label for="InputFirstName">First name</label>
+              <input [(ngModel)]="user.firstName"
+                     [ngClass]="{'is-invalid': f.firstName.touched && f.firstName.errors, 'is-valid': f.firstName.touched && f.firstName.valid}"
+                     class="form-control"
+                     id="InputFirstName"
+                     name="firstName" formControlName="firstName"
+                     placeholder="Enter your first name"
+                     required >
+              <span style="color: red" *ngIf="f.firstName.invalid && f.firstName.touched">First name must contain only letters</span>
+            </div>
+
+            <div class="form-group col-lg-6">
+              <label for="lastName">Last name</label>
+              <input  [(ngModel)]="user.lastName"
+                      [ngClass]="{'is-invalid': f.lastName.touched && f.lastName.errors, 'is-valid': f.lastName.touched && f.lastName.valid}"
+                      class="form-control"
+                      id="lastName"
+                      name="lastName" formControlName="lastName"
+                      placeholder="Enter your last name"
+                      required >
+              <span style="color: red" *ngIf="f.lastName.invalid && f.lastName.touched">Last name must contain only letters</span>
+            </div>
           </div>
 
-          <div class="form-group">
-            <label for="lastName">Last name</label>
-            <input  [(ngModel)]="user.lastName"
-                    [ngClass]="{'is-invalid': f.lastName.touched && f.lastName.errors, 'is-valid': f.lastName.touched && f.lastName.valid}"
-                    class="form-control"
-                    id="lastName"
-                    name="lastName" formControlName="lastName"
-                    placeholder="Enter your last name"
-                    required >
-            <span style="color: red" *ngIf="f.lastName.invalid && f.lastName.touched">Last name must contain only letters</span>
+          <div class="row">
+            <div class="form-group col-lg-6">
+              <label for="country">Country</label>
+              <input [(ngModel)]="user.country"
+                     [ngClass]="{'is-invalid': f.country.touched && f.country.errors, 'is-valid': f.country.touched && f.country.valid}"
+                     class="form-control"
+                     id="country"
+                     name="country" formControlName="country"
+                     placeholder="Enter the country You live in"
+                     required >
+              <span style="color: red" *ngIf="f.country.invalid && f.country.touched">Country must contain only letters</span>
+            </div>
 
+            <div class="form-group col-lg-6">
+              <label for="city">City</label>
+              <input  [(ngModel)]="user.city"
+                      [ngClass]="{'is-invalid': f.city.touched && f.city.errors, 'is-valid': f.city.touched && f.city.valid}"
+                      class="form-control"
+                      id="city"
+                      name="city" formControlName="city"
+                      placeholder="Enter the city You live in"
+                      required >
+              <span style="color: red" *ngIf="f.city.invalid && f.city.touched">City must contain only letters</span>
+            </div>
           </div>
 
-          <div class="form-group">
-            <label for="country">Country</label>
-            <input [(ngModel)]="user.country"
-                   [ngClass]="{'is-invalid': f.country.touched && f.country.errors, 'is-valid': f.country.touched && f.country.valid}"
-                   class="form-control"
-                   id="country"
-                   name="country" formControlName="country"
-                   placeholder="Enter the country You live in"
-                   required >
-            <span style="color: red" *ngIf="f.country.invalid && f.country.touched">Country must contain only letters</span>
+          <div class="row">
+            <div class="form-group col-lg-6">
+              <label for="address">Address</label>
+              <input [(ngModel)]="user.address"
+                     [ngClass]="{'is-invalid': f.address.touched && f.address.errors, 'is-valid': f.address.touched && f.address.valid}"
+                     class="form-control"
+                     id="address"
+                     name="address" formControlName="address"
+                     placeholder="Enter the address of residence"
+                     required >
+              <span style="color: red" *ngIf="f.address.invalid && f.address.touched">Address must contain only letters</span>
+            </div>
 
+            <div class="form-group col-lg-6">
+              <label for="phone">Phone</label>
+              <input [(ngModel)]="user.phone"
+                     [ngClass]="{'is-invalid': f.phone.touched && f.phone.errors, 'is-valid': f.phone.touched && f.phone.valid}"
+                     class="form-control"
+                     id="phone"
+                     name="phone" formControlName="phone"
+                     placeholder="Enter Your phone number"
+                     required >
+              <span style="color: red" *ngIf="f.phone.invalid && f.phone.touched">Phone must contain 9 od 10 digits</span>
+            </div>
           </div>
 
-          <div class="form-group">
-            <label for="city">City</label>
-            <input  [(ngModel)]="user.city"
-                    [ngClass]="{'is-invalid': f.city.touched && f.city.errors, 'is-valid': f.city.touched && f.city.valid}"
-                    class="form-control"
-                    id="city"
-                    name="city" formControlName="city"
-                    placeholder="Enter the city You live in"
-                    required >
-            <span style="color: red" *ngIf="f.city.invalid && f.city.touched">City must contain only letters</span>
+          <div class="col-lg-12 text-right ml-3">
+            <button type="submit" [disabled]="userData.invalid" class="btn btn-success ">Save changes</button>
           </div>
 
-          <div class="form-group">
-            <label for="address">Address</label>
-            <input [(ngModel)]="user.address"
-                   [ngClass]="{'is-invalid': f.address.touched && f.address.errors, 'is-valid': f.address.touched && f.address.valid}"
-                   class="form-control"
-                   id="address"
-                   name="address" formControlName="address"
-                   placeholder="Enter the address of residence"
-                   required >
-            <span style="color: red" *ngIf="f.address.invalid && f.address.touched">Address must contain only letters</span>
-          </div>
-
-          <div class="form-group">
-            <label for="phone">Phone</label>
-            <input [(ngModel)]="user.phone"
-                   [ngClass]="{'is-invalid': f.phone.touched && f.phone.errors, 'is-valid': f.phone.touched && f.phone.valid}"
-                   class="form-control"
-                   id="phone"
-                   name="phone" formControlName="phone"
-                   placeholder="Enter Your phone number"
-                   required >
-            <span style="color: red" *ngIf="f.phone.invalid && f.phone.touched">Phone must contain 9 od 10 digits</span>
-          </div>
-
-          <button type="submit" [disabled]="userData.invalid"
-                  class="btn btn-info">Edit
-          </button>
         </form>
       </div>
     </div>
@@ -92,3 +104,6 @@
 
   </div>
 </div>
+</body>
+</html>
+<router-outlet></router-outlet>
