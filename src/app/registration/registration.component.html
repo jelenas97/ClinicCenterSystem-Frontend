@@ -5,179 +5,182 @@
   <title>Title</title>
 </head>
 <body>
-<div class="container register-form">
-  <div class="form">
-    <div class="note mt-5">
-      <h2>Register here</h2>
-    </div>
-
-    <div class="card ">
-      <div class="card-body">
-        <form (ngSubmit)="register(mymodal)" [formGroup]="userData">
-
-          <div class="row">
-          <div class="form-group col-lg-6">
-            <label for="inputSsn">Social security number</label>
-            <input [(ngModel)]="user.ssn"
-                   [ngClass]="{'is-invalid': f.ssn.touched && f.ssn.errors, 'is-valid': f.ssn.touched && f.ssn.valid}"
-                   class="form-control"
-                   id="inputSsn"
-                   name="ssn" formControlName="ssn"
-                   placeholder="Enter your social security number"
-                   required>
-            <span style="color: red" *ngIf="f.ssn.invalid && f.ssn.touched">Please enter exactly 13 digits for social security number</span>
-          </div>
-
-          <div class="form-group col-lg-6">
-            <label for="inputEmail">Email</label>
-            <input [(ngModel)]="user.email"
-                   [ngClass]="{'is-invalid': f.email.touched && f.email.errors && f.email.errors.emailDomain, 'is-valid': f.email.touched && f.email.valid}"
-                   class="form-control"
-                   id="inputEmail"
-                   name="email" formControlName="email"
-                   placeholder="Enter your email"
-                   required>
-            <span style="color: red" *ngIf="f.email.touched && f.email.invalid">Valid email must contain @ and some of the domains : gmail.com, yahoo.com, uns.ac.rs</span>
-          </div>
-          </div>
-
-          <div class="row">
-          <div class="form-group col-lg-6">
-            <label for="inputPassword">Password</label>
-            <input [(ngModel)]="user.password"
-                   [ngClass]="{'is-invalid': (f.password.touched && f.password.errors) || userData.hasError('notSame'), 'is-valid': f.password.touched && f.password.valid && !userData.hasError('notSame')}"
-                   type="password"
-                   class="form-control"
-                   id="inputPassword"
-                   name="password" formControlName="password"
-                   placeholder="Enter your password"
-                   required>
-            <span style="color: red" *ngIf="f.password.invalid && f.password.touched">Password must contain at least 5 characters</span>
-          </div>
-
-          <div class="form-group col-lg-6">
-            <label for="inputPasswordRepeat">Repeat password</label>
-            <input [(ngModel)]="passwordRepeat"
-                   [ngClass]="{'is-invalid': (f.passwordRepeat.touched && f.passwordRepeat.errors) || userData.hasError('notSame'), 'is-valid': f.passwordRepeat.touched && f.passwordRepeat.valid && !userData.hasError('notSame')}"
-                   type="password"
-                   class="form-control"
-                   id="inputPasswordRepeat"
-                   name="passwordRepeat" formControlName="passwordRepeat"
-                   placeholder="Re-enter your password"
-                   required>
-            <span style="color: red"
-                  *ngIf="f.passwordRepeat.invalid && f.passwordRepeat.touched">Passwords must match</span>
-          </div>
-          </div>
-
-          <div class="row">
-          <div class="form-group col-lg-6">
-            <label for="InputFirstName">First name</label>
-            <input [(ngModel)]="user.firstName"
-                   [ngClass]="{'is-invalid': f.firstName.touched && f.firstName.errors, 'is-valid': f.firstName.touched && f.firstName.valid}"
-                   class="form-control"
-                   id="InputFirstName"
-                   name="firstName" formControlName="firstName"
-                   placeholder="Enter your first name"
-                   required>
-            <span style="color: red" *ngIf="f.firstName.invalid && f.firstName.touched">First name must contain only letters</span>
-          </div>
-
-          <div class="form-group col-lg-6">
-            <label for="InputLastName">Last name</label>
-            <input [(ngModel)]="user.lastName"
-                   [ngClass]="{'is-invalid': f.lastName.touched && f.lastName.errors, 'is-valid': f.lastName.touched && f.lastName.valid}"
-                   class="form-control"
-                   id="InputLastName"
-                   name="lastName" formControlName="lastName"
-                   placeholder="Enter your last name"
-                   required>
-            <span style="color: red" *ngIf="f.lastName.invalid && f.lastName.touched">Last name must contain only letters</span>
-          </div>
-          </div>
-
-          <div class="row">
-          <div class="form-group col-lg-6">
-            <label for="inputCountry">Country</label>
-            <input [(ngModel)]="user.country"
-                   [ngClass]="{'is-invalid': f.country.touched && f.country.errors, 'is-valid': f.country.touched && f.country.valid}"
-                   class="form-control"
-                   id="inputCountry"
-                   name="country" formControlName="country"
-                   placeholder="Enter the country You live in"
-                   required>
-            <span style="color: red" *ngIf="f.country.invalid && f.country.touched">Country must contain only letters</span>
-          </div>
-
-          <div class="form-group col-lg-6">
-            <label for="inputCity">City</label>
-            <input [(ngModel)]="user.city"
-                   [ngClass]="{'is-invalid': f.city.touched && f.city.errors, 'is-valid': f.city.touched && f.city.valid}"
-                   class="form-control"
-                   id="inputCity"
-                   name="city" formControlName="city"
-                   placeholder="Enter the city You live in"
-                   required>
-            <span style="color: red" *ngIf="f.city.invalid && f.city.touched">City must contain only letters</span>
-          </div>
-          </div>
-
-          <div class="row">
-          <div class="form-group col-lg-6">
-            <label for="inputAddress">Address</label>
-            <input [(ngModel)]="user.address"
-                   [ngClass]="{'is-invalid': f.address.touched && f.address.errors, 'is-valid': f.address.touched && f.address.valid}"
-                   class="form-control"
-                   id="inputAddress"
-                   name="address" formControlName="address"
-                   placeholder="Enter the address of residence"
-                   required>
-            <span style="color: red" *ngIf="f.address.invalid && f.address.touched">Address must contain only letters</span>
-          </div>
-
-          <div class="form-group col-lg-6">
-            <label for="inputPhone">Phone</label>
-            <input [(ngModel)]="user.phone"
-                   [ngClass]="{'is-invalid': f.phone.touched && f.phone.errors, 'is-valid': f.phone.touched && f.phone.valid}"
-                   class="form-control"
-                   id="inputPhone"
-                   name="phone" formControlName="phone"
-                   placeholder="Enter Your phone number"
-                   required>
-            <span style="color: red" *ngIf="f.phone.invalid && f.phone.touched">Phone must contain 9 od 10 digits</span>
-          </div>
-          </div>
-
-          <div class="text-right">
-            <button type="submit" [disabled]="userData.invalid"
-                    class="btn btn-success col-lg-1">Register
-            </button>
-          </div>
-        </form>
+<div class="animated slideInLeft">
+  <div class="container register-form">
+    <div class="form">
+      <div class="note mt-5">
+        <h2>Register here</h2>
       </div>
+
+      <div class="card ">
+        <div class="card-body">
+          <form (ngSubmit)="register(mymodal)" [formGroup]="userData">
+
+            <div class="row">
+              <div class="form-group col-lg-6">
+                <label for="inputSsn">Social security number</label>
+                <input [(ngModel)]="user.ssn"
+                       [ngClass]="{'is-invalid': f.ssn.touched && f.ssn.errors, 'is-valid': f.ssn.touched && f.ssn.valid}"
+                       class="form-control"
+                       id="inputSsn"
+                       name="ssn" formControlName="ssn"
+                       placeholder="Enter your social security number"
+                       required>
+                <span style="color: red" *ngIf="f.ssn.invalid && f.ssn.touched">Please enter exactly 13 digits for social security number</span>
+              </div>
+
+              <div class="form-group col-lg-6">
+                <label for="inputEmail">Email</label>
+                <input [(ngModel)]="user.email"
+                       [ngClass]="{'is-invalid': f.email.touched && f.email.errors && f.email.errors.emailDomain, 'is-valid': f.email.touched && f.email.valid}"
+                       class="form-control"
+                       id="inputEmail"
+                       name="email" formControlName="email"
+                       placeholder="Enter your email"
+                       required>
+                <span style="color: red" *ngIf="f.email.touched && f.email.invalid">Valid email must contain @ and some of the domains : gmail.com, yahoo.com, uns.ac.rs</span>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-lg-6">
+                <label for="inputPassword">Password</label>
+                <input [(ngModel)]="user.password"
+                       [ngClass]="{'is-invalid': (f.password.touched && f.password.errors) || userData.hasError('notSame'), 'is-valid': f.password.touched && f.password.valid && !userData.hasError('notSame')}"
+                       type="password"
+                       class="form-control"
+                       id="inputPassword"
+                       name="password" formControlName="password"
+                       placeholder="Enter your password"
+                       required>
+                <span style="color: red" *ngIf="f.password.invalid && f.password.touched">Password must contain at least 5 characters</span>
+              </div>
+
+              <div class="form-group col-lg-6">
+                <label for="inputPasswordRepeat">Repeat password</label>
+                <input [(ngModel)]="passwordRepeat"
+                       [ngClass]="{'is-invalid': (f.passwordRepeat.touched && f.passwordRepeat.errors) || userData.hasError('notSame'), 'is-valid': f.passwordRepeat.touched && f.passwordRepeat.valid && !userData.hasError('notSame')}"
+                       type="password"
+                       class="form-control"
+                       id="inputPasswordRepeat"
+                       name="passwordRepeat" formControlName="passwordRepeat"
+                       placeholder="Re-enter your password"
+                       required>
+                <span style="color: red"
+                      *ngIf="f.passwordRepeat.invalid && f.passwordRepeat.touched">Passwords must match</span>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-lg-6">
+                <label for="InputFirstName">First name</label>
+                <input [(ngModel)]="user.firstName"
+                       [ngClass]="{'is-invalid': f.firstName.touched && f.firstName.errors, 'is-valid': f.firstName.touched && f.firstName.valid}"
+                       class="form-control"
+                       id="InputFirstName"
+                       name="firstName" formControlName="firstName"
+                       placeholder="Enter your first name"
+                       required>
+                <span style="color: red" *ngIf="f.firstName.invalid && f.firstName.touched">First name must contain only letters</span>
+              </div>
+
+              <div class="form-group col-lg-6">
+                <label for="InputLastName">Last name</label>
+                <input [(ngModel)]="user.lastName"
+                       [ngClass]="{'is-invalid': f.lastName.touched && f.lastName.errors, 'is-valid': f.lastName.touched && f.lastName.valid}"
+                       class="form-control"
+                       id="InputLastName"
+                       name="lastName" formControlName="lastName"
+                       placeholder="Enter your last name"
+                       required>
+                <span style="color: red" *ngIf="f.lastName.invalid && f.lastName.touched">Last name must contain only letters</span>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-lg-6">
+                <label for="inputCountry">Country</label>
+                <input [(ngModel)]="user.country"
+                       [ngClass]="{'is-invalid': f.country.touched && f.country.errors, 'is-valid': f.country.touched && f.country.valid}"
+                       class="form-control"
+                       id="inputCountry"
+                       name="country" formControlName="country"
+                       placeholder="Enter the country You live in"
+                       required>
+                <span style="color: red" *ngIf="f.country.invalid && f.country.touched">Country must contain only letters</span>
+              </div>
+
+              <div class="form-group col-lg-6">
+                <label for="inputCity">City</label>
+                <input [(ngModel)]="user.city"
+                       [ngClass]="{'is-invalid': f.city.touched && f.city.errors, 'is-valid': f.city.touched && f.city.valid}"
+                       class="form-control"
+                       id="inputCity"
+                       name="city" formControlName="city"
+                       placeholder="Enter the city You live in"
+                       required>
+                <span style="color: red" *ngIf="f.city.invalid && f.city.touched">City must contain only letters</span>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-lg-6">
+                <label for="inputAddress">Address</label>
+                <input [(ngModel)]="user.address"
+                       [ngClass]="{'is-invalid': f.address.touched && f.address.errors, 'is-valid': f.address.touched && f.address.valid}"
+                       class="form-control"
+                       id="inputAddress"
+                       name="address" formControlName="address"
+                       placeholder="Enter the address of residence"
+                       required>
+                <span style="color: red" *ngIf="f.address.invalid && f.address.touched">Address must contain only letters</span>
+              </div>
+
+              <div class="form-group col-lg-6">
+                <label for="inputPhone">Phone</label>
+                <input [(ngModel)]="user.phone"
+                       [ngClass]="{'is-invalid': f.phone.touched && f.phone.errors, 'is-valid': f.phone.touched && f.phone.valid}"
+                       class="form-control"
+                       id="inputPhone"
+                       name="phone" formControlName="phone"
+                       placeholder="Enter Your phone number"
+                       required>
+                <span style="color: red"
+                      *ngIf="f.phone.invalid && f.phone.touched">Phone must contain 9 od 10 digits</span>
+              </div>
+            </div>
+
+            <div class="text-right">
+              <button type="submit" [disabled]="userData.invalid"
+                      class="btn btn-success col-lg-1">Register
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+
     </div>
-
-
   </div>
+
+  <ng-template #mymodal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Successfully sent a register request</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      Here I am!
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+    </div>
+  </ng-template>
+
+  <pre>{{closeResult}}</pre>
+
 </div>
-
-<ng-template #mymodal let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Successfully sent a register request</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    Here I am!
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
-  </div>
-</ng-template>
-
-<pre>{{closeResult}}</pre>
-
 </body>
 </html>
 <router-outlet></router-outlet>

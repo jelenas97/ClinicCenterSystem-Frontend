@@ -1,57 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="height: 100%;">
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
 </head>
-<body>
-<div class="container register-form pt-4">
-  <div class="form mt-5">
-    <div class="note col-lg-6 offset-3 text-center">
-      <h2>Login here</h2>
-    </div>
-
-    <div class="col-lg-6 offset-3">
-    <div class="card">
-      <div class="card-body">
-        <form (ngSubmit)="login()" [formGroup]="userData" >
-
-          <div class="form-group">
-            <label for="inputEmail">Email</label>
-            <input [(ngModel)]="user.email"
-                   [ngClass]="{'is-invalid': f.email.touched && f.email.errors, 'is-valid': f.email.touched && f.email.valid}"
-                   class="form-control"
-                   id="inputEmail" formControlName="email"
-                   name="email"
-                   placeholder="Enter your email"
-                   required>
-            <span style="color: red" *ngIf="f.email.touched && f.email.invalid">Valid email must contain @ and some of the domains : gmail.com, yahoo.com, uns.ac.rs</span>
-          </div>
-
-          <div class="form-group">
-            <label for="inputPassword">Password</label>
-            <input [(ngModel)]="user.password"
-                   [ngClass]="{'is-invalid': f.password.touched && f.password.invalid, 'is-valid': f.password.touched && f.password.valid}"
-                   class="form-control"
-                   id="inputPassword" formControlName="password"
-                   type = "password"
-                   name="password"
-                   placeholder="Enter your password"
-                   required>
-            <span style="color: red" *ngIf="f.password.invalid && f.password.touched">Password must contain at least 5 characters</span>
-          </div>
-
-          <div class="text-right">
-            <button type="submit" [disabled]="userData.invalid"
-                    class="btn btn-success">Login
-            </button>
-          </div>
-        </form>
+<body style="height: 100%;" [ngStyle]="{background: 'url(/assets/img/clinic1.jpeg)', backgroundSize: '100% 100%', height: '100%'}">
+<div class="animated slideInLeft">
+  <div class="container register-form pt-4">
+    <div class="form mt-5">
+      <div class="note col-lg-6 offset-3 text-center">
+        <h2>Login here</h2>
       </div>
-    </div>
-    </div>
+
+      <div class="col-lg-6 offset-3">
+        <div class="card">
+          <div class="card-body">
+            <form (ngSubmit)="login()" [formGroup]="userData">
+
+              <div class="form-group">
+                <label for="inputEmail">Email</label>
+                <input [(ngModel)]="user.email"
+                       [ngClass]="{'is-invalid': f.email.touched && f.email.errors, 'is-valid': f.email.touched && f.email.valid}"
+                       class="form-control"
+                       id="inputEmail" formControlName="email"
+                       name="email"
+                       placeholder="Enter your email"
+                       required>
+                <span style="color: red" *ngIf="f.email.touched && f.email.invalid">Valid email must contain @ and some of the domains : gmail.com, yahoo.com, uns.ac.rs</span>
+              </div>
+
+              <div class="form-group">
+                <label for="inputPassword">Password</label>
+                <input [(ngModel)]="user.password"
+                       [ngClass]="{'is-invalid': f.password.touched && f.password.invalid, 'is-valid': f.password.touched && f.password.valid}"
+                       class="form-control"
+                       id="inputPassword" formControlName="password"
+                       type="password"
+                       name="password"
+                       placeholder="Enter your password"
+                       required>
+                <span style="color: red" *ngIf="f.password.invalid && f.password.touched">Password must contain at least 5 characters</span>
+              </div>
+
+              <div class="text-right">
+                <button type="submit" [disabled]="userData.invalid"
+                        class="btn btn-success">Login
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
 
 
+    </div>
   </div>
 </div>
 </body>
