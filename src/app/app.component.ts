@@ -46,13 +46,13 @@ export class AppComponent implements OnInit {
                private vacationAndAbsenceViewService: VacationAndAbsenceViewService) {}
 
   ngOnInit(): void {
-    this.role = localStorage.getItem('role');
+    this.role = sessionStorage.getItem('role');
     console.log(this.role);
   }
 
   logout() {
     this.userService.currentUser = null;
-    localStorage.clear();
+    sessionStorage.clear();
     this.router.navigate(['/login']);
     this.ngOnInit();
   }
