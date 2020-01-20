@@ -68,6 +68,31 @@
 <br>
 
 <div [hidden]="!isAnyClinicSelected">
+  <button class="navbar-toggler" (click)="showSearchDoctor($event)">Search
+    <fa-icon [icon]="faArrow2" class="mr-1"></fa-icon>
+  </button>
+  <br>
+  <div id="searchDoctorDiv" [@slideInOut]="animationState2" class="border-bottom">
+    <br>
+    <form id="searchDoctor" class="form-group" (ngSubmit)="onSearchDoctorSubmit(selectedFirstName, selectedLastName, selectedDoctorRating)">
+
+      <label style="padding-left: 20px; padding-right: 20px;"> Enter doctor's first name : </label>
+      <input type="text" [(ngModel)]="selectedFirstName" [ngModelOptions]="{standalone: true}" style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
+
+      <label style="padding-left: 20px; padding-right: 20px;"> Enter doctor's last name : </label>
+      <input type="text" [(ngModel)]="selectedLastName" [ngModelOptions]="{standalone: true}" style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
+
+      <label style="padding-left: 20px; padding-right: 20px;"> Enter lower limit of average doctor's rating : </label>
+      <input type="number" [(ngModel)]="selectedDoctorRating" [ngModelOptions]="{standalone: true}" min="0" max="10" style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
+
+      <br>
+      <br>
+      <button type="submit" class="btn btn-primary"
+              style="margin-left: 45%; width: 150px;">Search
+      </button>
+
+    </form>
+  </div>
   <h2 style="text-align: center">All available doctors from selected clinic </h2>
   <table class="table table-bordered table-striped">
     <thead class="thead-dark">
