@@ -43,6 +43,10 @@ import {MedicalExamRoomsComponent} from './clinic-administrator-home-page/rooms/
 import {OperationRoomsComponent} from './clinic-administrator-home-page/rooms/operation-rooms/operation-rooms.component';
 import {AddOperationRoomComponent} from './clinic-administrator-home-page/rooms/operation-rooms/add-operation-room/add-operation-room.component';
 import {AddMedicalExamRoomComponent} from './clinic-administrator-home-page/rooms/medical-exam-rooms/add-medical-exam-room/add-medical-exam-room.component';
+import {MedicalExaminationRequestsComponent} from './clinic-administrator-home-page/medical-examination-requests/medical-examination-requests.component';
+import {ScheduleExaminationComponent} from './clinic-administrator-home-page/schedule-examination/schedule-examination.component';
+import {ConfirmationScheduleMessageComponent} from './schedule-examination-messages/confirmation-schedule-message/confirmation-schedule-message.component';
+import {DeclineScheduleMessageComponent} from './schedule-examination-messages/decline-schedule-message/decline-schedule-message.component';
 import {DiagnosisComponent} from './diagnosis/diagnosis.component';
 
 
@@ -82,14 +86,15 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'editMyClinic', component: EditMyClinicComponent},
   {path: 'workCalendar', component: WorkCalendarComponent},
   {path: 'diagnosis', component: DiagnosisComponent},
-  {path: 'workCalendar', component: WorkCalendarComponent},
   {path: 'addDoctor', component: AddDoctorComponent},
   {path: 'medicalExamRooms', component: MedicalExamRoomsComponent},
   {path: 'operationRooms', component: OperationRoomsComponent},
   {path: 'addOperationRoom', component: AddOperationRoomComponent},
-  {path: 'addMedicalExamRoom', component: AddMedicalExamRoomComponent}
-
-
+  {path: 'addMedicalExamRoom', component: AddMedicalExamRoomComponent},
+  {path: 'medicalExaminationRequests', component: MedicalExaminationRequestsComponent},
+  {path: 'scheduleExamination', component: ScheduleExaminationComponent},
+  {path: 'confirmScheduledExamination/:id', component: ConfirmationScheduleMessageComponent},
+  {path: 'declineScheduledExamination/:id', component: DeclineScheduleMessageComponent}
 ];
 
 @NgModule({

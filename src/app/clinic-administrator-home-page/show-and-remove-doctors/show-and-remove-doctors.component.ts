@@ -25,8 +25,16 @@ export class ShowAndRemoveDoctorsComponent implements OnInit {
     console.log('ovo je logovan korisnik i prikazujem kad stisnem show all' + this.loggedUser.firstName);
     this.showAndRemoveDoctorsService.getDoctors(this.loggedUser.id).subscribe(data => {
       this.doctors = data;
+      this.hasExam();
     });
+  }
 
+  hasExam() {
+    for (const doctor of this.doctors) {
+      this.showAndRemoveDoctorsService.hasExam(doctor.id).subscribe(data => {
+        doctor.hasExam = data;
+      });
+    }
   }
 
   removeDoctor(id: string) {
@@ -34,4 +42,5 @@ export class ShowAndRemoveDoctorsComponent implements OnInit {
       this.ngOnInit();
     });
   }
+
 }
