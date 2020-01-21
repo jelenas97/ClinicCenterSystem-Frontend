@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
       .subscribe(data => {
           this.userService.getMyInfo().subscribe();
           this.appComponent.ngOnInit();
-          this.role = localStorage.getItem('role');
+          this.role = sessionStorage.getItem('role');
           if (this.role === 'ROLE_PATIENT') {
               this.router.navigate(['/patientHomePage']);
           } else if (this.role === 'ROLE_DOCTOR') {
