@@ -119,6 +119,8 @@ import {EditProfilePageCCAComponent} from './clinic-center-administrator-home-pa
 import {EditProfilePageCCAService} from './clinic-center-administrator-home-page/edit-profile-page/editProfilePageCCA.service';
 import {AddClinicAdminComponent} from './clinic-center-administrator-home-page/createClinicAdmin/addClinicAdmin.component';
 import {AddClinicAdminService} from './clinic-center-administrator-home-page/createClinicAdmin/addClinicAdmin.service';
+import {ShowAllClinicAdminsComponent} from './clinic-center-administrator-home-page/show-all-clinic-admins/showAllClinicAdmins.component';
+import {ShowAllClinicAdminsService} from './clinic-center-administrator-home-page/show-all-clinic-admins/showAllClinicAdmins.service';
 
 /**
  * Custom angular notifier options
@@ -224,7 +226,8 @@ const customNotifierOptions: NotifierOptions = {
     ConfirmationScheduleMessageComponent,
     DeclineScheduleMessageComponent,
     EditProfilePageCCAComponent,
-    AddClinicAdminComponent
+    AddClinicAdminComponent,
+    ShowAllClinicAdminsComponent
   ],
   imports: [
     BrowserModule,
@@ -268,7 +271,8 @@ const customNotifierOptions: NotifierOptions = {
     EditMyClinicService, AddDoctorService, ShowMyClinicService, WorkCalendarService,
     MedicalExamRoomsService, OperationRoomsService, AddOperationRoomService, AddMedicalExamRoomService, MedicalExaminationRequestsService,
     ScheduleExaminationService, ConfirmationScheduleMessageService, DeclineScheduleMessageService,
-    MedicalExamRoomsService, OperationRoomsService, DiagnosisService, EditProfilePageCCAService, AddClinicAdminService],
+    MedicalExamRoomsService, OperationRoomsService, DiagnosisService, EditProfilePageCCAService,
+    AddClinicAdminService, ShowAllClinicAdminsService],
   bootstrap: [AppComponent],
   exports: [WorkCalendarComponent]
 })

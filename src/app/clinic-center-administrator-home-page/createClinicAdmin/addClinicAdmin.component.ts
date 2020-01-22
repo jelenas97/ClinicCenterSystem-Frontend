@@ -59,7 +59,7 @@ export class AddClinicAdminComponent implements OnInit {
   }
 
   addClinicAdmin(selectedClinic: string) {
-    this.addClinicAdminService.addDoctor(this.clinicAdmin, selectedClinic).subscribe(data => {
+    this.addClinicAdminService.addClinicAdmin(this.clinicAdmin, selectedClinic).subscribe(data => {
       this.router.navigate(['/allClinicAdmins']);
     });
   }

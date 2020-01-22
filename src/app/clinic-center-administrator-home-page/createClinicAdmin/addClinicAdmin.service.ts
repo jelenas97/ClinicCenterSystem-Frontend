@@ -9,7 +9,7 @@ export class AddClinicAdminService {
   constructor(private http: HttpClient) {
   }
 
-  addDoctor(clinicAdmin: User, selectedClinic: string) {
+  addClinicAdmin(clinicAdmin: User, selectedClinic: string) {
     return this.http.post<User>('http://localhost:8080/addClinicAdmin/' + selectedClinic, clinicAdmin);
   }
 
