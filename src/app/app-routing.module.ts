@@ -51,6 +51,7 @@ import {DiagnosisComponent} from './diagnosis/diagnosis.component';
 import {EditProfilePageCCAComponent} from './clinic-center-administrator-home-page/edit-profile-page/editProfilePageCCA.component';
 import {AddClinicAdminComponent} from './clinic-center-administrator-home-page/createClinicAdmin/addClinicAdmin.component';
 import {ShowAllClinicAdminsComponent} from './clinic-center-administrator-home-page/show-all-clinic-admins/showAllClinicAdmins.component';
+import {CreatePredefinedExaminationsComponent} from './clinic-administrator-home-page/create-predefined-examinations/create-predefined-examinations.component';
 
 
 const routes: Routes = [{path: 'register', component: RegistrationComponent},
@@ -101,7 +102,7 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'editClinicCenterAdministrator', component: EditProfilePageCCAComponent},
   {path: 'newClinicAdmin', component: AddClinicAdminComponent},
   {path: 'allClinicAdmins', component: ShowAllClinicAdminsComponent},
-
+  {path: 'createPredefinedExaminations', component: CreatePredefinedExaminationsComponent}
 
 
 ];
