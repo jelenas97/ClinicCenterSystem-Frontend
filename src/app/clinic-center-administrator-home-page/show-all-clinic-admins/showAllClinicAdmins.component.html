@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div class="col-lg-10 offset-1 mt-4">
+  <table class="table table-borderless table-sm table-striped">
+    <thead class="bg-success text-white">
+    <tr>
+      <th scope="col">FirstName</th>
+      <th scope="col">LastName</th>
+      <th scope="col">Works in</th>
+      <th scope="col">Email</th>
+      <th scope="col">Address</th>
+      <th scope="col">City</th>
+      <th scope="col">Country</th>
+      <th scope="col">Remove</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let admin of admins">
+      <td>{{admin.firstName}}</td>
+      <td>{{admin.lastName}}</td>
+      <td>{{admin.clinicName}}</td>
+      <td>{{admin.email}}</td>
+      <td>{{admin.address}}</td>
+      <td>{{admin.city}}</td>
+      <td>{{admin.country}}</td>
+      <td><button class="btn-danger" (click)="removeClinicAdmin(admin.id)">Remove</button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
+<router-outlet></router-outlet>

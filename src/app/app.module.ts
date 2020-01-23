@@ -117,6 +117,10 @@ import {ConfirmationScheduleMessageService} from './schedule-examination-message
 import {DeclineScheduleMessageService} from './schedule-examination-messages/decline-schedule-message/decline-schedule-message.service';
 import {EditProfilePageCCAComponent} from './clinic-center-administrator-home-page/edit-profile-page/editProfilePageCCA.component';
 import {EditProfilePageCCAService} from './clinic-center-administrator-home-page/edit-profile-page/editProfilePageCCA.service';
+import {AddClinicAdminComponent} from './clinic-center-administrator-home-page/createClinicAdmin/addClinicAdmin.component';
+import {AddClinicAdminService} from './clinic-center-administrator-home-page/createClinicAdmin/addClinicAdmin.service';
+import {ShowAllClinicAdminsComponent} from './clinic-center-administrator-home-page/show-all-clinic-admins/showAllClinicAdmins.component';
+import {ShowAllClinicAdminsService} from './clinic-center-administrator-home-page/show-all-clinic-admins/showAllClinicAdmins.service';
 
 /**
  * Custom angular notifier options
@@ -221,7 +225,9 @@ const customNotifierOptions: NotifierOptions = {
     ScheduleExaminationComponent,
     ConfirmationScheduleMessageComponent,
     DeclineScheduleMessageComponent,
-    EditProfilePageCCAComponent
+    EditProfilePageCCAComponent,
+    AddClinicAdminComponent,
+    ShowAllClinicAdminsComponent
   ],
   imports: [
     BrowserModule,
@@ -265,7 +271,8 @@ const customNotifierOptions: NotifierOptions = {
     EditMyClinicService, AddDoctorService, ShowMyClinicService, WorkCalendarService,
     MedicalExamRoomsService, OperationRoomsService, AddOperationRoomService, AddMedicalExamRoomService, MedicalExaminationRequestsService,
     ScheduleExaminationService, ConfirmationScheduleMessageService, DeclineScheduleMessageService,
-    MedicalExamRoomsService, OperationRoomsService, DiagnosisService, EditProfilePageCCAService],
+    MedicalExamRoomsService, OperationRoomsService, DiagnosisService, EditProfilePageCCAService,
+    AddClinicAdminService, ShowAllClinicAdminsService],
   bootstrap: [AppComponent],
   exports: [WorkCalendarComponent]
 })

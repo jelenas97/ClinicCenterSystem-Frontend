@@ -49,6 +49,8 @@ import {ConfirmationScheduleMessageComponent} from './schedule-examination-messa
 import {DeclineScheduleMessageComponent} from './schedule-examination-messages/decline-schedule-message/decline-schedule-message.component';
 import {DiagnosisComponent} from './diagnosis/diagnosis.component';
 import {EditProfilePageCCAComponent} from './clinic-center-administrator-home-page/edit-profile-page/editProfilePageCCA.component';
+import {AddClinicAdminComponent} from './clinic-center-administrator-home-page/createClinicAdmin/addClinicAdmin.component';
+import {ShowAllClinicAdminsComponent} from './clinic-center-administrator-home-page/show-all-clinic-admins/showAllClinicAdmins.component';
 
 
 const routes: Routes = [{path: 'register', component: RegistrationComponent},
@@ -97,6 +99,10 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'confirmScheduledExamination/:id', component: ConfirmationScheduleMessageComponent},
   {path: 'declineScheduledExamination/:id', component: DeclineScheduleMessageComponent},
   {path: 'editClinicCenterAdministrator', component: EditProfilePageCCAComponent},
+  {path: 'newClinicAdmin', component: AddClinicAdminComponent},
+  {path: 'allClinicAdmins', component: ShowAllClinicAdminsComponent},
+
+
 
 ];
 
