@@ -174,13 +174,14 @@
           <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink27">
             <a class="dropdown-item bg-dark" routerLink="/vacationRequests">Vacation</a>
             <a class="dropdown-item bg-dark" routerLink="/absenceRequests">Absence</a>
+            <a class="dropdown-item bg-dark" routerLink="/medicalExaminationRequests">Examination Requests</a>
           </div>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" routerLink="/medicalExaminationRequests">
-            <fa-icon [icon]="faInfo" class="mr-1"></fa-icon>
-            ExaminationRequests</a>
+          <a class="nav-link" routerLink="/createPredefinedExaminations">
+            <fa-icon [icon]="faStartExam" class="mr-1"></fa-icon>Create predefined examinations
+          </a>
         </li>
 
       </ul>
@@ -220,6 +221,12 @@
           <a class="nav-link" routerLink="/medicalRecord">
             <fa-icon [icon]="faRecord" class="mr-1"></fa-icon>
             Medical record <span class="sr-only">(current)</span></a>
+        </li>
+
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/schedulePredefinedExaminations">
+            <fa-icon [icon]="faSchedule" class="mr-1"></fa-icon> Schedule predefined
+          </a>
         </li>
       </ul>
 

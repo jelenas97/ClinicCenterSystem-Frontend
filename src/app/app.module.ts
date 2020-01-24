@@ -121,6 +121,10 @@ import {AddClinicAdminComponent} from './clinic-center-administrator-home-page/c
 import {AddClinicAdminService} from './clinic-center-administrator-home-page/createClinicAdmin/addClinicAdmin.service';
 import {ShowAllClinicAdminsComponent} from './clinic-center-administrator-home-page/show-all-clinic-admins/showAllClinicAdmins.component';
 import {ShowAllClinicAdminsService} from './clinic-center-administrator-home-page/show-all-clinic-admins/showAllClinicAdmins.service';
+import { CreatePredefinedExaminationsComponent } from './clinic-administrator-home-page/create-predefined-examinations/create-predefined-examinations.component';
+import {CreatePredefinedExaminationsService} from './clinic-administrator-home-page/create-predefined-examinations/create-predefined-examinations.service';
+import { SchedulePredefinedExaminationsComponent } from './patient-home-page/schedule-predefined-examinations/schedule-predefined-examinations.component';
+import {SchedulePredefinedExaminationsService} from './patient-home-page/schedule-predefined-examinations/schedule-predefined-examinations.service';
 
 /**
  * Custom angular notifier options
@@ -227,7 +231,9 @@ const customNotifierOptions: NotifierOptions = {
     DeclineScheduleMessageComponent,
     EditProfilePageCCAComponent,
     AddClinicAdminComponent,
-    ShowAllClinicAdminsComponent
+    ShowAllClinicAdminsComponent,
+    CreatePredefinedExaminationsComponent,
+    SchedulePredefinedExaminationsComponent
   ],
   imports: [
     BrowserModule,
@@ -272,7 +278,7 @@ const customNotifierOptions: NotifierOptions = {
     MedicalExamRoomsService, OperationRoomsService, AddOperationRoomService, AddMedicalExamRoomService, MedicalExaminationRequestsService,
     ScheduleExaminationService, ConfirmationScheduleMessageService, DeclineScheduleMessageService,
     MedicalExamRoomsService, OperationRoomsService, DiagnosisService, EditProfilePageCCAService,
-    AddClinicAdminService, ShowAllClinicAdminsService],
+    AddClinicAdminService, ShowAllClinicAdminsService, CreatePredefinedExaminationsService, SchedulePredefinedExaminationsService],
   bootstrap: [AppComponent],
   exports: [WorkCalendarComponent]
 })

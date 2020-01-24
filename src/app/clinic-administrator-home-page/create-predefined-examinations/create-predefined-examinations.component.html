@@ -1,0 +1,99 @@
+<div class="container register-form pt-4">
+  <div class="form">
+    <div class="note">
+      <h2>Create a predefined examination </h2>
+    </div>
+
+    <div class="card my-5">
+      <div class="card-body">
+        <form (ngSubmit)="createPredefinedExam()" [formGroup]="userData">
+
+          <div class="col-form-label-lg">
+            <label>Date</label>
+            <input name="selectedDate" formControlName="selectedDate" class="form-control" type="date"
+                   [(ngModel)]="selectedDate"
+                   [ngClass]="{'is-invalid': f.selectedDate.touched && f.selectedDate.errors, 'is-valid': f.selectedDate.touched && f.selectedDate.valid}">
+            <span style="color: red"
+                  *ngIf="f.selectedDate.invalid && f.selectedDate.touched">Please select a valid date</span>
+          </div>
+
+          <div class="col-form-label-lg">
+            <label> Select type : </label>
+            <select name="selectedType" [(ngModel)]="selectedType" (change)="onSelectChange($event)"
+                    [ngClass]="{'is-invalid': f.selectedType.touched && f.selectedType.errors, 'is-valid': f.selectedType.touched && f.selectedType.valid}"
+                    class="form-control" formControlName="selectedType">
+              <option value="{{type.id}}" *ngFor="let type of examinationTypes ">{{type.name}}</option>
+            </select>
+            <span style="color: red"
+                  *ngIf="f.selectedType.invalid && f.selectedType.touched">Please select a valid type of examination</span>
+          </div>
+
+          <div class="col-form-label-lg">
+            <label>Duration</label>
+            <input name="selectedDuration" formControlName="selectedDuration" class="form-control"
+                   [(ngModel)]="selectedDuration" class="form-control"
+                   [ngClass]="{'is-invalid': f.selectedDuration.touched && f.selectedDuration.errors, 'is-valid': f.selectedDuration.touched && f.selectedDuration.valid}">
+            <span style="color: red"
+                  *ngIf="f.selectedDuration.invalid && f.selectedDuration.touched"> Duration must be between 1 and 99 minutes </span>
+          </div>
+
+          <div class="col-form-label-lg">
+            <label>Price</label>
+            <input name="selectedPrice" formControlName="selectedPrice" [(ngModel)]="selectedPrice" class="form-control"
+                   [ngClass]="{'is-invalid': f.selectedPrice.touched && f.selectedPrice.errors, 'is-valid': f.selectedPrice.touched && f.selectedPrice.valid}">
+            <span style="color: red"
+                  *ngIf="f.selectedPrice.invalid && f.selectedPrice.touched"> Price must be between 1$ and 999999$ </span>
+          </div>
+
+
+          <div class="col-form-label-lg">
+            <label>Discount</label>
+            <input name="selectedDiscount" formControlName="selectedDiscount" [(ngModel)]="selectedDiscount" class="form-control"
+                   [ngClass]="{'is-invalid': f.selectedDiscount.touched && f.selectedDiscount.errors, 'is-valid': f.selectedDiscount.touched && f.selectedDiscount.valid}">
+            <span style="color: red"
+                  *ngIf="f.selectedDiscount.invalid && f.selectedDiscount.touched"> Discount must be between 0 and 99 % </span>
+          </div>
+
+
+
+          <div class="col-form-label-lg">
+            <label>Doctor</label>
+            <select formControlName="selectedDoctor" name="selectedDoctor" [(ngModel)]="selectedDoctor"
+                    class="form-control" [attr.disabled]="!isTypeSelected ? '' : null"
+                    [ngClass]="{'is-invalid': f.selectedDoctor.touched && f.selectedDoctor.errors, 'is-valid': f.selectedDoctor.touched && f.selectedDoctor.valid}">
+              <option value="{{doctor.id}}" *ngFor="let doctor of availableDoctors">
+                {{doctor.firstName + ' ' + doctor.lastName}}</option>
+            </select>
+            <span style="color: red"
+                  *ngIf="f.selectedDoctor.invalid && f.selectedDoctor.touched"> Please select valid doctor </span>
+          </div>
+
+          <div class="col-form-label-lg">
+            <label>Examinaiton rooms</label>
+            <select formControlName="selectedRoom" name="selectedRoom" [(ngModel)]="selectedRoom"
+                    class="form-control"
+                    [ngClass]="{'is-invalid': f.selectedRoom.touched && f.selectedRoom.errors, 'is-valid': f.selectedRoom.touched && f.selectedRoom.valid}">
+              <option value="{{room.id}}" *ngFor="let room of examinationRooms">
+                {{room.name + ' ' + room.number}}</option>
+            </select>
+            <span style="color: red"
+                  *ngIf="f.selectedRoom.invalid && f.selectedRoom.touched"> Please select valid room</span>
+          </div>
+
+
+
+
+          <div class="text-right">
+            <button type="submit"
+                    class="btn btn-success col-lg-1" [disabled]="userData.invalid">Save
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
