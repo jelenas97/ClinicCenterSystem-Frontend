@@ -121,6 +121,9 @@ import {AddClinicAdminComponent} from './clinic-center-administrator-home-page/c
 import {AddClinicAdminService} from './clinic-center-administrator-home-page/createClinicAdmin/addClinicAdmin.service';
 import {ShowAllClinicAdminsComponent} from './clinic-center-administrator-home-page/show-all-clinic-admins/showAllClinicAdmins.component';
 import {ShowAllClinicAdminsService} from './clinic-center-administrator-home-page/show-all-clinic-admins/showAllClinicAdmins.service';
+// tslint:disable-next-line:max-line-length
+import {RoomOccupationCalendarComponent} from './clinic-administrator-home-page/room-occupation-calendar/room-occupation-calendar.component';
+import {RoomOccupationCalendarService} from './clinic-administrator-home-page/room-occupation-calendar/room-occupation-calendar.service';
 import { CreatePredefinedExaminationsComponent } from './clinic-administrator-home-page/create-predefined-examinations/create-predefined-examinations.component';
 import {CreatePredefinedExaminationsService} from './clinic-administrator-home-page/create-predefined-examinations/create-predefined-examinations.service';
 import { SchedulePredefinedExaminationsComponent } from './patient-home-page/schedule-predefined-examinations/schedule-predefined-examinations.component';
@@ -234,8 +237,10 @@ const customNotifierOptions: NotifierOptions = {
     ShowAllClinicAdminsComponent,
     CreatePredefinedExaminationsComponent,
     SchedulePredefinedExaminationsComponent,
-    ShowAllClinicAdminsComponent
+    ShowAllClinicAdminsComponent,
 
+    ShowAllClinicAdminsComponent,
+    RoomOccupationCalendarComponent
   ],
   imports: [
     BrowserModule,
@@ -280,9 +285,10 @@ const customNotifierOptions: NotifierOptions = {
     MedicalExamRoomsService, OperationRoomsService, AddOperationRoomService, AddMedicalExamRoomService, MedicalExaminationRequestsService,
     ScheduleExaminationService, ConfirmationScheduleMessageService, DeclineScheduleMessageService,
     MedicalExamRoomsService, OperationRoomsService, DiagnosisService, EditProfilePageCCAService,
-    AddClinicAdminService, ShowAllClinicAdminsService, CreatePredefinedExaminationsService, SchedulePredefinedExaminationsService],
+    AddClinicAdminService, ShowAllClinicAdminsService, RoomOccupationCalendarService, CreatePredefinedExaminationsService,
+    SchedulePredefinedExaminationsService],
   bootstrap: [AppComponent],
-  exports: [WorkCalendarComponent]
+  exports: [WorkCalendarComponent, RoomOccupationCalendarComponent]
 })
 export class AppModule {
 }

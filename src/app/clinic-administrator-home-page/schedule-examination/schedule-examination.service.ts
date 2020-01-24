@@ -4,6 +4,8 @@ import {MedicalExaminationRequest} from '../../model/medicalExaminationRequest';
 import {User} from '../../model/user';
 import {Room} from '../../model/room';
 import {any} from 'codelyzer/util/function';
+import {Observable} from 'rxjs';
+import {MedicalExamination} from '../../model/medicalExamination';
 
 @Injectable()
 export class ScheduleExaminationService {
@@ -28,5 +30,13 @@ export class ScheduleExaminationService {
     return this.http.put<any>('http://localhost:8080/saveExamination/' + date + '/' + price + '/' + duration
       + '/' + discount + '/' + selectedRoom + '/' + clinicid + '/' + doctorid + '/' + patientid + '/' + typeid
       + '/' + requestid, any).subscribe();
+  }
+
+  public searchRoom(selectedName: string, selectedNumber: number): Observable<Room[]> {
+      return this.http.get<Room[]>('http://localhost:8080/medicalExamRooms' + '/search?name=' + selectedName + '&number=' + selectedNumber);
+  }
+
+  getAllExams(roomid: number) {
+    return this.http.get<MedicalExamination[]>('http://localhost:8080/medicalExaminations/' + roomid);
   }
 }
