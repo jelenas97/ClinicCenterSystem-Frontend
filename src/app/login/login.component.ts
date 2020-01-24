@@ -13,13 +13,17 @@ import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 
 function passwordConfirming(c: AbstractControl): any {
-  if (!c.parent || !c) { return; }
+  if (!c.parent || !c) {
+    return;
+  }
   const pwd = c.parent.get('newPassword');
   const cpwd = c.parent.get('repeatNewPassword');
 
-  if (!pwd || !cpwd) { return ; }
+  if (!pwd || !cpwd) {
+    return;
+  }
   if (pwd.value !== cpwd.value) {
-    return { invalid: true };
+    return {invalid: true};
   }
 }
 
@@ -55,7 +59,7 @@ export class LoginComponent implements OnInit {
 
     this.myGroup = new FormGroup({
       oldPassword: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      newPassword: new FormControl('',    [Validators.required, Validators.minLength(5)]),
+      newPassword: new FormControl('', [Validators.required, Validators.minLength(5)]),
       repeatNewPassword: new FormControl('', [Validators.required, Validators.minLength(5), passwordConfirming])
     });
   }
@@ -77,7 +81,7 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/nurseHomePage']);
           } else if (this.role === 'ROLE_CLINIC_ADMIN') {
             this.router.navigate(['/clinicAdministratorHomePage']);
-          } else if (this.role === 'ROLE_CLINIC_CENTER_ADMIN') {
+          } else if (this.role === 'ROLE_CLINIC_CENTER_ADMIN' || this.role === 'ROLE_CLINIC_CENTER_ADMIN_SUPER') {
             this.router.navigate(['/ccaHomePage']);
           }
         },

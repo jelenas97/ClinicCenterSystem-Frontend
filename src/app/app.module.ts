@@ -128,6 +128,8 @@ import { CreatePredefinedExaminationsComponent } from './clinic-administrator-ho
 import {CreatePredefinedExaminationsService} from './clinic-administrator-home-page/create-predefined-examinations/create-predefined-examinations.service';
 import { SchedulePredefinedExaminationsComponent } from './patient-home-page/schedule-predefined-examinations/schedule-predefined-examinations.component';
 import {SchedulePredefinedExaminationsService} from './patient-home-page/schedule-predefined-examinations/schedule-predefined-examinations.service';
+import { CreateClinicCenterAdminsComponent } from './clinic-center-administrator-home-page/create-clinic-center-admins/create-clinic-center-admins.component';
+import {CreateClinicCenterAdminsService} from './clinic-center-administrator-home-page/create-clinic-center-admins/create-clinic-center-admins.service';
 
 /**
  * Custom angular notifier options
@@ -238,9 +240,9 @@ const customNotifierOptions: NotifierOptions = {
     CreatePredefinedExaminationsComponent,
     SchedulePredefinedExaminationsComponent,
     ShowAllClinicAdminsComponent,
-
     ShowAllClinicAdminsComponent,
-    RoomOccupationCalendarComponent
+    RoomOccupationCalendarComponent,
+    CreateClinicCenterAdminsComponent
   ],
   imports: [
     BrowserModule,
@@ -286,7 +288,7 @@ const customNotifierOptions: NotifierOptions = {
     ScheduleExaminationService, ConfirmationScheduleMessageService, DeclineScheduleMessageService,
     MedicalExamRoomsService, OperationRoomsService, DiagnosisService, EditProfilePageCCAService,
     AddClinicAdminService, ShowAllClinicAdminsService, RoomOccupationCalendarService, CreatePredefinedExaminationsService,
-    SchedulePredefinedExaminationsService],
+    SchedulePredefinedExaminationsService, CreateClinicCenterAdminsService],
   bootstrap: [AppComponent],
   exports: [WorkCalendarComponent, RoomOccupationCalendarComponent]
 })

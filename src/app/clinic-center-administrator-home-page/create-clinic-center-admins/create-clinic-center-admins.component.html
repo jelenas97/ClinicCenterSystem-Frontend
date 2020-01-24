@@ -1,0 +1,146 @@
+<div class="container register-form pt-4">
+  <div class="form">
+    <div class="note">
+      <h2>Add a Clinic Admin</h2>
+    </div>
+
+    <div class="card my-5">
+      <div class="card-body">
+        <form (ngSubmit)="addClinicAdmin()" [formGroup]="userData">
+
+          <div class="row">
+            <div class="form-group col-lg-6">
+              <label for="inputFirstName">First Name</label>
+              <input [(ngModel)]="clinicAdmin.firstName"
+                     [ngClass]="{'is-invalid': f.firstName.touched && f.firstName.errors, 'is-valid': f.firstName.touched && f.firstName.valid}"
+                     class="form-control"
+                     id="inputFirstName"
+                     name="firstName" formControlName="firstName"
+                     placeholder="Enter first name of clinicAdmin"
+                     required>
+              <span style="color: red" *ngIf="f.firstName.invalid && f.firstName.touched">First name must contain only letters</span>
+            </div>
+
+            <div class="form-group col-lg-6">
+              <label for="inputLastName">Last Name</label>
+              <input [(ngModel)]="clinicAdmin.lastName"
+                     [ngClass]="{'is-invalid': f.lastName.touched && f.lastName.errors, 'is-valid': f.lastName.touched && f.lastName.valid}"
+                     class="form-control"
+                     id="inputLastName"
+                     name="lastName" formControlName="lastName"
+                     placeholder="Enter last name of clinicAdmin"
+                     required>
+              <span style="color: red" *ngIf="f.lastName.invalid && f.lastName.touched">Last name must contain only letters</span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-lg-6">
+              <label for="inputSsn">SSN</label>
+              <input [(ngModel)]="clinicAdmin.ssn"
+                     [ngClass]="{'is-invalid': f.ssn.touched && f.ssn.errors, 'is-valid': f.ssn.touched && f.ssn.valid}"
+                     class="form-control"
+                     id="inputSsn"
+                     name="ssn" formControlName="ssn"
+                     placeholder="Enter ssn of clinicAdmin"
+                     required>
+              <span style="color: red" *ngIf="f.ssn.invalid && f.ssn.touched">Please enter exactly 13 digits for social security number</span>
+            </div>
+
+            <div class="form-group col-lg-6">
+              <label for="inputEmail">Email</label>
+              <input [(ngModel)]="clinicAdmin.email"
+                     [ngClass]="{'is-invalid': f.email.touched && f.email.errors && f.email.errors.emailDomain, 'is-valid': f.email.touched && f.email.valid}"
+                     class="form-control"
+                     id="inputEmail"
+                     name="email" formControlName="email"
+                     placeholder="Enter email of clinicAdmin"
+                     required>
+              <span style="color: red" *ngIf="f.email.touched && f.email.invalid">Valid email must contain @ and some of the domains : gmail.com, yahoo.com, uns.ac.rs</span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-lg-6">
+              <label for="inputPassword">Password</label>
+              <input [(ngModel)]="clinicAdmin.password"
+                     [ngClass]="{'is-invalid': (f.password.touched && f.password.errors) || userData.hasError('notSame'), 'is-valid': f.password.touched && f.password.valid && !userData.hasError('notSame')}"
+                     class="form-control"
+                     type="password"
+                     id="inputPassword"
+                     name="password" formControlName="password"
+                     placeholder="Enter password of clinicAdmin"
+                     required>
+              <span style="color: red" *ngIf="f.password.invalid && f.password.touched">Password must contain at least 5 characters</span>
+            </div>
+
+            <div class="form-group col-lg-6">
+              <label for="inputCountry">Country</label>
+              <input [(ngModel)]="clinicAdmin.country"
+                     [ngClass]="{'is-invalid': f.country.touched && f.country.errors, 'is-valid': f.country.touched && f.country.valid}"
+                     class="form-control"
+                     id="inputCountry"
+                     name="country" formControlName="country"
+                     placeholder="Enter country of clinicAdmin"
+                     required>
+              <span style="color: red"
+                    *ngIf="f.country.invalid && f.country.touched">Country must contain only letters</span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-lg-6">
+              <label for="inputCity">City</label>
+              <input [(ngModel)]="clinicAdmin.city"
+                     [ngClass]="{'is-invalid': f.city.touched && f.city.errors, 'is-valid': f.city.touched && f.city.valid}"
+                     class="form-control"
+                     id="inputCity"
+                     name="city" formControlName="city"
+                     placeholder="Enter city of clinicAdmin"
+                     required>
+              <span style="color: red" *ngIf="f.city.invalid && f.city.touched">City must contain only letters</span>
+            </div>
+
+
+            <div class="form-group col-lg-6">
+              <label for="inputAddress">Address</label>
+              <input [(ngModel)]="clinicAdmin.address"
+                     [ngClass]="{'is-invalid': f.address.touched && f.address.errors, 'is-valid': f.address.touched && f.address.valid}"
+                     class="form-control"
+                     id="inputAddress"
+                     name="address" formControlName="address"
+                     placeholder="Enter address of clinicAdmin"
+                     required>
+              <span style="color: red"
+                    *ngIf="f.address.invalid && f.address.touched">Address must contain only letters</span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-lg-6">
+              <label for="inputPhone">Phone</label>
+              <input [(ngModel)]="clinicAdmin.phone"
+                     [ngClass]="{'is-invalid': f.phone.touched && f.phone.errors, 'is-valid': f.phone.touched && f.phone.valid}"
+                     class="form-control"
+                     id="inputPhone"
+                     name="phone" formControlName="phone"
+                     placeholder="Enter phone of clinicAdmin"
+                     required>
+              <span style="color: red"
+                    *ngIf="f.phone.invalid && f.phone.touched">Phone must contain 9 od 10 digits</span>
+            </div>
+
+          </div>
+
+          <div class="text-right">
+            <button type="submit"
+                    class="btn btn-success col-lg-1" [disabled]="userData.invalid">Save
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+
+  </div>
+</div>
