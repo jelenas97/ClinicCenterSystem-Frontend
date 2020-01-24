@@ -15,7 +15,7 @@
       <div class="col-lg-6 offset-3">
         <div class="card">
           <div class="card-body">
-            <form (ngSubmit)="login()" [formGroup]="userData">
+            <form (ngSubmit)="checkForChangePassword(mymodal)" [formGroup]="userData">
 
               <div class="form-group">
                 <label for="inputEmail">Email</label>
@@ -43,7 +43,7 @@
               </div>
 
               <div class="text-right">
-                <button type="submit" [disabled]="userData.invalid"
+                <button type="submit"  [disabled]="userData.invalid"
                         class="btn btn-success">Login
                 </button>
               </div>
@@ -51,10 +51,56 @@
           </div>
         </div>
       </div>
+      <ng-template #mymodal let-modal>
+        <div class="modal-header">
+          <h6 class="modal-title" id="modal-basic-title">You need to change password first!</h6>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="myGroup" (ngSubmit)="changePassword(user.email, mymodal)">
+            <div class="col-lg-12">
+              <label class="col-lg-4" for="oldPassword">Old password:</label>
+              <input class="col-lg-6 " [(ngModel)]="oldPassword" id="oldPassword" formControlName="oldPassword">
+              <mat-error class="col-lg-2" *ngIf="hasError('oldPassword', 'required')" style="color: red" >*</mat-error>
+              <mat-error class="col-lg-12" *ngIf="hasError('oldPassword', 'minlength')" style="color: red" >
+                <p class="col-lg-8 offset-3 text-center">Must have minimum 5 character</p>
+              </mat-error>
 
+            </div>
 
+            <div class="col-lg-12 ">
+              <label class="col-lg-4" for="newPassword">New password:</label>
+              <input class="col-lg-6" [(ngModel)]="newPassword" id="newPassword" formControlName="newPassword">
+              <mat-error class="col-lg-2" *ngIf="hasError('newPassword', 'required')" style="color: red" >*</mat-error>
+              <mat-error class="col-lg-12" *ngIf="hasError('newPassword', 'minlength')" style="color: red" >
+                <p class="col-lg-8 offset-3 text-center">Must have minimum 5 character</p>
+              </mat-error>
+            </div>
+
+            <div class="col-lg-12">
+              <label class="col-lg-4" for="repeatNewPassword">Repeat new password:</label>
+              <input class="col-lg-6" [(ngModel)]="repeatNewPassword" id="repeatNewPassword" formControlName="repeatNewPassword">
+              <mat-error class="col-lg-2" *ngIf="hasError('repeatNewPassword', 'required')" style="color: red" >*</mat-error>
+              <mat-error class="col-lg-12" *ngIf="hasError('repeatNewPassword', 'minlength')" style="color: red" >
+                <p class="col-lg-8 offset-3 text-center">Must have minimum 5 character</p>
+              </mat-error>
+              <span *ngIf="cpwd.hasError('invalid')"> Invalid Password </span>
+            </div>
+
+            <div class="row mt-3">
+              <div class="col-lg-12 text-right">
+                <button type="submit" class="btn btn-success col-lg-2 offset-5" [disabled]="!myGroup.valid">Save</button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </ng-template>
     </div>
   </div>
 </div>
+
+
+
+
 </body>
 </html>

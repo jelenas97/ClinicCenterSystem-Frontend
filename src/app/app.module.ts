@@ -233,7 +233,9 @@ const customNotifierOptions: NotifierOptions = {
     AddClinicAdminComponent,
     ShowAllClinicAdminsComponent,
     CreatePredefinedExaminationsComponent,
-    SchedulePredefinedExaminationsComponent
+    SchedulePredefinedExaminationsComponent,
+    ShowAllClinicAdminsComponent
+
   ],
   imports: [
     BrowserModule,

@@ -106,6 +106,7 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'createPredefinedExaminations', component: CreatePredefinedExaminationsComponent},
   {path: 'schedulePredefinedExaminations', component: SchedulePredefinedExaminationsComponent}
 
+
 ];
 
 @NgModule({
