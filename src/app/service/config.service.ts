@@ -33,11 +33,19 @@ export class ConfigService {
   }
 
   // tslint:disable-next-line:variable-name
-  private _change_password_url = this._auth_url + '/change-password';
+  private check_for_change_password_url = this._auth_url + '/check-for-change-password';
 
-  get change_password_url(): string {
-    return this._change_password_url;
+  get check_for_change_password(): string {
+    return this.check_for_change_password_url;
   }
+
+  // tslint:disable-next-line:variable-name
+  private change_password_url = this._auth_url + '/change-password';
+
+  get change_password(): string {
+    return this.change_password_url;
+  }
+
 
   // tslint:disable-next-line:variable-name
   private _whoami_url = this._api_url + '/whoami';

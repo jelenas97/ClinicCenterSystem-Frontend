@@ -53,6 +53,8 @@ import {AddClinicAdminComponent} from './clinic-center-administrator-home-page/c
 import {ShowAllClinicAdminsComponent} from './clinic-center-administrator-home-page/show-all-clinic-admins/showAllClinicAdmins.component';
 // tslint:disable-next-line:max-line-length
 import {RoomOccupationCalendarComponent} from './clinic-administrator-home-page/room-occupation-calendar/room-occupation-calendar.component';
+import {CreatePredefinedExaminationsComponent} from './clinic-administrator-home-page/create-predefined-examinations/create-predefined-examinations.component';
+import {SchedulePredefinedExaminationsComponent} from './patient-home-page/schedule-predefined-examinations/schedule-predefined-examinations.component';
 
 
 const routes: Routes = [{path: 'register', component: RegistrationComponent},
@@ -104,6 +106,9 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'newClinicAdmin', component: AddClinicAdminComponent},
   {path: 'allClinicAdmins', component: ShowAllClinicAdminsComponent},
   {path: 'roomOccupationCalendar', component: RoomOccupationCalendarComponent},
+  {path: 'createPredefinedExaminations', component: CreatePredefinedExaminationsComponent},
+  {path: 'schedulePredefinedExaminations', component: SchedulePredefinedExaminationsComponent}
+
 
 ];
 
