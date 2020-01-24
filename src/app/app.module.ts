@@ -121,6 +121,8 @@ import {AddClinicAdminComponent} from './clinic-center-administrator-home-page/c
 import {AddClinicAdminService} from './clinic-center-administrator-home-page/createClinicAdmin/addClinicAdmin.service';
 import {ShowAllClinicAdminsComponent} from './clinic-center-administrator-home-page/show-all-clinic-admins/showAllClinicAdmins.component';
 import {ShowAllClinicAdminsService} from './clinic-center-administrator-home-page/show-all-clinic-admins/showAllClinicAdmins.service';
+import {RoomOccupationCalendarComponent} from './clinic-administrator-home-page/room-occupation-calendar/room-occupation-calendar.component';
+import {RoomOccupationCalendarService} from './clinic-administrator-home-page/room-occupation-calendar/room-occupation-calendar.service';
 
 /**
  * Custom angular notifier options
@@ -227,7 +229,8 @@ const customNotifierOptions: NotifierOptions = {
     DeclineScheduleMessageComponent,
     EditProfilePageCCAComponent,
     AddClinicAdminComponent,
-    ShowAllClinicAdminsComponent
+    ShowAllClinicAdminsComponent,
+    RoomOccupationCalendarComponent
   ],
   imports: [
     BrowserModule,
@@ -272,9 +275,9 @@ const customNotifierOptions: NotifierOptions = {
     MedicalExamRoomsService, OperationRoomsService, AddOperationRoomService, AddMedicalExamRoomService, MedicalExaminationRequestsService,
     ScheduleExaminationService, ConfirmationScheduleMessageService, DeclineScheduleMessageService,
     MedicalExamRoomsService, OperationRoomsService, DiagnosisService, EditProfilePageCCAService,
-    AddClinicAdminService, ShowAllClinicAdminsService],
+    AddClinicAdminService, ShowAllClinicAdminsService, RoomOccupationCalendarService],
   bootstrap: [AppComponent],
-  exports: [WorkCalendarComponent]
+  exports: [WorkCalendarComponent, RoomOccupationCalendarComponent]
 })
 export class AppModule {
 }

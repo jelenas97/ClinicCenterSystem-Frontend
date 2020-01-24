@@ -51,6 +51,8 @@ import {DiagnosisComponent} from './diagnosis/diagnosis.component';
 import {EditProfilePageCCAComponent} from './clinic-center-administrator-home-page/edit-profile-page/editProfilePageCCA.component';
 import {AddClinicAdminComponent} from './clinic-center-administrator-home-page/createClinicAdmin/addClinicAdmin.component';
 import {ShowAllClinicAdminsComponent} from './clinic-center-administrator-home-page/show-all-clinic-admins/showAllClinicAdmins.component';
+// tslint:disable-next-line:max-line-length
+import {RoomOccupationCalendarComponent} from './clinic-administrator-home-page/room-occupation-calendar/room-occupation-calendar.component';
 
 
 const routes: Routes = [{path: 'register', component: RegistrationComponent},
@@ -101,8 +103,7 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'editClinicCenterAdministrator', component: EditProfilePageCCAComponent},
   {path: 'newClinicAdmin', component: AddClinicAdminComponent},
   {path: 'allClinicAdmins', component: ShowAllClinicAdminsComponent},
-
-
+  {path: 'roomOccupationCalendar', component: RoomOccupationCalendarComponent},
 
 ];
 
