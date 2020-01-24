@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ApiService} from './api.service';
 import {UserService} from './user.service';
 import {ConfigService} from './config.service';
@@ -13,19 +13,19 @@ export class AuthService {
 
   private comp: AppComponent;
   private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  data: string[] = [];
 
   constructor(
     private apiService: ApiService,
     private userService: UserService,
     private config: ConfigService,
-    private router: Router
-  ) {
+    private httpClient: HttpClient) {
   }
 
   // tslint:disable-next-line:variable-name
   private access_token = null;
   private role = null;
-  private id = null;
+  private passwordChanged = null;
 
   login(user) {
     const loginHeaders = new HttpHeaders({
@@ -41,12 +41,12 @@ export class AuthService {
       .pipe(map((res) => {
         this.access_token = res.accessToken;
         this.role = res.role;
-        console.log(this.role);
+        this.passwordChanged = res.passwordChanged;
+        sessionStorage.setItem('passwordChanged', this.passwordChanged);
         sessionStorage.setItem('role', this.role);
         sessionStorage.setItem('key', res.accessToken);
         this.loggedIn.next(true);
       }));
-
   }
 
   registration(user) {
@@ -63,15 +63,23 @@ export class AuthService {
     return this.loggedIn.asObservable();
   }
 
-  changePassowrd(passwordChanger) {
-    const passwordChangerHeaders = new HttpHeaders({
+  checkForChangePassword(user) {
+    const checkForChange = new HttpHeaders({
       Accept: 'application/json',
       'Content-Type': 'application/json'
     });
-    return this.apiService.post(this.config.change_password_url, JSON.stringify(passwordChanger), passwordChangerHeaders)
-      .pipe(map(() => {
-        console.log('Password changer success');
+    const body = {
+      username : user.email,
+      password : user.password
+    };
+    return this.apiService.post(this.config.check_for_change_password, JSON.stringify(body), checkForChange)
+      .pipe(map((res) => {
+        this.passwordChanged = res.passwordChanged;
+        console.log(this.passwordChanged);
+        sessionStorage.setItem('passwordChanged', this.passwordChanged);
+        this.loggedIn.next(true);
       }));
+
   }
 
   tokenIsPresent() {

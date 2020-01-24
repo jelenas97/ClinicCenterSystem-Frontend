@@ -228,6 +228,7 @@ const customNotifierOptions: NotifierOptions = {
     EditProfilePageCCAComponent,
     AddClinicAdminComponent,
     ShowAllClinicAdminsComponent
+
   ],
   imports: [
     BrowserModule,

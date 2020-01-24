@@ -102,8 +102,6 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'newClinicAdmin', component: AddClinicAdminComponent},
   {path: 'allClinicAdmins', component: ShowAllClinicAdminsComponent},
 
-
-
 ];
 
 @NgModule({
