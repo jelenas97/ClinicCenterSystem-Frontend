@@ -1,17 +1,19 @@
 
 <div>
-  <button class="navbar-toggler" (click)="showSearchDoctor($event)">Search
-    <fa-icon [icon]="faArrow" class="mr-1"></fa-icon>
-  </button>
-  <br>
-  <div id="searchDoctorDiv" [@slideInOut]="animationState" class="border-bottom">
-    <br>
+  <div class="row col-lg-12 mt-5 ml-2">
+    <h2 class="col-lg-5 offset-1 ">All doctors from your clinic </h2>
+    <button class="navbar-toggler col-lg-1 offset-4 text-right" type="button" (click)="showSearchDoctor($event)">Search
+      <fa-icon [icon]="faArrow" class="mr-1"></fa-icon>
+    </button>
+  </div>
+
+  <div id="searchDoctorDiv" [@slideInOut]="animationState" class="border-bottom row col-lg-11 offset-1 mt-3" >
     <form id="searchDoctor" class="form-group" (ngSubmit)="onSearchDoctorSubmit(selectedFirstName, selectedLastName, selectedDoctorRating)">
 
-      <label style="padding-left: 20px; padding-right: 20px;"> Enter doctor's first name : </label>
+      <label style="padding-left: 20px; padding-right: 20px;"> Doctor's first name : </label>
       <input type="text" [(ngModel)]="selectedFirstName" [ngModelOptions]="{standalone: true}" style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
 
-      <label style="padding-left: 20px; padding-right: 20px;"> Enter doctor's last name : </label>
+      <label style="padding-left: 20px; padding-right: 20px;"> Doctor's last name : </label>
       <input type="text" [(ngModel)]="selectedLastName" [ngModelOptions]="{standalone: true}" style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
 
       <label style="padding-left: 20px; padding-right: 20px;"> Enter lower limit of average doctor's rating : </label>
@@ -25,9 +27,9 @@
 
     </form>
   </div>
+</div>
 <div>
   <br>
-  <h2 class="col-lg-10 offset-1">All doctors from your clinic </h2>
   <div class="col-lg-10 offset-1">
   <table class="table table-bordered table-striped">
     <thead class="bg-success text-white">
