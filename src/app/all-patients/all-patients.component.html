@@ -1,0 +1,34 @@
+<div class="card my-5">
+  <div class="card-body">
+    <span class="navbar-brand mb-0 h1">Patients</span>
+    <form id="searchPatient" class="form-group" (ngSubmit)="onSearchSubmit(selectedFirstName, selectedLastName, selectedSsn)">
+      <label style="padding-right: 20px;"> Enter patient first name : </label>
+      <input type="text" [(ngModel)]="selectedFirstName" [ngModelOptions]="{standalone: true}" style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
+
+      <label style="padding-right: 20px;"> Enter patient last name : </label>
+      <input type="text" [(ngModel)]="selectedLastName" [ngModelOptions]="{standalone: true}" style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
+      <label style="padding-right: 20px;"> Enter patient SSN : </label>
+      <input type="number" [(ngModel)]="selectedSsn" [ngModelOptions]="{standalone: true}" style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
+      <button type="submit"  class="btn btn-primary"
+              style="margin-left: 45%; width: 150px;">Search </button>
+    </form>
+
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">Patient First Name</th>
+        <th scope="col">Patient Last Name</th>
+        <th scope="col">Patient SSN</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let patient of patients">
+        <td>{{ patient.firstName }}</td>
+        <td>{{ patient.lastName}}</td>
+        <td>{{ patient.ssn }}</td>
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
