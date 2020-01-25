@@ -51,6 +51,8 @@ import {DiagnosisComponent} from './diagnosis/diagnosis.component';
 import {EditProfilePageCCAComponent} from './clinic-center-administrator-home-page/edit-profile-page/editProfilePageCCA.component';
 import {AddClinicAdminComponent} from './clinic-center-administrator-home-page/createClinicAdmin/addClinicAdmin.component';
 import {ShowAllClinicAdminsComponent} from './clinic-center-administrator-home-page/show-all-clinic-admins/showAllClinicAdmins.component';
+// tslint:disable-next-line:max-line-length
+import {RoomOccupationCalendarComponent} from './clinic-administrator-home-page/room-occupation-calendar/room-occupation-calendar.component';
 import {CreatePredefinedExaminationsComponent} from './clinic-administrator-home-page/create-predefined-examinations/create-predefined-examinations.component';
 import {SchedulePredefinedExaminationsComponent} from './patient-home-page/schedule-predefined-examinations/schedule-predefined-examinations.component';
 import {CreateMedicalReportComponent} from './create-medical-report/createMedicalReport.component';
@@ -104,6 +106,7 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'editClinicCenterAdministrator', component: EditProfilePageCCAComponent},
   {path: 'newClinicAdmin', component: AddClinicAdminComponent},
   {path: 'allClinicAdmins', component: ShowAllClinicAdminsComponent},
+  {path: 'roomOccupationCalendar', component: RoomOccupationCalendarComponent},
   {path: 'createPredefinedExaminations', component: CreatePredefinedExaminationsComponent},
   {path: 'schedulePredefinedExaminations', component: SchedulePredefinedExaminationsComponent},
   {path: 'createMedicalReport', component: CreateMedicalReportComponent}

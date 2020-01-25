@@ -76,7 +76,29 @@
 
   </div>
 </div>
+<div>
+  <button class="navbar-toggler" (click)="showSearchRoom($event)">Search
+    <fa-icon [icon]="faArrow" class="mr-1"></fa-icon>
+  </button>
+  <br>
+  <div id="searchDoctorDiv" [@slideInOut]="animationState" class="border-bottom">
+    <br>
+    <form id="searchDoctor" class="form-group" (ngSubmit)="onSearchRoomSubmit(selectedName, selectedNumber)">
 
+      <label style="padding-right: 20px;"> Enter name of examination room : </label>
+      <input type="text" [(ngModel)]="selectedName" [ngModelOptions]="{standalone: true}" style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
+
+      <label style="padding-right: 20px;"> Enter number of examination room : </label>
+      <input type="number" [(ngModel)]="selectedNumber" [ngModelOptions]="{standalone: true}" style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
+      <br>
+      <br>
+      <button type="submit" class="btn btn-primary"
+              style="margin-left: 45%; width: 150px;">Search
+      </button>
+
+    </form>
+  </div>
+</div>
 <div class="container register-form pt-lg-4">
   <div class="form">
     <div class="note">
@@ -92,6 +114,7 @@
             <th scope="col">Name</th>
             <th scope="col">Number</th>
             <th scope="col">Select a room</th>
+            <th scope="col">Calendar</th>
           </tr>
           </thead>
           <tbody>
@@ -101,6 +124,9 @@
             <td>{{ room.number }}</td>
             <td><input type="radio" name="selectClinicRadio"
                        (change)="selectRoom(room.id)">
+            <td><a class="nav-link" type="button" (click)="showCalendar(room.id)">
+            <fa-icon [icon]="calendar" class="mr-1"></fa-icon>
+            <span class="sr-only">(current)</span></a></td>
           </tr>
           </tbody>
         </table>

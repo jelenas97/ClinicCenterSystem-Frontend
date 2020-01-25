@@ -6,11 +6,16 @@ import {User} from '../../model/user';
 import {UserService} from '../../service/user.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Room} from '../../model/room';
+import {SlideInOutAnimation} from '../../patient-home-page/all-clinics/animations';
+import {faArrowDown, faArrowUp, faCalendarAlt} from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-schedule-examination',
   templateUrl: './schedule-examination.component.html',
-  styleUrls: ['./schedule-examination.component.css']
+  styleUrls: ['./schedule-examination.component.css'],
+  animations: [SlideInOutAnimation]
+
 })
 export class ScheduleExaminationComponent implements OnInit {
 
@@ -19,6 +24,7 @@ export class ScheduleExaminationComponent implements OnInit {
 
   requestId: string;
   request: MedicalExaminationRequest;
+  dateOfExam: Date;
   availableDoctors: User[];
   examinationRooms: Room[];
 
@@ -28,6 +34,13 @@ export class ScheduleExaminationComponent implements OnInit {
   selectedDiscount: string;
   selectedRoom: string;
   hiddenChange: boolean;
+
+  faArrow = faArrowDown;
+  animationState = 'out';
+  isSearchHidden = false;
+  selectedName: string;
+  selectedNumber: number;
+  calendar = faCalendarAlt;
 
   constructor(private route: ActivatedRoute, private scheduleExaminationService: ScheduleExaminationService,
               private userService: UserService, private formBuilder: FormBuilder, private router: Router) {
@@ -42,6 +55,7 @@ export class ScheduleExaminationComponent implements OnInit {
     this.loggedUser = this.userService.currentUser;
     this.scheduleExaminationService.getExaminationRequest(this.requestId).subscribe(data => {
       this.request = data;
+      this.dateOfExam = new Date(this.request.date);
     });
     this.scheduleExaminationService.getAvailableDoctors(this.loggedUser.id).subscribe(data => {
       this.availableDoctors = data;
@@ -115,5 +129,26 @@ export class ScheduleExaminationComponent implements OnInit {
       this.request.duration, this.request.discount, this.request.clinic.id,
       this.request.doctor.id, this.request.patient.id, this.request.type.id, this.requestId);
     this.router.navigate(['/clinicAdministratorHomePage']);
+  }
+
+  showSearchRoom($event: MouseEvent) {
+    this.animationState = this.animationState === 'out' ? 'in' : 'out';
+    if (this.isSearchHidden) {
+      this.isSearchHidden = false;
+      this.faArrow = faArrowDown;
+    } else {
+      this.isSearchHidden = true;
+      this.faArrow = faArrowUp;
+    }
+  }
+
+  onSearchRoomSubmit(selectedName: string, selectedNumber: number) {
+    this.scheduleExaminationService.searchRoom(selectedName, selectedNumber).subscribe(data => {
+      this.examinationRooms = data;
+    });
+  }
+
+  showCalendar(id: string) {
+    this.router.navigate(['roomOccupationCalendar'], { state: { example: id } });
   }
 }
