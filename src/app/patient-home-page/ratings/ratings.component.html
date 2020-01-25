@@ -1,24 +1,22 @@
-<h2>Rate the clinics you have been to</h2>
+<h2>Here you can rate clinics and doctors you have had an examination at</h2>
 <table class="table table-bordered table-striped">
   <thead class="thead-dark">
   <tr>
-    <th scope="col">Name</th>
-    <th scope="col">Description</th>
-    <th scope="col">City</th>
-    <th scope="col">Address</th>
-    <th scope="col">Average rating</th>
-    <th scope="col">Rate</th>
+    <th scope="col">Date</th>
+    <th scope="col">Type of examination</th>
+    <th scope="col">Clinic</th>
+    <th scope="col">Rate clinic</th>
+    <th scope="col">Doctor</th>
+    <th scope="col">Rate doctor</th>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let clinic of clinics">
-    <td>{{ clinic.name }}</td>
-    <td>{{ clinic.description }}</td>
-    <td>{{ clinic.city }}</td>
-    <td>{{ clinic.address }}</td>
-    <td>{{ clinic.clinicAverageRating }}</td>
-    <td><label>
-      <select [(ngModel)]="selectedOption" (change)="onChangeSelect($event)" id="clinicOption">
+  <tr *ngFor="let exam of medicalExaminations">
+    <td>{{ exam.date }}</td>
+    <td>{{ exam.type.name }}</td>
+    <td>{{ exam.clinic.name }}</td>
+    <td>
+      <select *ngIf="!exam.clinicRated" (change)="onChangeSelect($event.target.value, exam)">
         <option>10</option>
         <option>9</option>
         <option>8</option>
@@ -30,34 +28,13 @@
         <option>2</option>
         <option>1</option>
       </select>
-    </label>
-      <button [disabled]="!buttonDisabled" type="button" (click)="rateClinic(clinic.id, selectedOption)"> Rate ! </button>
+      <button *ngIf="!exam.clinicRated" type="button" (click)="rateClinic(exam)"> Rate !
+      </button>
+      <label *ngIf="exam.clinicRated">Already rated !</label>
     </td>
-  </tr>
-  </tbody>
-</table>
-
-<h2>Rate the doctors that have examined you</h2>
-<table class="table table-bordered table-striped">
-  <thead class="thead-dark">
-  <tr>
-    <th scope="col">First name</th>
-    <th scope="col">Last name</th>
-    <th scope="col">Country</th>
-    <th scope="col">City</th>
-    <th scope="col">Average rating</th>
-    <th scope="col">Rate</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let doctor of doctors">
-    <td>{{ doctor.firstName }}</td>
-    <td>{{ doctor.lastName }}</td>
-    <td>{{ doctor.country }}</td>
-    <td>{{ doctor.city }}</td>
-    <td>{{doctor.averageRating }}</td>
-    <td><label>
-      <select [(ngModel)]="selectedOption2" (change)="onChangeSelect2($event)" id="doctorOption">
+    <td>{{ exam.doctor.firstName + ' ' + exam.doctor.lastName}}</td>
+    <td>
+      <select *ngIf="!exam.doctorRated" (change)="onChangeSelect2($event.target.value, exam)">
         <option>10</option>
         <option>9</option>
         <option>8</option>
@@ -69,12 +46,13 @@
         <option>2</option>
         <option>1</option>
       </select>
-    </label>
-      <button [disabled]="!buttonDisabled2" type="button" (click)="rateDoctor(doctor.id, selectedOption2)"> Rate ! </button>
-
+      <button *ngIf="!exam.doctorRated" type="button" (click)="rateDoctor(exam)"> Rate !
+      </button>
+      <label *ngIf="exam.doctorRated">Already rated !</label>
     </td>
   </tr>
   </tbody>
 </table>
+
 
 
