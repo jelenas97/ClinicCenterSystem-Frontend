@@ -56,6 +56,7 @@ import {RoomOccupationCalendarComponent} from './clinic-administrator-home-page/
 import {CreatePredefinedExaminationsComponent} from './clinic-administrator-home-page/create-predefined-examinations/create-predefined-examinations.component';
 import {SchedulePredefinedExaminationsComponent} from './patient-home-page/schedule-predefined-examinations/schedule-predefined-examinations.component';
 import {AllPatientsComponent} from './all-patients/all-patients.component';
+import {PatientProfileForMedicalStaffComponent} from './patient-profile-for-medical-staff/patient-profile-for-medical-staff.component';
 
 
 const routes: Routes = [{path: 'register', component: RegistrationComponent},
@@ -109,7 +110,9 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'roomOccupationCalendar', component: RoomOccupationCalendarComponent},
   {path: 'createPredefinedExaminations', component: CreatePredefinedExaminationsComponent},
   {path: 'schedulePredefinedExaminations', component: SchedulePredefinedExaminationsComponent},
-  {path: 'allPatients', component: AllPatientsComponent}
+  {path: 'allPatients', component: AllPatientsComponent},
+  {path: 'patientProfileForMedicalStaff', component: PatientProfileForMedicalStaffComponent}
+
 ];
 
 @NgModule({

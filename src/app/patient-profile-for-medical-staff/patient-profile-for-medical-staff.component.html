@@ -1,0 +1,23 @@
+<div layout="row">
+  <div class="col-md-4 offset-4">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+      </mat-card-header>
+      <img mat-card-image src="/assets/img/slika.jpeg">
+      <mat-card-title><b>{{patient.firstName + ' ' + patient.lastName}}</b></mat-card-title>
+      <mat-card-content>
+        <p class="border-bottom">Email: {{patient.email}}</p>
+        <p class="border-bottom">Address: {{patient.address}}</p>
+        <p class="border-bottom">City: {{patient.city}}</p>
+        <p class="border-bottom">Country: {{patient.country}}</p>
+        <p class="border-bottom">Phone: {{patient.phone}}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button routerLink="" mat-button class="btn-info">Begin exam</button>
+        <button routerLink="" mat-button class="btn-success">Show medical record</button>
+
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

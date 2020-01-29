@@ -130,6 +130,8 @@ import { SchedulePredefinedExaminationsComponent } from './patient-home-page/sch
 import {SchedulePredefinedExaminationsService} from './patient-home-page/schedule-predefined-examinations/schedule-predefined-examinations.service';
 import {AllPatientsComponent} from './all-patients/all-patients.component';
 import {AllPatientsService} from './all-patients/all-patients.service';
+import {PatientProfileForMedicalStaffComponent} from './patient-profile-for-medical-staff/patient-profile-for-medical-staff.component';
+import {PatientProfileForMedicalStaffService} from './patient-profile-for-medical-staff/patient-profile-for-medical-staff.service';
 
 /**
  * Custom angular notifier options
@@ -242,7 +244,8 @@ const customNotifierOptions: NotifierOptions = {
     ShowAllClinicAdminsComponent,
     AllPatientsComponent,
     ShowAllClinicAdminsComponent,
-    RoomOccupationCalendarComponent
+    RoomOccupationCalendarComponent,
+    PatientProfileForMedicalStaffComponent
   ],
   imports: [
     BrowserModule,
@@ -288,7 +291,7 @@ const customNotifierOptions: NotifierOptions = {
     ScheduleExaminationService, ConfirmationScheduleMessageService, DeclineScheduleMessageService,
     MedicalExamRoomsService, OperationRoomsService, DiagnosisService, EditProfilePageCCAService,
     AddClinicAdminService, ShowAllClinicAdminsService, RoomOccupationCalendarService, CreatePredefinedExaminationsService,
-    SchedulePredefinedExaminationsService, AllPatientsService],
+    SchedulePredefinedExaminationsService, AllPatientsService, PatientProfileForMedicalStaffService],
   bootstrap: [AppComponent],
   exports: [WorkCalendarComponent, RoomOccupationCalendarComponent]
 })
