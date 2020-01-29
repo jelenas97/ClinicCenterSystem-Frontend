@@ -1,28 +1,14 @@
-import {
-  Component,
-  ChangeDetectionStrategy,
-  ViewChild,
-  TemplateRef
-} from '@angular/core';
-import {
-  startOfDay,
-  endOfDay,
-  subDays,
-  addDays,
-  endOfMonth,
-  isSameDay,
-  isSameMonth,
-  addHours
-} from 'date-fns';
-import { Subject } from 'rxjs';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import {
-  CalendarEvent,
-  CalendarEventAction,
-  CalendarEventTimesChangedEvent,
-  CalendarView
-} from 'angular-calendar';
+import {ChangeDetectionStrategy, Component, OnInit, TemplateRef, ViewChild, ViewEncapsulation} from '@angular/core';
+import {endOfDay, isSameDay, isSameMonth, startOfDay} from 'date-fns';
+import {Subject} from 'rxjs';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, CalendarView} from 'angular-calendar';
 import {faArrowLeft, faArrowRight} from '@fortawesome/free-solid-svg-icons';
+import {WorkCalendarService} from './workCalendar.service';
+import {UserService} from '../service/user.service';
+import {User} from '../model/user';
+import {MedicalExamination} from '../model/medicalExamination';
+import {Router} from '@angular/router';
 
 const colors: any = {
   red: {
@@ -43,9 +29,19 @@ const colors: any = {
   selector: 'app-work-calendar',
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./workCalendar.component.css'],
-  templateUrl: './workCalendar.component.html'
+  templateUrl: './workCalendar.component.html',
+  encapsulation: ViewEncapsulation.None
 })
-export class WorkCalendarComponent {
+export class WorkCalendarComponent  implements OnInit {
+
+  private user: User;
+  private exams: MedicalExamination[] = [];
+
+  constructor(private modal: NgbModal, private workCalendarService: WorkCalendarService,
+              private userService: UserService, private router: Router) {
+    this.userService.getMyInfo();
+    this.user = this.userService.currentUser;
+  }
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
 
   faPrevious = faArrowLeft;
@@ -81,25 +77,24 @@ export class WorkCalendarComponent {
 
   refresh: Subject<any> = new Subject();
 
-  events: CalendarEvent[] = [
-    {
-      start: startOfDay(new Date()),
-      end: endOfDay(new Date()),
-      title: 'A 3 day event',
-      color: colors.red,
-      actions: this.actions,
-      allDay: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      },
-      draggable: true
-    }
-  ];
+  events: CalendarEvent[] = [ ];
 
   activeDayIsOpen = true;
 
-  constructor(private modal: NgbModal) {}
+  fillCalendar(): void {
+    for (const exam of this.exams) {
+      this.events = [
+        ...this.events,
+        {
+          title: exam.type.name,
+          start: startOfDay(new Date(exam.date)),
+          end: endOfDay(new Date(exam.date)),
+          color: colors.red,
+        }
+      ];
+    }
+
+  }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -134,8 +129,7 @@ export class WorkCalendarComponent {
   }
 
   handleEvent(action: string, event: CalendarEvent): void {
-    this.modalData = { event, action };
-    this.modal.open(this.modalContent, { size: 'lg' });
+    this.router.navigate(['/createMedicalReport']);
   }
 
   addEvent(): void {
@@ -165,5 +159,15 @@ export class WorkCalendarComponent {
 
   closeOpenMonthViewDay() {
     this.activeDayIsOpen = false;
+  }
+
+  ngOnInit(): void {
+    this.workCalendarService.getAllExams(this.user.id).subscribe(data => {
+      this.exams = data;
+      this.refresh.next();
+      this.fillCalendar();
+
+    });
+
   }
 }

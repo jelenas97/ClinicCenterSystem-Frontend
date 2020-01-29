@@ -132,6 +132,8 @@ import {AllPatientsComponent} from './all-patients/all-patients.component';
 import {AllPatientsService} from './all-patients/all-patients.service';
 import {PatientProfileForMedicalStaffComponent} from './patient-profile-for-medical-staff/patient-profile-for-medical-staff.component';
 import {PatientProfileForMedicalStaffService} from './patient-profile-for-medical-staff/patient-profile-for-medical-staff.service';
+import {CreateMedicalReportComponent} from './create-medical-report/createMedicalReport.component';
+import {CreateMedicalReportService} from './create-medical-report/createMedicalReport.service';
 
 /**
  * Custom angular notifier options
@@ -245,7 +247,9 @@ const customNotifierOptions: NotifierOptions = {
     AllPatientsComponent,
     ShowAllClinicAdminsComponent,
     RoomOccupationCalendarComponent,
-    PatientProfileForMedicalStaffComponent
+    PatientProfileForMedicalStaffComponent,
+    CreateMedicalReportComponent,
+    RoomOccupationCalendarComponent
   ],
   imports: [
     BrowserModule,
@@ -291,7 +295,7 @@ const customNotifierOptions: NotifierOptions = {
     ScheduleExaminationService, ConfirmationScheduleMessageService, DeclineScheduleMessageService,
     MedicalExamRoomsService, OperationRoomsService, DiagnosisService, EditProfilePageCCAService,
     AddClinicAdminService, ShowAllClinicAdminsService, RoomOccupationCalendarService, CreatePredefinedExaminationsService,
-    SchedulePredefinedExaminationsService, AllPatientsService, PatientProfileForMedicalStaffService],
+    SchedulePredefinedExaminationsService, CreateMedicalReportService, AllPatientsService, PatientProfileForMedicalStaffService],
   bootstrap: [AppComponent],
   exports: [WorkCalendarComponent, RoomOccupationCalendarComponent]
 })
