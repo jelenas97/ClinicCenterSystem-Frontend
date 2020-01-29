@@ -55,6 +55,7 @@ import {ShowAllClinicAdminsComponent} from './clinic-center-administrator-home-p
 import {RoomOccupationCalendarComponent} from './clinic-administrator-home-page/room-occupation-calendar/room-occupation-calendar.component';
 import {CreatePredefinedExaminationsComponent} from './clinic-administrator-home-page/create-predefined-examinations/create-predefined-examinations.component';
 import {SchedulePredefinedExaminationsComponent} from './patient-home-page/schedule-predefined-examinations/schedule-predefined-examinations.component';
+import {CreateClinicCenterAdminsComponent} from './clinic-center-administrator-home-page/create-clinic-center-admins/create-clinic-center-admins.component';
 import {CreateMedicalReportComponent} from './create-medical-report/createMedicalReport.component';
 
 
@@ -109,7 +110,8 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'roomOccupationCalendar', component: RoomOccupationCalendarComponent},
   {path: 'createPredefinedExaminations', component: CreatePredefinedExaminationsComponent},
   {path: 'schedulePredefinedExaminations', component: SchedulePredefinedExaminationsComponent},
-  {path: 'createMedicalReport', component: CreateMedicalReportComponent}
+  {path: 'createMedicalReport', component: CreateMedicalReportComponent},
+  {path: 'newClinicCenterAdmin', component: CreateClinicCenterAdminsComponent}
 
 ];
 

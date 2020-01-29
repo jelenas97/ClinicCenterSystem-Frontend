@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Clinic} from '../../model/clinic';
 import {PatientHomePageService} from '../patientHomePage.service';
 import {Router} from '@angular/router';
 import {User} from '../../model/user';
+import {UserService} from '../../service/user.service';
+import {MedicalExamination} from '../../model/medicalExamination';
 
 @Component({
   selector: 'app-ratings',
@@ -11,39 +13,45 @@ import {User} from '../../model/user';
 })
 export class RatingsComponent implements OnInit {
 
-  clinics: Clinic[] = [];
-  doctors: User[] = [];
-  buttonDisabled: boolean;
-  selectedOption: string;
-  selectedOption2: string;
-  buttonDisabled2: boolean;
+  loggedUser: User;
 
-  constructor(private patientHomePageService: PatientHomePageService, private router: Router) { }
+  medicalExaminations: MedicalExamination[];
+
+  constructor(private patientHomePageService: PatientHomePageService, private router: Router, private userService: UserService) {
+  }
 
   ngOnInit() {
-    this.patientHomePageService.getAllClinics().subscribe(data => {
-      this.clinics = data;
+    this.userService.getMyInfo();
+    this.loggedUser = this.userService.currentUser;
+    this.patientHomePageService.getAllExaminationsPatientCanRate(this.loggedUser.id).subscribe(data => {
+      this.medicalExaminations = data;
     });
-    this.patientHomePageService.getDoctors().subscribe(data => {
-      this.doctors = data;
-    });
   }
 
-  onChangeSelect($event: Event) {
-    console.log(this.selectedOption);
-    this.buttonDisabled = true;
+  onChangeSelect(id: number, exam: MedicalExamination) {
+    exam.clinicRating = id;
+    console.log(exam.id);
+    console.log(exam.clinicRating);
   }
 
-  rateClinic(id: string, selectedOption: string) {
-    this.patientHomePageService.rateClinic(id, selectedOption);
+  rateClinic(exam: MedicalExamination) {
+    this.patientHomePageService.rateClinic(exam.id, exam.clinicRating, exam.clinic.id);
+    this.redirectTo('ratings');
   }
 
-  onChangeSelect2($event: Event) {
-    console.log(this.selectedOption2);
-    this.buttonDisabled2 = true;
+  onChangeSelect2(id: number, exam: MedicalExamination) {
+    exam.doctorRating = id;
+    console.log(exam.id);
+    console.log(exam.doctorRating);
   }
 
-  rateDoctor(id: string, selectedOption2: string) {
-    this.patientHomePageService.rateDoctor(id, selectedOption2);
+  rateDoctor(exam: MedicalExamination) {
+    this.patientHomePageService.rateDoctor(exam.id, exam.doctorRating, exam.doctor.id);
+    this.router.navigate(['/ratings']);
+  }
+
+  redirectTo(uri: string) {
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
+      this.router.navigate([uri]));
   }
 }
