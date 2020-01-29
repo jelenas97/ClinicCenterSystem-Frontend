@@ -106,10 +106,10 @@
     </thead>
     <tbody>
     <tr *ngFor="let doctor of doctors">
-      <td>{{ doctor.first_name }}</td>
-      <td>{{ doctor.last_name }}</td>
+      <td>{{ doctor.firstName }}</td>
+      <td>{{ doctor.lastName }}</td>
       <td>{{ doctor.country }}</td>
-      <td>{{ doctor.average_rating }}</td>
+      <td>{{ doctor.averageRating}}</td>
       <td><input type="radio" name="selectDoctorRadio" (change)="showSendRequestButton(doctor.id)"></td>
     </tr>
     </tbody>

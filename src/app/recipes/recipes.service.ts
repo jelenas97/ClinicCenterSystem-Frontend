@@ -19,7 +19,6 @@ export class RecipesService {
 
   public validate(id: number) {
     return this.http.get<Recipe>(this.recipesUrl + '/' + id);
-    console.log(id);
   }
 
   public removeRecipe(id: number) {

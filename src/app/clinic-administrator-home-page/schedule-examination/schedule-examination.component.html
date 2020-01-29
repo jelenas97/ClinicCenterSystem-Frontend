@@ -29,7 +29,7 @@
           </div>
 
           <div class="col-form-label-lg">
-            <label>Date : {{dateOfExam}}</label>
+            <label>Date : {{request.date| date: 'yyyy-MM-dd'}}</label>
             <input name="selectedDate" formControlName="selectedDate" class="form-control" type="date"
                    [(ngModel)]="selectedDate" [hidden]="!hiddenChange"
                    [ngClass]="{'is-invalid': f.selectedDate.touched && f.selectedDate.errors, 'is-valid': f.selectedDate.touched && f.selectedDate.valid}">
