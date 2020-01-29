@@ -14,4 +14,9 @@ export class MedicalExamination {
   clinic: Clinic;
   type: TypeOfMedicalExam;
   medicalExaminationRoom: Room;
+  doctorRated: boolean;
+  clinicRated: boolean;
+  // this is helping field for knowing which is exact rating
+  doctorRating: number;
+  clinicRating: number;
 }

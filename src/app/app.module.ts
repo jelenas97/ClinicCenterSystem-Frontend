@@ -132,6 +132,8 @@ import {AllPatientsComponent} from './all-patients/all-patients.component';
 import {AllPatientsService} from './all-patients/all-patients.service';
 import {PatientProfileForMedicalStaffComponent} from './patient-profile-for-medical-staff/patient-profile-for-medical-staff.component';
 import {PatientProfileForMedicalStaffService} from './patient-profile-for-medical-staff/patient-profile-for-medical-staff.service';
+import { CreateClinicCenterAdminsComponent } from './clinic-center-administrator-home-page/create-clinic-center-admins/create-clinic-center-admins.component';
+import {CreateClinicCenterAdminsService} from './clinic-center-administrator-home-page/create-clinic-center-admins/create-clinic-center-admins.service';
 import {CreateMedicalReportComponent} from './create-medical-report/createMedicalReport.component';
 import {CreateMedicalReportService} from './create-medical-report/createMedicalReport.service';
 
@@ -249,7 +251,8 @@ const customNotifierOptions: NotifierOptions = {
     RoomOccupationCalendarComponent,
     PatientProfileForMedicalStaffComponent,
     CreateMedicalReportComponent,
-    RoomOccupationCalendarComponent
+    RoomOccupationCalendarComponent,
+    CreateClinicCenterAdminsComponent
   ],
   imports: [
     BrowserModule,
@@ -295,7 +298,8 @@ const customNotifierOptions: NotifierOptions = {
     ScheduleExaminationService, ConfirmationScheduleMessageService, DeclineScheduleMessageService,
     MedicalExamRoomsService, OperationRoomsService, DiagnosisService, EditProfilePageCCAService,
     AddClinicAdminService, ShowAllClinicAdminsService, RoomOccupationCalendarService, CreatePredefinedExaminationsService,
-    SchedulePredefinedExaminationsService, CreateMedicalReportService, AllPatientsService, PatientProfileForMedicalStaffService],
+    SchedulePredefinedExaminationsService, CreateClinicCenterAdminsService, CreateMedicalReportService, AllPatientsService,
+    PatientProfileForMedicalStaffService],
   bootstrap: [AppComponent],
   exports: [WorkCalendarComponent, RoomOccupationCalendarComponent]
 })

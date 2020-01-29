@@ -41,7 +41,7 @@
       </ul>
 
       <!--ROLE CLINIC CENTER ADMIN-->
-      <ul class="navbar-nav mr-auto" *ngIf="role=='ROLE_CLINIC_CENTER_ADMIN'">
+      <ul class="navbar-nav mr-auto" *ngIf="role=='ROLE_CLINIC_CENTER_ADMIN' || role=='ROLE_CLINIC_CENTER_ADMIN_SUPER'">
         <li class="nav-item active">
           <a class="nav-link" routerLink="/ccaHomePage">
             <fa-icon [icon]="faHome" class="mr-1"></fa-icon>
@@ -72,6 +72,8 @@
             Admins
           </a>
           <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink190">
+            <a class="dropdown-item bg-dark" routerLink="/newClinicCenterAdmin"
+               *ngIf="role=='ROLE_CLINIC_CENTER_ADMIN_SUPER'">Register Clinic Center Admin</a>
             <a class="dropdown-item bg-dark" routerLink="/newClinicAdmin">Register Clinic Admin</a>
             <a class="dropdown-item bg-dark" routerLink="/allClinicAdmins">Show all</a>
           </div>
@@ -159,7 +161,8 @@
             Examination types <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink23" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink23" data-toggle="dropdown" aria-haspopup="true"
+             aria-expanded="false">
             Rooms
           </a>
           <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink23">
@@ -168,8 +171,10 @@
           </div>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink27" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <fa-icon [icon]="faAnnualLeave" class="mr-1" ></fa-icon>Requests
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink27" data-toggle="dropdown" aria-haspopup="true"
+             aria-expanded="false">
+            <fa-icon [icon]="faAnnualLeave" class="mr-1"></fa-icon>
+            Requests
           </a>
           <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink27">
             <a class="dropdown-item bg-dark" routerLink="/vacationRequests">Vacation</a>
@@ -180,7 +185,8 @@
 
         <li class="nav-item">
           <a class="nav-link" routerLink="/createPredefinedExaminations">
-            <fa-icon [icon]="faStartExam" class="mr-1"></fa-icon>Create predefined examinations
+            <fa-icon [icon]="faStartExam" class="mr-1"></fa-icon>
+            Create predefined examinations
           </a>
         </li>
 
@@ -225,7 +231,8 @@
 
         <li class="nav-item active">
           <a class="nav-link" routerLink="/schedulePredefinedExaminations">
-            <fa-icon [icon]="faSchedule" class="mr-1"></fa-icon> Schedule predefined
+            <fa-icon [icon]="faSchedule" class="mr-1"></fa-icon>
+            Schedule predefined
           </a>
         </li>
       </ul>
@@ -332,9 +339,11 @@
           </div>
         </li>
 
-        <li class="nav-item dropdown" *ngIf="role == 'ROLE_DOCTOR'" >
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <fa-icon [icon]="faUserCircle" class="mr-1" ></fa-icon>Profile
+        <li class="nav-item dropdown" *ngIf="role == 'ROLE_DOCTOR'">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink5" data-toggle="dropdown" aria-haspopup="true"
+             aria-expanded="false">
+            <fa-icon [icon]="faUserCircle" class="mr-1"></fa-icon>
+            Profile
           </a>
           <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink5">
             <a class="dropdown-item bg-dark" routerLink="/doctorProfilePage">Personal info</a>

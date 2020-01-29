@@ -2,12 +2,11 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User} from '../model/user';
-import {RegistrationRequest} from '../model/registrationRequest';
 import {Clinic} from '../model/clinic';
 import {any} from 'codelyzer/util/function';
 import {ExaminationType} from '../model/examinationType';
 import {UserMapperTwo} from '../model/userMapperTwo';
-import {PatientHomePageComponent} from './patientHomePage.component';
+import {MedicalExamination} from '../model/medicalExamination';
 
 
 @Injectable()
@@ -20,8 +19,8 @@ export class PatientHomePageService {
     this.url = 'http://localhost:8080/auth/medicalStaffProfile/';
   }
 
-  public setLoggedUser(value: string) {
-    this.loggedUserId = value;
+  getAllExaminationsPatientCanRate(id: string) {
+    return this.http.get<MedicalExamination[]>('http://localhost:8080/getAllExaminationsPatientCanRate/' + id);
   }
 
   public getById(id: number): Observable<User> {
@@ -32,16 +31,12 @@ export class PatientHomePageService {
     return this.http.get<Clinic[]>('http://localhost:8080/auth/getAllClinics');
   }
 
-  getDoctors() {
-    return this.http.get<User[]>('http://localhost:8080/auth/getDoctors');
+  rateClinic(examId: string, rating: number, clinicId: string) {
+    return this.http.put<any>('http://localhost:8080/auth/rateClinic/' + examId + '/' + rating + '/' + clinicId, any).subscribe();
   }
 
-  rateClinic(id: string, selectedOption: string) {
-    return this.http.put<any>('http://localhost:8080/auth/rateClinic/' + id + '/' + selectedOption, any).subscribe();
-  }
-
-  rateDoctor(id2: string, selectedOption2: string) {
-    return this.http.put<any>('http://localhost:8080/auth/rateDoctor/' + id2 + '/' + selectedOption2, any).subscribe();
+  rateDoctor(examId: string, rating: number, doctorId: string) {
+    return this.http.put<any>('http://localhost:8080/auth/rateDoctor/' + examId + '/' + rating + '/' + doctorId, any).subscribe();
   }
 
 
