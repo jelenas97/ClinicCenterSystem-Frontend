@@ -25,10 +25,10 @@ export class RecipesComponent implements OnInit {
 
   validateRecipe(id: number) {
     this.recipesService.validate(id).subscribe(result => this.gotoRecipes());
-    window.location.reload();
   }
 
   public gotoRecipes() {
+    this.ngOnInit();
     this.router.navigate(['/allRecipes']);
   }
 }

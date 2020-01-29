@@ -17,7 +17,7 @@
     <tr *ngFor="let req of medicalExaminationRequests">
       <td>{{ req.patient.firstName + ' ' + req.patient.lastName }}</td>
       <td>{{ req.doctor.firstName + ' ' + req.doctor.lastName }}</td>
-      <td>{{ req.date }}</td>
+      <td>{{ req.date | date:'yyyy-MM-dd' }}</td>
       <td>{{ req.duration + ' min' }}</td>
       <td>{{ req.price }}</td>
       <td> {{ req.discount }} </td>
