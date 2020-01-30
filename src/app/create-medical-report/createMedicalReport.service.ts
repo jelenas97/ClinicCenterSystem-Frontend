@@ -32,4 +32,5 @@ export class CreateMedicalReportService {
   public getAllMedicaments(): Observable<Medicament[]> {
     return this.httpClient.get<Medicament[]>(this.allMedicamentsUrl);
   }
+
 }

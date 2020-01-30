@@ -7,6 +7,7 @@ import {CreateMedicalReportService} from './createMedicalReport.service';
 import {UserService} from '../service/user.service';
 import {User} from '../model/user';
 import {Medicament} from '../model/medicament';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class CreateMedicalReportComponent implements OnInit {
   selectedMedicament: string;
 
   constructor(private createMedicalReportService: CreateMedicalReportService, private route: ActivatedRoute,
-              private router: Router, private userService: UserService) {
+              private router: Router, private userService: UserService, private modalService: NgbModal) {
     this.medicalReport = new MedicalReport();
   }
 
@@ -56,5 +57,15 @@ export class CreateMedicalReportComponent implements OnInit {
   onSelectChangeMed($event: Event) {
     console.log(this.medicalReport.medicamentId);
 
+  }
+
+
+  openModalExam(mymodal) {
+    this.modalService.open(mymodal);
+
+  }
+
+  openModalOperation(mymodal2) {
+    this.modalService.open(mymodal2);
   }
 }

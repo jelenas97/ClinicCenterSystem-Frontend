@@ -62,10 +62,12 @@
 
           <div class="row mt-5">
             <div class="text-right col-lg-4">
-              <button type="button" class="btn btn-outline-success col-lg-12">Additional exam</button>
+              <button type="button" class="btn btn-outline-success col-lg-12"
+                      (click)="openModalExam(mymodal)">Additional exam</button>
             </div>
             <div class="text-left col-lg-4">
-              <button type="button" class="btn btn-outline-success col-lg-10">Operation</button>
+              <button type="button" class="btn btn-outline-success col-lg-10"
+                      (click)="openModalOperation(mymodal2)">Operation</button>
             </div>
             <div class="text-right col-lg-4">
               <button type="submit" class="btn btn-success col-lg-9">Save</button>
@@ -75,8 +77,28 @@
         </form>
       </div>
     </div>
+    <ng-template #mymodal let-modal>
+      <div class="modal-header">
+        <h6 class="modal-title" id="modal-basic-title">Schedule medical exam</h6>
+      </div>
+      <div class="modal-body">
+        <label>Choose the date for new exam:</label>
+        <input type="date"/>
+      </div>
+    </ng-template>
+
+    <ng-template #mymodal2 let-modal2>
+      <div class="modal-header">
+        <h6 class="modal-title" id="modal-basic-title2">Schedule operation</h6>
+      </div>
+      <div class="modal-body">
+        <label>Choose the date for new operation:</label>
+        <input type="date"/>
+      </div>
+    </ng-template>
   </div>
 </div>
+
 
 </body>
 </html>
