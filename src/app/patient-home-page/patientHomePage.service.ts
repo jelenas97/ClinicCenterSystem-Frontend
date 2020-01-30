@@ -59,9 +59,10 @@ export class PatientHomePageService {
     return this.http.get<UserMapperTwo[]>('http://localhost:8080/auth/getSearchedDoctors/' + selectedOption + '/' + id);
   }
 
-  sendRequest(selectedType: string, selectedDate: string, selectedClinicId: string, selectedDoctorId: string, patientId: string) {
+  sendRequest(selectedType: string, selectedDate: string, selectedClinicId: string, selectedDoctorId: string,
+              patientId: string, selectedTerm: string) {
     return this.http.put<any>('http://localhost:8080/auth/sendMedicalExamRequest/' + selectedType + '/' + selectedDate +
-      '/' + selectedClinicId + '/' + selectedDoctorId + '/' + patientId, any).subscribe();
+      '/' + selectedClinicId + '/' + selectedDoctorId + '/' + patientId + '/' + selectedTerm, any).subscribe();
   }
 
   getSearchedDoctorsExtended(realSelectedOptionById: string, selectedClinicId: string, selectedFirstName: string, selectedLastName: string,
@@ -79,5 +80,9 @@ export class PatientHomePageService {
     return this.http.get<UserMapperTwo[]>('http://localhost:8080/getSearchedDoctorsExtended/search?firstName=' + selectedFirstName + '&lastName=' +
       selectedLastName + '&rating=' + selectedDoctorRating + '&type=' + realSelectedOptionById + '&clinic=' + selectedClinicId);
 
+  }
+
+  getAvailableTermsForDoctor(id: string, date: string) {
+    return this.http.get<string[]>('http://localhost:8080/getAvailableTermsForDoctor/' + id + '/' + date);
   }
 }

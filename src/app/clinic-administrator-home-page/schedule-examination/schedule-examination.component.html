@@ -31,12 +31,20 @@
           <div class="col-form-label-lg">
             <label>Date : {{request.date| date: 'yyyy-MM-dd'}}</label>
             <input name="selectedDate" formControlName="selectedDate" class="form-control" type="date"
-                   [(ngModel)]="selectedDate" [hidden]="!hiddenChange"
+                   [value]="selectedDate | date:'yyyy-MM-dd'"
+                   (input)="selectedDate=parseDate($event.target.valueAsDate)" [hidden]="!hiddenChange"
+                   (change)="getTerms()"
                    [ngClass]="{'is-invalid': f.selectedDate.touched && f.selectedDate.errors, 'is-valid': f.selectedDate.touched && f.selectedDate.valid}">
             <span style="color: red"
                   *ngIf="f.selectedDate.invalid && f.selectedDate.touched">Please select a valid date</span>
           </div>
 
+          <div class="form-group" [hidden]="!hiddenChange">
+            <label class="col-form-label-lg">Terms</label>
+            <select class="form-control-sm" [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedTerm" >
+              <option *ngFor="let term of availableTerms">{{term}}</option>
+            </select>
+          </div>
 
           <div class="col-form-label-lg">
             <label>Price : {{request.price}}</label>
@@ -86,10 +94,12 @@
     <form id="searchDoctor" class="form-group" (ngSubmit)="onSearchRoomSubmit(selectedName, selectedNumber)">
 
       <label style="padding-right: 20px;"> Enter name of examination room : </label>
-      <input type="text" [(ngModel)]="selectedName" [ngModelOptions]="{standalone: true}" style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
+      <input type="text" [(ngModel)]="selectedName" [ngModelOptions]="{standalone: true}"
+             style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
 
       <label style="padding-right: 20px;"> Enter number of examination room : </label>
-      <input type="number" [(ngModel)]="selectedNumber" [ngModelOptions]="{standalone: true}" style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
+      <input type="number" [(ngModel)]="selectedNumber" [ngModelOptions]="{standalone: true}"
+             style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
       <br>
       <br>
       <button type="submit" class="btn btn-primary"
@@ -125,18 +135,17 @@
             <td><input type="radio" name="selectClinicRadio"
                        (change)="selectRoom(room.id)">
             <td><a class="nav-link" type="button" (click)="showCalendar(room.id)">
-            <fa-icon [icon]="calendar" class="mr-1"></fa-icon>
-            <span class="sr-only">(current)</span></a></td>
+              <fa-icon [icon]="calendar" class="mr-1"></fa-icon>
+              <span class="sr-only">(current)</span></a></td>
           </tr>
           </tbody>
         </table>
         <button type="submit" id="btnSchedule"
-                class="btn btn-success" (click)="scheduleExamination()" style="margin-left: 40%;" hidden> Schedule examination
+                class="btn btn-success" (click)="scheduleExamination()" style="margin-left: 40%;" hidden> Schedule
+          examination
         </button>
       </div>
     </div>
-
-
 
 
   </div>
