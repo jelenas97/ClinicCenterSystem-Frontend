@@ -128,6 +128,10 @@ import { CreatePredefinedExaminationsComponent } from './clinic-administrator-ho
 import {CreatePredefinedExaminationsService} from './clinic-administrator-home-page/create-predefined-examinations/create-predefined-examinations.service';
 import { SchedulePredefinedExaminationsComponent } from './patient-home-page/schedule-predefined-examinations/schedule-predefined-examinations.component';
 import {SchedulePredefinedExaminationsService} from './patient-home-page/schedule-predefined-examinations/schedule-predefined-examinations.service';
+import {AllPatientsComponent} from './all-patients/all-patients.component';
+import {AllPatientsService} from './all-patients/all-patients.service';
+import {PatientProfileForMedicalStaffComponent} from './patient-profile-for-medical-staff/patient-profile-for-medical-staff.component';
+import {PatientProfileForMedicalStaffService} from './patient-profile-for-medical-staff/patient-profile-for-medical-staff.service';
 import { CreateClinicCenterAdminsComponent } from './clinic-center-administrator-home-page/create-clinic-center-admins/create-clinic-center-admins.component';
 import {CreateClinicCenterAdminsService} from './clinic-center-administrator-home-page/create-clinic-center-admins/create-clinic-center-admins.service';
 import {CreateMedicalReportComponent} from './create-medical-report/createMedicalReport.component';
@@ -242,6 +246,10 @@ const customNotifierOptions: NotifierOptions = {
     CreatePredefinedExaminationsComponent,
     SchedulePredefinedExaminationsComponent,
     ShowAllClinicAdminsComponent,
+    AllPatientsComponent,
+    ShowAllClinicAdminsComponent,
+    RoomOccupationCalendarComponent,
+    PatientProfileForMedicalStaffComponent,
     CreateMedicalReportComponent,
     RoomOccupationCalendarComponent,
     CreateClinicCenterAdminsComponent
@@ -290,7 +298,8 @@ const customNotifierOptions: NotifierOptions = {
     ScheduleExaminationService, ConfirmationScheduleMessageService, DeclineScheduleMessageService,
     MedicalExamRoomsService, OperationRoomsService, DiagnosisService, EditProfilePageCCAService,
     AddClinicAdminService, ShowAllClinicAdminsService, RoomOccupationCalendarService, CreatePredefinedExaminationsService,
-    SchedulePredefinedExaminationsService, CreateClinicCenterAdminsService, CreateMedicalReportService],
+    SchedulePredefinedExaminationsService, CreateClinicCenterAdminsService, CreateMedicalReportService, AllPatientsService,
+    PatientProfileForMedicalStaffService],
   bootstrap: [AppComponent],
   exports: [WorkCalendarComponent, RoomOccupationCalendarComponent]
 })
