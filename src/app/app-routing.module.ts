@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
 import {RegistrationComponent} from './registration/registration.component';
 import {MedicamentComponent} from './medicament/medicament.component';
 import {LoginComponent} from './login/login.component';
@@ -59,6 +59,7 @@ import {AllPatientsComponent} from './all-patients/all-patients.component';
 import {PatientProfileForMedicalStaffComponent} from './patient-profile-for-medical-staff/patient-profile-for-medical-staff.component';
 import {CreateClinicCenterAdminsComponent} from './clinic-center-administrator-home-page/create-clinic-center-admins/create-clinic-center-admins.component';
 import {CreateMedicalReportComponent} from './create-medical-report/createMedicalReport.component';
+import {NurseProfilePageComponent} from './nurse-home-page/nurse-profile-page/nurse-profile-page.component';
 
 
 const routes: Routes = [{path: 'register', component: RegistrationComponent},
@@ -117,12 +118,13 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'allPatients', component: AllPatientsComponent},
   {path: 'patientProfileForMedicalStaff', component: PatientProfileForMedicalStaffComponent},
   {path: 'createMedicalReport', component: CreateMedicalReportComponent},
-  {path: 'newClinicCenterAdmin', component: CreateClinicCenterAdminsComponent}
-
+  {path: 'newClinicCenterAdmin', component: CreateClinicCenterAdminsComponent},
+  {path: 'nurseProfilePage', component: NurseProfilePageComponent}
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

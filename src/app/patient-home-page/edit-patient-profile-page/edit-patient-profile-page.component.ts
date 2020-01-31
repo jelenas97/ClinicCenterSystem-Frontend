@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from '../../model/user';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../service/user.service';
 import {EditPatientProfilePageService} from './edit-patient-profile-page.service';
+import {NotifierService} from 'angular-notifier';
 
 @Component({
   selector: 'app-edit-patient-profile-page',
@@ -12,11 +13,14 @@ import {EditPatientProfilePageService} from './edit-patient-profile-page.service
 })
 export class EditPatientProfilePageComponent implements OnInit {
 
+  notifier: NotifierService;
   user: User;
   userData: FormGroup;
 
   constructor(private editPatientProfilePageService: EditPatientProfilePageService, private route: ActivatedRoute, private router: Router,
-              private formBuilder: FormBuilder, private userService: UserService) { }
+              private formBuilder: FormBuilder, private userService: UserService, private notifierService: NotifierService) {
+    this.notifier = notifierService;
+  }
 
   ngOnInit() {
     this.userService.getMyInfo();
@@ -43,6 +47,11 @@ export class EditPatientProfilePageComponent implements OnInit {
 
   gotoUser() {
     this.router.navigate(['/patientProfilePage']);
+    this.showNotification('success', 'You have successfully edited your profile!');
+  }
+
+  public showNotification(type: string, message: string): void {
+    this.notifier.notify(type, message);
   }
 
 }
