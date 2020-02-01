@@ -15,14 +15,18 @@
     </select>
 
     <label style="padding-left: 20px; padding-right: 20px;"> Select date : </label>
-    <input required class="form-control-sm" type="date" [(ngModel)]="selectedDate" [disabled]="isAnyClinicSelected"
+    <input required class="form-control-sm" type="date" [value]="selectedDate | date:'yyyy-MM-dd'"
+           (input)="selectedDate=parseDate($event.target.valueAsDate)" (change)="dateChanged($event)"
+           [disabled]="isAnyClinicSelected"
            style="padding-left: 20px; padding-right: 20px;">
 
     <label style="padding-left: 20px; padding-right: 20px;"> Enter name of clinic : </label>
-    <input type="text" [(ngModel)]="selectedName" [ngModelOptions]="{standalone: true}" style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
+    <input type="text" [(ngModel)]="selectedName" [ngModelOptions]="{standalone: true}"
+           style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
 
     <label style="padding-left: 20px; padding-right: 20px;"> Enter lower limit of average rating : </label>
-    <input type="number" [(ngModel)]="selectedRating" [ngModelOptions]="{standalone: true}" min="0" max="10" style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
+    <input type="number" [(ngModel)]="selectedRating" [ngModelOptions]="{standalone: true}" min="0" max="10"
+           style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
 
     <br>
     <br>
@@ -74,16 +78,20 @@
   <br>
   <div id="searchDoctorDiv" [@slideInOut]="animationState2" class="border-bottom">
     <br>
-    <form id="searchDoctor" class="form-group" (ngSubmit)="onSearchDoctorSubmit(selectedFirstName, selectedLastName, selectedDoctorRating)">
+    <form id="searchDoctor" class="form-group"
+          (ngSubmit)="onSearchDoctorSubmit(selectedFirstName, selectedLastName, selectedDoctorRating)">
 
       <label style="padding-left: 20px; padding-right: 20px;"> Enter doctor's first name : </label>
-      <input type="text" [(ngModel)]="selectedFirstName" [ngModelOptions]="{standalone: true}" style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
+      <input type="text" [(ngModel)]="selectedFirstName" [ngModelOptions]="{standalone: true}"
+             style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
 
       <label style="padding-left: 20px; padding-right: 20px;"> Enter doctor's last name : </label>
-      <input type="text" [(ngModel)]="selectedLastName" [ngModelOptions]="{standalone: true}" style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
+      <input type="text" [(ngModel)]="selectedLastName" [ngModelOptions]="{standalone: true}"
+             style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
 
       <label style="padding-left: 20px; padding-right: 20px;"> Enter lower limit of average doctor's rating : </label>
-      <input type="number" [(ngModel)]="selectedDoctorRating" [ngModelOptions]="{standalone: true}" min="0" max="10" style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
+      <input type="number" [(ngModel)]="selectedDoctorRating" [ngModelOptions]="{standalone: true}" min="0" max="10"
+             style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
 
       <br>
       <br>
@@ -102,6 +110,7 @@
       <th scope="col">Country</th>
       <th scope="col">Average rating</th>
       <th scope="col">Select a doctor</th>
+      <th scope="col" [hidden]="hiddenHeader">Available time</th>
     </tr>
     </thead>
     <tbody>
@@ -110,7 +119,15 @@
       <td>{{ doctor.lastName }}</td>
       <td>{{ doctor.country }}</td>
       <td>{{ doctor.averageRating}}</td>
-      <td><input type="radio" name="selectDoctorRadio" (change)="showSendRequestButton(doctor.id)"></td>
+      <td><input type="radio" name="selectDoctorRadio" (change)="showTerms(doctor.id)"></td>
+      <td [hidden]="hiddenTerms">
+        <select class="form-control-sm" [(ngModel)]="selectedTerm"
+                (change)="showSendRequestButton(doctor.id)">
+          <option *ngFor="let term of availableTerms">{{term}}</option>
+        </select>
+      </td>
+      <td [hidden]="hiddenLabel"> No terms available for today </td>
+
     </tr>
     </tbody>
   </table>
