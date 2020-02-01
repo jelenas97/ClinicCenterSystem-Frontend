@@ -9,7 +9,7 @@ import {SlideInOutAnimation} from './animations';
 import {User} from '../../model/user';
 import {UserService} from '../../service/user.service';
 import {NotifierService} from 'angular-notifier';
-
+import {DatePipe} from '@angular/common';
 
 
 @Component({
@@ -30,6 +30,11 @@ export class AllClinicsComponent implements OnInit {
   animationState = 'out';
   animationState2 = 'out';
 
+  availableTerms: string[];
+  selectedTerm: string;
+  hiddenTerms = true;
+  hiddenLabel = true;
+  hiddenHeader = true;
 
   clinics: Clinic[] = [];
   examinationTypes: ExaminationType[] = [];
@@ -50,10 +55,12 @@ export class AllClinicsComponent implements OnInit {
   selectedLastName: string;
   selectedDoctorRating: number;
 
+  realDateAsString: string;
+
   public user: User;
 
   constructor(private patientHomePageService: PatientHomePageService, private router: Router, private userService: UserService,
-              private notifierService: NotifierService) {
+              private notifierService: NotifierService, private datePipe: DatePipe) {
     this.selectedDate = new Date();
     this.user = new User();
     this.notifier = notifierService;
@@ -102,9 +109,13 @@ export class AllClinicsComponent implements OnInit {
     this.patientHomePageService.getSearchedDoctors(this.realSelectedOptionById, id).subscribe(data => {
       this.doctors = data;
     });
+    this.hiddenHeader = true;
+    this.hiddenTerms = true;
+    this.hiddenLabel = true;
   }
 
   showSendRequestButton(id: string) {
+    console.log('termin je ' + this.selectedTerm);
     this.selectedDoctorId = id;
     this.hiddenSend = true;
   }
@@ -120,9 +131,12 @@ export class AllClinicsComponent implements OnInit {
 
   sendRequest(selectedType: string, selectedDate: string) {
     this.patientHomePageService.sendRequest(this.realSelectedOptionById, selectedDate, this.selectedClinicId,
-      this.selectedDoctorId, this.user.id);
+      this.selectedDoctorId, this.user.id, this.selectedTerm);
     this.resetAllForm();
-    this.showNotification( 'success', 'Request for examination has been sent! ' );
+    this.showNotification('success', 'Request for examination has been sent! ');
+    this.hiddenLabel = true;
+    this.hiddenHeader = true;
+    this.hiddenTerms = true;
   }
 
   showSearch($event: MouseEvent) {
@@ -147,8 +161,8 @@ export class AllClinicsComponent implements OnInit {
     }
   }
 
-  public showNotification( type: string, message: string ): void {
-    this.notifier.notify( type, message );
+  public showNotification(type: string, message: string): void {
+    this.notifier.notify(type, message);
   }
 
   onSearchDoctorSubmit(selectedFirstName: string, selectedLastName: string, selectedDoctorRating: number) {
@@ -156,5 +170,31 @@ export class AllClinicsComponent implements OnInit {
       this.selectedClinicId, this.selectedFirstName, this.selectedLastName, this.selectedDoctorRating).subscribe(data => {
       this.doctors = data;
     });
+  }
+
+  showTerms(id: string) {
+    console.log(this.selectedDate);
+    this.patientHomePageService.getAvailableTermsForDoctor(id, this.realDateAsString).subscribe(data => {
+      this.availableTerms = data;
+    });
+    this.hiddenHeader = false;
+    if (this.availableTerms.length === 0) {
+      this.hiddenLabel = false;
+    } else {
+      this.hiddenTerms = false;
+    }
+  }
+
+  dateChanged($event: Event) {
+    console.log((this.selectedDate));
+    this.realDateAsString = this.datePipe.transform(this.selectedDate, 'yyyy_MM_dd');
+    console.log(this.realDateAsString);
+  }
+
+  parseDate(dateString: Date): Date {
+    if (dateString) {
+      return new Date(dateString);
+    }
+    return null;
   }
 }

@@ -8,6 +8,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Room} from '../../model/room';
 import {SlideInOutAnimation} from '../../patient-home-page/all-clinics/animations';
 import {faArrowDown, faArrowUp, faCalendarAlt} from '@fortawesome/free-solid-svg-icons';
+import {DatePipe} from '@angular/common';
 
 
 @Component({
@@ -34,6 +35,9 @@ export class ScheduleExaminationComponent implements OnInit {
   selectedDiscount: string;
   selectedRoom: string;
   hiddenChange: boolean;
+  selectedTerm: string;
+  availableTerms: string[];
+
 
   faArrow = faArrowDown;
   animationState = 'out';
@@ -43,7 +47,7 @@ export class ScheduleExaminationComponent implements OnInit {
   calendar = faCalendarAlt;
 
   constructor(private route: ActivatedRoute, private scheduleExaminationService: ScheduleExaminationService,
-              private userService: UserService, private formBuilder: FormBuilder, private router: Router) {
+              private userService: UserService, private formBuilder: FormBuilder, private router: Router, private datePipe: DatePipe) {
     this.route.queryParams.subscribe(params => {
       this.requestId = params.request;
     });
@@ -63,7 +67,7 @@ export class ScheduleExaminationComponent implements OnInit {
     this.userData = this.formBuilder.group({
       selectedPrice: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.minLength(1), Validators.maxLength(6)]],
       selectedDiscount: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.minLength(1), Validators.maxLength(2)]],
-      selectedDate: ['', [Validators.required]]
+      selectedDate: ['', [Validators.required]],
     });
     this.scheduleExaminationService.getAvailableRooms(this.loggedUser.id).subscribe(data => {
       this.examinationRooms = data;
@@ -86,6 +90,14 @@ export class ScheduleExaminationComponent implements OnInit {
     document.getElementById('btnChange').hidden = true;
     document.getElementById('btnConfirm').hidden = false;
     document.getElementById('btnReset').hidden = false;
+
+    this.getTerms();
+  }
+
+  getTerms() {
+    this.scheduleExaminationService.getAvailableTermsForDoctor(this.request.doctor.id, this.datePipe.transform(this.selectedDate, 'yyyy_MM_dd')).subscribe(data => {
+      this.availableTerms = data;
+    });
   }
 
   confirmChanges() {
@@ -93,6 +105,11 @@ export class ScheduleExaminationComponent implements OnInit {
     console.log(this.selectedDoctor);
     console.log(this.selectedPrice);
     console.log(this.selectedDiscount);
+
+    if (this.selectedTerm === undefined) {
+      this.selectedTerm = this.availableTerms[0];
+    }
+    console.log(this.selectedTerm);
 
     if (this.selectedDoctor !== undefined && this.selectedDoctor !== 'No change') {
       const array = this.selectedDoctor.split(':');
@@ -125,9 +142,11 @@ export class ScheduleExaminationComponent implements OnInit {
 
   scheduleExamination() {
     document.getElementById('btnSchedule').hidden = true;
-    this.scheduleExaminationService.saveExamination(this.selectedRoom, this.request.date, this.request.price,
+    this.scheduleExaminationService.saveExamination(this.selectedRoom, this.datePipe.transform(this.request.date, 'yyyy_MM_dd HH:mm:ss'),
+      this.request.price,
       this.request.duration, this.request.discount, this.request.clinic.id,
-      this.request.doctor.id, this.request.patient.id, this.request.type.id, this.requestId);
+      this.request.doctor.id, this.request.patient.id, this.request.type.id, this.requestId,
+      this.selectedTerm);
     this.router.navigate(['/clinicAdministratorHomePage']);
   }
 
@@ -149,6 +168,13 @@ export class ScheduleExaminationComponent implements OnInit {
   }
 
   showCalendar(id: string) {
-    this.router.navigate(['roomOccupationCalendar'], { state: { example: id } });
+    this.router.navigate(['roomOccupationCalendar'], {state: {example: id}});
+  }
+
+  parseDate(dateString: Date): Date {
+    if (dateString) {
+      return new Date(dateString);
+    }
+    return null;
   }
 }

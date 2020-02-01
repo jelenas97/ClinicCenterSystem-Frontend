@@ -26,10 +26,10 @@ export class ScheduleExaminationService {
   }
 
   saveExamination(selectedRoom: string, date: string, price: number, duration: number, discount: number,
-                  clinicid: string, doctorid: string, patientid: string, typeid: string, requestid: string) {
+                  clinicid: string, doctorid: string, patientid: string, typeid: string, requestid: string, selectedTerm: string) {
     return this.http.put<any>('http://localhost:8080/saveExamination/' + date + '/' + price + '/' + duration
       + '/' + discount + '/' + selectedRoom + '/' + clinicid + '/' + doctorid + '/' + patientid + '/' + typeid
-      + '/' + requestid, any).subscribe();
+      + '/' + requestid + '/' + selectedTerm, any).subscribe();
   }
 
   public searchRoom(selectedName: string, selectedNumber: number): Observable<Room[]> {
@@ -38,5 +38,9 @@ export class ScheduleExaminationService {
 
   getAllExams(roomid: number) {
     return this.http.get<MedicalExamination[]>('http://localhost:8080/medicalExaminations/' + roomid);
+  }
+
+  getAvailableTermsForDoctor(id: string, date: string) {
+    return this.http.get<string[]>('http://localhost:8080/getAvailableTermsForDoctor/' + id + '/' + date);
   }
 }
