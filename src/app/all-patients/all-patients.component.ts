@@ -46,8 +46,4 @@ export class AllPatientsComponent implements OnInit {
   creatMedicalRecord(id: string) {
     this.patientsService.createMedicalRecord(id).subscribe(result => this.ngOnInit());
   }
-
-  showMedicalRecordHistory(id: string) {
-    this.patientsService.getMedicalRecord(id).subscribe();
-  }
 }
