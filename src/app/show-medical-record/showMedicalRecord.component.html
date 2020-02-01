@@ -1,0 +1,46 @@
+
+<h4>Medical record for {{patient.firstName}} {{patient.lastName}}</h4>
+
+<div class="card">
+  <div class="card-body">
+
+      <div class="row">
+        <label class="col-lg-6">Pateient weight:</label>
+        <label class="col-lg-6 text-right" *ngIf="medicalRecord.weight == null">There are no records</label>
+        <label class="col-lg-6 text-right" *ngIf="medicalRecord.weight != null">{{medicalRecord.weight}} kg</label>
+      </div>
+
+      <hr>
+
+      <div class="row">
+        <label class="col-lg-6">Pateient height:</label>
+        <label class="col-lg-6 text-right" *ngIf="medicalRecord.height == null">There are no records</label>
+        <label class="col-lg-6 text-right" *ngIf="medicalRecord.height != null">{{medicalRecord.height}} cm</label>
+      </div>
+
+      <hr>
+
+      <div class="row">
+        <label class="col-lg-6">Pateient Blood Type:</label>
+        <label class="col-lg-6 text-right" *ngIf="medicalRecord.bloodType == null">There are no records</label>
+        <label class="col-lg-6 text-right" *ngIf="medicalRecord.height != null">{{medicalRecord.bloodType}} </label>
+      </div>
+
+      <hr>
+
+      <div class="row">
+        <label class="col-lg-6">Pateient Diopter:</label>
+        <label class="col-lg-6 text-right" *ngIf="medicalRecord.diopter == null">There are no records</label>
+        <label class="col-lg-6 text-right" *ngIf="medicalRecord.height != null">{{medicalRecord.diopter}} </label>
+      </div>
+
+      <hr><br><br><br><br><br>
+
+      <div class="row mt-5">
+        <div class="col-lg-4">
+          <button type="button" routerLink="/editMedicalRecord/basicInfo/{{patient.id}}" class="btn btn-outline-success col-lg-12">Edit</button>
+        </div>
+      </div>
+
+  </div>
+</div>
