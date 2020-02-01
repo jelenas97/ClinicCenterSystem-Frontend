@@ -137,7 +137,11 @@ import {CreateClinicCenterAdminsService} from './clinic-center-administrator-hom
 import {CreateMedicalReportComponent} from './create-medical-report/createMedicalReport.component';
 import {CreateMedicalReportService} from './create-medical-report/createMedicalReport.service';
 import {NurseProfilePageComponent} from './nurse-home-page/nurse-profile-page/nurse-profile-page.component';
-import {NurseProfilePageService} from "./nurse-home-page/nurse-profile-page/nurse-profile-page.service";
+import {NurseProfilePageService} from './nurse-home-page/nurse-profile-page/nurse-profile-page.service';
+import { ScheduleOperationComponent } from './clinic-administrator-home-page/schedule-operation/schedule-operation.component';
+import { MedicalOperationRequestsComponent } from './clinic-administrator-home-page/medical-operation-requests/medical-operation-requests.component';
+import {MedicalOperationRequestsService} from './clinic-administrator-home-page/medical-operation-requests/medical-operation-requests.service';
+import {ScheduleOperationService} from './clinic-administrator-home-page/schedule-operation/schedule-operation.service';
 
 /**
  * Custom angular notifier options
@@ -254,7 +258,9 @@ const customNotifierOptions: NotifierOptions = {
     CreateMedicalReportComponent,
     RoomOccupationCalendarComponent,
     CreateClinicCenterAdminsComponent,
-    NurseProfilePageComponent
+    NurseProfilePageComponent,
+    ScheduleOperationComponent,
+    MedicalOperationRequestsComponent
   ],
   imports: [
     BrowserModule,
@@ -340,7 +346,9 @@ const customNotifierOptions: NotifierOptions = {
     CreateMedicalReportService,
     AllPatientsService,
     PatientProfileForMedicalStaffService,
-    NurseProfilePageService
+    NurseProfilePageService,
+    MedicalOperationRequestsService,
+    ScheduleOperationService
   ],
   bootstrap: [AppComponent],
   exports: [WorkCalendarComponent, RoomOccupationCalendarComponent]

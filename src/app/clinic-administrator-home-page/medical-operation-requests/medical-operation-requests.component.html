@@ -1,0 +1,23 @@
+<div>
+  <br>
+  <h2 style="text-align: center">All operation requests </h2>
+  <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Date</th>
+      <th scope="col">Duration</th>
+      <th scope="col">Schedule</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let req of medicalOperationRequests">
+      <td>{{ req.id }}</td>
+      <td>{{ req.name}}</td>
+      <td>{{ req.number}}</td>
+      <td> <button class="btn btn-success" (click)="schedule(req)"> Schedule </button> </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+

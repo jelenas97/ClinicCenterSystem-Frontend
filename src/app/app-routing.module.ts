@@ -60,6 +60,8 @@ import {PatientProfileForMedicalStaffComponent} from './patient-profile-for-medi
 import {CreateClinicCenterAdminsComponent} from './clinic-center-administrator-home-page/create-clinic-center-admins/create-clinic-center-admins.component';
 import {CreateMedicalReportComponent} from './create-medical-report/createMedicalReport.component';
 import {NurseProfilePageComponent} from './nurse-home-page/nurse-profile-page/nurse-profile-page.component';
+import {ScheduleOperationComponent} from './clinic-administrator-home-page/schedule-operation/schedule-operation.component';
+import {MedicalOperationRequestsComponent} from './clinic-administrator-home-page/medical-operation-requests/medical-operation-requests.component';
 
 
 const routes: Routes = [{path: 'register', component: RegistrationComponent},
@@ -119,7 +121,9 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'patientProfileForMedicalStaff', component: PatientProfileForMedicalStaffComponent},
   {path: 'createMedicalReport', component: CreateMedicalReportComponent},
   {path: 'newClinicCenterAdmin', component: CreateClinicCenterAdminsComponent},
-  {path: 'nurseProfilePage', component: NurseProfilePageComponent}
+  {path: 'nurseProfilePage', component: NurseProfilePageComponent},
+  {path: 'scheduleOperation', component: ScheduleOperationComponent},
+  {path: 'medicalOperationRequests', component: MedicalOperationRequestsComponent}
 ];
 
 @NgModule({
