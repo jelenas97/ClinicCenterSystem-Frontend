@@ -59,6 +59,7 @@ import {AllPatientsComponent} from './all-patients/all-patients.component';
 import {PatientProfileForMedicalStaffComponent} from './patient-profile-for-medical-staff/patient-profile-for-medical-staff.component';
 import {CreateClinicCenterAdminsComponent} from './clinic-center-administrator-home-page/create-clinic-center-admins/create-clinic-center-admins.component';
 import {CreateMedicalReportComponent} from './create-medical-report/createMedicalReport.component';
+import {ClinicExamsComponent} from './clinic-administrator-home-page/clinic-exams/clinic-exams.component';
 
 
 const routes: Routes = [{path: 'register', component: RegistrationComponent},
@@ -117,7 +118,8 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'allPatients', component: AllPatientsComponent},
   {path: 'patientProfileForMedicalStaff', component: PatientProfileForMedicalStaffComponent},
   {path: 'createMedicalReport', component: CreateMedicalReportComponent},
-  {path: 'newClinicCenterAdmin', component: CreateClinicCenterAdminsComponent}
+  {path: 'newClinicCenterAdmin', component: CreateClinicCenterAdminsComponent},
+  {path: 'clinicExams', component: ClinicExamsComponent}
 
 ];
 

@@ -136,6 +136,12 @@ import { CreateClinicCenterAdminsComponent } from './clinic-center-administrator
 import {CreateClinicCenterAdminsService} from './clinic-center-administrator-home-page/create-clinic-center-admins/create-clinic-center-admins.service';
 import {CreateMedicalReportComponent} from './create-medical-report/createMedicalReport.component';
 import {CreateMedicalReportService} from './create-medical-report/createMedicalReport.service';
+import {ClinicExamsComponent} from './clinic-administrator-home-page/clinic-exams/clinic-exams.component';
+import {ClinicExamsService} from './clinic-administrator-home-page/clinic-exams/clinic-exams.service';
+import { GoogleChartsModule } from 'angular-google-charts';
+import { jqxChartModule } from 'jqwidgets-ng/jqxchart';
+import { ChartsModule } from 'ng2-charts';
+
 
 /**
  * Custom angular notifier options
@@ -252,7 +258,8 @@ const customNotifierOptions: NotifierOptions = {
     PatientProfileForMedicalStaffComponent,
     CreateMedicalReportComponent,
     RoomOccupationCalendarComponent,
-    CreateClinicCenterAdminsComponent
+    CreateClinicCenterAdminsComponent,
+    ClinicExamsComponent
   ],
   imports: [
     BrowserModule,
@@ -275,6 +282,8 @@ const customNotifierOptions: NotifierOptions = {
     MatRadioModule,
     NotifierModule.withConfig(customNotifierOptions),
     FlatpickrModule.forRoot(),
+    jqxChartModule,
+    ChartsModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory
@@ -299,9 +308,9 @@ const customNotifierOptions: NotifierOptions = {
     MedicalExamRoomsService, OperationRoomsService, DiagnosisService, EditProfilePageCCAService,
     AddClinicAdminService, ShowAllClinicAdminsService, RoomOccupationCalendarService, CreatePredefinedExaminationsService,
     SchedulePredefinedExaminationsService, CreateClinicCenterAdminsService, CreateMedicalReportService, AllPatientsService,
-    PatientProfileForMedicalStaffService],
+    PatientProfileForMedicalStaffService, ClinicExamsService],
   bootstrap: [AppComponent],
-  exports: [WorkCalendarComponent, RoomOccupationCalendarComponent]
+  exports: [WorkCalendarComponent, RoomOccupationCalendarComponent, ClinicExamsComponent]
 })
 export class AppModule {
 }
