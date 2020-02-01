@@ -33,4 +33,7 @@ export class CreateMedicalReportService {
     return this.httpClient.get<Medicament[]>(this.allMedicamentsUrl);
   }
 
+  getAvailableTermsForDoctor(id: string, date: string) {
+    return this.httpClient.get<string[]>('http://localhost:8080/getAvailableTermsForDoctor/' + id + '/' + date);
+  }
 }

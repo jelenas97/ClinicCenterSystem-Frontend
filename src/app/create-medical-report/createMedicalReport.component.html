@@ -77,25 +77,64 @@
         </form>
       </div>
     </div>
-    <ng-template #mymodal let-modal>
-      <div class="modal-header">
-        <h6 class="modal-title" id="modal-basic-title">Schedule medical exam</h6>
-      </div>
-      <div class="modal-body">
-        <label>Choose the date for new exam:</label>
-        <input type="date"/>
-      </div>
-    </ng-template>
+    <div>
+      <ng-template #mymodal let-modal>
+        <div class="modal-header">
+          <h6 class="modal-title" id="modal-basic-title">Schedule medical exam</h6>
+        </div>
+        <div class="modal-body">
+          <form id="createMedicalExam" class="form-group" (ngSubmit)="createMedicalExam(selectedDate, selectedTerm)">
+            <label style="padding-left: 20px; padding-right: 20px;"> Select date : </label>
+            <input required class="form-control-sm" type="date" [value]="selectedDate | date:'yyyy-MM-dd'"
+                   (input)="selectedDate=parseDate($event.target.valueAsDate)" (change)="dateChanged($event)"
+                   style="padding-left: 20px; padding-right: 20px;" >
+            <label style="padding-left: 20px; padding-right: 20px;"> Select available term : </label>
+            <span [hidden]="hiddenTerms">
+              <select class="form-control-sm" [(ngModel)]="selectedTerm" [ngModelOptions]="{standalone: true}">
+                <option *ngFor="let term of availableTerms">{{term}}</option>
+              </select>
+            </span>
+            <td [hidden]="hiddenLabel"> No terms available for this day </td>
 
-    <ng-template #mymodal2 let-modal2>
-      <div class="modal-header">
-        <h6 class="modal-title" id="modal-basic-title2">Schedule operation</h6>
-      </div>
-      <div class="modal-body">
-        <label>Choose the date for new operation:</label>
-        <input type="date"/>
-      </div>
-    </ng-template>
+            <br>
+            <br>
+            <button type="submit" [hidden]="isAnyTermSelected" class="btn btn-primary"
+                    style="margin-left: 45%; width: 150px;">Create medical exam
+            </button>
+
+          </form>
+        </div>
+      </ng-template>
+    </div>
+    <div>
+      <ng-template #mymodal2 let-modal2>
+        <div class="modal-header">
+          <h6 class="modal-title" id="modal-basic-title2">Schedule operation</h6>
+        </div>
+        <div class="modal-body">
+          <form id="createOperation" class="form-group" (ngSubmit)="createOperation(selectedDate, selectedTerm)">
+            <label style="padding-left: 20px; padding-right: 20px;"> Select date : </label>
+            <input required class="form-control-sm" type="date" [value]="selectedDateOperation | date:'yyyy-MM-dd'"
+                   (input)="selectedDateOperation=parseDate($event.target.valueAsDate)" (change)="dateOperationChanged($event)"
+                   style="padding-left: 20px; padding-right: 20px;" >
+            <label style="padding-left: 20px; padding-right: 20px;"> Select available term : </label>
+            <span [hidden]="hiddenTermsOperation">
+              <select class="form-control-sm" [(ngModel)]="selectedTermOperation" [ngModelOptions]="{standalone: true}">
+                <option *ngFor="let term of availableTermsOperation">{{term}}</option>
+              </select>
+            </span>
+            <td [hidden]="hiddenLabelOperation"> No terms available for this day </td>
+
+            <br>
+            <br>
+            <button type="submit" [hidden]="isAnyTermSelectedOperation" class="btn btn-primary"
+                    style="margin-left: 45%; width: 150px;">Create operation
+            </button>
+
+          </form>
+        </div>
+      </ng-template>
+    </div>
   </div>
 </div>
 

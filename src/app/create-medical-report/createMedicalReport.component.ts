@@ -8,6 +8,7 @@ import {UserService} from '../service/user.service';
 import {User} from '../model/user';
 import {Medicament} from '../model/medicament';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {DatePipe} from '@angular/common';
 
 
 @Component({
@@ -22,10 +23,28 @@ export class CreateMedicalReportComponent implements OnInit {
   user: User;
   selectedDiagnosis: string;
   selectedMedicament: string;
+  selectedDate: any;
+  selectedTerm: any;
+  isAnyTermSelected = true;
+  private realDateAsString: string;
+  hiddenLabel = true;
+  hiddenTerms = true;
+  availableTerms: string[];
+  private realOperationDateAsString: string;
+  private selectedDateOperation: any;
+  hiddenTermsOperation = true;
+  hiddenLabelOperation = true;
+  selectedTermOperation: any;
+  availableTermsOperation: string[];
+  private isAnyTermSelectedOperation = true;
+
+
 
   constructor(private createMedicalReportService: CreateMedicalReportService, private route: ActivatedRoute,
-              private router: Router, private userService: UserService, private modalService: NgbModal) {
+              private router: Router, private userService: UserService, private modalService: NgbModal, private datePipe: DatePipe) {
     this.medicalReport = new MedicalReport();
+    this.userService.getMyInfo();
+    this.user = this.userService.currentUser;
   }
 
   ngOnInit(): void {
@@ -62,10 +81,56 @@ export class CreateMedicalReportComponent implements OnInit {
 
   openModalExam(mymodal) {
     this.modalService.open(mymodal);
-
   }
 
   openModalOperation(mymodal2) {
     this.modalService.open(mymodal2);
+  }
+
+  parseDate(dateString: Date) {
+    if (dateString) {
+      return new Date(dateString);
+    }
+    return null;
+  }
+
+  dateChanged($event: Event) {
+    this.realDateAsString = this.datePipe.transform(this.selectedDate, 'yyyy_MM_dd');
+
+    this.createMedicalReportService.getAvailableTermsForDoctor(this.user.id, this.realDateAsString).subscribe(data => {
+      this.availableTerms = data;
+      if (this.availableTerms.length === 0) {
+        this.hiddenLabel = false;
+      } else {
+        this.hiddenTerms = false;
+        this.selectedTerm = this.availableTerms[0];
+        this.isAnyTermSelected = false;
+      }
+
+    });
+  }
+
+  dateOperationChanged($event: Event) {
+    this.realOperationDateAsString = this.datePipe.transform(this.selectedDateOperation, 'yyyy_MM_dd');
+
+    this.createMedicalReportService.getAvailableTermsForDoctor(this.user.id, this.realOperationDateAsString).subscribe(data => {
+      this.availableTermsOperation = data;
+      if (this.availableTermsOperation.length === 0) {
+        this.hiddenLabelOperation = false;
+      } else {
+        this.hiddenTermsOperation = false;
+        this.selectedTermOperation = this.availableTermsOperation[0];
+        this.isAnyTermSelectedOperation = false;
+      }
+
+    });
+  }
+
+  createMedicalExam(selectedDate: any, selectedTerm: any) {
+
+  }
+
+  createOperation(selectedDate: any, selectedTerm: any) {
+
   }
 }
