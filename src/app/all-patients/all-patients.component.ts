@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {User} from '../model/user';
 import {AllPatientsService} from './all-patients.service';
 import {
+  faBookMedical,
   faUserCircle
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -18,10 +19,14 @@ export class AllPatientsComponent implements OnInit {
   selectedLastName: string;
   selectedSsn: number;
   UserCircle = faUserCircle;
+  faMedicalRecord = faBookMedical;
+  private role: string;
 
-  constructor(private patientsService: AllPatientsService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private patientsService: AllPatientsService, private route: ActivatedRoute, private router: Router) {
+  }
 
   ngOnInit(): void {
+    this.role = sessionStorage.getItem('role');
     this.patientsService.getAll().subscribe(data => {
       this.patients = data;
     });
@@ -36,5 +41,9 @@ export class AllPatientsComponent implements OnInit {
   showProfile(id: string) {
     this.router.navigate(['patientProfileForMedicalStaff'], { state: { example: id } });
 
+  }
+
+  creatMedicalRecord(id: string) {
+    this.patientsService.createMedicalRecord(id).subscribe(result => this.ngOnInit());
   }
 }

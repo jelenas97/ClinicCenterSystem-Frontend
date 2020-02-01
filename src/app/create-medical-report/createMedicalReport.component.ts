@@ -2,13 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MedicalReport} from '../model/medicalReport';
 import {Diagnosis} from '../model/diagnosis';
-import {Recipe} from '../model/recipe';
 import {CreateMedicalReportService} from './createMedicalReport.service';
 import {UserService} from '../service/user.service';
 import {User} from '../model/user';
 import {Medicament} from '../model/medicament';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {DatePipe} from '@angular/common';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 
 @Component({
@@ -23,6 +23,8 @@ export class CreateMedicalReportComponent implements OnInit {
   user: User;
   selectedDiagnosis: string;
   selectedMedicament: string;
+  medicalReportData: FormGroup;
+  medicalReportId: string;
   selectedDate: any;
   selectedTerm: any;
   isAnyTermSelected = true;
@@ -41,13 +43,23 @@ export class CreateMedicalReportComponent implements OnInit {
 
 
   constructor(private createMedicalReportService: CreateMedicalReportService, private route: ActivatedRoute,
-              private router: Router, private userService: UserService, private modalService: NgbModal, private datePipe: DatePipe) {
+              private router: Router, private userService: UserService, private modalService: NgbModal, private datePipe: DatePipe,
+              private formBuilder: FormBuilder) {
     this.medicalReport = new MedicalReport();
     this.userService.getMyInfo();
     this.user = this.userService.currentUser;
   }
 
   ngOnInit(): void {
+
+    this.route.paramMap.subscribe(params => {
+      this.medicalReportId = params.get('id');
+    });
+
+    this.medicalReportData = this.formBuilder.group({
+      report: ['', [Validators.required]]
+    });
+
     this.createMedicalReportService.getAllDiagnosis().subscribe(data => {
       this.diagnoses = data;
     });
@@ -61,7 +73,8 @@ export class CreateMedicalReportComponent implements OnInit {
     this.userService.getMyInfo();
     this.user = this.userService.currentUser;
     this.medicalReport.doctorId = this.user.id;
-    console.log(this.user.id);
+    this.medicalReport.diagnosisId = this.selectedDiagnosis;
+    this.medicalReport.medicamentId = this.selectedMedicament;
     this.createMedicalReportService.save(this.medicalReport).subscribe(result => this.gotoHome());
   }
 
