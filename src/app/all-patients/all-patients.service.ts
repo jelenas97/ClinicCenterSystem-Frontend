@@ -2,14 +2,20 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User} from '../model/user';
+import {MedicalHistory} from '../model/medicalHistory';
 
 @Injectable()
 export class AllPatientsService {
 
   private readonly url: string;
+  private readonly newMedicalRecord: string;
+  private readonly medicalHistoryUrl: string;
 
   constructor(private http: HttpClient) {
     this.url = 'http://localhost:8080/allPatients';
+    this.newMedicalRecord = 'http://localhost:8080/newMedicalRecord';
+    this.medicalHistoryUrl = 'http://localhost:8080/medicalHistory';
+
   }
 
   getAll(): Observable<User[]> {
@@ -33,4 +39,11 @@ export class AllPatientsService {
     }
   }
 
+  createMedicalRecord(id: string) {
+    return this.http.post<string>(this.newMedicalRecord, id);
+  }
+
+  getMedicalRecord(id: string): Observable<MedicalHistory[]> {
+    return this.http.get<MedicalHistory[]>(this.medicalHistoryUrl + '/' + id);
+  }
 }
