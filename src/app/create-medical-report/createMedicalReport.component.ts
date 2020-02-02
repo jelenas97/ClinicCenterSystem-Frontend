@@ -11,6 +11,7 @@ import {DatePipe} from '@angular/common';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MedicalExamination} from '../model/medicalExamination';
 import {NotifierService} from 'angular-notifier';
+import {OperationRequest} from '../model/operationRequest';
 
 
 @Component({
@@ -44,6 +45,7 @@ export class CreateMedicalReportComponent implements OnInit {
   private examId: string;
   exam: MedicalExamination;
   notifier: NotifierService;
+  operationRequest: OperationRequest;
 
 
 
@@ -159,7 +161,18 @@ export class CreateMedicalReportComponent implements OnInit {
   }
 
   createOperation(selectedDate: any, selectedTerm: any) {
-
+    this.modalService.dismissAll();
+    this.operationRequest = new OperationRequest();
+    this.operationRequest.clinic = this.exam.clinic;
+    this.operationRequest.date = selectedDate;
+    this.operationRequest.doctor = this.user;
+    this.operationRequest.duration = 30;
+    this.operationRequest.patient = this.exam.patient;
+    console.log(this.operationRequest);
+    this.createMedicalReportService.sendRequestOperation(this.operationRequest, selectedTerm);
+    this.showNotification('success', 'Request for operation has been sent! ');
+    this.hiddenLabelOperation = true;
+    this.hiddenTermsOperation = true;
   }
 
   public showNotification(type: string, message: string): void {

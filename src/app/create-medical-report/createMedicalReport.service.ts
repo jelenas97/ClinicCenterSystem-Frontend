@@ -7,6 +7,8 @@ import {Diagnosis} from '../model/diagnosis';
 import {Medicament} from '../model/medicament';
 import {MedicalExamination} from '../model/medicalExamination';
 import {any} from 'codelyzer/util/function';
+import {Room} from '../model/room';
+import {OperationRequest} from '../model/operationRequest';
 
 @Injectable()
 export class CreateMedicalReportService {
@@ -46,5 +48,10 @@ export class CreateMedicalReportService {
   sendRequestExam(id: string, selectedDate: any, id2: string, id3: string, id4: string, selectedTerm: any) {
     return this.httpClient.put<any>('http://localhost:8080/auth/sendMedicalExamRequest/' + id + '/' + selectedDate +
       '/' + id2 + '/' + id3 + '/' + id4 + '/' + selectedTerm, any).subscribe();
+  }
+
+  sendRequestOperation(operationRequest: OperationRequest, selectedTerm: any) {
+    return this.httpClient.post<OperationRequest>('http://localhost:8080/operationRequest/' + selectedTerm, operationRequest).subscribe();
+
   }
 }
