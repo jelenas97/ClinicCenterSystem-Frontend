@@ -20,19 +20,23 @@ export class EditMedicalReportComponent implements OnInit {
   medicaments: Medicament[];
   medicalReportId: string;
   medicalReportData: FormGroup;
+  selectedDiagnosis: any;
+  selectedMedicament: any;
 
   constructor(private editMedicalReportService: EditMedicalReportService, private route: ActivatedRoute, private router: Router,
-              private formBuilder: FormBuilder, private userService: UserService) {
+              private formBuilder: FormBuilder) {
     this.medicalReport = new MedicalReport();
 
   }
 
   onSubmit() {
-    this.editMedicalReportService.update(this.medicalReport).subscribe(result => this.gotoMedicalReport());
+    this.medicalReport.diagnosisId = this.selectedDiagnosis;
+    this.medicalReport.medicamentId = this.selectedMedicament;
+    this.editMedicalReportService.update(this.medicalReport, this.medicalReportId).subscribe(result => this.gotoMedicalReport());
   }
 
   gotoMedicalReport() {
-    this.router.navigate(['/showMedicalHistory/' + this.medicalReportId ]);
+    this.router.navigate(['/showMedicalHistory/' +  this.medicalReport.patientId ]);
   }
 
   ngOnInit(): void {
@@ -41,24 +45,21 @@ export class EditMedicalReportComponent implements OnInit {
       this.medicalReportId = params.get('id');
     });
 
-    this.editMedicalReportService.getAllDiagnosis().subscribe(data => {
-      this.diagnoses = data;
-    });
-
-    this.editMedicalReportService.getAllMedicaments().subscribe(data => {
-      this.medicaments = data;
-    });
-
     this.editMedicalReportService.getById(this.medicalReportId).subscribe(data => {
       this.medicalReport = data;
+      this.editMedicalReportService.getAllDiagnosis().subscribe(data1 => {
+        this.diagnoses = data1;
+        this.selectedDiagnosis = this.medicalReport.diagnosisId;
+        this.editMedicalReportService.getAllMedicaments().subscribe(data2 => {
+          this.medicaments = data2;
+          this.selectedMedicament = this.medicalReport.medicamentId;
+        });
+      });
     });
 
     this.medicalReportData = this.formBuilder.group({
       report: ['', [Validators.required]],
-      diagnosis: ['', [Validators.required]],
-      medicament: ['', [Validators.required]],
-      therapy: ['', [Validators.required]],
     });
-  }
 
+  }
 }

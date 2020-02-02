@@ -31,15 +31,15 @@ export class ShowMedicalHistoryComponent implements OnInit {
     this.userService.getMyInfo();
     this.currUser = this.userService.currentUser;
 
-    console.log(this.currUser.id);
 
     this.activatedRoute.paramMap.subscribe(params => {
       this.medicalHistoryId = params.get('id');
+      this.showMedicalHistoryService.getAllById(this.medicalHistoryId).subscribe(data => {
+        this.medicalHistory = data;
+      });
     });
 
-    this.showMedicalHistoryService.getAllById(this.medicalHistoryId).subscribe(data => {
-      this.medicalHistory = data;
-    });
+
 
   }
 }

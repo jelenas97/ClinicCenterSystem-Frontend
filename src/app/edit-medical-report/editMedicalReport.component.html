@@ -6,7 +6,7 @@
 </head>
 <body>
 <div class="container medicalReport pt-4">
-  <div class="form col-lg-8 offset-3">
+  <div class="form col-lg-6 offset-3">
 
     <div class="note ">
       <h4>Edit Medical Report</h4>
@@ -30,7 +30,7 @@
 
             <div class="form-group col-lg-6">
               <label for="selectedDiagnosis">Choose diagnosis</label>
-              <select [(ngModel)]="medicalReport.diagnosisId" id="selectedDiagnosis" [ngModelOptions]="{standalone: true}"
+              <select [(ngModel)]="selectedDiagnosis" id="selectedDiagnosis" [ngModelOptions]="{standalone: true}"
                       class="custom-select">
                 <option value="{{diagnosis.id}}" *ngFor="let diagnosis of diagnoses">
                   {{diagnosis.name}}</option>
@@ -39,7 +39,7 @@
 
             <div class="form-group col-lg-6">
               <label for="selectedMedicament">Choose medicament</label>
-              <select [(ngModel)]="medicalReport.medicamentId" id="selectedMedicament" [ngModelOptions]="{standalone: true}"
+              <select [(ngModel)]="selectedMedicament" id="selectedMedicament" [ngModelOptions]="{standalone: true}"
                       class="custom-select">
                 <option value="{{med.id}}" *ngFor="let med of medicaments">
                   {{med.name}}</option>

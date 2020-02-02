@@ -28,11 +28,11 @@ export class ShowMedicalRecordComponent implements OnInit {
       this.examId = params.get('id');
       this.showMedicalRecordService.getMedicalExam(this.examId).subscribe(data => {
         this.exam = data;
-        this.showMedicalRecordService.getById(this.exam.patient.id).subscribe(data => {
-          this.medicalRecord = data;
+        this.showMedicalRecordService.getById(this.exam.patient.id).subscribe(data2 => {
+          this.medicalRecord = data2;
         });
-        this.showMedicalRecordService.getByPatientId(this.exam.patient.id).subscribe(data => {
-          this.patient = data;
+        this.showMedicalRecordService.getByPatientId(this.exam.patient.id).subscribe(data3 => {
+          this.patient = data3;
         });
       });
     });

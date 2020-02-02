@@ -31,7 +31,7 @@
       <td *ngIf="medExam.therapy == null">No therapy has been given!</td>
       <td *ngIf="medExam.therapy != null">{{ medExam.therapy}}</td>
       <td>{{medExam.doctorName}}</td>
-      <td><button class="btn" routerLink="/editMedicalReport/{{medExam.id}}" type="button"><fa-icon [icon]="faEdit" class="mt-0"></fa-icon></button></td>
+      <td><button *ngIf="medExam.doctorId == currUser.id" class="btn" routerLink="/editMedicalReport/{{medExam.id}}" type="button"><fa-icon [icon]="faEdit" class="mt-0"></fa-icon></button></td>
     </tr>
     </tbody>
   </table>
