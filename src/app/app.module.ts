@@ -150,6 +150,10 @@ import { ChartsModule } from 'ng2-charts';
 import {ClinicIncomeService} from './clinic-administrator-home-page/clinic-income/clinic-income.service';
 import {ClinicIncomeComponent} from './clinic-administrator-home-page/clinic-income/clinic-income.component';
 
+import {ShowMedicalHistoryComponent} from "./show-medical-history/showMedicalHistory.component";
+import {ShowMedicalHistoryService} from "./show-medical-history/showMedicalHistory.service";
+import {EditMedicalReportComponent} from "./edit-medical-report/editMedicalReport.component";
+import {EditMedicalReportService} from "./edit-medical-report/editMedicalReport.service";
 
 /**
  * Custom angular notifier options
@@ -270,6 +274,8 @@ const customNotifierOptions: NotifierOptions = {
     ShowMedicalRecordComponent,
     BeginExamComponent,
     EditMedicalRecordBasicInfoComponent,
+    ShowMedicalHistoryComponent,
+    EditMedicalReportComponent,
     CreateClinicCenterAdminsComponent,
     ClinicExamsComponent,
     ClinicIncomeComponent
@@ -364,6 +370,8 @@ const customNotifierOptions: NotifierOptions = {
     BeginExamService,
     ShowMedicalRecordService,
     EditMedicalRecordBasicInfoService,
+    ShowMedicalHistoryService,
+    EditMedicalReportService,
     ClinicExamsService,
     ClinicIncomeService
   ],

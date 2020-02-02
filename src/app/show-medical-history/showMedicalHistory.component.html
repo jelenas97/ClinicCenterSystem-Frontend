@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="col-lg-10 offset-1 mt-4">
+  <table class="table table-borderless table-sm table-striped">
+    <thead class="bg-success text-white">
+    <tr>
+      <th scope="col">Clinic Name</th>
+      <th scope="col">Medical Exam Date</th>
+      <th scope="col">Report</th>
+      <th scope="col">Diagnosis</th>
+      <th scope="col">Medicament</th>
+      <th scope="col">Therapy</th>
+      <th scope="col">Doctor</th>
+      <th scope="col">Edit</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let medExam of medicalHistory">
+      <td>{{medExam.clinicName}}</td>
+      <td>{{medExam.dateExam | date: 'dd. MMMM yyyy'}}</td>
+      <td>{{medExam.report}}</td>
+      <td *ngIf="medExam.diagnosis == null">No diagnosis has been established!</td>
+      <td *ngIf="medExam.diagnosis != null">{{medExam.diagnosis}}</td>
+      <td *ngIf="medExam.medicament == null">No drug was prescribed!</td>
+      <td *ngIf="medExam.medicament != null">{{ medExam.medicament}}</td>
+      <td *ngIf="medExam.therapy == null">No therapy has been given!</td>
+      <td *ngIf="medExam.therapy != null">{{ medExam.therapy}}</td>
+      <td>{{medExam.doctorName}}</td>
+      <td><button *ngIf="medExam.doctorId == currUser.id" class="btn" routerLink="/editMedicalReport/{{medExam.id}}" type="button"><fa-icon [icon]="faEdit" class="mt-0"></fa-icon></button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

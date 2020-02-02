@@ -21,6 +21,7 @@
         <th scope="col">Patient SSN</th>
         <th scope="col" width="auto">Patient Profile</th>
         <th scope="col" *ngIf="role == 'ROLE_CLINIC_CENTER_ADMIN'">Create Medical Record</th>
+        <th scope="col">Medical Record</th>
       </tr>
       </thead>
       <tbody>
@@ -35,6 +36,10 @@
         <td width="auto" *ngIf="role == 'ROLE_CLINIC_CENTER_ADMIN'">
           <p *ngIf="patient.medicalRecord != null"><b>Already has medical record!</b></p>
           <button *ngIf="patient.medicalRecord == null" (click)="creatMedicalRecord(patient.id)" class="btn btn-success">Create medical record</button>
+        </td>
+        <td>
+          <fa-icon [icon]="faMedicalRecord"></fa-icon>
+          <button type="button" routerLink="/showMedicalHistory/{{patient.id}}" class="btn">Medical Record</button>
         </td>
       </tr>
       </tbody>

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {MedicalRecord} from '../model/medicalRecord';
 import {User} from '../model/user';
+import {MedicalExamination} from '../model/medicalExamination';
 
 
 @Injectable()
@@ -24,5 +25,8 @@ export class ShowMedicalRecordService {
     return this.http.get<User>(this.patientUrl + id);
   }
 
+  public getMedicalExam(examId: string): Observable<MedicalExamination> {
+    return this.http.get<MedicalExamination>('http://localhost:8080/getMedicalExam/' + examId);
+  }
 
 }

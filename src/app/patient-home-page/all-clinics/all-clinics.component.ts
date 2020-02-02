@@ -173,7 +173,6 @@ export class AllClinicsComponent implements OnInit {
   }
 
   showTerms(id: string) {
-    console.log(this.selectedDate);
     this.patientHomePageService.getAvailableTermsForDoctor(id, this.realDateAsString).subscribe(data => {
       this.availableTerms = data;
       this.hiddenHeader = false;
