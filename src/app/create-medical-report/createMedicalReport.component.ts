@@ -87,7 +87,7 @@ export class CreateMedicalReportComponent implements OnInit {
     this.medicalReport.doctorId = this.user.id;
     this.medicalReport.diagnosisId = this.selectedDiagnosis;
     this.medicalReport.medicamentId = this.selectedMedicament;
-    this.createMedicalReportService.save(this.medicalReport).subscribe(result => this.gotoHome());
+    this.createMedicalReportService.save(this.medicalReport, this.exam.id).subscribe(result => this.gotoHome());
   }
 
   gotoHome() {

@@ -25,8 +25,8 @@ export class CreateMedicalReportService {
 
   }
 
-  public save(medicalReport: MedicalReport) {
-    return this.httpClient.post<MedicalReport>(this.medicalReportUrl, medicalReport);
+  public save(medicalReport: MedicalReport, id: string) {
+    return this.httpClient.post<MedicalReport>(this.medicalReportUrl + '/' + id, medicalReport);
   }
 
   public getAllDiagnosis(): Observable<Diagnosis[]> {
