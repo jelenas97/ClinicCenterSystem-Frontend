@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {MedicalOperationRequest} from '../../model/medicalOperationRequest';
+import {OperationRequest} from '../../model/operationRequest';
 
 @Injectable()
 export class MedicalOperationRequestsService {
@@ -9,6 +9,6 @@ export class MedicalOperationRequestsService {
   }
 
   getAllRequests(adminId: string) {
-    return this.http.get<MedicalOperationRequest[]>('http://localhost:8080/auth/getAllOperationRequests');
+    return this.http.get<OperationRequest[]>('http://localhost:8080/auth/getAllOperationRequests');
   }
 }

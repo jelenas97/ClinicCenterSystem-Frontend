@@ -5,6 +5,7 @@ import {UserService} from '../../service/user.service';
 import {MedicalOperationRequestsService} from './medical-operation-requests.service';
 import {User} from '../../model/user';
 import {MedicalOperationRequest} from '../../model/medicalOperationRequest';
+import {OperationRequest} from '../../model/operationRequest';
 
 @Component({
   selector: 'app-medical-operation-requests',
@@ -14,7 +15,7 @@ import {MedicalOperationRequest} from '../../model/medicalOperationRequest';
 export class MedicalOperationRequestsComponent implements OnInit {
 
   loggedUser: User;
-  medicalOperationRequests: MedicalOperationRequest[];
+  medicalOperationRequests: OperationRequest[];
 
   constructor(private medicalOperationRequestsService: MedicalOperationRequestsService, private route: ActivatedRoute,
               private router: Router, private formBuilder: FormBuilder, private userService: UserService) {
@@ -28,7 +29,7 @@ export class MedicalOperationRequestsComponent implements OnInit {
     });
   }
 
-  schedule(request: MedicalOperationRequest) {
+  schedule(request: OperationRequest) {
     const navigationExtras: NavigationExtras = {
       queryParams: {
         request: request.id
