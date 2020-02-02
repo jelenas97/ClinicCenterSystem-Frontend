@@ -1,1 +1,82 @@
-<p>schedule-operation works!</p>
+<!--<div class="form">
+  <div class="note">
+    <h2>Change info if necessary </h2>
+  </div>
+
+  <div class="card my-5">
+    <div class="card-body">
+      <form [formGroup]="userData">
+
+        <div class="col-form-label-lg">
+          <label>Patient : {{request.patient.firstName + ' ' + request.patient.lastName}}</label>
+        </div>
+
+        <div class="col-form-label-lg">
+          <label>Duration : {{request.duration}}</label>
+        </div>
+
+        <div class="form-group">
+          <label class="col-form-label-lg">Doctor
+            : {{request.doctor.firstName + ' ' + request.doctor.lastName}}</label>
+          <select [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedDoctor"
+                  (change)="onSelectChange($event)"
+                  class="custom-select" [hidden]="!hiddenChange">
+            <option>No change</option>
+            <option *ngFor="let doctor of availableDoctors">
+              {{doctor.id + ' : ' + doctor.firstName + ' ' + doctor.lastName}}</option>
+          </select>
+        </div>
+
+        <div class="col-form-label-lg">
+          <label>Date : {{request.date| date: 'yyyy-MM-dd'}}</label>
+          <input name="selectedDate" formControlName="selectedDate" class="form-control" type="date"
+                 [value]="selectedDate | date:'yyyy-MM-dd'"
+                 (input)="selectedDate=parseDate($event.target.valueAsDate)" [hidden]="!hiddenChange"
+                 (change)="getTerms()"
+                 [ngClass]="{'is-invalid': f.selectedDate.touched && f.selectedDate.errors, 'is-valid': f.selectedDate.touched && f.selectedDate.valid}">
+          <span style="color: red"
+                *ngIf="f.selectedDate.invalid && f.selectedDate.touched">Please select a valid date</span>
+        </div>
+
+        <div class="form-group" [hidden]="!hiddenChange">
+          <label class="col-form-label-lg">Terms</label>
+          <select class="form-control-sm" [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedTerm">
+            <option *ngFor="let term of availableTerms">{{term}}</option>
+          </select>
+        </div>
+
+        <div class="col-form-label-lg">
+          <label>Price : {{request.price}}</label>
+          <input name="selectedPrice" formControlName="selectedPrice" class="form-control" [(ngModel)]="selectedPrice"
+                 [hidden]="!hiddenChange"
+                 [ngClass]="{'is-invalid': f.selectedPrice.touched && f.selectedPrice.errors, 'is-valid': f.selectedPrice.touched && f.selectedPrice.valid}">
+          <span style="color: red"
+                *ngIf="f.selectedPrice.invalid && f.selectedPrice.touched"> Price must be between 1$ and 999999$ </span>
+        </div>
+
+        <div class="col-form-label-lg">
+          <label>Discount : {{request.discount}}</label>
+          <input name="selectedDiscount" formControlName="selectedDiscount" class="form-control"
+                 [(ngModel)]="selectedDiscount" [hidden]="!hiddenChange"
+                 [ngClass]="{'is-invalid': f.selectedDiscount.touched && f.selectedDiscount.errors, 'is-valid': f.selectedDiscount.touched && f.selectedDiscount.valid}">
+          <span style="color: red"
+                *ngIf="f.selectedDiscount.invalid && f.selectedDiscount.touched">Discount must be between 0% and 99% </span>
+        </div>
+
+        <button type="submit" id="btnChange"
+                class="btn btn-primary" (click)="showChange()" style="margin-left: 45%;"> Change
+        </button>
+
+        <button type="submit" id="btnConfirm"
+                class="btn btn-success" (click)="confirmChanges()" hidden [disabled]="userData.invalid"
+                style="margin-left: 42%;"> Confirm
+        </button>
+
+        <button type="submit" id="btnReset"
+                class="btn btn-danger" (click)="reset()" hidden style="margin-left: 25px;"> Reset
+        </button>
+
+      </form>
+    </div>
+  </div>
+</div>-->

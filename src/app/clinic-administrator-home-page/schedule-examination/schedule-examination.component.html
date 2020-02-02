@@ -41,7 +41,7 @@
 
           <div class="form-group" [hidden]="!hiddenChange">
             <label class="col-form-label-lg">Terms</label>
-            <select class="form-control-sm" [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedTerm" >
+            <select class="form-control-sm" [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedTerm">
               <option *ngFor="let term of availableTerms">{{term}}</option>
             </select>
           </div>
@@ -80,8 +80,6 @@
         </form>
       </div>
     </div>
-
-
   </div>
 </div>
 <div>
