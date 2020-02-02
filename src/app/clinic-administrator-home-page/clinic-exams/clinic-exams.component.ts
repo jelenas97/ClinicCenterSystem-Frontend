@@ -47,7 +47,8 @@ export class ClinicExamsComponent implements OnInit {
     {
       backgroundColor: ['#6FC8CE']
     }];
-  isDataAvailable = false;
+  isData1Available = false;
+  isData2Available = false;
 
   public barChartOptions: ChartOptions = {
     responsive: true,
@@ -65,12 +66,13 @@ export class ClinicExamsComponent implements OnInit {
       }
     }
   };
-  public barChartLabels: Label[] = [];
+  public barChartLabels1: Label[] = [];
+  public barChartLabels2: Label[] = [];
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
 
-  public barChartData: ChartDataSets[] = [
-  ];
+  public barChartData1: ChartDataSets[] = [];
+  public barChartData2: ChartDataSets[] = [];
 
 
   constructor(private modal: NgbModal, private userService: UserService, private router: Router,
@@ -90,18 +92,21 @@ export class ClinicExamsComponent implements OnInit {
       const temp = new Date();
       values.push(numberFor);
       temp.setDate(temp.getDate() - i);
-      this.barChartLabels.push(temp.getDate() + '.' + this.monthNameList[temp.getMonth() + 12]);
+      this.barChartLabels1.push(temp.getDate() + '.' + this.monthNameList[temp.getMonth() + 12]);
       i = i + 1;
     }
-    this.barChartLabels.reverse();
+    this.barChartLabels1.reverse();
     values.reverse();
-    this.barChartData = [
-      ...this.barChartData,
+    this.barChartData1 = [
+      ...this.barChartData1,
       {
         data: values,
         label: 'Exams'
       }];
-    console.log(this.barChartData);
+  }
+
+  private fillMonthlyChart() {
+
   }
 
 
@@ -110,11 +115,13 @@ export class ClinicExamsComponent implements OnInit {
     this.clinicExamsService.getAllExamsDay(this.user.id).subscribe(data => {
       this.examsDaily = data;
       this.fillDailyChart();
-      this.isDataAvailable = true;
-      console.log(this.examsDaily);
-      console.log(this.isDataAvailable);
-
-
+      this.isData1Available = true;
     });
-  }
+    this.clinicExamsService.getAllExamsMonth(this.user.id).subscribe(data => {
+      this.examsMonthly = data;
+      this.fillMonthlyChart();
+      this.isData2Available = true;
+    });  }
+
+
 }

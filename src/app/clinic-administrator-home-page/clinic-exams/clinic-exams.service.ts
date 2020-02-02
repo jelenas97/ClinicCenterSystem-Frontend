@@ -11,4 +11,8 @@ export class ClinicExamsService {
   getAllExamsDay(id: string) {
     return this.http.get<number[]>('http://localhost:8080/medicalExaminationsDaily/' + id);
   }
+
+  getAllExamsMonth(id: string) {
+    return this.http.get<number[]>('http://localhost:8080/medicalExaminationsMonthly/' + id);
+  }
 }

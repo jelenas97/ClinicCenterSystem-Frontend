@@ -1,11 +1,11 @@
 <div style="width: 33%; display:inline-block" >
   <div>
-    <div *ngIf="isDataAvailable">
+    <div *ngIf="isData1Available">
       <h2>Exams on daily level</h2>
       <canvas baseChart
               [colors]="chartColors"
-              [datasets]="barChartData"
-              [labels]="barChartLabels"
+              [datasets]="barChartData1"
+              [labels]="barChartLabels1"
               [options]="barChartOptions"
               [legend]="barChartLegend"
               [chartType]="barChartType"
@@ -17,7 +17,7 @@
 
 <div style="width: 33%; display:inline-block;">
   <div>
-    <div *ngIf="isDataAvailable">
+    <div *ngIf="isData2Available">
       <h2>Exams on monthly level</h2>
       <canvas baseChart
               [datasets]="barChartData"
