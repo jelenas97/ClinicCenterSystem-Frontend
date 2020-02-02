@@ -67,7 +67,7 @@ export class WorkCalendarComponent  implements OnInit {
           start: startOfDay(new Date(exam.date)),
           end: endOfDay(new Date(exam.date)),
           color: colors.red,
-          id: exam.patient.id,
+          id: exam.id,
         }
       ];
     }
