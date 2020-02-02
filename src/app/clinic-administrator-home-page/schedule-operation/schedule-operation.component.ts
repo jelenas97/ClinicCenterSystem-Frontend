@@ -36,6 +36,7 @@ export class ScheduleOperationComponent implements OnInit {
   selectedDiscount: string;
   selectedRoom: string;
   hiddenChange: boolean;
+  hiddenDoctors: boolean;
 
   dropdownList: Doctor[] = [];
   selectedItems = [];
@@ -139,6 +140,7 @@ export class ScheduleOperationComponent implements OnInit {
 
   reset() {
     this.hiddenChange = false;
+    this.hiddenDoctors = false;
     document.getElementById('btnChange').hidden = false;
     document.getElementById('btnConfirm').hidden = true;
     document.getElementById('btnReset').hidden = true;
@@ -159,11 +161,8 @@ export class ScheduleOperationComponent implements OnInit {
 
   scheduleOperation() {
     document.getElementById('btnSchedule').hidden = true;
-    this.scheduleOperationService.saveOperation(this.selectedRoom, this.datePipe.transform(this.request.date, 'yyyy_MM_dd HH:mm:ss'),
-      +this.selectedPrice,
-      this.request.duration, +this.selectedDiscount, this.request.clinic.id,
-      this.request.doctor.id, this.request.patient.id, this.requestId,
-      this.selectedTerm);
+    this.scheduleOperationService.saveOperation(this.request, this.selectedRoom, this.datePipe.transform(this.request.date, 'yyyy_MM_dd HH:mm:ss'),
+      +this.selectedPrice, +this.selectedDiscount, this.requestId, this.selectedTerm);
     this.router.navigate(['/clinicAdministratorHomePage']);
   }
 
@@ -174,6 +173,7 @@ export class ScheduleOperationComponent implements OnInit {
       this.dropdownList = data;
       this.fillDoctors();
     });
+    this.hiddenDoctors = true;
   }
 
   fillDoctors() {

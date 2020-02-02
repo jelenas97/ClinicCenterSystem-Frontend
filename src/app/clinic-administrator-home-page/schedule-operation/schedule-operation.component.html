@@ -40,7 +40,7 @@
             </select>
           </div>
 
-          <ng-multiselect-dropdown
+          <ng-multiselect-dropdown [hidden]="!hiddenDoctors"
             [placeholder]="'Doctors to attend operation'"
             [data]="dropdownList"
             [(ngModel)]="selectedItems" [ngModelOptions]="{standalone: true}"
@@ -136,7 +136,7 @@
         </table>
         <button type="submit" id="btnSchedule"
                 class="btn btn-success" (click)="scheduleOperation()" style="margin-left: 40%;" hidden> Schedule
-          examination
+          operation
         </button>
       </div>
     </div>

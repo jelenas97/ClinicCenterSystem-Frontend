@@ -24,11 +24,10 @@ export class ScheduleOperationService {
     return this.http.get<string[]>('http://localhost:8080/getAvailableTermsForDoctor/' + id + '/' + date);
   }
 
-  saveOperation(selectedRoom: string, date: string, price: number, duration: number, discount: number,
-                clinicid: string, doctorid: string, patientid: string, requestid: string, selectedTerm: string) {
-    return this.http.put<any>('http://localhost:8080/saveExamination/' + date + '/' + price + '/' + duration
-      + '/' + discount + '/' + selectedRoom + '/' + clinicid + '/' + doctorid + '/' + patientid + '/' +
-      '/' + requestid + '/' + selectedTerm, any).subscribe();
+  saveOperation(operationRequest: OperationRequest, selectedRoom: string, date: string, price: number, discount: number,
+                requestId: string, selectedTerm: string) {
+    return this.http.post<OperationRequest>('http://localhost:8080/saveOperation/' + selectedRoom + '/' + date +
+      '/' + price + '/' + discount + '/' + requestId + '/' + selectedTerm, operationRequest).subscribe();
   }
 
   getAvailableDoctorsForOperation(date: string, term: string, clinicId: string, doctorId: string) {
