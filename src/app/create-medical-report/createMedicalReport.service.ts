@@ -5,6 +5,8 @@ import {Observable} from 'rxjs';
 import {MedicalReport} from '../model/medicalReport';
 import {Diagnosis} from '../model/diagnosis';
 import {Medicament} from '../model/medicament';
+import {MedicalExamination} from '../model/medicalExamination';
+import {any} from 'codelyzer/util/function';
 
 @Injectable()
 export class CreateMedicalReportService {
@@ -35,5 +37,14 @@ export class CreateMedicalReportService {
 
   getAvailableTermsForDoctor(id: string, date: string) {
     return this.httpClient.get<string[]>('http://localhost:8080/getAvailableTermsForDoctor/' + id + '/' + date);
+  }
+
+  public getMedicalExam(examId: string): Observable<MedicalExamination> {
+    return this.httpClient.get<MedicalExamination>('http://localhost:8080/getMedicalExam/' + examId);
+  }
+
+  sendRequestExam(id: string, selectedDate: any, id2: string, id3: string, id4: string, selectedTerm: any) {
+    return this.httpClient.put<any>('http://localhost:8080/auth/sendMedicalExamRequest/' + id + '/' + selectedDate +
+      '/' + id2 + '/' + id3 + '/' + id4 + '/' + selectedTerm, any).subscribe();
   }
 }

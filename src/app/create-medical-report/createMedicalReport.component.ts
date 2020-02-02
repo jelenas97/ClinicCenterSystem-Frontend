@@ -9,6 +9,8 @@ import {Medicament} from '../model/medicament';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {DatePipe} from '@angular/common';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {MedicalExamination} from '../model/medicalExamination';
+import {NotifierService} from 'angular-notifier';
 
 
 @Component({
@@ -39,21 +41,29 @@ export class CreateMedicalReportComponent implements OnInit {
   selectedTermOperation: any;
   availableTermsOperation: string[];
   private isAnyTermSelectedOperation = true;
+  private examId: string;
+  exam: MedicalExamination;
+  notifier: NotifierService;
+
 
 
 
   constructor(private createMedicalReportService: CreateMedicalReportService, private route: ActivatedRoute,
               private router: Router, private userService: UserService, private modalService: NgbModal, private datePipe: DatePipe,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder, private notifierService: NotifierService) {
     this.medicalReport = new MedicalReport();
     this.userService.getMyInfo();
     this.user = this.userService.currentUser;
+    this.route.paramMap.subscribe(params => {
+      this.examId = params.get('id');
+
+    });
+    this.notifier = notifierService;
   }
 
   ngOnInit(): void {
-
-    this.route.paramMap.subscribe(params => {
-      this.medicalReportId = params.get('id');
+    this.createMedicalReportService.getMedicalExam(this.examId).subscribe(data => {
+      this.exam = data;
     });
 
     this.medicalReportData = this.formBuilder.group({
@@ -140,10 +150,19 @@ export class CreateMedicalReportComponent implements OnInit {
   }
 
   createMedicalExam(selectedDate: any, selectedTerm: any) {
-
+    this.modalService.dismissAll();
+    this.createMedicalReportService.sendRequestExam(this.exam.type.id, selectedDate, this.exam.clinic.id,
+      this.user.id, this.exam.patient.id, selectedTerm);
+    this.showNotification('success', 'Request for examination has been sent! ');
+    this.hiddenLabel = true;
+    this.hiddenTerms = true;
   }
 
   createOperation(selectedDate: any, selectedTerm: any) {
 
+  }
+
+  public showNotification(type: string, message: string): void {
+    this.notifier.notify(type, message);
   }
 }
