@@ -28,7 +28,6 @@ export class ClinicExamsComponent implements OnInit {
   examsDaily = [];
   examsYearly = [];
   numberFor: number;
-  chart: google.visualization.ColumnChart;
 
 
 
@@ -47,14 +46,56 @@ export class ClinicExamsComponent implements OnInit {
     {
       backgroundColor: ['#6FC8CE']
     }];
+
+  public chartColors3: any[] = [
+    {
+      backgroundColor: ['#ce4ebf']
+    }];
   isData1Available = false;
   isData2Available = false;
+  isData3Available = false;
+
+
 
   public barChartOptions: ChartOptions = {
     responsive: true,
     elements: {
       rectangle: {
-        backgroundColor: 'blue'
+        backgroundColor: '#31ff1e'
+      }
+    },
+    // We use these empty structures as placeholders for dynamic theming.
+    scales: { xAxes: [{}], yAxes: [{}] },
+    plugins: {
+      datalabels: {
+        anchor: 'end',
+        align: 'end',
+      }
+    }
+  };
+
+  public barChartOptions2: ChartOptions = {
+    responsive: true,
+    elements: {
+      rectangle: {
+        backgroundColor: '#6FC8CE'
+      }
+    },
+    // We use these empty structures as placeholders for dynamic theming.
+    scales: { xAxes: [{}], yAxes: [{}] },
+    plugins: {
+      datalabels: {
+        anchor: 'end',
+        align: 'end',
+      }
+    }
+  };
+
+  public barChartOptions3: ChartOptions = {
+    responsive: true,
+    elements: {
+      rectangle: {
+        backgroundColor: '#ce4ebf'
       }
     },
     // We use these empty structures as placeholders for dynamic theming.
@@ -68,11 +109,15 @@ export class ClinicExamsComponent implements OnInit {
   };
   public barChartLabels1: Label[] = [];
   public barChartLabels2: Label[] = [];
+  public barChartLabels3: Label[] = [];
+
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
 
   public barChartData1: ChartDataSets[] = [];
   public barChartData2: ChartDataSets[] = [];
+  public barChartData3: ChartDataSets[] = [];
+
 
 
   constructor(private modal: NgbModal, private userService: UserService, private router: Router,
@@ -106,7 +151,43 @@ export class ClinicExamsComponent implements OnInit {
   }
 
   private fillMonthlyChart() {
+    let i = 0;
+    const values = [];
+    for (const monthly of this.examsMonthly) {
+      const numberFor = +monthly;
+      const temp = new Date();
+      values.push(numberFor);
+      this.barChartLabels2.push(this.monthNameList[temp.getMonth() + 12 - i]);
+      i = i + 1;
+    }
+    this.barChartLabels2.reverse();
+    values.reverse();
+    this.barChartData2 = [
+      ...this.barChartData2,
+      {
+        data: values,
+        label: 'Exams'
+      }];
+  }
 
+  private fillYearlyChart() {
+    let i = 0;
+    const values = [];
+    for (const yearly of this.examsYearly) {
+      const numberFor = +yearly;
+      const temp = new Date();
+      values.push(numberFor);
+      this.barChartLabels3.push(temp.getFullYear() - i + '');
+      i = i + 1;
+    }
+    this.barChartLabels3.reverse();
+    values.reverse();
+    this.barChartData3 = [
+      ...this.barChartData3,
+      {
+        data: values,
+        label: 'Exams'
+      }];
   }
 
 
@@ -117,11 +198,17 @@ export class ClinicExamsComponent implements OnInit {
       this.fillDailyChart();
       this.isData1Available = true;
     });
-    this.clinicExamsService.getAllExamsMonth(this.user.id).subscribe(data => {
-      this.examsMonthly = data;
+    this.clinicExamsService.getAllExamsMonth(this.user.id).subscribe(data1 => {
+      this.examsMonthly = data1;
       this.fillMonthlyChart();
       this.isData2Available = true;
-    });  }
+    });
+    this.clinicExamsService.getAllExamsYear(this.user.id).subscribe(data1 => {
+      this.examsYearly = data1;
+      this.fillYearlyChart();
+      this.isData3Available = true;
+    });
+    }
 
 
 }
