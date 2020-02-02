@@ -1,7 +1,7 @@
 <div class="card my-5">
   <div class="card-body">
-    <span class="navbar-brand mb-0 h1">Patients</span>
-    <form id="searchPatient" class="form-group" (ngSubmit)="onSearchSubmit(selectedFirstName, selectedLastName, selectedSsn)">
+    <span class="navbar-brand mb-0 h1 col-lg-10 offset-1">Patients</span>
+    <form id="searchPatient" class="form-group col-lg-10 offset-1" (ngSubmit)="onSearchSubmit(selectedFirstName, selectedLastName, selectedSsn)">
       <label style="padding-right: 20px;"> Enter patient first name : </label>
       <input type="text" [(ngModel)]="selectedFirstName" [ngModelOptions]="{standalone: true}" style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
 
@@ -13,26 +13,31 @@
               style="margin-left: 45%; width: 150px;">Search </button>
     </form>
 
-    <table class="table table-bordered table-striped">
+    <table class="table table-bordered table-striped col-lg-10 offset-1">
       <thead class="thead-dark">
       <tr>
         <th scope="col">Patient First Name</th>
         <th scope="col">Patient Last Name</th>
         <th scope="col">Patient SSN</th>
-        <th scope="col">Patient Profile</th>
+        <th scope="col" width="auto">Patient Profile</th>
+        <th scope="col" *ngIf="role == 'ROLE_CLINIC_CENTER_ADMIN'">Create Medical Record</th>
       </tr>
       </thead>
       <tbody>
+
       <tr *ngFor="let patient of patients">
         <td>{{ patient.firstName }}</td>
         <td>{{ patient.lastName}}</td>
         <td>{{ patient.ssn }}</td>
-        <td><a class="nav-link" type="button" (click)="showProfile(patient.id)">
+        <td width="auto"><a class="nav-link" type="button" (click)="showProfile(patient.id)">
           <fa-icon [icon]="UserCircle" class="mr-1"></fa-icon>
           <span class="sr-only">(current)</span></a></td>
+        <td width="auto" *ngIf="role == 'ROLE_CLINIC_CENTER_ADMIN'">
+          <p *ngIf="patient.medicalRecord != null"><b>Already has medical record!</b></p>
+          <button *ngIf="patient.medicalRecord == null" (click)="creatMedicalRecord(patient.id)" class="btn btn-success">Create medical record</button>
+        </td>
       </tr>
       </tbody>
     </table>
-
   </div>
 </div>

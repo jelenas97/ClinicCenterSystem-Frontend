@@ -7,9 +7,14 @@ import {User} from '../model/user';
 export class AllPatientsService {
 
   private readonly url: string;
+  private readonly newMedicalRecord: string;
+  private readonly medicalHistoryUrl: string;
 
   constructor(private http: HttpClient) {
     this.url = 'http://localhost:8080/allPatients';
+    this.newMedicalRecord = 'http://localhost:8080/newMedicalRecord';
+    this.medicalHistoryUrl = 'http://localhost:8080/medicalHistory';
+
   }
 
   getAll(): Observable<User[]> {
@@ -31,6 +36,10 @@ export class AllPatientsService {
       return this.http.get<User[]>(this.url + '/search2?firstName=' + selectedFirstName + '&lastName=' +
         selectedLastName + '&ssn=' + selectedSsn);
     }
+  }
+
+  createMedicalRecord(id: string) {
+    return this.http.post<string>(this.newMedicalRecord, id);
   }
 
 }

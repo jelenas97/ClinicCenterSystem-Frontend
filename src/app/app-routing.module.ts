@@ -1,5 +1,5 @@
-import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 import {RegistrationComponent} from './registration/registration.component';
 import {MedicamentComponent} from './medicament/medicament.component';
 import {LoginComponent} from './login/login.component';
@@ -62,6 +62,9 @@ import {CreateMedicalReportComponent} from './create-medical-report/createMedica
 import {NurseProfilePageComponent} from './nurse-home-page/nurse-profile-page/nurse-profile-page.component';
 import {ScheduleOperationComponent} from './clinic-administrator-home-page/schedule-operation/schedule-operation.component';
 import {MedicalOperationRequestsComponent} from './clinic-administrator-home-page/medical-operation-requests/medical-operation-requests.component';
+import {ShowMedicalRecordComponent} from './show-medical-record/showMedicalRecord.component';
+import {BeginExamComponent} from './begin-exam/beginExam.component';
+import {EditMedicalRecordBasicInfoComponent} from './edit-medical-record-basic-info/editMedicalRecordBasicInfo.component';
 
 
 const routes: Routes = [{path: 'register', component: RegistrationComponent},
@@ -123,12 +126,23 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'newClinicCenterAdmin', component: CreateClinicCenterAdminsComponent},
   {path: 'nurseProfilePage', component: NurseProfilePageComponent},
   {path: 'scheduleOperation', component: ScheduleOperationComponent},
-  {path: 'medicalOperationRequests', component: MedicalOperationRequestsComponent}
+  {path: 'medicalOperationRequests', component: MedicalOperationRequestsComponent},
+  {path: 'showMedicalRecord/:id', component: ShowMedicalRecordComponent},
+  {path: 'editMedicalRecord/basicInfo/:id', component: EditMedicalRecordBasicInfoComponent},
+
+  {
+    path: 'startExam/:id',
+    component: BeginExamComponent,
+    children: [
+      {path: 'showMedicalRecord/:id', component: ShowMedicalRecordComponent},
+      {path: 'createMedicalReport/:id', component: CreateMedicalReportComponent}
+    ]
+  },
+
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule { }

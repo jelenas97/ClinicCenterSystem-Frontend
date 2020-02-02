@@ -1,4 +1,3 @@
-import {Optional} from '@angular/core';
 import {MedicalExamination} from './medicalExamination';
 import {Clinic} from './clinic';
 
@@ -22,4 +21,5 @@ export class User {
   // this field is for number of exams that doctor have.. It is not from Spring model
   hasExam: boolean;
   passwordChanged: boolean;
+  medicalRecord: number;
 }
