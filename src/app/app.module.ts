@@ -142,6 +142,10 @@ import {BeginExamComponent} from './begin-exam/beginExam.component';
 import {BeginExamService} from './begin-exam/beginExam.service';
 import {EditMedicalRecordBasicInfoComponent} from './edit-medical-record-basic-info/editMedicalRecordBasicInfo.component';
 import {EditMedicalRecordBasicInfoService} from './edit-medical-record-basic-info/editMedicalRecordBasicInfo.service';
+import {ShowMedicalHistoryComponent} from "./show-medical-history/showMedicalHistory.component";
+import {ShowMedicalHistoryService} from "./show-medical-history/showMedicalHistory.service";
+import {EditMedicalReportComponent} from "./edit-medical-report/editMedicalReport.component";
+import {EditMedicalReportService} from "./edit-medical-report/editMedicalReport.service";
 
 /**
  * Custom angular notifier options
@@ -261,7 +265,9 @@ const customNotifierOptions: NotifierOptions = {
     CreateClinicCenterAdminsComponent,
     ShowMedicalRecordComponent,
     BeginExamComponent,
-    EditMedicalRecordBasicInfoComponent
+    EditMedicalRecordBasicInfoComponent,
+    ShowMedicalHistoryComponent,
+    EditMedicalReportComponent
   ],
   imports: [
     BrowserModule,
@@ -350,7 +356,9 @@ const customNotifierOptions: NotifierOptions = {
     PatientProfileForMedicalStaffService,
     BeginExamService,
     ShowMedicalRecordService,
-    EditMedicalRecordBasicInfoService
+    EditMedicalRecordBasicInfoService,
+    ShowMedicalHistoryService,
+    EditMedicalReportService
   ],
   bootstrap: [AppComponent],
   exports: [WorkCalendarComponent, RoomOccupationCalendarComponent]

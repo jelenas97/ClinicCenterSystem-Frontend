@@ -7,4 +7,6 @@ export class MedicalReport {
   doctorId: string;
   diagnosisId: string;
   medicamentId: string;
+  doctor: User;
+
 }

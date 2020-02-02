@@ -29,8 +29,6 @@ export class ShowMedicalRecordComponent implements OnInit {
       this.medicalRecord = data;
     });
 
-
-
     this.showMedicalRecordService.getByPatientId(this.medicalRecordId).subscribe(data => {
       this.patient = data;
     });
