@@ -89,7 +89,7 @@ import { ShowMyClinicComponent } from './clinic-administrator-home-page/show-my-
 import {ShowMyClinicService} from './clinic-administrator-home-page/show-my-clinic/show-my-clinic.service';
 import {WorkCalendarComponent} from './work-calendar/workCalendar.component';
 import {WorkCalendarService} from './work-calendar/workCalendar.service';
-import {CommonModule, DatePipe} from '@angular/common';
+import {DatePipe} from '@angular/common';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
@@ -136,6 +136,12 @@ import { CreateClinicCenterAdminsComponent } from './clinic-center-administrator
 import {CreateClinicCenterAdminsService} from './clinic-center-administrator-home-page/create-clinic-center-admins/create-clinic-center-admins.service';
 import {CreateMedicalReportComponent} from './create-medical-report/createMedicalReport.component';
 import {CreateMedicalReportService} from './create-medical-report/createMedicalReport.service';
+import {ShowMedicalRecordComponent} from './show-medical-record/showMedicalRecord.component';
+import {ShowMedicalRecordService} from './show-medical-record/showMedicalRecord.service';
+import {BeginExamComponent} from './begin-exam/beginExam.component';
+import {BeginExamService} from './begin-exam/beginExam.service';
+import {EditMedicalRecordBasicInfoComponent} from './edit-medical-record-basic-info/editMedicalRecordBasicInfo.component';
+import {EditMedicalRecordBasicInfoService} from './edit-medical-record-basic-info/editMedicalRecordBasicInfo.service';
 import {ClinicExamsComponent} from './clinic-administrator-home-page/clinic-exams/clinic-exams.component';
 import {ClinicExamsService} from './clinic-administrator-home-page/clinic-exams/clinic-exams.service';
 import { GoogleChartsModule } from 'angular-google-charts';
@@ -259,6 +265,10 @@ const customNotifierOptions: NotifierOptions = {
     CreateMedicalReportComponent,
     RoomOccupationCalendarComponent,
     CreateClinicCenterAdminsComponent,
+    ShowMedicalRecordComponent,
+    BeginExamComponent,
+    EditMedicalRecordBasicInfoComponent,
+    CreateClinicCenterAdminsComponent,
     ClinicExamsComponent
   ],
   imports: [
@@ -295,22 +305,65 @@ const customNotifierOptions: NotifierOptions = {
       useClass: TokenInterceptor,
       multi: true
     },
-    RegistrationService, MedicamentService, LoginService, RegistrationRequestService,
-    MedicalStaffProfileService, EditMedicalStaffService, MoreInfoRegisterRequestService, ClinicService, AuthService,
-    PatientHomePageService,  ConfirmationMessageService, DoctorProfilePageService, EditClinicAdministrator,
-    EditPatientProfilePageService, NurseHomePageService, TypesOfMedicalExamService, AddTypeOfMedicalExamService,
-    CcaHomePageService, RecipesService,
-    ValidatedRecipesService, CcaProfilePageService, AddDoctorService, AnnualLeaveAndAbsenceService,
-    VacationAndAbsenceViewService, DatePipe, ShowAndRemoveDoctorsService, ClinicAdministratorHomePageService,
-    EditMyClinicService, AddDoctorService, ShowMyClinicService, WorkCalendarService,
-    MedicalExamRoomsService, OperationRoomsService, AddOperationRoomService, AddMedicalExamRoomService, MedicalExaminationRequestsService,
-    ScheduleExaminationService, ConfirmationScheduleMessageService, DeclineScheduleMessageService,
-    MedicalExamRoomsService, OperationRoomsService, DiagnosisService, EditProfilePageCCAService,
-    AddClinicAdminService, ShowAllClinicAdminsService, RoomOccupationCalendarService, CreatePredefinedExaminationsService,
-    SchedulePredefinedExaminationsService, CreateClinicCenterAdminsService, CreateMedicalReportService, AllPatientsService,
-    PatientProfileForMedicalStaffService, ClinicExamsService],
+
+    RegistrationService,
+    MedicamentService,
+    LoginService,
+    RegistrationRequestService,
+    MedicalStaffProfileService,
+    EditMedicalStaffService,
+    MoreInfoRegisterRequestService,
+    ClinicService,
+    AuthService,
+    PatientHomePageService,
+    ConfirmationMessageService,
+    DoctorProfilePageService,
+    EditClinicAdministrator,
+    EditPatientProfilePageService,
+    NurseHomePageService,
+    TypesOfMedicalExamService,
+    AddTypeOfMedicalExamService,
+    CcaHomePageService,
+    RecipesService,
+    ValidatedRecipesService,
+    CcaProfilePageService,
+    AddDoctorService,
+    AnnualLeaveAndAbsenceService,
+    VacationAndAbsenceViewService,
+    DatePipe,
+    ShowAndRemoveDoctorsService,
+    ClinicAdministratorHomePageService,
+    EditMyClinicService,
+    AddDoctorService,
+    ShowMyClinicService,
+    WorkCalendarService,
+    MedicalExamRoomsService,
+    OperationRoomsService,
+    AddOperationRoomService,
+    AddMedicalExamRoomService,
+    MedicalExaminationRequestsService,
+    ScheduleExaminationService,
+    ConfirmationScheduleMessageService,
+    DeclineScheduleMessageService,
+    MedicalExamRoomsService,
+    OperationRoomsService,
+    DiagnosisService,
+    EditProfilePageCCAService,
+    AddClinicAdminService,
+    ShowAllClinicAdminsService,
+    RoomOccupationCalendarService,
+    CreatePredefinedExaminationsService,
+    SchedulePredefinedExaminationsService,
+    CreateClinicCenterAdminsService,
+    CreateMedicalReportService,
+    AllPatientsService,
+    PatientProfileForMedicalStaffService,
+    BeginExamService,
+    ShowMedicalRecordService,
+    EditMedicalRecordBasicInfoService,
+    ClinicExamsService
+  ],
   bootstrap: [AppComponent],
   exports: [WorkCalendarComponent, RoomOccupationCalendarComponent, ClinicExamsComponent]
 })
-export class AppModule {
-}
+export class AppModule {}

@@ -11,5 +11,5 @@ export class MedicalExaminationRequest {
   duration: number;
   price: number;
   discount: number;
-  date: string;
+  date: Date;
 }

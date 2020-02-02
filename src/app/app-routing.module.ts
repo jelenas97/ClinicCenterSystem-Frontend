@@ -60,6 +60,9 @@ import {PatientProfileForMedicalStaffComponent} from './patient-profile-for-medi
 import {CreateClinicCenterAdminsComponent} from './clinic-center-administrator-home-page/create-clinic-center-admins/create-clinic-center-admins.component';
 import {CreateMedicalReportComponent} from './create-medical-report/createMedicalReport.component';
 import {ClinicExamsComponent} from './clinic-administrator-home-page/clinic-exams/clinic-exams.component';
+import {ShowMedicalRecordComponent} from './show-medical-record/showMedicalRecord.component';
+import {BeginExamComponent} from './begin-exam/beginExam.component';
+import {EditMedicalRecordBasicInfoComponent} from './edit-medical-record-basic-info/editMedicalRecordBasicInfo.component';
 
 
 const routes: Routes = [{path: 'register', component: RegistrationComponent},
@@ -119,7 +122,19 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'patientProfileForMedicalStaff', component: PatientProfileForMedicalStaffComponent},
   {path: 'createMedicalReport', component: CreateMedicalReportComponent},
   {path: 'newClinicCenterAdmin', component: CreateClinicCenterAdminsComponent},
-  {path: 'clinicExams', component: ClinicExamsComponent}
+  {path: 'clinicExams', component: ClinicExamsComponent},
+  {path: 'newClinicCenterAdmin', component: CreateClinicCenterAdminsComponent},
+  {path: 'showMedicalRecord/:id', component: ShowMedicalRecordComponent},
+  {path: 'editMedicalRecord/basicInfo/:id', component: EditMedicalRecordBasicInfoComponent},
+
+  {
+    path: 'startExam/:id',
+    component: BeginExamComponent,
+    children: [
+      {path: 'showMedicalRecord/:id', component: ShowMedicalRecordComponent},
+      {path: 'createMedicalReport/:id', component: CreateMedicalReportComponent}
+    ]
+  },
 
 ];
 
