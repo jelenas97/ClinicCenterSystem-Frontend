@@ -147,6 +147,8 @@ import {ClinicExamsService} from './clinic-administrator-home-page/clinic-exams/
 import { GoogleChartsModule } from 'angular-google-charts';
 import { jqxChartModule } from 'jqwidgets-ng/jqxchart';
 import { ChartsModule } from 'ng2-charts';
+import {ClinicIncomeService} from './clinic-administrator-home-page/clinic-income/clinic-income.service';
+import {ClinicIncomeComponent} from './clinic-administrator-home-page/clinic-income/clinic-income.component';
 
 
 /**
@@ -269,7 +271,8 @@ const customNotifierOptions: NotifierOptions = {
     BeginExamComponent,
     EditMedicalRecordBasicInfoComponent,
     CreateClinicCenterAdminsComponent,
-    ClinicExamsComponent
+    ClinicExamsComponent,
+    ClinicIncomeComponent
   ],
   imports: [
     BrowserModule,
@@ -361,7 +364,8 @@ const customNotifierOptions: NotifierOptions = {
     BeginExamService,
     ShowMedicalRecordService,
     EditMedicalRecordBasicInfoService,
-    ClinicExamsService
+    ClinicExamsService,
+    ClinicIncomeService
   ],
   bootstrap: [AppComponent],
   exports: [WorkCalendarComponent, RoomOccupationCalendarComponent, ClinicExamsComponent]
