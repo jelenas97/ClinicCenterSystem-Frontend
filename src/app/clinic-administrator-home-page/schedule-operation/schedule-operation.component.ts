@@ -7,6 +7,8 @@ import {ScheduleOperationService} from './schedule-operation.service';
 import {User} from '../../model/user';
 import {Room} from '../../model/room';
 import {OperationRequest} from '../../model/operationRequest';
+import {IDropdownSettings} from 'ng-multiselect-dropdown/multiselect.model';
+
 
 @Component({
   selector: 'app-schedule-operation',
@@ -24,7 +26,7 @@ export class ScheduleOperationComponent implements OnInit {
   dateOfOperation: Date;
 
 
-  availableDoctors: User[];
+  availableDoctors: Doctor[] = [];
   operationRooms: Room[];
   availableTerms: string[];
 
@@ -34,6 +36,10 @@ export class ScheduleOperationComponent implements OnInit {
   selectedDiscount: string;
   selectedRoom: string;
   hiddenChange: boolean;
+
+  dropdownList: Doctor[] = [];
+  selectedItems = [];
+  dropdownSettings: IDropdownSettings;
 
   constructor(private route: ActivatedRoute, private scheduleOperationService: ScheduleOperationService,
               private userService: UserService, private formBuilder: FormBuilder, private router: Router, private datePipe: DatePipe) {
@@ -60,6 +66,43 @@ export class ScheduleOperationComponent implements OnInit {
     this.userData2 = this.formBuilder.group({
       selectedDate: ['', [Validators.required]]
     });
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'id',
+      textField: 'firstName',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
+  }
+
+  onItemSelect(item: any) {
+    console.log(item);
+    this.selectedItems.push(item);
+    console.log(this.selectedItems);
+  }
+
+  OnItemDeSelect(item: string) {
+    console.log('proslednjen' + item);
+    for (const i of this.selectedItems) {
+      if (i.id === item) {
+        console.log('iz petlje ' + this.selectedItems.indexOf(i));
+        this.selectedItems.splice(this.selectedItems.indexOf(i), 1);
+      }
+    }
+    console.log(this.selectedItems);
+  }
+
+  onSelectAll(items: any) {
+    this.selectedItems.length = 0;
+    this.selectedItems = items;
+    console.log(this.selectedItems);
+  }
+
+  onDeSelectAll(items: any) {
+    this.selectedItems.length = 0;
+    console.log(this.selectedItems);
   }
 
   parseDate(dateString: Date): Date {
@@ -72,8 +115,6 @@ export class ScheduleOperationComponent implements OnInit {
 
   showChange() {
     this.selectedDate = this.request.date;
-    // this.selectedPrice = this.request.price.toString();
-    // this.selectedDiscount = this.request.discount.toString();
     this.hiddenChange = this.hiddenChange !== true;
     document.getElementById('btnChange').hidden = true;
     document.getElementById('btnConfirm').hidden = false;
@@ -91,30 +132,9 @@ export class ScheduleOperationComponent implements OnInit {
 
   confirmChanges() {
     console.log(this.selectedDate);
-    /*console.log(this.selectedDoctor);
-    console.log(this.selectedPrice);
-    console.log(this.selectedDiscount);
-
-    if (this.selectedTerm === undefined) {
-      this.selectedTerm = this.availableTerms[0];
-    }
-    console.log(this.selectedTerm);
-
-    if (this.selectedDoctor !== undefined && this.selectedDoctor !== 'No change') {
-      const array = this.selectedDoctor.split(':');
-      console.log(array[0]);
-      const array2 = array[1].split(' ');
-      console.log(array2[1]);
-      console.log(array2[2]);
-      this.request.doctor.id = array[0];
-      this.request.doctor.firstName = array2[1];
-      this.request.doctor.lastName = array2[2];
-    }
-    */
     this.request.date = this.selectedDate;
-    // this.request.price = +this.selectedPrice;
-    // this.request.discount = +this.selectedDiscount;
     this.reset();
+    console.log(this.selectedItems);
   }
 
   reset() {
@@ -151,7 +171,25 @@ export class ScheduleOperationComponent implements OnInit {
     console.log(selectedTerm);
     this.scheduleOperationService.getAvailableDoctorsForOperation(this.datePipe.transform(this.selectedDate, 'yyyy_MM_dd'),
       selectedTerm, this.loggedUser.clinic.id, this.request.doctor.id).subscribe(data => {
-      this.availableDoctors = data;
+      this.dropdownList = data;
+      this.fillDoctors();
     });
   }
+
+  fillDoctors() {
+    console.log(this.availableDoctors);
+    for (const doctor of this.availableDoctors) {
+      this.dropdownList.push({
+        id: doctor.id,
+        firstName: doctor.firstName,
+      });
+    }
+  }
 }
+
+
+interface Doctor {
+  id: number;
+  firstName: string;
+}
+

@@ -32,7 +32,12 @@ export class ScheduleOperationService {
   }
 
   getAvailableDoctorsForOperation(date: string, term: string, clinicId: string, doctorId: string) {
-    return this.http.get<User[]>('http://localhost:8080/getAvailableDoctorsForOperation/' + date + '/' + term +
+    return this.http.get<Doctor[]>('http://localhost:8080/getAvailableDoctorsForOperation/' + date + '/' + term +
       '/' + clinicId + '/' + doctorId);
   }
+}
+
+interface Doctor {
+  id: number;
+  firstName: string;
 }

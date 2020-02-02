@@ -40,7 +40,17 @@
             </select>
           </div>
 
-
+          <ng-multiselect-dropdown
+            [placeholder]="'Doctors to attend operation'"
+            [data]="dropdownList"
+            [(ngModel)]="selectedItems" [ngModelOptions]="{standalone: true}"
+            [settings]="dropdownSettings"
+            (onSelect)="onItemSelect($event)"
+            (onSelectAll)="onSelectAll($event)"
+            (onDeSelect)="OnItemDeSelect($event.id)"
+            (onDeSelectAll)="onDeSelectAll($event)"
+          >
+          </ng-multiselect-dropdown>
 
 
           <button type="submit" id="btnChange"

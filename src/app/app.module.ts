@@ -148,6 +148,7 @@ import {BeginExamComponent} from './begin-exam/beginExam.component';
 import {BeginExamService} from './begin-exam/beginExam.service';
 import {EditMedicalRecordBasicInfoComponent} from './edit-medical-record-basic-info/editMedicalRecordBasicInfo.component';
 import {EditMedicalRecordBasicInfoService} from './edit-medical-record-basic-info/editMedicalRecordBasicInfo.service';
+import {NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
 
 /**
  * Custom angular notifier options
@@ -295,7 +296,8 @@ const customNotifierOptions: NotifierOptions = {
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory
-    })
+    }),
+    NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [
     {
