@@ -21,12 +21,12 @@ export class VacationAndAbsenceViewService {
 
   }
 
-  public getAllVacationRequests(): Observable<Vacation[]> {
-    return this.http.get<Vacation[]>(this.vacationRequestsUrl);
+  public getAllVacationRequests(id: string): Observable<Vacation[]> {
+    return this.http.get<Vacation[]>(this.vacationRequestsUrl + '/' + id);
   }
 
-  public getAllAbsenceRequests(): Observable<Vacation[]> {
-    return  this.http.get<Vacation[]>(this.absenceRequestsUrl);
+  public getAllAbsenceRequests(id: string): Observable<Vacation[]> {
+    return  this.http.get<Vacation[]>(this.absenceRequestsUrl + '/' + id);
   }
 
   public sendApproveMail(requestVacation: Vacation) {

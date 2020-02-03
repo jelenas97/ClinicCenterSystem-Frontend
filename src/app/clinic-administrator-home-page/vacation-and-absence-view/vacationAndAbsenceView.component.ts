@@ -24,15 +24,19 @@ export class VacationAndAbsenceViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.userService.getMyInfo();
+    this.user = this.userService.currentUser;
+
     if (window.location.href.indexOf('vacationRequests') > -1) {
-      this.vacationAndAbsenceViewService.getAllVacationRequests().subscribe(data => {
+      this.vacationAndAbsenceViewService.getAllVacationRequests(this.user.id).subscribe(data => {
         this.requests = data;
         for (let i = 0, len = this.requests.length; i < len; i++) {
            this.userService.getById(this.requests[i].userId).subscribe(data2 => this.requests[i].user = data2);
         }
       });
     } else {
-      this.vacationAndAbsenceViewService.getAllAbsenceRequests().subscribe(data => {
+      this.vacationAndAbsenceViewService.getAllAbsenceRequests(this.user.id).subscribe(data => {
         this.requests = data;
         for (let i = 0, len = this.requests.length; i < len; i++) {
           this.userService.getById(this.requests[i].userId).subscribe(data2 => this.requests[i].user = data2);
