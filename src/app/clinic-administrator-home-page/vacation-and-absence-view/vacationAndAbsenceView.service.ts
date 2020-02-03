@@ -37,7 +37,7 @@ export class VacationAndAbsenceViewService {
     return this.http.delete<number>(this.deleteRequestUrl + id);
   }
 
-  public sendRejectMail(request: Vacation) {
-    return this.http.post<Vacation>(this.sendRejectMailUrl, request);
+  public sendRejectMail(reason: string, id: number) {
+    return this.http.post<string>(this.sendRejectMailUrl + '/' + id, reason);
   }
 }
