@@ -89,7 +89,7 @@ import { ShowMyClinicComponent } from './clinic-administrator-home-page/show-my-
 import {ShowMyClinicService} from './clinic-administrator-home-page/show-my-clinic/show-my-clinic.service';
 import {WorkCalendarComponent} from './work-calendar/workCalendar.component';
 import {WorkCalendarService} from './work-calendar/workCalendar.service';
-import {DatePipe} from '@angular/common';
+import {DatePipe, CommonModule} from '@angular/common';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
@@ -136,12 +136,23 @@ import { CreateClinicCenterAdminsComponent } from './clinic-center-administrator
 import {CreateClinicCenterAdminsService} from './clinic-center-administrator-home-page/create-clinic-center-admins/create-clinic-center-admins.service';
 import {CreateMedicalReportComponent} from './create-medical-report/createMedicalReport.component';
 import {CreateMedicalReportService} from './create-medical-report/createMedicalReport.service';
+import {NurseProfilePageComponent} from './nurse-home-page/nurse-profile-page/nurse-profile-page.component';
+import {NurseProfilePageService} from './nurse-home-page/nurse-profile-page/nurse-profile-page.service';
+import { ScheduleOperationComponent } from './clinic-administrator-home-page/schedule-operation/schedule-operation.component';
+import { MedicalOperationRequestsComponent } from './clinic-administrator-home-page/medical-operation-requests/medical-operation-requests.component';
+import {MedicalOperationRequestsService} from './clinic-administrator-home-page/medical-operation-requests/medical-operation-requests.service';
+import {ScheduleOperationService} from './clinic-administrator-home-page/schedule-operation/schedule-operation.service';
 import {ShowMedicalRecordComponent} from './show-medical-record/showMedicalRecord.component';
 import {ShowMedicalRecordService} from './show-medical-record/showMedicalRecord.service';
 import {BeginExamComponent} from './begin-exam/beginExam.component';
 import {BeginExamService} from './begin-exam/beginExam.service';
 import {EditMedicalRecordBasicInfoComponent} from './edit-medical-record-basic-info/editMedicalRecordBasicInfo.component';
 import {EditMedicalRecordBasicInfoService} from './edit-medical-record-basic-info/editMedicalRecordBasicInfo.service';
+import {ShowMedicalHistoryComponent} from './show-medical-history/showMedicalHistory.component';
+import {ShowMedicalHistoryService} from './show-medical-history/showMedicalHistory.service';
+import {EditMedicalReportComponent} from './edit-medical-report/editMedicalReport.component';
+import {EditMedicalReportService} from './edit-medical-report/editMedicalReport.service';
+import {MatSortModule} from '@angular/material/sort';
 import {ClinicExamsComponent} from './clinic-administrator-home-page/clinic-exams/clinic-exams.component';
 import {ClinicExamsService} from './clinic-administrator-home-page/clinic-exams/clinic-exams.service';
 import { GoogleChartsModule } from 'angular-google-charts';
@@ -150,6 +161,7 @@ import { ChartsModule } from 'ng2-charts';
 import {ClinicIncomeService} from './clinic-administrator-home-page/clinic-income/clinic-income.service';
 import {ClinicIncomeComponent} from './clinic-administrator-home-page/clinic-income/clinic-income.component';
 
+import {NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
 import {ShowMedicalHistoryComponent} from './show-medical-history/showMedicalHistory.component';
 import {ShowMedicalHistoryService} from './show-medical-history/showMedicalHistory.service';
 import {EditMedicalReportComponent} from './edit-medical-report/editMedicalReport.component';
@@ -174,7 +186,7 @@ const customNotifierOptions: NotifierOptions = {
   },
   theme: 'material',
   behaviour: {
-    autoHide: 5000,
+    autoHide: 3000,
     onClick: 'hide',
     onMouseover: 'pauseAutoHide',
     showDismissButton: true,
@@ -200,7 +212,6 @@ const customNotifierOptions: NotifierOptions = {
     overlap: 150
   }
 };
-
 
 
 @NgModule({
@@ -273,6 +284,9 @@ const customNotifierOptions: NotifierOptions = {
     CreateMedicalReportComponent,
     RoomOccupationCalendarComponent,
     CreateClinicCenterAdminsComponent,
+    NurseProfilePageComponent,
+    ScheduleOperationComponent,
+    MedicalOperationRequestsComponent,
     ShowMedicalRecordComponent,
     BeginExamComponent,
     EditMedicalRecordBasicInfoComponent,
@@ -309,7 +323,9 @@ const customNotifierOptions: NotifierOptions = {
       provide: DateAdapter,
       useFactory: adapterFactory
     }),
-    AgmCoreModule.forRoot({apiKey: 'AIzaSyCyn7KEG1JYg3IefpdfMK0kMLV6FBKZx5k'})
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyCyn7KEG1JYg3IefpdfMK0kMLV6FBKZx5k'}),
+    MatSortModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [
     GoogleMapsAPIWrapper,
@@ -318,7 +334,7 @@ const customNotifierOptions: NotifierOptions = {
       useClass: TokenInterceptor,
       multi: true
     },
-
+    DatePipe,
     RegistrationService,
     MedicamentService,
     LoginService,
@@ -371,6 +387,9 @@ const customNotifierOptions: NotifierOptions = {
     CreateMedicalReportService,
     AllPatientsService,
     PatientProfileForMedicalStaffService,
+    NurseProfilePageService,
+    MedicalOperationRequestsService,
+    ScheduleOperationService,
     BeginExamService,
     ShowMedicalRecordService,
     EditMedicalRecordBasicInfoService,

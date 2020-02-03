@@ -4,6 +4,7 @@ import {UserService} from '../../service/user.service';
 import {SchedulePredefinedExaminationsService} from './schedule-predefined-examinations.service';
 import {MedicalExamination} from '../../model/medicalExamination';
 import {User} from '../../model/user';
+import {NotifierService} from "angular-notifier";
 
 @Component({
   selector: 'app-schedule-predefined-examinations',
@@ -12,11 +13,14 @@ import {User} from '../../model/user';
 })
 export class SchedulePredefinedExaminationsComponent implements OnInit {
 
+  notifier: NotifierService;
+
   loggedUser: User;
   allPredefinedExaminations: MedicalExamination[];
 
   constructor(private schedulePredefinedExaminationsService: SchedulePredefinedExaminationsService, private activatedRoute: ActivatedRoute,
-              private userService: UserService) {
+              private userService: UserService, private notifierService: NotifierService) {
+    this.notifier = notifierService;
   }
 
   ngOnInit() {
@@ -29,5 +33,10 @@ export class SchedulePredefinedExaminationsComponent implements OnInit {
 
   scheduleExamination(id: string) {
     this.schedulePredefinedExaminationsService.schedulePredefinedExamination(id, this.loggedUser.id).subscribe(result => this.ngOnInit());
+    this.showNotification('success', 'You have successfully scheduled examination.');
+  }
+
+  public showNotification(type: string, message: string): void {
+    this.notifier.notify(type, message);
   }
 }

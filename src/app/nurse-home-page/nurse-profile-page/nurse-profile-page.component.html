@@ -1,0 +1,22 @@
+
+<div layout="row">
+  <div flex class="col-md-4 offset-4">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+      </mat-card-header>
+      <img mat-card-image height="300px" width="200px" src="/assets/img/slika.jpeg">
+      <mat-card-title><b>{{loggedUser.firstName + ' ' + loggedUser.lastName}}</b></mat-card-title>
+      <mat-card-content>
+        <p class="border-bottom">Email: {{loggedUser.email}}</p>
+        <p class="border-bottom">Address: {{loggedUser.address}}</p>
+        <p class="border-bottom">City: {{loggedUser.city}}</p>
+        <p class="border-bottom">Country: {{loggedUser.country}}</p>
+        <p class="border-bottom">Phone: {{loggedUser.phone}}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button routerLink="/editMedicalStaff" mat-button>Edit</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
