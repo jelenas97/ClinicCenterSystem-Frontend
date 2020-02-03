@@ -10,6 +10,7 @@ import {User} from '../../model/user';
 import {UserService} from '../../service/user.service';
 import {NotifierService} from 'angular-notifier';
 import {DatePipe} from '@angular/common';
+import {Sort} from '@angular/material/sort';
 
 
 @Component({
@@ -58,6 +59,7 @@ export class AllClinicsComponent implements OnInit {
   realDateAsString: string;
 
   public user: User;
+  private sortedData: Clinic[];
 
   constructor(private patientHomePageService: PatientHomePageService, private router: Router, private userService: UserService,
               private notifierService: NotifierService, private datePipe: DatePipe) {
@@ -69,10 +71,10 @@ export class AllClinicsComponent implements OnInit {
   ngOnInit() {
     this.userService.getMyInfo();
     this.user = this.userService.currentUser;
-    console.log('logovan pacijent' + this.user.firstName);
     this.patientHomePageService.getAllClinics().subscribe(data => {
-      console.log(data.length);
       this.clinics = data;
+      this.sortedData = data;
+
     });
 
     this.patientHomePageService.getAllTypes().subscribe(data => {
@@ -196,4 +198,26 @@ export class AllClinicsComponent implements OnInit {
     }
     return null;
   }
+
+  sortData(sort: Sort) {
+    const data = this.clinics.slice();
+    if (!sort.active || sort.direction === '') {
+      this.sortedData = data;
+      return;
+    }
+
+    this.sortedData = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'name': return compare(a.name, b.name, isAsc);
+        case 'address': return compare(a.address, b.address, isAsc);
+        case 'city': return compare(a.city, b.city, isAsc);
+        default: return 0;
+      }
+    });
+  }
+}
+
+function compare(a: number | string, b: number | string, isAsc: boolean) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }

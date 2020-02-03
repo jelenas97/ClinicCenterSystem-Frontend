@@ -142,10 +142,11 @@ import {BeginExamComponent} from './begin-exam/beginExam.component';
 import {BeginExamService} from './begin-exam/beginExam.service';
 import {EditMedicalRecordBasicInfoComponent} from './edit-medical-record-basic-info/editMedicalRecordBasicInfo.component';
 import {EditMedicalRecordBasicInfoService} from './edit-medical-record-basic-info/editMedicalRecordBasicInfo.service';
-import {ShowMedicalHistoryComponent} from "./show-medical-history/showMedicalHistory.component";
-import {ShowMedicalHistoryService} from "./show-medical-history/showMedicalHistory.service";
-import {EditMedicalReportComponent} from "./edit-medical-report/editMedicalReport.component";
-import {EditMedicalReportService} from "./edit-medical-report/editMedicalReport.service";
+import {ShowMedicalHistoryComponent} from './show-medical-history/showMedicalHistory.component';
+import {ShowMedicalHistoryService} from './show-medical-history/showMedicalHistory.service';
+import {EditMedicalReportComponent} from './edit-medical-report/editMedicalReport.component';
+import {EditMedicalReportService} from './edit-medical-report/editMedicalReport.service';
+import {MatSortModule} from '@angular/material/sort';
 
 /**
  * Custom angular notifier options
@@ -293,7 +294,8 @@ const customNotifierOptions: NotifierOptions = {
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory
-    })
+    }),
+    MatSortModule
   ],
   providers: [
     {
