@@ -16,11 +16,14 @@
 <div class="mt-5 text-center">
   <ng-template #mymodal let-modal>
     <div class="modal-body">
+      <form (click)="onSubmit(mymodal)">
       <p>Write reason for rejection: </p>
-      <textarea class="ml-4" [formControl]="subscriptionFormModalReason" rows="4" cols="55"></textarea>
+      <textarea class="ml-4" [formControl]="subscriptionFormModalReason" [(ngModel)]="reason" rows="4" cols="55"></textarea>
+       <div class="text-right">
+         <button type="submit" class="btn btn-success">Send</button>
+       </div>
+      </form>
     </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Send</button>
-    </div>
+
   </ng-template>
 </div>
