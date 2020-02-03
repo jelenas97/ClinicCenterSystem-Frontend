@@ -150,10 +150,12 @@ import { ChartsModule } from 'ng2-charts';
 import {ClinicIncomeService} from './clinic-administrator-home-page/clinic-income/clinic-income.service';
 import {ClinicIncomeComponent} from './clinic-administrator-home-page/clinic-income/clinic-income.component';
 
-import {ShowMedicalHistoryComponent} from "./show-medical-history/showMedicalHistory.component";
-import {ShowMedicalHistoryService} from "./show-medical-history/showMedicalHistory.service";
-import {EditMedicalReportComponent} from "./edit-medical-report/editMedicalReport.component";
-import {EditMedicalReportService} from "./edit-medical-report/editMedicalReport.service";
+import {ShowMedicalHistoryComponent} from './show-medical-history/showMedicalHistory.component';
+import {ShowMedicalHistoryService} from './show-medical-history/showMedicalHistory.service';
+import {EditMedicalReportComponent} from './edit-medical-report/editMedicalReport.component';
+import {EditMedicalReportService} from './edit-medical-report/editMedicalReport.service';
+import {AgmCoreModule, GoogleMapsAPIWrapper} from '@agm/core';
+import {keyframes} from '@angular/animations';
 
 /**
  * Custom angular notifier options
@@ -306,9 +308,11 @@ const customNotifierOptions: NotifierOptions = {
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory
-    })
+    }),
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyCyn7KEG1JYg3IefpdfMK0kMLV6FBKZx5k'})
   ],
   providers: [
+    GoogleMapsAPIWrapper,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
