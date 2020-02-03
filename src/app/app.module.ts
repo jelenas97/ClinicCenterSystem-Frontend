@@ -142,6 +142,14 @@ import {BeginExamComponent} from './begin-exam/beginExam.component';
 import {BeginExamService} from './begin-exam/beginExam.service';
 import {EditMedicalRecordBasicInfoComponent} from './edit-medical-record-basic-info/editMedicalRecordBasicInfo.component';
 import {EditMedicalRecordBasicInfoService} from './edit-medical-record-basic-info/editMedicalRecordBasicInfo.service';
+import {ClinicExamsComponent} from './clinic-administrator-home-page/clinic-exams/clinic-exams.component';
+import {ClinicExamsService} from './clinic-administrator-home-page/clinic-exams/clinic-exams.service';
+import { GoogleChartsModule } from 'angular-google-charts';
+import { jqxChartModule } from 'jqwidgets-ng/jqxchart';
+import { ChartsModule } from 'ng2-charts';
+import {ClinicIncomeService} from './clinic-administrator-home-page/clinic-income/clinic-income.service';
+import {ClinicIncomeComponent} from './clinic-administrator-home-page/clinic-income/clinic-income.component';
+
 import {ShowMedicalHistoryComponent} from "./show-medical-history/showMedicalHistory.component";
 import {ShowMedicalHistoryService} from "./show-medical-history/showMedicalHistory.service";
 import {EditMedicalReportComponent} from "./edit-medical-report/editMedicalReport.component";
@@ -267,7 +275,10 @@ const customNotifierOptions: NotifierOptions = {
     BeginExamComponent,
     EditMedicalRecordBasicInfoComponent,
     ShowMedicalHistoryComponent,
-    EditMedicalReportComponent
+    EditMedicalReportComponent,
+    CreateClinicCenterAdminsComponent,
+    ClinicExamsComponent,
+    ClinicIncomeComponent
   ],
   imports: [
     BrowserModule,
@@ -290,6 +301,8 @@ const customNotifierOptions: NotifierOptions = {
     MatRadioModule,
     NotifierModule.withConfig(customNotifierOptions),
     FlatpickrModule.forRoot(),
+    jqxChartModule,
+    ChartsModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory
@@ -358,9 +371,11 @@ const customNotifierOptions: NotifierOptions = {
     ShowMedicalRecordService,
     EditMedicalRecordBasicInfoService,
     ShowMedicalHistoryService,
-    EditMedicalReportService
+    EditMedicalReportService,
+    ClinicExamsService,
+    ClinicIncomeService
   ],
   bootstrap: [AppComponent],
-  exports: [WorkCalendarComponent, RoomOccupationCalendarComponent]
+  exports: [WorkCalendarComponent, RoomOccupationCalendarComponent, ClinicExamsComponent]
 })
 export class AppModule {}
