@@ -35,20 +35,21 @@
 
           <div class="form-group" [hidden]="!hiddenChange">
             <label class="col-form-label-lg">Terms</label>
-            <select class="form-control-sm" [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedTerm" (change)="getAvailableDoctors(selectedDate, selectedTerm)">
+            <select class="form-control-sm" [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedTerm"
+                    (change)="getAvailableDoctors(selectedDate, selectedTerm)">
               <option *ngFor="let term of availableTerms">{{term}}</option>
             </select>
           </div>
 
           <ng-multiselect-dropdown [hidden]="!hiddenDoctors"
-            [placeholder]="'Doctors to attend operation'"
-            [data]="dropdownList"
-            [(ngModel)]="selectedItems" [ngModelOptions]="{standalone: true}"
-            [settings]="dropdownSettings"
-            (onSelect)="onItemSelect($event)"
-            (onSelectAll)="onSelectAll($event)"
-            (onDeSelect)="OnItemDeSelect($event.id)"
-            (onDeSelectAll)="onDeSelectAll($event)"
+                                   [placeholder]="'Doctors to attend operation'"
+                                   [data]="dropdownList"
+                                   [(ngModel)]="selectedItems" [ngModelOptions]="{standalone: true}"
+                                   [settings]="dropdownSettings"
+                                   (onSelect)="onItemSelect($event)"
+                                   (onSelectAll)="onSelectAll($event)"
+                                   (onDeSelect)="OnItemDeSelect($event.id)"
+                                   (onDeSelectAll)="onDeSelectAll($event)"
           >
           </ng-multiselect-dropdown>
 
@@ -103,11 +104,61 @@
   </div>
 </div>
 
+<!--
+<div class="container register-form pt-lg-4">
+
+  <div class="card my-5">
+    <div class="card-body">
+      <span class="navbar-brand mb-0 h1">Operation Rooms</span>
+      <form id="searchOperationRoom" class="form-group" (ngSubmit)="onSearchSubmit(selectedName, selectedNumber)">
+        <label style="padding-right: 20px;"> Enter name of operation room : </label>
+        <input type="text" [(ngModel)]="selectedName" [ngModelOptions]="{standalone: true}"
+               style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
+
+        <label style="padding-right: 20px;"> Enter number of operation room : </label>
+        <input type="number" [(ngModel)]="selectedNumber" [ngModelOptions]="{standalone: true}"
+               style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
+        <button type="submit" class="btn btn-primary"
+                style="margin-left: 45%; width: 150px;">Search
+        </button>
+      </form>
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+          <th scope="col">Operation Room Name</th>
+          <th scope="col">Operation Room Number</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let room of operationRooms">
+          <td contenteditable="true" (blur)="changeRoomName(room, $event)">{{ room.name }}</td>
+          <td contenteditable="true" (blur)="changeRoomNumber(room, $event)">{{ room.number }}</td>
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
+-->
 <div class="container register-form pt-lg-4">
   <div class="form">
     <div class="note">
       <h2>Select a room </h2>
     </div>
+
+    <form id="searchOperationRoom" class="form-group" (ngSubmit)="onSearchSubmit(selectedName, selectedNumber)">
+      <label style="padding-right: 20px;"> Enter name of operation room : </label>
+      <input type="text" [(ngModel)]="selectedName" [ngModelOptions]="{standalone: true}"
+             style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
+
+      <label style="padding-right: 20px;"> Enter number of operation room : </label>
+      <input type="number" [(ngModel)]="selectedNumber" [ngModelOptions]="{standalone: true}"
+             style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
+      <button type="submit" class="btn btn-primary"
+              style="margin-left: 45%; width: 150px;">Search
+      </button>
+    </form>
 
     <div class="card my-5">
       <div class="card-body">

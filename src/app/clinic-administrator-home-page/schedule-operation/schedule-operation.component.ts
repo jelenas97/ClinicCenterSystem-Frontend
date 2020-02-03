@@ -38,6 +38,9 @@ export class ScheduleOperationComponent implements OnInit {
   hiddenChange: boolean;
   hiddenDoctors: boolean;
 
+  selectedName: string;
+  selectedNumber: number;
+
   dropdownList: Doctor[] = [];
   selectedItems = [];
   dropdownSettings: IDropdownSettings;
@@ -191,6 +194,21 @@ export class ScheduleOperationComponent implements OnInit {
       });
     }
   }
+
+  onSearchSubmit(selectedName: string, selectedNumber: number) {
+    this.scheduleOperationService.searchRoom(selectedName, selectedNumber).subscribe(data => {
+      this.operationRooms = data;
+    });
+  }
+
+  changeRoomName(room: Room, event: any) {
+    room.name = event.target.textContent;
+  }
+
+  changeRoomNumber(room: Room, event: any) {
+    room.number = event.target.textContent;
+  }
+
 }
 
 
