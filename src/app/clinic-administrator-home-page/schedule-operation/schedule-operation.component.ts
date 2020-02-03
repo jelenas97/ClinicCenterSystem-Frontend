@@ -42,6 +42,8 @@ export class ScheduleOperationComponent implements OnInit {
   selectedItems = [];
   dropdownSettings: IDropdownSettings;
 
+  doctors: number[] = [];
+
   constructor(private route: ActivatedRoute, private scheduleOperationService: ScheduleOperationService,
               private userService: UserService, private formBuilder: FormBuilder, private router: Router, private datePipe: DatePipe) {
     this.route.queryParams.subscribe(params => {
@@ -80,7 +82,6 @@ export class ScheduleOperationComponent implements OnInit {
 
   onItemSelect(item: any) {
     console.log(item);
-    this.selectedItems.push(item);
     console.log(this.selectedItems);
   }
 
@@ -132,6 +133,9 @@ export class ScheduleOperationComponent implements OnInit {
   }
 
   confirmChanges() {
+    for (const item of this.selectedItems) {
+      this.doctors.push(item.id);
+    }
     console.log(this.selectedDate);
     this.request.date = this.selectedDate;
     this.reset();
@@ -161,8 +165,10 @@ export class ScheduleOperationComponent implements OnInit {
 
   scheduleOperation() {
     document.getElementById('btnSchedule').hidden = true;
+
     this.scheduleOperationService.saveOperation(this.request, this.selectedRoom, this.datePipe.transform(this.request.date, 'yyyy_MM_dd HH:mm:ss'),
-      +this.selectedPrice, +this.selectedDiscount, this.requestId, this.selectedTerm);
+      +this.selectedPrice, +this.selectedDiscount, this.requestId, this.selectedTerm, this.doctors);
+    this.doctors.length = 0;
     this.router.navigate(['/clinicAdministratorHomePage']);
   }
 

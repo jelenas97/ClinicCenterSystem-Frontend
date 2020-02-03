@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {User} from '../../model/user';
 import {Room} from '../../model/room';
 import {OperationRequest} from '../../model/operationRequest';
-import {any} from "codelyzer/util/function";
+import {any} from 'codelyzer/util/function';
 
 @Injectable()
 export class ScheduleOperationService {
@@ -25,9 +25,9 @@ export class ScheduleOperationService {
   }
 
   saveOperation(operationRequest: OperationRequest, selectedRoom: string, date: string, price: number, discount: number,
-                requestId: string, selectedTerm: string) {
+                requestId: string, selectedTerm: string, selectedDoctors: number[]) {
     return this.http.post<OperationRequest>('http://localhost:8080/saveOperation/' + selectedRoom + '/' + date +
-      '/' + price + '/' + discount + '/' + requestId + '/' + selectedTerm, operationRequest).subscribe();
+      '/' + price + '/' + discount + '/' + requestId + '/' + selectedTerm + '/' + selectedDoctors, operationRequest).subscribe();
   }
 
   getAvailableDoctorsForOperation(date: string, term: string, clinicId: string, doctorId: string) {
