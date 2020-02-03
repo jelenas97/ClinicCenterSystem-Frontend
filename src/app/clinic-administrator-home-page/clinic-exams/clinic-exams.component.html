@@ -1,0 +1,51 @@
+<div style="width: 33%; display:inline-block" >
+  <div>
+    <div *ngIf="isData1Available">
+      <h2>Exams on daily level</h2>
+      <canvas baseChart
+              [colors]="chartColors"
+              [datasets]="barChartData1"
+              [labels]="barChartLabels1"
+              [options]="barChartOptions"
+              [legend]="barChartLegend"
+              [chartType]="barChartType"
+              >
+      </canvas>
+    </div>
+  </div>
+</div>
+
+<div style="width: 33%; display:inline-block;">
+  <div>
+    <div *ngIf="isData2Available">
+      <h2>Exams on monthly level</h2>
+      <canvas baseChart
+              [datasets]="barChartData2"
+              [labels]="barChartLabels2"
+              [options]="barChartOptions2"
+              [legend]="barChartLegend"
+              [chartType]="barChartType"
+              [colors]="chartColors2"
+      >
+      </canvas>
+    </div>
+  </div>
+</div>
+
+<div style="width: 33%; display:inline-block;">
+  <div>
+    <div *ngIf="isData3Available">
+      <h2>Exams on monthly level</h2>
+      <canvas baseChart
+              [datasets]="barChartData3"
+              [labels]="barChartLabels3"
+              [options]="barChartOptions3"
+              [legend]="barChartLegend"
+              [chartType]="barChartType"
+              [colors]="chartColors3"
+      >
+      </canvas>
+    </div>
+  </div>
+</div>
+

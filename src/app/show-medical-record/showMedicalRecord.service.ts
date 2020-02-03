@@ -29,5 +29,4 @@ export class ShowMedicalRecordService {
     return this.http.get<MedicalExamination>('http://localhost:8080/getMedicalExam/' + examId);
   }
 
-
 }

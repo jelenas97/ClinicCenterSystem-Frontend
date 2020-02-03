@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container medicalReport pt-4">
+  <div class="form col-lg-6 offset-3">
+
+    <div class="note ">
+      <h4>Edit Medical Report</h4>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <form (ngSubmit)="onSubmit()" [formGroup]="medicalReportData">
+
+          <div class="row ">
+            <div class="form-group col-lg-12">
+              <label for="report">Report</label>
+              <textarea type="text" [(ngModel)]="medicalReport.report"
+                        class="form-control"
+                        id="report"
+                        name="report"
+                        placeholder="Write report"
+                        formControlName="report"
+                        rows="4" required></textarea>
+            </div>
+
+            <div class="form-group col-lg-6">
+              <label for="selectedDiagnosis">Choose diagnosis</label>
+              <select [(ngModel)]="selectedDiagnosis" id="selectedDiagnosis" [ngModelOptions]="{standalone: true}"
+                      class="custom-select">
+                <option value="{{diagnosis.id}}" *ngFor="let diagnosis of diagnoses">
+                  {{diagnosis.name}}</option>
+              </select>
+            </div>
+
+            <div class="form-group col-lg-6">
+              <label for="selectedMedicament">Choose medicament</label>
+              <select [(ngModel)]="selectedMedicament" id="selectedMedicament" [ngModelOptions]="{standalone: true}"
+                      class="custom-select">
+                <option value="{{med.id}}" *ngFor="let med of medicaments">
+                  {{med.name}}</option>
+              </select>
+            </div>
+
+            <div class="form-group col-lg-12">
+              <label for="therapy">Therapy</label>
+              <textarea type="text" [(ngModel)]="medicalReport.therapy" [ngModelOptions]="{standalone: true}"
+                        class="form-control"
+                        id="therapy"
+                        name="therapy"
+                        placeholder="Write therapy"
+                        rows="3"
+                        required ></textarea>
+            </div>
+
+          </div>
+
+          <div class="row mt-5">
+            <div class="text-right col-lg-4">
+              <button type="submit" [disabled]="medicalReportData.invalid" class="btn btn-success col-lg-9">Save</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
