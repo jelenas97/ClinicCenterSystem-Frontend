@@ -42,23 +42,23 @@
 <div>
   <br>
   <h2 style="text-align: center">All available clinics </h2>
-  <table class="table table-bordered table-striped">
+  <table matSort (matSortChange)="sortData($event)" class="table table-bordered table-striped">
     <thead class="thead-dark">
     <tr>
-      <th scope="col">Name</th>
+      <th mat-sort-header="name" scope="col">Name</th>
+      <th mat-sort-header="city" scope="col">City</th>
+      <th mat-sort-header="address" scope="col">Address</th>
       <th scope="col">Description</th>
-      <th scope="col">City</th>
-      <th scope="col">Address</th>
       <th scope="col">Average rating</th>
       <th scope="col" [hidden]="!isTypeSelected">Select a clinic</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let clinic of clinics">
+    <tr *ngFor="let clinic of sortedData">
       <td>{{ clinic.name }}</td>
-      <td>{{ clinic.description }}</td>
       <td>{{ clinic.city }}</td>
       <td>{{ clinic.address }}</td>
+      <td>{{ clinic.description }}</td>
       <td *ngIf="clinic.clinicAverageRating != null">{{ clinic.clinicAverageRating }}</td>
       <td *ngIf="clinic.clinic_average_rating != null">{{ clinic.clinic_average_rating }}</td>
       <td [hidden]="!isTypeSelected"><input type="radio" name="selectClinicRadio"

@@ -142,6 +142,11 @@ import {BeginExamComponent} from './begin-exam/beginExam.component';
 import {BeginExamService} from './begin-exam/beginExam.service';
 import {EditMedicalRecordBasicInfoComponent} from './edit-medical-record-basic-info/editMedicalRecordBasicInfo.component';
 import {EditMedicalRecordBasicInfoService} from './edit-medical-record-basic-info/editMedicalRecordBasicInfo.service';
+import {ShowMedicalHistoryComponent} from './show-medical-history/showMedicalHistory.component';
+import {ShowMedicalHistoryService} from './show-medical-history/showMedicalHistory.service';
+import {EditMedicalReportComponent} from './edit-medical-report/editMedicalReport.component';
+import {EditMedicalReportService} from './edit-medical-report/editMedicalReport.service';
+import {MatSortModule} from '@angular/material/sort';
 import {ClinicExamsComponent} from './clinic-administrator-home-page/clinic-exams/clinic-exams.component';
 import {ClinicExamsService} from './clinic-administrator-home-page/clinic-exams/clinic-exams.service';
 import { GoogleChartsModule } from 'angular-google-charts';
@@ -150,10 +155,6 @@ import { ChartsModule } from 'ng2-charts';
 import {ClinicIncomeService} from './clinic-administrator-home-page/clinic-income/clinic-income.service';
 import {ClinicIncomeComponent} from './clinic-administrator-home-page/clinic-income/clinic-income.component';
 
-import {ShowMedicalHistoryComponent} from "./show-medical-history/showMedicalHistory.component";
-import {ShowMedicalHistoryService} from "./show-medical-history/showMedicalHistory.service";
-import {EditMedicalReportComponent} from "./edit-medical-report/editMedicalReport.component";
-import {EditMedicalReportService} from "./edit-medical-report/editMedicalReport.service";
 
 /**
  * Custom angular notifier options
@@ -306,7 +307,8 @@ const customNotifierOptions: NotifierOptions = {
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory
-    })
+    }),
+    MatSortModule
   ],
   providers: [
     {
