@@ -145,10 +145,16 @@
             <fa-icon [icon]="faInfo" class="mr-1"></fa-icon>
             About</a>
         </li>
-        <li class="nav-item active">
-          <a class="nav-link" routerLink="/myClinic">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink30" data-toggle="dropdown" aria-haspopup="true"
+             aria-expanded="false">
             <fa-icon [icon]="faClinics" class="mr-1"></fa-icon>
             Clinic <span class="sr-only">(current)</span></a>
+          <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink10">
+            <a class="nav-link" routerLink="/myClinic">Profile of the clinic</a>
+            <a class="nav-link" routerLink="/clinicExams">All exams in clinic</a>
+            <a class="nav-link" routerLink="/clinicIncome">Income of the clinic</a>
+          </div>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink10" data-toggle="dropdown" aria-haspopup="true"
