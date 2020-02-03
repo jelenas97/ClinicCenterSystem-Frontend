@@ -4,7 +4,6 @@ import {FormBuilder} from '@angular/forms';
 import {UserService} from '../../service/user.service';
 import {MedicalOperationRequestsService} from './medical-operation-requests.service';
 import {User} from '../../model/user';
-import {MedicalOperationRequest} from '../../model/medicalOperationRequest';
 import {OperationRequest} from '../../model/operationRequest';
 
 @Component({
