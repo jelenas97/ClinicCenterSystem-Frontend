@@ -5,12 +5,15 @@
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
       </mat-card-header>
-      <img mat-card-image height="300px" width="200px" src="/assets/img/clinic.jpg">
+      <agm-map [latitude]="location.lat" [longitude]="location.lng" [(zoom)]="location.zoom" [disableDefaultUI]="true" [zoomControl]="true" [fitBounds]='location.viewport'>
+        <agm-marker [latitude]="location.marker.lat" [longitude]="location.marker.lng" [markerDraggable]="false"></agm-marker>
+      </agm-map>
       <mat-card-title><b>{{clinic.name}}</b></mat-card-title>
       <mat-card-content>
         <p class="border-bottom">Description: {{clinic.description}}</p>
         <p class="border-bottom">Address: {{clinic.address}}</p>
         <p class="border-bottom">City: {{clinic.city}}</p>
+
         <p class="border-bottom">Clinic average rating: {{clinic.clinicAverageRating}}</p>
       </mat-card-content>
       <mat-card-actions>
@@ -19,4 +22,5 @@
     </mat-card>
   </div>
 </div>
+
 

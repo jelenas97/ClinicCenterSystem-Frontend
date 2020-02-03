@@ -5,7 +5,7 @@ import {UserService} from './user.service';
 import {ConfigService} from './config.service';
 import {map} from 'rxjs/operators';
 import { Router } from '@angular/router';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {AppComponent} from '../app.component';
 
 @Injectable()
@@ -27,7 +27,7 @@ export class AuthService {
   private role = null;
   private passwordChanged = null;
 
-  login(user) {
+  login(user): Observable<any> {
     const loginHeaders = new HttpHeaders({
       Accept: 'application/json',
       'Content-Type': 'application/json'

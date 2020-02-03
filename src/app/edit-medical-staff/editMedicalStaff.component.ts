@@ -9,9 +9,10 @@ import {UserService} from '../service/user.service';
   selector: 'app-edit-medical-staff',
   templateUrl: './editMedicalStaff.component.html'
 })
-export class EditMedicalStaffComponent implements  OnInit {
+export class EditMedicalStaffComponent implements OnInit {
   user: User;
   userData: FormGroup;
+  private role: string;
 
   constructor(private editMedicalStaffService: EditMedicalStaffService, private route: ActivatedRoute, private router: Router,
               private formBuilder: FormBuilder, private userService: UserService) {
@@ -24,7 +25,12 @@ export class EditMedicalStaffComponent implements  OnInit {
   }
 
   gotoUser() {
-    this.router.navigate(['/doctorProfilePage']);
+    this.role = sessionStorage.getItem('role');
+    if (this.role === 'ROLE_DOCTOR') {
+      this.router.navigate(['/doctorProfilePage']);
+    } else if (this.role === 'ROLE_NURSE') {
+      this.router.navigate(['/nurseProfilePage']);
+    }
   }
 
   ngOnInit(): void {
