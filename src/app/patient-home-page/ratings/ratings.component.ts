@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {User} from '../../model/user';
 import {UserService} from '../../service/user.service';
 import {MedicalExamination} from '../../model/medicalExamination';
+import {NotifierService} from 'angular-notifier';
 
 @Component({
   selector: 'app-ratings',
@@ -13,11 +14,14 @@ import {MedicalExamination} from '../../model/medicalExamination';
 })
 export class RatingsComponent implements OnInit {
 
+  notifier: NotifierService;
   loggedUser: User;
 
   medicalExaminations: MedicalExamination[];
 
-  constructor(private patientHomePageService: PatientHomePageService, private router: Router, private userService: UserService) {
+  constructor(private patientHomePageService: PatientHomePageService, private router: Router, private userService: UserService,
+              private notifierService: NotifierService) {
+    this.notifier = notifierService;
   }
 
   ngOnInit() {
@@ -37,6 +41,7 @@ export class RatingsComponent implements OnInit {
   rateClinic(exam: MedicalExamination) {
     this.patientHomePageService.rateClinic(exam.id, exam.clinicRating, exam.clinic.id);
     this.redirectTo('ratings');
+    this.showNotification('success', 'You have successfully rated Clinic.');
   }
 
   onChangeSelect2(id: number, exam: MedicalExamination) {
@@ -47,11 +52,16 @@ export class RatingsComponent implements OnInit {
 
   rateDoctor(exam: MedicalExamination) {
     this.patientHomePageService.rateDoctor(exam.id, exam.doctorRating, exam.doctor.id);
-    this.router.navigate(['/ratings']);
+    this.redirectTo('ratings');
+    this.showNotification('success', 'You have successfully rated Doctor.');
   }
 
   redirectTo(uri: string) {
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
       this.router.navigate([uri]));
+  }
+
+  public showNotification(type: string, message: string): void {
+    this.notifier.notify(type, message);
   }
 }

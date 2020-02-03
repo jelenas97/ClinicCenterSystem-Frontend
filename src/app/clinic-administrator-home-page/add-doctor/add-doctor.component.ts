@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AddDoctorService} from './add-doctor.service';
 import {User} from '../../model/user';
-import {Clinic} from '../../model/clinic';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {UserService} from '../../service/user.service';
 
 @Component({
   selector: 'app-add-doctor',
@@ -12,18 +12,20 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class AddDoctorComponent implements OnInit {
 
+  loggedUser: User;
+
   private readonly doctor: User;
-  clinics: Clinic[];
-  selectedClinic: string;
   userData: FormGroup;
 
 
   constructor(private addDoctorService: AddDoctorService, private route: ActivatedRoute,
-              private router: Router, private formBuilder: FormBuilder) {
+              private router: Router, private formBuilder: FormBuilder, private userService: UserService) {
     this.doctor = new User();
   }
 
   ngOnInit() {
+    this.userService.getMyInfo();
+    this.loggedUser = this.userService.currentUser;
     this.userData = this.formBuilder.group({
       ssn: ['', [Validators.required, Validators.minLength(13), Validators.maxLength(13), Validators.pattern(/^[0-9]*$/)]],
       email: ['', [Validators.required, this.emailDomainValidator, Validators.pattern(/[^ @]*@[^ @]*/)]],
@@ -34,18 +36,14 @@ export class AddDoctorComponent implements OnInit {
       city: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]],
       address: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]],
       phone: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.minLength(9), Validators.maxLength(10)]],
-      clinic: ['', [Validators.required]],
       startWork: ['', [Validators.required, this.startWorkValidator, Validators.pattern(/^[0-9]*$/)]],
       endWork: ['', [Validators.required, this.endWorkValidator, Validators.pattern(/^[0-9]*$/)]]
-    });
-    this.addDoctorService.getAllClinics().subscribe(data => {
-      this.clinics = data;
     });
   }
 
   endWorkValidator(control: FormControl) {
     const endWork = control.value;
-    if (endWork < 14 || endWork > 23) {
+    if (endWork < 15 || endWork > 23) {
       return {
         startWorkDomain: {
           parsedStartWorkDomain: endWork
@@ -58,7 +56,7 @@ export class AddDoctorComponent implements OnInit {
 
   startWorkValidator(control: FormControl) {
     const startWork = control.value;
-    if (startWork < 6 || startWork > 15) {
+    if (startWork < 6 || startWork > 14) {
       return {
         startWorkDomain: {
           parsedStartWorkDomain: startWork
@@ -87,14 +85,11 @@ export class AddDoctorComponent implements OnInit {
     return this.userData.controls;
   }
 
-  addDoctor(selectedClinic: string) {
+  addDoctor() {
     console.log(this.doctor);
-    this.addDoctorService.addDoctor(this.doctor, selectedClinic).subscribe(data => {
-      this.router.navigate(['/allDoctors']);
+    this.addDoctorService.addDoctor(this.doctor, this.loggedUser.clinic.id).subscribe(data => {
+      this.router.navigate(['/showAllDoctors']);
     });
   }
 
-  onSelectChange($event: Event) {
-    console.log(this.selectedClinic);
-  }
 }

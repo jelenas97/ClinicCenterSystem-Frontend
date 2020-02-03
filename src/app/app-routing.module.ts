@@ -59,13 +59,16 @@ import {AllPatientsComponent} from './all-patients/all-patients.component';
 import {PatientProfileForMedicalStaffComponent} from './patient-profile-for-medical-staff/patient-profile-for-medical-staff.component';
 import {CreateClinicCenterAdminsComponent} from './clinic-center-administrator-home-page/create-clinic-center-admins/create-clinic-center-admins.component';
 import {CreateMedicalReportComponent} from './create-medical-report/createMedicalReport.component';
+import {NurseProfilePageComponent} from './nurse-home-page/nurse-profile-page/nurse-profile-page.component';
+import {ScheduleOperationComponent} from './clinic-administrator-home-page/schedule-operation/schedule-operation.component';
+import {MedicalOperationRequestsComponent} from './clinic-administrator-home-page/medical-operation-requests/medical-operation-requests.component';
 import {ClinicExamsComponent} from './clinic-administrator-home-page/clinic-exams/clinic-exams.component';
 import {ShowMedicalRecordComponent} from './show-medical-record/showMedicalRecord.component';
 import {BeginExamComponent} from './begin-exam/beginExam.component';
 import {EditMedicalRecordBasicInfoComponent} from './edit-medical-record-basic-info/editMedicalRecordBasicInfo.component';
 import {ClinicIncomeComponent} from './clinic-administrator-home-page/clinic-income/clinic-income.component';
-import {ShowMedicalHistoryComponent} from "./show-medical-history/showMedicalHistory.component";
-import {EditMedicalReportComponent} from "./edit-medical-report/editMedicalReport.component";
+import {ShowMedicalHistoryComponent} from './show-medical-history/showMedicalHistory.component';
+import {EditMedicalReportComponent} from './edit-medical-report/editMedicalReport.component';
 
 
 const routes: Routes = [{path: 'register', component: RegistrationComponent},
@@ -127,6 +130,9 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'newClinicCenterAdmin', component: CreateClinicCenterAdminsComponent},
   {path: 'clinicExams', component: ClinicExamsComponent},
   {path: 'newClinicCenterAdmin', component: CreateClinicCenterAdminsComponent},
+  {path: 'nurseProfilePage', component: NurseProfilePageComponent},
+  {path: 'scheduleOperation', component: ScheduleOperationComponent},
+  {path: 'medicalOperationRequests', component: MedicalOperationRequestsComponent},
   {path: 'showMedicalRecord/:id', component: ShowMedicalRecordComponent},
   {path: 'editMedicalRecord/basicInfo/:id', component: EditMedicalRecordBasicInfoComponent},
   {path: 'showMedicalHistory/:id', component: ShowMedicalHistoryComponent},

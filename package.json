@@ -42,6 +42,7 @@
     "jquery": "^3.4.1",
     "jqwidgets-ng": "^9.0.0",
     "moment": "^2.24.0",
+    "ng-multiselect-dropdown": "^0.2.10",
     "ng2-charts": "^2.3.0",
     "ngb-modal": "^2.0.3",
     "npm-update-all": "^1.0.1",

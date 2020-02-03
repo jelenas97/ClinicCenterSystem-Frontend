@@ -1,0 +1,197 @@
+<div class="container register-form pt-lg-4">
+
+  <div class="form">
+    <div class="note">
+      <h2>Change info if necessary </h2>
+    </div>
+
+    <div class="card my-5">
+      <div class="card-body">
+        <form [formGroup]="userData2">
+
+          <div class="col-form-label-lg">
+            <label>Patient : {{request.patient.firstName + ' ' + request.patient.lastName}}</label>
+          </div>
+
+          <div class="col-form-label-lg">
+            <label>Main doctor : {{request.doctor.firstName + ' ' + request.doctor.lastName}}</label>
+          </div>
+
+          <div class="col-form-label-lg">
+            <label>Duration : {{request.duration}}</label>
+          </div>
+
+          <div class="col-form-label-lg">
+            <label>Date : {{request.date| date: 'yyyy-MM-dd'}}</label>
+            <input name="selectedDate" formControlName="selectedDate" class="form-control" type="date"
+                   [value]="selectedDate | date:'yyyy-MM-dd'"
+                   (input)="selectedDate=parseDate($event.target.valueAsDate)" [hidden]="!hiddenChange"
+                   (change)="getTerms()"
+                   [ngClass]="{'is-invalid': ff.selectedDate.touched && ff.selectedDate.errors, 'is-valid': ff.selectedDate.touched && ff.selectedDate.valid}">
+            <span style="color: red"
+                  *ngIf="ff.selectedDate.invalid && ff.selectedDate.touched">Please select a valid date</span>
+          </div>
+
+
+          <div class="form-group" [hidden]="!hiddenChange">
+            <label class="col-form-label-lg">Terms</label>
+            <select class="form-control-sm" [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedTerm"
+                    (change)="getAvailableDoctors(selectedDate, selectedTerm)">
+              <option *ngFor="let term of availableTerms">{{term}}</option>
+            </select>
+          </div>
+
+          <ng-multiselect-dropdown [hidden]="!hiddenDoctors"
+                                   [placeholder]="'Doctors to attend operation'"
+                                   [data]="dropdownList"
+                                   [(ngModel)]="selectedItems" [ngModelOptions]="{standalone: true}"
+                                   [settings]="dropdownSettings"
+                                   (onSelect)="onItemSelect($event)"
+                                   (onSelectAll)="onSelectAll($event)"
+                                   (onDeSelect)="OnItemDeSelect($event.id)"
+                                   (onDeSelectAll)="onDeSelectAll($event)"
+          >
+          </ng-multiselect-dropdown>
+
+
+          <button type="submit" id="btnChange"
+                  class="btn btn-primary" (click)="showChange()" style="margin-left: 45%;"> Change
+          </button>
+
+          <button type="submit" id="btnConfirm"
+                  class="btn btn-success" (click)="confirmChanges()" hidden [disabled]="userData2.invalid"
+                  style="margin-left: 42%;"> Confirm
+          </button>
+
+          <button type="submit" id="btnReset"
+                  class="btn btn-danger" (click)="reset()" hidden style="margin-left: 25px;"> Reset
+          </button>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container register-form pt-lg-4">
+
+  <div class="form">
+    <div class="note">
+      <h2>Add info </h2>
+    </div>
+    <div class="card my-5">
+      <div class="card-body">
+        <form [formGroup]="userData">
+          <div class="col-form-label-lg">
+            <label>Price</label>
+            <input name="selectedPrice" formControlName="selectedPrice" class="form-control" [(ngModel)]="selectedPrice"
+                   [ngClass]="{'is-invalid': f.selectedPrice.touched && f.selectedPrice.errors, 'is-valid': f.selectedPrice.touched && f.selectedPrice.valid}">
+            <span style="color: red"
+                  *ngIf="f.selectedPrice.invalid && f.selectedPrice.touched"> Price must be between 1$ and 999999$ </span>
+          </div>
+
+          <div class="col-form-label-lg">
+            <label>Discount</label>
+            <input name="selectedDiscount" formControlName="selectedDiscount" class="form-control"
+                   [(ngModel)]="selectedDiscount"
+                   [ngClass]="{'is-invalid': f.selectedDiscount.touched && f.selectedDiscount.errors, 'is-valid': f.selectedDiscount.touched && f.selectedDiscount.valid}">
+            <span style="color: red"
+                  *ngIf="f.selectedDiscount.invalid && f.selectedDiscount.touched">Discount must be between 0% and 99% </span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--
+<div class="container register-form pt-lg-4">
+
+  <div class="card my-5">
+    <div class="card-body">
+      <span class="navbar-brand mb-0 h1">Operation Rooms</span>
+      <form id="searchOperationRoom" class="form-group" (ngSubmit)="onSearchSubmit(selectedName, selectedNumber)">
+        <label style="padding-right: 20px;"> Enter name of operation room : </label>
+        <input type="text" [(ngModel)]="selectedName" [ngModelOptions]="{standalone: true}"
+               style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
+
+        <label style="padding-right: 20px;"> Enter number of operation room : </label>
+        <input type="number" [(ngModel)]="selectedNumber" [ngModelOptions]="{standalone: true}"
+               style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
+        <button type="submit" class="btn btn-primary"
+                style="margin-left: 45%; width: 150px;">Search
+        </button>
+      </form>
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+          <th scope="col">Operation Room Name</th>
+          <th scope="col">Operation Room Number</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let room of operationRooms">
+          <td contenteditable="true" (blur)="changeRoomName(room, $event)">{{ room.name }}</td>
+          <td contenteditable="true" (blur)="changeRoomNumber(room, $event)">{{ room.number }}</td>
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
+-->
+<div class="container register-form pt-lg-4">
+  <div class="form">
+    <div class="note">
+      <h2>Select a room </h2>
+    </div>
+
+    <form id="searchOperationRoom" class="form-group" (ngSubmit)="onSearchSubmit(selectedName, selectedNumber)">
+      <label style="padding-right: 20px;"> Enter name of operation room : </label>
+      <input type="text" [(ngModel)]="selectedName" [ngModelOptions]="{standalone: true}"
+             style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
+
+      <label style="padding-right: 20px;"> Enter number of operation room : </label>
+      <input type="number" [(ngModel)]="selectedNumber" [ngModelOptions]="{standalone: true}"
+             style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
+      <button type="submit" class="btn btn-primary"
+              style="margin-left: 45%; width: 150px;">Search
+      </button>
+    </form>
+
+    <div class="card my-5">
+      <div class="card-body">
+        <table class="table table-bordered table-striped">
+          <thead class="thead-dark">
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Number</th>
+            <th scope="col">Select a room</th>
+            <!--<th scope="col">Calendar</th>-->
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let room of operationRooms" [hidden]="userData.invalid">
+            <td>{{ room.id }}</td>
+            <td>{{ room.name}}</td>
+            <td>{{ room.number }}</td>
+            <td><input type="radio" name="selectClinicRadio"
+                       (change)="selectRoom(room.id)">
+              <!--<td><a class="nav-link" type="button" (click)="showCalendar(room.id)">
+                <fa-icon [icon]="calendar" class="mr-1"></fa-icon>
+                <span class="sr-only">(current)</span></a></td>-->
+          </tr>
+          </tbody>
+        </table>
+        <button type="submit" id="btnSchedule"
+                class="btn btn-success" (click)="scheduleOperation()" style="margin-left: 40%;" hidden> Schedule
+          operation
+        </button>
+      </div>
+    </div>
+
+
+  </div>
+</div>
