@@ -24,7 +24,7 @@
           <div class="col-form-label-lg">
             <label>Date : {{request.date| date: 'yyyy-MM-dd'}}</label>
             <input name="selectedDate" formControlName="selectedDate" class="form-control" type="date"
-                   [value]="selectedDate | date:'yyyy-MM-dd'"
+                   [value]="selectedDate | date:'yyyy-MM-dd'" [min]="todayDate"
                    (input)="selectedDate=parseDate($event.target.valueAsDate)" [hidden]="!hiddenChange"
                    (change)="getTerms()"
                    [ngClass]="{'is-invalid': ff.selectedDate.touched && ff.selectedDate.errors, 'is-valid': ff.selectedDate.touched && ff.selectedDate.valid}">
@@ -104,43 +104,6 @@
   </div>
 </div>
 
-<!--
-<div class="container register-form pt-lg-4">
-
-  <div class="card my-5">
-    <div class="card-body">
-      <span class="navbar-brand mb-0 h1">Operation Rooms</span>
-      <form id="searchOperationRoom" class="form-group" (ngSubmit)="onSearchSubmit(selectedName, selectedNumber)">
-        <label style="padding-right: 20px;"> Enter name of operation room : </label>
-        <input type="text" [(ngModel)]="selectedName" [ngModelOptions]="{standalone: true}"
-               style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
-
-        <label style="padding-right: 20px;"> Enter number of operation room : </label>
-        <input type="number" [(ngModel)]="selectedNumber" [ngModelOptions]="{standalone: true}"
-               style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
-        <button type="submit" class="btn btn-primary"
-                style="margin-left: 45%; width: 150px;">Search
-        </button>
-      </form>
-      <table class="table table-bordered table-striped">
-        <thead class="thead-dark">
-        <tr>
-          <th scope="col">Operation Room Name</th>
-          <th scope="col">Operation Room Number</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let room of operationRooms">
-          <td contenteditable="true" (blur)="changeRoomName(room, $event)">{{ room.name }}</td>
-          <td contenteditable="true" (blur)="changeRoomNumber(room, $event)">{{ room.number }}</td>
-        </tr>
-        </tbody>
-      </table>
-
-    </div>
-  </div>
-</div>
--->
 <div class="container register-form pt-lg-4">
   <div class="form">
     <div class="note">

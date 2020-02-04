@@ -17,18 +17,18 @@ export class ScheduleOperationService {
     return this.http.get<OperationRequest>('http://localhost:8080/getMedicalOperationById/' + requestId);
   }
 
-  getAvailableRooms(id: string) {
-    return this.http.get<Room[]>('http://localhost:8080/getClinicOperationRooms/' + id);
+  getAvailableRooms(id: string, date: string, term: string) {
+    return this.http.get<Room[]>('http://localhost:8080/getClinicOperationRooms/' + id + '/' + date + '/' + term);
   }
 
   getAvailableTermsForDoctor(id: string, date: string) {
     return this.http.get<string[]>('http://localhost:8080/getAvailableTermsForDoctor/' + id + '/' + date);
   }
 
-  saveOperation(operationRequest: OperationRequest, selectedRoom: string, date: string, price: number, discount: number,
+  saveOperation(operationRequest: OperationRequest, selectedRoom: string, date: string,
                 requestId: string, selectedTerm: string, selectedDoctors: number[]) {
     return this.http.post<OperationRequest>('http://localhost:8080/saveOperation/' + selectedRoom + '/' + date +
-      '/' + price + '/' + discount + '/' + requestId + '/' + selectedTerm + '/' + selectedDoctors, operationRequest).subscribe();
+      '/'  + requestId + '/' + selectedTerm + '/' + selectedDoctors, operationRequest).subscribe();
   }
 
   getAvailableDoctorsForOperation(date: string, term: string, clinicId: string, doctorId: string) {

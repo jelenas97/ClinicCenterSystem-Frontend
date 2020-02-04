@@ -8,4 +8,6 @@ export class OperationRequest {
   clinic: Clinic;
   duration: number;
   date: Date;
+  price: number;
+  discount: number;
 }

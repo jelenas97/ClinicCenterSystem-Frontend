@@ -4,8 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {AnnualLeaveAndAbsenceService} from './annualLeaveAndAbsence.service';
 import {Vacation} from '../model/vacation';
 import {UserService} from '../service/user.service';
-import {ModalDismissReasons, NgbModal, NgbModalOptions} from '@ng-bootstrap/ng-bootstrap';
-import {DatePipe} from '@angular/common';
+import {ModalDismissReasons, NgbDatepickerConfig, NgbModal, NgbModalOptions} from '@ng-bootstrap/ng-bootstrap';
 import * as moment from 'moment';
 
 @Component({
@@ -28,17 +27,27 @@ export class AnnualLeaveAndAbsenceComponent implements OnInit {
   date: Date;
   dateSec: Date;
 
+  todayDate: any;
+  minDate = undefined;
+
   ngOnInit(): void {
     this.userService.getMyInfo();
     this.currentUser = this.userService.currentUser;
   }
 
   constructor(private annualLeaveAndAbsenceService: AnnualLeaveAndAbsenceService, private route: ActivatedRoute,
-              private router: Router, private userService: UserService, private modalService: NgbModal) {
+              private router: Router, private userService: UserService, private modalService: NgbModal,
+              private config: NgbDatepickerConfig) {
     this.vacation = new Vacation();
     this.modalOptions = {
       backdrop: 'static',
       backdropClass: 'customBackdrop'
+    };
+    this.todayDate = new Date();
+    this.minDate = {
+      year: this.todayDate.getFullYear(),
+      month: this.todayDate.getMonth() + 1,
+      day: this.todayDate.getDate()
     };
   }
 
@@ -63,7 +72,7 @@ export class AnnualLeaveAndAbsenceComponent implements OnInit {
   this.vacation.userRole = sessionStorage.getItem('role');
   this.annualLeaveAndAbsenceService.saveVacation(this.vacation).subscribe(result => this.gotoVacation());
 
-  this.modalService.open(mymodal, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.modalService.open(mymodal, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;

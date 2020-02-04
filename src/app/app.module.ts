@@ -159,10 +159,14 @@ import {ClinicIncomeComponent} from './clinic-administrator-home-page/clinic-inc
 
 import {NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
 
-import {AgmCoreModule, GoogleMapsAPIWrapper} from '@agm/core';
 import {keyframes} from '@angular/animations';
 import {PatientMedicalRecordComponent} from './patient-medical-record/patientMedicalRecord.component';
 import {PatientMedicalRecordService} from './patient-medical-record/patientMedicalRecord.service';
+import {EditMedicalReportService} from './edit-medical-report/editMedicalReport.service';
+import {ShowMedicalHistoryService} from './show-medical-history/showMedicalHistory.service';
+import {ShowMedicalHistoryComponent} from './show-medical-history/showMedicalHistory.component';
+import {EditMedicalReportComponent} from './edit-medical-report/editMedicalReport.component';
+import {AgmCoreModule, GoogleMapsAPIWrapper} from '@agm/core';
 
 /**
  * Custom angular notifier options
