@@ -47,8 +47,7 @@ export class CreateMedicalReportComponent implements OnInit {
   notifier: NotifierService;
   operationRequest: OperationRequest;
 
-
-
+  todayDate: string;
 
   constructor(private createMedicalReportService: CreateMedicalReportService, private route: ActivatedRoute,
               private router: Router, private userService: UserService, private modalService: NgbModal, private datePipe: DatePipe,
@@ -61,6 +60,7 @@ export class CreateMedicalReportComponent implements OnInit {
 
     });
     this.notifier = notifierService;
+    this.todayDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
   }
 
   ngOnInit(): void {

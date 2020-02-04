@@ -8,6 +8,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ExaminationType} from '../../model/examinationType';
 import {Clinic} from '../../model/clinic';
 import {Room} from '../../model/room';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-crate-predefined-examinations',
@@ -34,8 +35,11 @@ export class CreatePredefinedExaminationsComponent implements OnInit {
   selectedRoom: string;
   selectedDiscount: string;
 
+  todayDate: string;
+
   constructor(private route: ActivatedRoute, private router: Router, private userService: UserService,
-              private createPredefinedExaminationsService: CreatePredefinedExaminationsService, private formBuilder: FormBuilder) {
+              private createPredefinedExaminationsService: CreatePredefinedExaminationsService, private formBuilder: FormBuilder,
+              private datePipe: DatePipe) {
     this.loggedUser = new User();
     this.selectedDate = new Date();
   }
@@ -58,6 +62,7 @@ export class CreatePredefinedExaminationsComponent implements OnInit {
     this.createPredefinedExaminationsService.getAvailableRooms(this.loggedUser.id).subscribe(data => {
       this.examinationRooms = data;
     });
+    this.todayDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
   }
 
   get f() {

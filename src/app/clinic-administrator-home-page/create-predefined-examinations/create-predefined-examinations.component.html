@@ -10,7 +10,7 @@
 
           <div class="col-form-label-lg">
             <label>Date</label>
-            <input name="selectedDate" formControlName="selectedDate" class="form-control" type="date"
+            <input name="selectedDate" formControlName="selectedDate" class="form-control" type="date" [min]="todayDate"
                    [(ngModel)]="selectedDate"
                    [ngClass]="{'is-invalid': f.selectedDate.touched && f.selectedDate.errors, 'is-valid': f.selectedDate.touched && f.selectedDate.valid}">
             <span style="color: red"
