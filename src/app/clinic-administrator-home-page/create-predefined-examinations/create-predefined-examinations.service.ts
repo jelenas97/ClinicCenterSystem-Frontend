@@ -25,14 +25,18 @@ export class CreatePredefinedExaminationsService {
     return this.http.get<User[]>('http://localhost:8080/auth/getSearchedDoctors/' + selectedOption + '/' + id);
   }
 
-  getAvailableRooms(id: string) {
-    return this.http.get<Room[]>('http://localhost:8080/getClinicRooms/' + id);
+  getAvailableRooms(id: string, date: string, term: string) {
+    return this.http.get<Room[]>('http://localhost:8080/getClinicRooms/' + id + '/' + date + '/' + term);
   }
 
   savePredefinedMedicalExamination(selectedDate: any, selectedType: string, selectedDuration: string, selectedPrice: string,
-                                   selectedDoctor: string, selectedClinic: string, selectedRoom: string, selectedDiscount: string) {
+                                   selectedDoctor: string, selectedRoom: string, selectedDiscount: string, term: string, clinicId: string) {
     return this.http.post<MedicalExamination>('http://localhost:8080/savePredefinedMedicalExamination/' + selectedDate + '/' +
-      selectedType + '/' + selectedDuration + '/' + selectedPrice + '/' + selectedDoctor + '/' + selectedClinic + '/' +
-      selectedRoom + '/' + selectedDiscount, any);
+      selectedType + '/' + selectedDuration + '/' + selectedPrice + '/' + selectedDoctor  + '/' +
+      selectedRoom + '/' + selectedDiscount + '/' + term + '/' + clinicId, any);
+  }
+
+  getAvailableTermsForDoctor(id: string, date: string) {
+    return this.http.get<string[]>('http://localhost:8080/getAvailableTermsForDoctor/' + id + '/' + date);
   }
 }

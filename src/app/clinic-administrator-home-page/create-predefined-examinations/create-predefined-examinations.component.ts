@@ -31,11 +31,15 @@ export class CreatePredefinedExaminationsComponent implements OnInit {
   selectedDuration: string;
   selectedPrice: string;
   selectedDoctor: string;
-  selectedClinic: string;
   selectedRoom: string;
   selectedDiscount: string;
 
   todayDate: string;
+
+  hiddenChange: boolean;
+  hiddenRooms: boolean;
+  selectedTerm: string;
+  availableTerms: string[];
 
   constructor(private route: ActivatedRoute, private router: Router, private userService: UserService,
               private createPredefinedExaminationsService: CreatePredefinedExaminationsService, private formBuilder: FormBuilder,
@@ -59,9 +63,6 @@ export class CreatePredefinedExaminationsComponent implements OnInit {
     this.createPredefinedExaminationsService.getAllTypes().subscribe(data => {
       this.examinationTypes = data;
     });
-    this.createPredefinedExaminationsService.getAvailableRooms(this.loggedUser.id).subscribe(data => {
-      this.examinationRooms = data;
-    });
     this.todayDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
   }
 
@@ -75,23 +76,36 @@ export class CreatePredefinedExaminationsComponent implements OnInit {
     console.log(this.selectedDuration);
     console.log(this.selectedPrice);
     console.log(this.selectedDoctor);
-    console.log(this.selectedClinic);
     console.log(this.selectedRoom);
     console.log(this.selectedDiscount);
-    this.createPredefinedExaminationsService.savePredefinedMedicalExamination(this.selectedDate, this.selectedType,
-      this.selectedDuration, this.selectedPrice, this.selectedDoctor, this.selectedClinic, this.selectedRoom,
-      this.selectedDiscount).subscribe();
+    this.createPredefinedExaminationsService.savePredefinedMedicalExamination(this.datePipe.transform(this.selectedDate, 'yyyy_MM_dd'),
+      this.selectedType,
+      this.selectedDuration, this.selectedPrice, this.selectedDoctor, this.selectedRoom,
+      this.selectedDiscount, this.selectedTerm, this.loggedUser.clinic.id).subscribe();
   }
 
   onSelectChange($event: Event) {
     console.log(this.selectedType);
-    this.createPredefinedExaminationsService.getClinic(this.loggedUser.id).subscribe(data => {
-      this.helperClinic = data;
-      this.selectedClinic = this.helperClinic.id;
-      this.createPredefinedExaminationsService.getSearchedDoctors(this.selectedType, this.selectedClinic).subscribe(data => {
-        this.availableDoctors = data;
-      });
+
+    this.createPredefinedExaminationsService.getSearchedDoctors(this.selectedType, this.loggedUser.clinic.id).subscribe(data => {
+      this.availableDoctors = data;
     });
     this.isTypeSelected = true;
+  }
+
+  getTerms() {
+    this.createPredefinedExaminationsService.getAvailableTermsForDoctor(this.selectedDoctor, this.datePipe.transform(this.selectedDate, 'yyyy_MM_dd')).subscribe(data => {
+      this.availableTerms = data;
+      this.selectedTerm = this.availableTerms[0];
+    });
+    this.hiddenChange = true;
+  }
+
+  getRooms() {
+    this.createPredefinedExaminationsService.getAvailableRooms(this.loggedUser.id,
+      this.datePipe.transform(this.selectedDate, 'yyyy_MM_dd'), this.selectedTerm).subscribe(data1 => {
+      this.examinationRooms = data1;
+    });
+    this.hiddenRooms = true;
   }
 }

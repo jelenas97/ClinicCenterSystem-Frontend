@@ -9,16 +9,20 @@
       <th scope="col">Doctor </th>
       <th scope="col">Price</th>
       <th scope="col">Discount </th>
+      <th scope="col">Clinic name</th>
+      <th scope="col">Clinic average rating</th>
       <th scope="col">Schedule</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let examination of allPredefinedExaminations">
-      <td>{{ examination.date }}</td>
+      <td>{{ examination.date|date:'yyyy-MM-dd'}}</td>
       <td>{{ examination.medicalExaminationRoom.name + ' ' + examination.medicalExaminationRoom.number }}</td>
       <td>{{ examination.doctor.firstName + ' ' + examination.doctor.lastName }}</td>
       <td>{{ examination.price }}</td>
       <td>{{examination.discount}}</td>
+      <td>{{examination.clinic.name}}</td>
+      <td>{{examination.clinic.clinicAverageRating}}</td>
       <td> <button (click)="scheduleExamination(examination.id)" class="btn btn-success">Schedule</button> </td>
     </tr>
     </tbody>
