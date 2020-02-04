@@ -14,8 +14,8 @@
         <p class="border-bottom">Phone: {{patient.phone}}</p>
       </mat-card-content>
       <mat-card-actions>
-        <button routerLink="/startExam/{{patient.id}}" mat-button class="btn-info">Begin exam</button>
-        <button routerLink="/showMedicalRecord/{{patient.id}}" mat-button class="btn-success">Show medical record</button>
+        <button routerLink="/startExam/{{medicalExamId}}" mat-button class="btn-info" [hidden] = "canBeginExam">Begin exam</button>
+        <button routerLink="/showMedicalRecord/{{patient.id}}" mat-button class="btn-success" [hidden] = "canSeeRecord">Show medical record</button>
 
       </mat-card-actions>
     </mat-card>

@@ -148,10 +148,6 @@ import {BeginExamComponent} from './begin-exam/beginExam.component';
 import {BeginExamService} from './begin-exam/beginExam.service';
 import {EditMedicalRecordBasicInfoComponent} from './edit-medical-record-basic-info/editMedicalRecordBasicInfo.component';
 import {EditMedicalRecordBasicInfoService} from './edit-medical-record-basic-info/editMedicalRecordBasicInfo.service';
-import {ShowMedicalHistoryComponent} from './show-medical-history/showMedicalHistory.component';
-import {ShowMedicalHistoryService} from './show-medical-history/showMedicalHistory.service';
-import {EditMedicalReportComponent} from './edit-medical-report/editMedicalReport.component';
-import {EditMedicalReportService} from './edit-medical-report/editMedicalReport.service';
 import {MatSortModule} from '@angular/material/sort';
 import {ClinicExamsComponent} from './clinic-administrator-home-page/clinic-exams/clinic-exams.component';
 import {ClinicExamsService} from './clinic-administrator-home-page/clinic-exams/clinic-exams.service';
@@ -162,6 +158,11 @@ import {ClinicIncomeService} from './clinic-administrator-home-page/clinic-incom
 import {ClinicIncomeComponent} from './clinic-administrator-home-page/clinic-income/clinic-income.component';
 
 import {NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
+
+import {AgmCoreModule, GoogleMapsAPIWrapper} from '@agm/core';
+import {keyframes} from '@angular/animations';
+import {PatientMedicalRecordComponent} from './patient-medical-record/patientMedicalRecord.component';
+import {PatientMedicalRecordService} from './patient-medical-record/patientMedicalRecord.service';
 
 /**
  * Custom angular notifier options
@@ -288,7 +289,8 @@ const customNotifierOptions: NotifierOptions = {
     EditMedicalReportComponent,
     CreateClinicCenterAdminsComponent,
     ClinicExamsComponent,
-    ClinicIncomeComponent
+    ClinicIncomeComponent,
+    PatientMedicalRecordComponent
   ],
   imports: [
     BrowserModule,
@@ -317,10 +319,12 @@ const customNotifierOptions: NotifierOptions = {
       provide: DateAdapter,
       useFactory: adapterFactory
     }),
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyCyn7KEG1JYg3IefpdfMK0kMLV6FBKZx5k'}),
     MatSortModule,
     NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [
+    GoogleMapsAPIWrapper,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
@@ -388,10 +392,10 @@ const customNotifierOptions: NotifierOptions = {
     ShowMedicalHistoryService,
     EditMedicalReportService,
     ClinicExamsService,
-    ClinicIncomeService
+    ClinicIncomeService,
+    PatientMedicalRecordService
   ],
   bootstrap: [AppComponent],
   exports: [WorkCalendarComponent, RoomOccupationCalendarComponent, ClinicExamsComponent]
 })
-export class AppModule {
-}
+export class AppModule {}

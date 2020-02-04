@@ -52,24 +52,25 @@ export class AnnualLeaveAndAbsenceComponent implements OnInit {
   }
 
   onSubmit(mymodal) {
-    this.userService.getMyInfo();
-    this.currentUser = this.userService.currentUser;
-    this.vacation.reason = this.reason;
-    const date1 = moment(this.leaveDate).format('YYYY-MM-DD');
-    const date2 = moment(this.returnDate).format('YYYY-MM-DD');
-    this.date = new Date(date1);
-    this.dateSec = new Date(date2);
-    this.date.setMonth(this.date.getMonth() - 1);
-    this.dateSec.setMonth(this.dateSec.getMonth() - 1);
-    this.vacation.userId = this.currentUser.id;
-    this.vacation.leaveDate = this.date;
-    this.vacation.returnDate = this.dateSec;
-    this.vacation.userRole = sessionStorage.getItem('role');
-    if (this.type === 'vacation') {
-      this.annualLeaveAndAbsenceService.saveAnnualLeave(this.vacation).subscribe(result => this.gotoAnnualLeave());
-    } else if (this.type === 'absence') {
-      this.annualLeaveAndAbsenceService.saveAbsence(this.vacation).subscribe(result => this.gotoAbsence());
-    }
+
+  this.userService.getMyInfo();
+  this.currentUser = this.userService.currentUser;
+
+  const date1 = moment(this.leaveDate).format('YYYY-MM-DD');
+  const date2 = moment(this.returnDate).format('YYYY-MM-DD');
+
+  this.date = new Date(date1);
+  this.dateSec = new Date(date2);
+  this.date.setMonth(this.date.getMonth() - 1);
+  this.dateSec.setMonth(this.dateSec.getMonth() - 1);
+
+  this.vacation.userId = this.currentUser.id;
+  this.vacation.reason = this.reason;
+  this.vacation.leaveDate = this.date;
+  this.vacation.returnDate = this.dateSec;
+
+  this.vacation.userRole = sessionStorage.getItem('role');
+  this.annualLeaveAndAbsenceService.saveVacation(this.vacation).subscribe(result => this.gotoVacation());
 
     this.modalService.open(mymodal, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -78,16 +79,8 @@ export class AnnualLeaveAndAbsenceComponent implements OnInit {
     });
   }
 
-  gotoAnnualLeave() {
+  gotoVacation() {
     this.router.navigate(['/vacation']);
-  }
-
-  gotoAbsence() {
-    this.router.navigate(['/vacation']);
-  }
-
-  onItemChange(value: any) {
-    this.type = value.target.value;
   }
 
   private getDismissReason(reason: any): string {

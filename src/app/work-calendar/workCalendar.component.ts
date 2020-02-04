@@ -9,6 +9,7 @@ import {UserService} from '../service/user.service';
 import {User} from '../model/user';
 import {MedicalExamination} from '../model/medicalExamination';
 import {Router} from '@angular/router';
+import {MedicalOperation} from '../model/medicalOperation';
 
 const colors: any = {
   red: {
@@ -36,6 +37,8 @@ export class WorkCalendarComponent  implements OnInit {
 
   private user: User;
   private exams: MedicalExamination[] = [];
+  private operations: MedicalOperation[] = [];
+
 
   constructor(private modal: NgbModal, private workCalendarService: WorkCalendarService,
               private userService: UserService, private router: Router) {
@@ -54,18 +57,20 @@ export class WorkCalendarComponent  implements OnInit {
 
   refresh: Subject<any> = new Subject();
 
-  events: (CalendarEvent | { color: any; start: Date; end: Date; title: string; actions: void })[] = [ ];
+  events: CalendarEvent [] = [ ];
 
   activeDayIsOpen = true;
 
   fillCalendar(): void {
     for (const exam of this.exams) {
+      // @ts-ignore
+      const datum = new Date(exam.date + 30 * 60 * 1000);
       this.events = [
         ...this.events,
         {
           title: exam.type.name + ' ' + exam.patient.firstName + ' ' + exam.patient.lastName,
-          start: startOfDay(new Date(exam.date)),
-          end: endOfDay(new Date(exam.date)),
+          start: new Date(exam.date),
+          end: datum,
           color: colors.red,
           id: exam.id,
         }
@@ -89,7 +94,12 @@ export class WorkCalendarComponent  implements OnInit {
   }
 
   handleEvent(action: string, event: CalendarEvent): void {
-    this.router.navigate(['/startExam/' + event.id]);
+    const start = new Date(event.start.getTime() - 15 * 60 * 1000);
+    const end = new Date(event.end.getTime() + 15 * 60 * 1000);
+    const now = new Date();
+    if (event.color === colors.red && start < now && now < end) {
+      this.router.navigate(['/startExam/' + event.id]);
+    }
   }
 
   setView(view: CalendarView) {
@@ -107,10 +117,30 @@ export class WorkCalendarComponent  implements OnInit {
       this.fillCalendar();
 
     });
+    this.workCalendarService.getAllOperation(this.user.id).subscribe(data => {
+      this.operations = data;
+      this.refresh.next();
+      this.fillCalendarOperation();
+
+    });
 
   }
 
-  private startExam(id: string) {
-    this.router.navigate(['/startExam/' + id ] );
+
+  private fillCalendarOperation() {
+
+    for (const operation of this.operations) {
+      // @ts-ignore
+      const datum = new Date(operation.date + 30 * 60 * 1000);
+      this.events = [
+        ...this.events,
+        {
+          title: 'Operation for ' + operation.patient.firstName + ' ' + operation.patient.lastName,
+          start: (new Date(operation.date)),
+          end: (datum),
+          color: colors.blue,
+        }
+      ];
+    }
   }
 }

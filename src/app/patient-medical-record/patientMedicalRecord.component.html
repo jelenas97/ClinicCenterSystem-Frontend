@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="col-lg-4 offset-2 mt-5" >
+<h4>Medical record for {{patient.firstName}} {{patient.lastName}}</h4>
+
+<div class="card">
+  <div class="card-body">
+
+    <div class="row">
+      <label class="col-lg-6">Pateient weight:</label>
+      <label class="col-lg-6 text-right" *ngIf="medicalRecord.weight == null">There are no records</label>
+      <label class="col-lg-6 text-right" *ngIf="medicalRecord.weight != null">{{medicalRecord.weight}} kg</label>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <label class="col-lg-6">Pateient height:</label>
+      <label class="col-lg-6 text-right" *ngIf="medicalRecord.height == null">There are no records</label>
+      <label class="col-lg-6 text-right" *ngIf="medicalRecord.height != null">{{medicalRecord.height}} cm</label>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <label class="col-lg-6">Pateient Blood Type:</label>
+      <label class="col-lg-6 text-right" *ngIf="medicalRecord.bloodType == null">There are no records</label>
+      <label class="col-lg-6 text-right" *ngIf="medicalRecord.height != null">{{medicalRecord.bloodType}} </label>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <label class="col-lg-6">Pateient Diopter:</label>
+      <label class="col-lg-6 text-right" *ngIf="medicalRecord.diopter == null">There are no records</label>
+      <label class="col-lg-6 text-right" *ngIf="medicalRecord.height != null">{{medicalRecord.diopter}} </label>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<div class="col-lg-8 mt-5 offset-2">
+  <table matSort (matSortChange)="sortData($event)" class="table table-borderless table-sm table-striped">
+    <thead class="bg-success text-white">
+    <tr>
+      <th mat-sort-header="clinicName" scope="col">Clinic Name</th>
+      <th mat-sort-header="doctorName" scope="col">Doctor</th>
+      <th mat-sort-header="dateExam" scope="col">Medical Exam Date</th>
+      <th scope="col">Report</th>
+      <th mat-sort-header="diagnosis" scope="col">Diagnosis</th>
+      <th mat-sort-header="medicament" scope="col">Medicament</th>
+      <th scope="col">Therapy</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let medExam of sortedData">
+      <td>{{medExam.clinicName}}</td>
+      <td>{{medExam.doctorName}}</td>
+      <td>{{medExam.dateExam | date: 'dd. MMMM yyyy'}}</td>
+      <td>{{medExam.report}}</td>
+      <td *ngIf="medExam.diagnosis == null">No diagnosis has been established!</td>
+      <td *ngIf="medExam.diagnosis != null">{{medExam.diagnosis}}</td>
+      <td *ngIf="medExam.medicament == null">No drug was prescribed!</td>
+      <td *ngIf="medExam.medicament != null">{{ medExam.medicament}}</td>
+      <td *ngIf="medExam.therapy == null">No therapy has been given!</td>
+      <td *ngIf="medExam.therapy != null">{{ medExam.therapy}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
