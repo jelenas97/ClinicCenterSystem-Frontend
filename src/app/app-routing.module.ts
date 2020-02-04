@@ -69,6 +69,7 @@ import {EditMedicalRecordBasicInfoComponent} from './edit-medical-record-basic-i
 import {ClinicIncomeComponent} from './clinic-administrator-home-page/clinic-income/clinic-income.component';
 import {ShowMedicalHistoryComponent} from './show-medical-history/showMedicalHistory.component';
 import {EditMedicalReportComponent} from './edit-medical-report/editMedicalReport.component';
+import {PatientMedicalRecordComponent} from './patient-medical-record/patientMedicalRecord.component';
 
 
 const routes: Routes = [{path: 'register', component: RegistrationComponent},
@@ -133,9 +134,9 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'nurseProfilePage', component: NurseProfilePageComponent},
   {path: 'scheduleOperation', component: ScheduleOperationComponent},
   {path: 'medicalOperationRequests', component: MedicalOperationRequestsComponent},
-  {path: 'showMedicalRecord/:id', component: ShowMedicalRecordComponent},
   {path: 'editMedicalRecord/basicInfo/:id', component: EditMedicalRecordBasicInfoComponent},
   {path: 'showMedicalHistory/:id', component: ShowMedicalHistoryComponent},
+  {path: 'patientMedicalRecord/:id', component: PatientMedicalRecordComponent},
   {path: 'editMedicalReport/:id', component: EditMedicalReportComponent},
 
   {path: 'clinicIncome', component: ClinicIncomeComponent},
