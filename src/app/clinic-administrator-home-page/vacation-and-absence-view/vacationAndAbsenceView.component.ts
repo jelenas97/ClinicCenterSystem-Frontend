@@ -18,21 +18,27 @@ export class VacationAndAbsenceViewComponent implements OnInit {
   user: User;
   validatingForm: FormGroup;
   closeResult: string;
+  reason: string;
+  requestId: number;
 
   constructor(private vacationAndAbsenceViewService: VacationAndAbsenceViewService, private route: ActivatedRoute,
               private router: Router, private userService: UserService, private modalService: NgbModal) {
   }
 
   ngOnInit(): void {
+
+    this.userService.getMyInfo();
+    this.user = this.userService.currentUser;
+
     if (window.location.href.indexOf('vacationRequests') > -1) {
-      this.vacationAndAbsenceViewService.getAllVacationRequests().subscribe(data => {
+      this.vacationAndAbsenceViewService.getAllVacationRequests(this.user.id).subscribe(data => {
         this.requests = data;
         for (let i = 0, len = this.requests.length; i < len; i++) {
            this.userService.getById(this.requests[i].userId).subscribe(data2 => this.requests[i].user = data2);
         }
       });
     } else {
-      this.vacationAndAbsenceViewService.getAllAbsenceRequests().subscribe(data => {
+      this.vacationAndAbsenceViewService.getAllAbsenceRequests(this.user.id).subscribe(data => {
         this.requests = data;
         for (let i = 0, len = this.requests.length; i < len; i++) {
           this.userService.getById(this.requests[i].userId).subscribe(data2 => this.requests[i].user = data2);
@@ -55,13 +61,12 @@ export class VacationAndAbsenceViewComponent implements OnInit {
   }
 
   sendRejectMailtoUser(request: Vacation, mymodal) {
+    this.requestId = request.id;
     this.modalService.open(mymodal, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
-    console.log('razlog: ');
-    this.vacationAndAbsenceViewService.sendRejectMail(request).subscribe(result => this.ngOnInit());
   }
 
   private getDismissReason(reason: any): string {
@@ -72,5 +77,10 @@ export class VacationAndAbsenceViewComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+
+  onSubmit(mymodal) {
+     this.vacationAndAbsenceViewService.sendRejectMail(this.reason, this.requestId).subscribe(result => this.ngOnInit());
+     this.modalService.dismissAll();
   }
 }
