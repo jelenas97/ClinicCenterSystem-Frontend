@@ -162,10 +162,7 @@ import {ClinicIncomeService} from './clinic-administrator-home-page/clinic-incom
 import {ClinicIncomeComponent} from './clinic-administrator-home-page/clinic-income/clinic-income.component';
 
 import {NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
-import {ShowMedicalHistoryComponent} from './show-medical-history/showMedicalHistory.component';
-import {ShowMedicalHistoryService} from './show-medical-history/showMedicalHistory.service';
-import {EditMedicalReportComponent} from './edit-medical-report/editMedicalReport.component';
-import {EditMedicalReportService} from './edit-medical-report/editMedicalReport.service';
+
 import {AgmCoreModule, GoogleMapsAPIWrapper} from '@agm/core';
 import {keyframes} from '@angular/animations';
 
