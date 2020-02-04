@@ -26,10 +26,12 @@ export class ScheduleExaminationComponent implements OnInit {
   requestId: string;
   request: MedicalExaminationRequest;
   dateOfExam: Date;
+  dateOfExamAsString: string;
   availableDoctors: User[];
   examinationRooms: Room[];
 
   selectedDoctor: string;
+  selectedDoctorId: string;
   selectedDate: any;
   selectedPrice: string;
   selectedDiscount: string;
@@ -46,12 +48,15 @@ export class ScheduleExaminationComponent implements OnInit {
   selectedNumber: number;
   calendar = faCalendarAlt;
 
+  todayDate: string;
+
   constructor(private route: ActivatedRoute, private scheduleExaminationService: ScheduleExaminationService,
               private userService: UserService, private formBuilder: FormBuilder, private router: Router, private datePipe: DatePipe) {
     this.route.queryParams.subscribe(params => {
       this.requestId = params.request;
     });
     this.selectedDate = new Date();
+    this.todayDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
   }
 
   ngOnInit() {
@@ -60,6 +65,13 @@ export class ScheduleExaminationComponent implements OnInit {
     this.scheduleExaminationService.getExaminationRequest(this.requestId).subscribe(data => {
       this.request = data;
       this.dateOfExam = new Date(this.request.date);
+      this.dateOfExamAsString = this.datePipe.transform(this.request.date, 'yyyy_MM_dd HH:mm');
+      this.selectedTerm = this.dateOfExamAsString.split(' ')[1];
+      console.log(this.selectedTerm);
+      this.selectedDoctorId = this.request.doctor.id;
+      this.scheduleExaminationService.getAvailableRooms(this.loggedUser.id, this.dateOfExamAsString, this.selectedTerm).subscribe(data1 => {
+        this.examinationRooms = data1;
+      });
     });
     this.scheduleExaminationService.getAvailableDoctors(this.loggedUser.id).subscribe(data => {
       this.availableDoctors = data;
@@ -67,11 +79,9 @@ export class ScheduleExaminationComponent implements OnInit {
     this.userData = this.formBuilder.group({
       selectedPrice: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.minLength(1), Validators.maxLength(6)]],
       selectedDiscount: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.minLength(1), Validators.maxLength(2)]],
-      selectedDate: ['', [Validators.required]],
+      selectedDate: ['', [Validators.required]]
     });
-    this.scheduleExaminationService.getAvailableRooms(this.loggedUser.id).subscribe(data => {
-      this.examinationRooms = data;
-    });
+
   }
 
   get f() {
@@ -80,6 +90,13 @@ export class ScheduleExaminationComponent implements OnInit {
 
   onSelectChange($event: Event) {
     console.log(this.selectedDoctor);
+    const array = this.selectedDoctor.split(':');
+    console.log(array[0]);
+    const array2 = array[1].split(' ');
+    console.log(array2[1]);
+    console.log(array2[2]);
+    this.selectedDoctorId = array[0];
+    this.getTerms();
   }
 
   showChange() {
@@ -95,8 +112,9 @@ export class ScheduleExaminationComponent implements OnInit {
   }
 
   getTerms() {
-    this.scheduleExaminationService.getAvailableTermsForDoctor(this.request.doctor.id, this.datePipe.transform(this.selectedDate, 'yyyy_MM_dd')).subscribe(data => {
+    this.scheduleExaminationService.getAvailableTermsForDoctor(this.selectedDoctorId, this.datePipe.transform(this.selectedDate, 'yyyy_MM_dd')).subscribe(data => {
       this.availableTerms = data;
+      this.selectedTerm = this.availableTerms[0];
     });
   }
 

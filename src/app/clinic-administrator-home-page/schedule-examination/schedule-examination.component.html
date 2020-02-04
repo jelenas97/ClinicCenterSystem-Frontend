@@ -31,7 +31,7 @@
           <div class="col-form-label-lg">
             <label>Date : {{request.date| date: 'yyyy-MM-dd'}}</label>
             <input name="selectedDate" formControlName="selectedDate" class="form-control" type="date"
-                   [value]="selectedDate | date:'yyyy-MM-dd'"
+                   [value]="selectedDate | date:'yyyy-MM-dd'" [min]="todayDate"
                    (input)="selectedDate=parseDate($event.target.valueAsDate)" [hidden]="!hiddenChange"
                    (change)="getTerms()"
                    [ngClass]="{'is-invalid': f.selectedDate.touched && f.selectedDate.errors, 'is-valid': f.selectedDate.touched && f.selectedDate.valid}">

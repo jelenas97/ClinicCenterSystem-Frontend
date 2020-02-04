@@ -21,8 +21,8 @@ export class ScheduleExaminationService {
     return this.http.get<User[]>('http://localhost:8080/getAvailableDoctorsFromClinic/' + id);
   }
 
-  getAvailableRooms(id: string) {
-    return this.http.get<Room[]>('http://localhost:8080/getClinicRooms/' + id);
+  getAvailableRooms(id: string, date: string, term: string) {
+    return this.http.get<Room[]>('http://localhost:8080/getClinicRooms/' + id + '/' + date + '/' + term);
   }
 
   saveExamination(selectedRoom: string, date: string, price: number, duration: number, discount: number,

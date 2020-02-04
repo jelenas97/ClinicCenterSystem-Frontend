@@ -45,7 +45,10 @@ export class ScheduleOperationComponent implements OnInit {
   selectedItems = [];
   dropdownSettings: IDropdownSettings;
 
+  dateOfOperationAsString: string;
   doctors: number[] = [];
+
+  todayDate: string;
 
   constructor(private route: ActivatedRoute, private scheduleOperationService: ScheduleOperationService,
               private userService: UserService, private formBuilder: FormBuilder, private router: Router, private datePipe: DatePipe) {
@@ -53,6 +56,7 @@ export class ScheduleOperationComponent implements OnInit {
       this.requestId = params.request;
     });
     this.selectedDate = new Date();
+    this.todayDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
   }
 
   ngOnInit() {
@@ -61,10 +65,15 @@ export class ScheduleOperationComponent implements OnInit {
     this.scheduleOperationService.getOperationRequest(this.requestId).subscribe(data => {
       this.request = data;
       this.dateOfOperation = new Date(this.request.date);
+      this.dateOfOperationAsString = this.datePipe.transform(this.request.date, 'yyyy_MM_dd HH:mm');
+      this.selectedTerm = this.dateOfOperationAsString.split(' ')[1];
+      console.log(this.selectedTerm);
+      this.scheduleOperationService.getAvailableRooms(this.loggedUser.clinic.id, this.dateOfOperationAsString,
+        this.selectedTerm).subscribe(data1 => {
+        this.operationRooms = data1;
+      });
     });
-    this.scheduleOperationService.getAvailableRooms(this.loggedUser.clinic.id).subscribe(data => {
-      this.operationRooms = data;
-    });
+
     this.userData = this.formBuilder.group({
       selectedPrice: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.minLength(1), Validators.maxLength(6)]],
       selectedDiscount: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.minLength(1), Validators.maxLength(2)]]
@@ -168,9 +177,15 @@ export class ScheduleOperationComponent implements OnInit {
 
   scheduleOperation() {
     document.getElementById('btnSchedule').hidden = true;
-
+    this.request.price = +this.selectedPrice;
+    this.request.discount = +this.selectedDiscount;
+    console.log(this.request.price);
+    console.log(this.request.discount);
+    if (this.doctors.length === 0) {
+      this.doctors.push(0.5);
+    }
     this.scheduleOperationService.saveOperation(this.request, this.selectedRoom, this.datePipe.transform(this.request.date, 'yyyy_MM_dd HH:mm:ss'),
-      +this.selectedPrice, +this.selectedDiscount, this.requestId, this.selectedTerm, this.doctors);
+      this.requestId, this.selectedTerm, this.doctors);
     this.doctors.length = 0;
     this.router.navigate(['/clinicAdministratorHomePage']);
   }

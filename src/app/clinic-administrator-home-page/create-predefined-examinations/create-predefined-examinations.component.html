@@ -10,7 +10,7 @@
 
           <div class="col-form-label-lg">
             <label>Date</label>
-            <input name="selectedDate" formControlName="selectedDate" class="form-control" type="date"
+            <input name="selectedDate" formControlName="selectedDate" class="form-control" type="date" [min]="todayDate"
                    [(ngModel)]="selectedDate"
                    [ngClass]="{'is-invalid': f.selectedDate.touched && f.selectedDate.errors, 'is-valid': f.selectedDate.touched && f.selectedDate.valid}">
             <span style="color: red"
@@ -60,7 +60,9 @@
             <label>Doctor</label>
             <select formControlName="selectedDoctor" name="selectedDoctor" [(ngModel)]="selectedDoctor"
                     class="form-control" [attr.disabled]="!isTypeSelected ? '' : null"
-                    [ngClass]="{'is-invalid': f.selectedDoctor.touched && f.selectedDoctor.errors, 'is-valid': f.selectedDoctor.touched && f.selectedDoctor.valid}">
+                    [ngClass]="{'is-invalid': f.selectedDoctor.touched && f.selectedDoctor.errors, 'is-valid': f.selectedDoctor.touched && f.selectedDoctor.valid}"
+                    (change)="getTerms()"
+            >
               <option value="{{doctor.id}}" *ngFor="let doctor of availableDoctors">
                 {{doctor.firstName + ' ' + doctor.lastName}}</option>
             </select>
@@ -68,7 +70,16 @@
                   *ngIf="f.selectedDoctor.invalid && f.selectedDoctor.touched"> Please select valid doctor </span>
           </div>
 
-          <div class="col-form-label-lg">
+          <div class="form-group" [hidden]="!hiddenChange">
+            <label class="col-form-label-lg">Terms</label>
+            <select class="form-control-sm" [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedTerm"
+              (change)="getRooms()"
+            >
+              <option *ngFor="let term of availableTerms">{{term}}</option>
+            </select>
+          </div>
+
+          <div class="col-form-label-lg"  [hidden]="!hiddenRooms">
             <label>Examinaiton rooms</label>
             <select formControlName="selectedRoom" name="selectedRoom" [(ngModel)]="selectedRoom"
                     class="form-control"

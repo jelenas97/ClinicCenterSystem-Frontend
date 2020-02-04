@@ -57,6 +57,9 @@ export class AllClinicsComponent implements OnInit {
   selectedDoctorRating: number;
 
   realDateAsString: string;
+  todayDate: string;
+
+  previousDoctor: string;
 
   public user: User;
   private sortedData: Clinic[];
@@ -64,6 +67,8 @@ export class AllClinicsComponent implements OnInit {
   constructor(private patientHomePageService: PatientHomePageService, private router: Router, private userService: UserService,
               private notifierService: NotifierService, private datePipe: DatePipe) {
     this.selectedDate = new Date();
+    this.realDateAsString = this.datePipe.transform(this.selectedDate, 'yyyy_MM_dd');
+    this.todayDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
     this.user = new User();
     this.notifier = notifierService;
   }
@@ -132,7 +137,7 @@ export class AllClinicsComponent implements OnInit {
   }
 
   sendRequest(selectedType: string, selectedDate: string) {
-    this.patientHomePageService.sendRequest(this.realSelectedOptionById, selectedDate, this.selectedClinicId,
+    this.patientHomePageService.sendRequest(this.realSelectedOptionById, this.selectedDate, this.selectedClinicId,
       this.selectedDoctorId, this.user.id, this.selectedTerm);
     this.resetAllForm();
     this.showNotification('success', 'Request for examination has been sent! ');
@@ -209,12 +214,26 @@ export class AllClinicsComponent implements OnInit {
     this.sortedData = data.sort((a, b) => {
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
-        case 'name': return compare(a.name, b.name, isAsc);
-        case 'address': return compare(a.address, b.address, isAsc);
-        case 'city': return compare(a.city, b.city, isAsc);
-        default: return 0;
+        case 'name':
+          return compare(a.name, b.name, isAsc);
+        case 'address':
+          return compare(a.address, b.address, isAsc);
+        case 'city':
+          return compare(a.city, b.city, isAsc);
+        default:
+          return 0;
       }
     });
+  }
+
+  showOnlySelectedTd(id: string) {
+    if (document.getElementById(this.previousDoctor) != null) {
+      document.getElementById(this.previousDoctor).hidden = true;
+      this.hiddenSend = true;
+    }
+    document.getElementById('terms-' + id).hidden = false;
+    this.previousDoctor = 'terms-' + id;
+    this.showTerms(id);
   }
 }
 

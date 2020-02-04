@@ -8,7 +8,7 @@
       <div class="form-group">
         <div class="input-group">
           <input id="leaveDate" class="form-control" placeholder="Choose leave date"
-                 name="dp" [(ngModel)]="leaveDate" ngbDatepicker #d="ngbDatepicker">
+                 name="dp" [(ngModel)]="leaveDate" ngbDatepicker #d="ngbDatepicker" [minDate]="minDate">
           <div class="input-group-append">
             <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">
               <fa-icon [icon]="faCalendar"></fa-icon>
@@ -21,7 +21,7 @@
       <div class="form-group">
         <div class="input-group">
           <input class="form-control" placeholder="Choose return date"
-                 name="dp" [(ngModel)]="returnDate" ngbDatepicker #d1="ngbDatepicker">
+                 name="dp" [(ngModel)]="returnDate" ngbDatepicker #d1="ngbDatepicker" [minDate]="minDate">
           <div class="input-group-append">
             <button class="btn btn-outline-secondary calendar" (click)="d1.toggle()" type="button">
               <fa-icon [icon]="faCalendar"></fa-icon>

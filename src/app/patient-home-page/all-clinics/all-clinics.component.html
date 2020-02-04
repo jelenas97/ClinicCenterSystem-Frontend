@@ -17,7 +17,7 @@
     <label style="padding-left: 20px; padding-right: 20px;"> Select date : </label>
     <input required class="form-control-sm" type="date" [value]="selectedDate | date:'yyyy-MM-dd'"
            (input)="selectedDate=parseDate($event.target.valueAsDate)" (change)="dateChanged($event)"
-           [disabled]="isAnyClinicSelected"
+           [disabled]="isAnyClinicSelected" [min]="todayDate"
            style="padding-left: 20px; padding-right: 20px;">
 
     <label style="padding-left: 20px; padding-right: 20px;"> Enter name of clinic : </label>
@@ -119,9 +119,9 @@
       <td>{{ doctor.lastName }}</td>
       <td>{{ doctor.country }}</td>
       <td>{{ doctor.averageRating}}</td>
-      <td><input type="radio" name="selectDoctorRadio" (change)="showTerms(doctor.id)"></td>
+      <td><input type="radio" name="selectDoctorRadio" (change)="showOnlySelectedTd(doctor.id)"> </td>
       <td [hidden]="hiddenTerms">
-        <select class="form-control-sm" [(ngModel)]="selectedTerm"
+        <select class="form-control-sm" [(ngModel)]="selectedTerm"  [id]="'terms-' + doctor.id" hidden
                 (change)="showSendRequestButton(doctor.id)">
           <option *ngFor="let term of availableTerms">{{term}}</option>
         </select>

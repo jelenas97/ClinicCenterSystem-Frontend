@@ -5,7 +5,7 @@ import {User} from '../../model/user';
 import {UserService} from '../../service/user.service';
 import {Clinic} from '../../model/clinic';
 import {ShowMyClinicService} from './show-my-clinic.service';
-import {AgmMap, GoogleMapsAPIWrapper, MapsAPILoader} from '@agm/core';
+import {GoogleMapsAPIWrapper, MapsAPILoader, AgmMap} from '@agm/core';
 
 declare var google: any;
 
@@ -19,7 +19,7 @@ interface Marker {
 interface Location {
   lat: number;
   lng: number;
-  viewport?: Object;
+  viewport?: object;
   zoom: number;
   address_level_1?: string;
   address_level_2?: string;
