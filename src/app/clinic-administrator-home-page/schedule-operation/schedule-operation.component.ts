@@ -68,10 +68,12 @@ export class ScheduleOperationComponent implements OnInit {
       this.dateOfOperationAsString = this.datePipe.transform(this.request.date, 'yyyy_MM_dd HH:mm');
       this.selectedTerm = this.dateOfOperationAsString.split(' ')[1];
       console.log(this.selectedTerm);
+      this.scheduleOperationService.getAvailableRooms(this.loggedUser.clinic.id, this.dateOfOperationAsString,
+        this.selectedTerm).subscribe(data1 => {
+        this.operationRooms = data1;
+      });
     });
-    this.scheduleOperationService.getAvailableRooms(this.loggedUser.clinic.id).subscribe(data => {
-      this.operationRooms = data;
-    });
+
     this.userData = this.formBuilder.group({
       selectedPrice: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.minLength(1), Validators.maxLength(6)]],
       selectedDiscount: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.minLength(1), Validators.maxLength(2)]]

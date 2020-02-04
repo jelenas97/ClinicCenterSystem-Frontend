@@ -17,8 +17,8 @@ export class ScheduleOperationService {
     return this.http.get<OperationRequest>('http://localhost:8080/getMedicalOperationById/' + requestId);
   }
 
-  getAvailableRooms(id: string) {
-    return this.http.get<Room[]>('http://localhost:8080/getClinicOperationRooms/' + id);
+  getAvailableRooms(id: string, date: string, term: string) {
+    return this.http.get<Room[]>('http://localhost:8080/getClinicOperationRooms/' + id + '/' + date + '/' + term);
   }
 
   getAvailableTermsForDoctor(id: string, date: string) {

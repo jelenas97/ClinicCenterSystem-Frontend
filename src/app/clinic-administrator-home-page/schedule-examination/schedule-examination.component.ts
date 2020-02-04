@@ -69,6 +69,9 @@ export class ScheduleExaminationComponent implements OnInit {
       this.selectedTerm = this.dateOfExamAsString.split(' ')[1];
       console.log(this.selectedTerm);
       this.selectedDoctorId = this.request.doctor.id;
+      this.scheduleExaminationService.getAvailableRooms(this.loggedUser.id, this.dateOfExamAsString, this.selectedTerm).subscribe(data1 => {
+        this.examinationRooms = data1;
+      });
     });
     this.scheduleExaminationService.getAvailableDoctors(this.loggedUser.id).subscribe(data => {
       this.availableDoctors = data;
@@ -77,9 +80,6 @@ export class ScheduleExaminationComponent implements OnInit {
       selectedPrice: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.minLength(1), Validators.maxLength(6)]],
       selectedDiscount: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.minLength(1), Validators.maxLength(2)]],
       selectedDate: ['', [Validators.required]]
-    });
-    this.scheduleExaminationService.getAvailableRooms(this.loggedUser.id).subscribe(data => {
-      this.examinationRooms = data;
     });
 
   }
