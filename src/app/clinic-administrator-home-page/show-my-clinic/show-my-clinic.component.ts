@@ -39,7 +39,17 @@ export class ShowMyClinicComponent implements OnInit {
   user: User;
   clinic: Clinic;
   geocoder: any;
-  public location: Location;
+  public location: Location = {
+    lat: 51.678418,
+    lng: 7.809007,
+    marker: {
+      lat: 51.678418,
+      lng: 7.809007,
+      draggable: true
+    },
+    zoom: 5
+  };
+
 
   // @ts-ignore
   @ViewChild(AgmMap) map: AgmMap;
@@ -49,6 +59,8 @@ export class ShowMyClinicComponent implements OnInit {
               public mapsApiLoader: MapsAPILoader,
               private zone: NgZone,
               private wrapper: GoogleMapsAPIWrapper) {
+    this.userService.getMyInfo();
+    this.user = this.userService.currentUser;
     this.mapsApiLoader = mapsApiLoader;
     this.zone = zone;
     this.wrapper = wrapper;
@@ -58,8 +70,7 @@ export class ShowMyClinicComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userService.getMyInfo();
-    this.user = this.userService.currentUser;
+
     this.showMyClinicService.getClinic(this.user.id).subscribe(data => {
       this.clinic = data;
       console.log(this.clinic);
@@ -69,6 +80,7 @@ export class ShowMyClinicComponent implements OnInit {
       this.geocoder.geocode({
         address: this.clinic.address + ' ' + this.clinic.city
       }, (results, status) => {
+        console.log(this.location);
         console.log(results);
         if (status === google.maps.GeocoderStatus.OK) {
           // tslint:disable-next-line:prefer-for-of
@@ -97,7 +109,6 @@ export class ShowMyClinicComponent implements OnInit {
             this.location.marker.draggable = true;
             this.location.viewport = results[0].geometry.viewport;
           }
-          console.log(this.location);
 
           this.map.triggerResize();
         } else {
