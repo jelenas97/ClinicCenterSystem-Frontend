@@ -7,6 +7,7 @@ import {faArrowLeft, faArrowRight} from '@fortawesome/free-solid-svg-icons';
 import {Router} from '@angular/router';
 import {MedicalExamination} from '../../model/medicalExamination';
 import {RoomOccupationCalendarService} from './room-occupation-calendar.service';
+import {MedicalOperation} from '../../model/medicalOperation';
 
 
 const colors: any = {
@@ -40,6 +41,7 @@ export class RoomOccupationCalendarComponent implements OnInit {
   faNext = faArrowRight;
   view: CalendarView = CalendarView.Month;
   exams: MedicalExamination[] = [];
+  operations: MedicalOperation[] = [];
   roomid: number;
 
   CalendarView = CalendarView;
@@ -78,16 +80,19 @@ export class RoomOccupationCalendarComponent implements OnInit {
 
   activeDayIsOpen = true;
 
-  fillCalendar(): void {
+  fillCalendarExam(): void {
     for (const exam of this.exams) {
+      // @ts-ignore
+      const datum = new Date(exam.date + 30 * 60 * 1000);
       this.events = [
         ...this.events,
         {
-          title: exam.type.name,
-          start: startOfDay(new Date(exam.date)),
-          end: endOfDay(new Date(exam.date)),
+          title: exam.type.name + ' ' + exam.patient.firstName + ' ' + exam.patient.lastName,
+          start: new Date(exam.date),
+          end: datum,
           color: colors.red,
-    }
+          id: exam.id,
+        }
       ];
     }
 
@@ -157,6 +162,23 @@ export class RoomOccupationCalendarComponent implements OnInit {
     this.events = this.events.filter(event => event !== eventToDelete);
   }
 
+  private fillCalendarOperations() {
+
+    for (const operation of this.operations) {
+      // @ts-ignore
+      const datum = new Date(operation.date + 30 * 60 * 1000);
+      this.events = [
+        ...this.events,
+        {
+          title: 'Operation for ' + operation.patient.firstName + ' ' + operation.patient.lastName,
+          start: (new Date(operation.date)),
+          end: (datum),
+          color: colors.blue,
+        }
+      ];
+    }
+  }
+
   setView(view: CalendarView) {
     this.view = view;
   }
@@ -166,12 +188,19 @@ export class RoomOccupationCalendarComponent implements OnInit {
   }
 
    ngOnInit(): void {
-     this.roomOccupationCalendarService.getAllExams(this.roomid).subscribe(data => {
-       this.exams = data;
-       this.refresh.next();
-       this.fillCalendar();
+     if (this.router.url.includes('Exam')) {
+       this.roomOccupationCalendarService.getAllExams(this.roomid).subscribe(data => {
+         this.exams = data;
+         this.refresh.next();
+         this.fillCalendarExam();
 
-     });
-
-  }
+       });
+     } else {
+       this.roomOccupationCalendarService.getAllOperations(this.roomid).subscribe(data => {
+         this.operations = data;
+         this.refresh.next();
+         this.fillCalendarOperations();
+       });
+     }
+   }
 }
