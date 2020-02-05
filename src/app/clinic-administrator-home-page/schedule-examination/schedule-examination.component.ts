@@ -29,6 +29,7 @@ export class ScheduleExaminationComponent implements OnInit {
   dateOfExamAsString: string;
   availableDoctors: User[];
   examinationRooms: Room[];
+  searchedRooms: Room[];
 
   selectedDoctor: string;
   selectedDoctorId: string;
@@ -71,6 +72,7 @@ export class ScheduleExaminationComponent implements OnInit {
       this.selectedDoctorId = this.request.doctor.id;
       this.scheduleExaminationService.getAvailableRooms(this.loggedUser.id, this.dateOfExamAsString, this.selectedTerm).subscribe(data1 => {
         this.examinationRooms = data1;
+        this.searchedRooms = data1;
       });
     });
     this.scheduleExaminationService.getAvailableDoctors(this.loggedUser.id).subscribe(data => {
@@ -180,13 +182,20 @@ export class ScheduleExaminationComponent implements OnInit {
   }
 
   onSearchRoomSubmit(selectedName: string, selectedNumber: number) {
-    this.scheduleExaminationService.searchRoom(selectedName, selectedNumber).subscribe(data => {
-      this.examinationRooms = data;
-    });
+    if (selectedName) {
+      this.searchedRooms = this.examinationRooms.filter(x =>
+        x.name.trim().toLowerCase().includes(selectedName.trim().toLowerCase())
+      );
+    } else if (selectedNumber) {
+      this.searchedRooms = this.examinationRooms.filter(x =>
+        x.number.toString().includes(selectedNumber.toString()));
+    } else {
+      this.searchedRooms = this.examinationRooms;
+    }
   }
 
   showCalendar(id: string) {
-    this.router.navigate(['roomOccupationCalendar'], {state: {example: id}});
+    this.router.navigate(['medicalExamRoomOccupation'], {state: {example: id}});
   }
 
   parseDate(dateString: Date): Date {

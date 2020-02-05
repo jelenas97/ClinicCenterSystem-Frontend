@@ -106,45 +106,52 @@
 
 <div class="container register-form pt-lg-4">
   <div class="form">
-    <div class="note">
-      <h2>Select a room </h2>
-    </div>
-
-    <form id="searchOperationRoom" class="form-group" (ngSubmit)="onSearchSubmit(selectedName, selectedNumber)">
-      <label style="padding-right: 20px;"> Enter name of operation room : </label>
-      <input type="text" [(ngModel)]="selectedName" [ngModelOptions]="{standalone: true}"
-             style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
-
-      <label style="padding-right: 20px;"> Enter number of operation room : </label>
-      <input type="number" [(ngModel)]="selectedNumber" [ngModelOptions]="{standalone: true}"
-             style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
-      <button type="submit" class="btn btn-primary"
-              style="margin-left: 45%; width: 150px;">Search
+    <div>
+      <button class="navbar-toggler" (click)="showSearchRoom($event)">Search
+        <fa-icon [icon]="faArrow" class="mr-1"></fa-icon>
       </button>
-    </form>
+      <br>
+      <div id="searchDoctorDiv" [@slideInOut]="animationState" class="border-bottom">
+        <br>
+        <form id="searchDoctor" class="form-group" (ngSubmit)="onSearchSubmit(selectedName, selectedNumber)">
+
+          <label style="padding-right: 20px;"> Enter name of operation room : </label>
+          <input type="text" [(ngModel)]="selectedName" [ngModelOptions]="{standalone: true}"
+                 style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
+
+          <label style="padding-right: 20px;"> Enter number of operation room : </label>
+          <input type="number" [(ngModel)]="selectedNumber" [ngModelOptions]="{standalone: true}"
+                 style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
+          <br>
+          <br>
+          <button type="submit" class="btn btn-primary"
+                  style="margin-left: 45%; width: 150px;">Search
+          </button>
+
+        </form>
+      </div>
+    </div>
 
     <div class="card my-5">
       <div class="card-body">
         <table class="table table-bordered table-striped">
           <thead class="thead-dark">
           <tr>
-            <th scope="col">Id</th>
             <th scope="col">Name</th>
             <th scope="col">Number</th>
             <th scope="col">Select a room</th>
-            <!--<th scope="col">Calendar</th>-->
+            <th scope="col">Calendar</th>
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let room of operationRooms" [hidden]="userData.invalid">
-            <td>{{ room.id }}</td>
+          <tr *ngFor="let room of searchedRooms" [hidden]="userData.invalid">
             <td>{{ room.name}}</td>
             <td>{{ room.number }}</td>
             <td><input type="radio" name="selectClinicRadio"
                        (change)="selectRoom(room.id)">
-              <!--<td><a class="nav-link" type="button" (click)="showCalendar(room.id)">
+              <td><a class="nav-link" type="button" (click)="showCalendar(room.id)">
                 <fa-icon [icon]="calendar" class="mr-1"></fa-icon>
-                <span class="sr-only">(current)</span></a></td>-->
+                <span class="sr-only">(current)</span></a></td>
           </tr>
           </tbody>
         </table>

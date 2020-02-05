@@ -8,12 +8,16 @@ import {User} from '../../model/user';
 import {Room} from '../../model/room';
 import {OperationRequest} from '../../model/operationRequest';
 import {IDropdownSettings} from 'ng-multiselect-dropdown/multiselect.model';
+import {faArrowDown, faArrowUp, faCalendarAlt} from '@fortawesome/free-solid-svg-icons';
+import {SlideInOutAnimation} from '../../patient-home-page/all-clinics/animations';
 
 
 @Component({
   selector: 'app-schedule-operation',
   templateUrl: './schedule-operation.component.html',
-  styleUrls: ['./schedule-operation.component.css']
+  styleUrls: ['./schedule-operation.component.css'],
+  animations: [SlideInOutAnimation]
+
 })
 export class ScheduleOperationComponent implements OnInit {
 
@@ -24,10 +28,13 @@ export class ScheduleOperationComponent implements OnInit {
   requestId: string;
   request: OperationRequest;
   dateOfOperation: Date;
+  faArrow = faArrowDown;
+  calendar = faCalendarAlt;
 
 
   availableDoctors: Doctor[] = [];
   operationRooms: Room[];
+  searchedRooms: Room[];
   availableTerms: string[];
 
   selectedDate: any;
@@ -40,6 +47,9 @@ export class ScheduleOperationComponent implements OnInit {
 
   selectedName: string;
   selectedNumber: number;
+
+  animationState = 'out';
+  isSearchHidden = false;
 
   dropdownList: Doctor[] = [];
   selectedItems = [];
@@ -71,6 +81,7 @@ export class ScheduleOperationComponent implements OnInit {
       this.scheduleOperationService.getAvailableRooms(this.loggedUser.clinic.id, this.dateOfOperationAsString,
         this.selectedTerm).subscribe(data1 => {
         this.operationRooms = data1;
+        this.searchedRooms = data1;
       });
     });
 
@@ -211,9 +222,31 @@ export class ScheduleOperationComponent implements OnInit {
   }
 
   onSearchSubmit(selectedName: string, selectedNumber: number) {
-    this.scheduleOperationService.searchRoom(selectedName, selectedNumber).subscribe(data => {
-      this.operationRooms = data;
-    });
+    if (selectedName) {
+      this.searchedRooms = this.operationRooms.filter(x =>
+        x.name.trim().toLowerCase().includes(selectedName.trim().toLowerCase())
+      );
+    } else if (selectedNumber) {
+      this.searchedRooms = this.operationRooms.filter(x =>
+        x.number.toString().includes(selectedNumber.toString()));
+    } else {
+      this.searchedRooms = this.operationRooms;
+    }
+  }
+
+  showSearchRoom($event: MouseEvent) {
+    this.animationState = this.animationState === 'out' ? 'in' : 'out';
+    if (this.isSearchHidden) {
+      this.isSearchHidden = false;
+      this.faArrow = faArrowDown;
+    } else {
+      this.isSearchHidden = true;
+      this.faArrow = faArrowUp;
+    }
+  }
+
+  showCalendar(id: string) {
+    this.router.navigate(['medicalOperationRoomOccupation'], {state: {example: id}});
   }
 
   changeRoomName(room: Room, event: any) {
