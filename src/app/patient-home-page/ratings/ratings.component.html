@@ -13,7 +13,7 @@
   </thead>
   <tbody>
   <tr *ngFor="let exam of medicalExaminations">
-    <td>{{ exam.date }}</td>
+    <td>{{ exam.date|date: 'yyyy-MM-dd'}}</td>
     <td>{{ exam.type.name }}</td>
     <td>{{ exam.clinic.name }}</td>
     <td>
@@ -54,6 +54,65 @@
   </tr>
   </tbody>
 </table>
+
+
+<notifier-container></notifier-container>
+<h2>Here you can rate clinics and doctors you have had an operation at</h2>
+<table class="table table-bordered table-striped">
+  <thead class="thead-dark">
+  <tr>
+    <th scope="col">Date</th>
+    <th scope="col">Clinic</th>
+    <th scope="col">Rate clinic</th>
+    <th scope="col">Doctor</th>
+    <th scope="col">Rate doctor</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let operation of operations">
+    <td>{{ operation.date|date: 'yyyy-MM-dd'}}</td>
+    <td>{{ operation.clinic.name }}</td>
+    <td>
+      <select *ngIf="!operation.clinicRated" (change)="onChangeSelect12($event.target.value, operation)">
+        <option>10</option>
+        <option>9</option>
+        <option>8</option>
+        <option>7</option>
+        <option>6</option>
+        <option>5</option>
+        <option>4</option>
+        <option>3</option>
+        <option>2</option>
+        <option>1</option>
+      </select>
+      <button *ngIf="!operation.clinicRated" type="button" (click)="rateClinicO(operation)"> Rate !
+      </button>
+      <label *ngIf="operation.clinicRated">Already rated !</label>
+    </td>
+    <td>{{ operation.doctor.firstName + ' ' + operation.doctor.lastName}}</td>
+    <td>
+      <select *ngIf="!operation.doctorRated" (change)="onChangeSelect22($event.target.value, operation)">
+        <option>10</option>
+        <option>9</option>
+        <option>8</option>
+        <option>7</option>
+        <option>6</option>
+        <option>5</option>
+        <option>4</option>
+        <option>3</option>
+        <option>2</option>
+        <option>1</option>
+      </select>
+      <button *ngIf="!operation.doctorRated" type="button" (click)="rateDoctorO(operation)"> Rate !
+      </button>
+      <label *ngIf="operation.doctorRated">Already rated !</label>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+
+
 
 
 

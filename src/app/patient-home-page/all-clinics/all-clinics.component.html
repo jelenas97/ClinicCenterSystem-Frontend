@@ -51,6 +51,7 @@
       <th scope="col">Description</th>
       <th scope="col">Average rating</th>
       <th scope="col" [hidden]="!isTypeSelected">Select a clinic</th>
+      <th scope="col">Predefined exams</th>
     </tr>
     </thead>
     <tbody>
@@ -64,6 +65,9 @@
       <td [hidden]="!isTypeSelected"><input type="radio" name="selectClinicRadio"
                                             (change)="getDoctorFromSelectedClinic(selectedOption, clinic.id)">
       </td>
+      <td><a class="nav-link" type="button" (click)="showPredefinedExams(clinic.id)">
+        <fa-icon [icon]="calendar" class="mr-1"></fa-icon>
+        <span class="sr-only">(current)</span></a></td>
     </tr>
     </tbody>
   </table>

@@ -50,6 +50,7 @@ export class ScheduleExaminationComponent implements OnInit {
   calendar = faCalendarAlt;
 
   todayDate: string;
+  realRoom: Room;
 
   constructor(private route: ActivatedRoute, private scheduleExaminationService: ScheduleExaminationService,
               private userService: UserService, private formBuilder: FormBuilder, private router: Router, private datePipe: DatePipe) {
@@ -72,12 +73,13 @@ export class ScheduleExaminationComponent implements OnInit {
       this.selectedDoctorId = this.request.doctor.id;
       this.scheduleExaminationService.getAvailableRooms(this.loggedUser.id, this.dateOfExamAsString, this.selectedTerm).subscribe(data1 => {
         this.examinationRooms = data1;
-        this.searchedRooms = data1;
+        this.scheduleExaminationService.getAvailableDoctors(this.request.type.id, this.loggedUser.clinic.id,
+          this.dateOfExamAsString, this.selectedDoctorId).subscribe(data2 => {
+          this.availableDoctors = data2;
+        });
       });
     });
-    this.scheduleExaminationService.getAvailableDoctors(this.loggedUser.id).subscribe(data => {
-      this.availableDoctors = data;
-    });
+
     this.userData = this.formBuilder.group({
       selectedPrice: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.minLength(1), Validators.maxLength(6)]],
       selectedDiscount: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.minLength(1), Validators.maxLength(2)]],
@@ -114,7 +116,12 @@ export class ScheduleExaminationComponent implements OnInit {
   }
 
   getTerms() {
-    this.scheduleExaminationService.getAvailableTermsForDoctor(this.selectedDoctorId, this.datePipe.transform(this.selectedDate, 'yyyy_MM_dd')).subscribe(data => {
+    this.scheduleExaminationService.getAvailableDoctors(this.request.type.id, this.loggedUser.clinic.id,
+      this.datePipe.transform(this.selectedDate, 'yyyy_MM_dd'), this.selectedDoctorId).subscribe(data1 => {
+      this.availableDoctors = data1;
+    });
+    this.scheduleExaminationService.getAvailableTermsForDoctor(this.selectedDoctorId,
+      this.datePipe.transform(this.selectedDate, 'yyyy_MM_dd'), this.requestId).subscribe(data => {
       this.availableTerms = data;
       this.selectedTerm = this.availableTerms[0];
     });
@@ -137,6 +144,7 @@ export class ScheduleExaminationComponent implements OnInit {
       const array2 = array[1].split(' ');
       console.log(array2[1]);
       console.log(array2[2]);
+      this.selectedDoctorId = array[0];
       this.request.doctor.id = array[0];
       this.request.doctor.firstName = array2[1];
       this.request.doctor.lastName = array2[2];
@@ -149,25 +157,40 @@ export class ScheduleExaminationComponent implements OnInit {
   }
 
   reset() {
+    this.scheduleExaminationService.getAvailableRooms(this.loggedUser.id, this.dateOfExamAsString, this.selectedTerm).subscribe(data1 => {
+      this.examinationRooms = data1;
+    });
     this.hiddenChange = false;
     document.getElementById('btnChange').hidden = false;
     document.getElementById('btnConfirm').hidden = true;
     document.getElementById('btnReset').hidden = true;
   }
 
-  selectRoom(id: string) {
-    this.selectedRoom = id;
+  selectRoom(room: Room) {
+    this.selectedRoom = room.id;
+    this.realRoom = room;
     document.getElementById('btnSchedule').hidden = false;
   }
 
   scheduleExamination() {
-    document.getElementById('btnSchedule').hidden = true;
-    this.scheduleExaminationService.saveExamination(this.selectedRoom, this.datePipe.transform(this.request.date, 'yyyy_MM_dd HH:mm:ss'),
-      this.request.price,
-      this.request.duration, this.request.discount, this.request.clinic.id,
-      this.request.doctor.id, this.request.patient.id, this.request.type.id, this.requestId,
-      this.selectedTerm);
-    this.router.navigate(['/clinicAdministratorHomePage']);
+    this.scheduleExaminationService.getAvailableRooms(this.loggedUser.id, this.dateOfExamAsString, this.selectedTerm).subscribe(data1 => {
+      this.examinationRooms = data1;
+      console.log(this.examinationRooms);
+      console.log(this.realRoom);
+      if (this.examinationRooms.some((item) => item.id === this.realRoom.id)) {
+        document.getElementById('btnSchedule').hidden = true;
+        this.scheduleExaminationService.saveExamination(this.selectedRoom,
+          this.datePipe.transform(this.request.date, 'yyyy_MM_dd HH:mm:ss'),
+          this.request.price,
+          this.request.duration, this.request.discount, this.request.clinic.id,
+          this.request.doctor.id, this.request.patient.id, this.request.type.id, this.requestId,
+          this.selectedTerm);
+        this.router.navigate(['/clinicAdministratorHomePage']);
+      } else {
+        alert('nemereeeee');
+      }
+    });
+
   }
 
   showSearchRoom($event: MouseEvent) {
