@@ -4,7 +4,7 @@ import {UserService} from '../../service/user.service';
 import {SchedulePredefinedExaminationsService} from './schedule-predefined-examinations.service';
 import {MedicalExamination} from '../../model/medicalExamination';
 import {User} from '../../model/user';
-import {NotifierService} from "angular-notifier";
+import {NotifierService} from 'angular-notifier';
 
 @Component({
   selector: 'app-schedule-predefined-examinations',
@@ -32,8 +32,17 @@ export class SchedulePredefinedExaminationsComponent implements OnInit {
   }
 
   scheduleExamination(id: string) {
-    this.schedulePredefinedExaminationsService.schedulePredefinedExamination(id, this.loggedUser.id).subscribe(result => this.ngOnInit());
-    this.showNotification('success', 'You have successfully scheduled examination.');
+    this.schedulePredefinedExaminationsService.getAllPredefinedExaminations().subscribe(data => {
+      this.allPredefinedExaminations = data;
+      if (this.allPredefinedExaminations.some((item) => item.id === id)) {
+        this.schedulePredefinedExaminationsService.schedulePredefinedExamination(id, this.loggedUser.id).subscribe(result =>
+          this.ngOnInit());
+        this.showNotification('success', 'You have successfully scheduled examination.');
+      } else {
+        this.showNotification('warning', 'Exam is scheduled in meantime, select another one!');
+      }
+
+    });
   }
 
   public showNotification(type: string, message: string): void {
