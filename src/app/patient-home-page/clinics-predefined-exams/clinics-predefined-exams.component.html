@@ -1,0 +1,30 @@
+<div>
+  <br>
+  <h2 style="text-align: center">All predefined examinations from selected clinic</h2>
+  <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">Date</th>
+      <th scope="col">Medical room</th>
+      <th scope="col">Doctor </th>
+      <th scope="col">Price</th>
+      <th scope="col">Discount </th>
+      <th scope="col">Clinic name</th>
+      <th scope="col">Clinic average rating</th>
+      <th scope="col">Schedule</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let examination of predefinedExaminations">
+      <td>{{ examination.date|date:'yyyy-MM-dd'}}</td>
+      <td>{{ examination.medicalExaminationRoom.name + ' ' + examination.medicalExaminationRoom.number }}</td>
+      <td>{{ examination.doctor.firstName + ' ' + examination.doctor.lastName }}</td>
+      <td>{{ examination.price }}</td>
+      <td>{{examination.discount}}</td>
+      <td>{{examination.clinic.name}}</td>
+      <td>{{examination.clinic.clinicAverageRating}}</td>
+      <td> <button (click)="scheduleExamination(examination.id)" class="btn btn-success">Schedule</button> </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
