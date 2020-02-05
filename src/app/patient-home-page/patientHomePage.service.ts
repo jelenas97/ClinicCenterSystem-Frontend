@@ -7,6 +7,7 @@ import {any} from 'codelyzer/util/function';
 import {ExaminationType} from '../model/examinationType';
 import {UserMapperTwo} from '../model/userMapperTwo';
 import {MedicalExamination} from '../model/medicalExamination';
+import {OperationRequest} from "../model/operationRequest";
 
 
 @Injectable()
@@ -21,6 +22,10 @@ export class PatientHomePageService {
 
   getAllExaminationsPatientCanRate(id: string) {
     return this.http.get<MedicalExamination[]>('http://localhost:8080/getAllExaminationsPatientCanRate/' + id);
+  }
+
+  getAllOperationsPatientCanRate(id: string) {
+    return this.http.get<OperationRequest[]>('http://localhost:8080/getAllOperationsPatientCanRate/' + id);
   }
 
   public getById(id: number): Observable<User> {
@@ -55,8 +60,9 @@ export class PatientHomePageService {
       + selectedName + '/' + selectedRating);
   }
 
-  getSearchedDoctors(selectedOption: string, id: string) {
-    return this.http.get<UserMapperTwo[]>('http://localhost:8080/auth/getSearchedDoctors/' + selectedOption + '/' + id);
+  getSearchedDoctors(selectedOption: string, id: string, date: string) {
+    return this.http.get<UserMapperTwo[]>('http://localhost:8080/auth/getDoctorsThatCanDoExam/' + selectedOption + '/' + id +
+      '/' + date);
   }
 
   sendRequest(selectedType: string, selectedDate: string, selectedClinicId: string, selectedDoctorId: string,
@@ -84,5 +90,13 @@ export class PatientHomePageService {
 
   getAvailableTermsForDoctor(id: string, date: string) {
     return this.http.get<string[]>('http://localhost:8080/getAvailableTermsForDoctor/' + id + '/' + date);
+  }
+
+  rateClinicO(id: string, clinicRating: number, id2: string) {
+    return this.http.put<any>('http://localhost:8080/auth/rateClinicO/' + id + '/' + clinicRating + '/' + id2, any).subscribe();
+  }
+
+  rateDoctorO(id: string, doctorRating: number, id2: string) {
+    return this.http.put<any>('http://localhost:8080/auth/rateDoctorO/' + id + '/' + doctorRating + '/' + id2, any).subscribe();
   }
 }

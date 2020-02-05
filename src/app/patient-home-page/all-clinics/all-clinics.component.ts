@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Clinic} from '../../model/clinic';
-import {Router} from '@angular/router';
+import {NavigationExtras, Router} from '@angular/router';
 import {PatientHomePageService} from '../patientHomePage.service';
 import {ExaminationType} from '../../model/examinationType';
 import {UserMapperTwo} from '../../model/userMapperTwo';
-import {faArrowDown, faArrowUp} from '@fortawesome/free-solid-svg-icons';
+import {faArrowDown, faArrowUp, faCalendarAlt} from '@fortawesome/free-solid-svg-icons';
 import {SlideInOutAnimation} from './animations';
 import {User} from '../../model/user';
 import {UserService} from '../../service/user.service';
@@ -23,7 +23,7 @@ import {Sort} from '@angular/material/sort';
 export class AllClinicsComponent implements OnInit {
 
   notifier: NotifierService;
-
+  calendar = faCalendarAlt;
 
   faArrow = faArrowDown;
   faArrow2 = faArrowDown;
@@ -113,7 +113,7 @@ export class AllClinicsComponent implements OnInit {
   getDoctorFromSelectedClinic(selectedOption: string, id: string) {
     this.isAnyClinicSelected = true;
     this.selectedClinicId = id;
-    this.patientHomePageService.getSearchedDoctors(this.realSelectedOptionById, id).subscribe(data => {
+    this.patientHomePageService.getSearchedDoctors(this.realSelectedOptionById, id, this.realDateAsString).subscribe(data => {
       this.doctors = data;
     });
     this.hiddenHeader = true;
@@ -234,6 +234,15 @@ export class AllClinicsComponent implements OnInit {
     document.getElementById('terms-' + id).hidden = false;
     this.previousDoctor = 'terms-' + id;
     this.showTerms(id);
+  }
+
+  showPredefinedExams(id: string) {
+    const navigationExtras: NavigationExtras = {
+      queryParams: {
+        clinic: id
+      }
+    };
+    this.router.navigate(['clinicsPredefinedExaminations'], navigationExtras);
   }
 }
 

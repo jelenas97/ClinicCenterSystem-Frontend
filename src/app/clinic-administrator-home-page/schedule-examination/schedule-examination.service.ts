@@ -17,8 +17,9 @@ export class ScheduleExaminationService {
     return this.http.get<MedicalExaminationRequest>('http://localhost:8080/getMedicalExaminationById/' + requestId);
   }
 
-  getAvailableDoctors(id: string) {
-    return this.http.get<User[]>('http://localhost:8080/getAvailableDoctorsFromClinic/' + id);
+  getAvailableDoctors(selectedOption: string, id: string, date: string, doctorId: string) {
+    return this.http.get<User[]>('http://localhost:8080/auth/getDoctorsThatCanDoExamWithoutSelected/' + selectedOption + '/' + id +
+      '/' + date + '/' + doctorId);
   }
 
   getAvailableRooms(id: string, date: string, term: string) {
@@ -33,14 +34,14 @@ export class ScheduleExaminationService {
   }
 
   public searchRoom(selectedName: string, selectedNumber: number): Observable<Room[]> {
-      return this.http.get<Room[]>('http://localhost:8080/medicalExamRooms' + '/search?name=' + selectedName + '&number=' + selectedNumber);
+    return this.http.get<Room[]>('http://localhost:8080/medicalExamRooms' + '/search?name=' + selectedName + '&number=' + selectedNumber);
   }
 
   getAllExams(roomid: number) {
     return this.http.get<MedicalExamination[]>('http://localhost:8080/medicalExaminations/' + roomid);
   }
 
-  getAvailableTermsForDoctor(id: string, date: string) {
-    return this.http.get<string[]>('http://localhost:8080/getAvailableTermsForDoctor/' + id + '/' + date);
+  getAvailableTermsForDoctor(id: string, date: string, requestId: string) {
+    return this.http.get<string[]>('http://localhost:8080/getAvailableTermsForDoctorWithoutRequest/' + id + '/' + date + '/' + requestId);
   }
 }
