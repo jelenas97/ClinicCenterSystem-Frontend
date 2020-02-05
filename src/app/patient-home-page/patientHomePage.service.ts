@@ -55,8 +55,9 @@ export class PatientHomePageService {
       + selectedName + '/' + selectedRating);
   }
 
-  getSearchedDoctors(selectedOption: string, id: string) {
-    return this.http.get<UserMapperTwo[]>('http://localhost:8080/auth/getSearchedDoctors/' + selectedOption + '/' + id);
+  getSearchedDoctors(selectedOption: string, id: string, date: string) {
+    return this.http.get<UserMapperTwo[]>('http://localhost:8080/auth/getDoctorsThatCanDoExam/' + selectedOption + '/' + id +
+      '/' + date);
   }
 
   sendRequest(selectedType: string, selectedDate: string, selectedClinicId: string, selectedDoctorId: string,
