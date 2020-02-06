@@ -70,6 +70,7 @@ import {ClinicIncomeComponent} from './clinic-administrator-home-page/clinic-inc
 import {ShowMedicalHistoryComponent} from './show-medical-history/showMedicalHistory.component';
 import {EditMedicalReportComponent} from './edit-medical-report/editMedicalReport.component';
 import {PatientMedicalRecordComponent} from './patient-medical-record/patientMedicalRecord.component';
+import {ClinicsPredefinedExamsComponent} from "./patient-home-page/clinics-predefined-exams/clinics-predefined-exams.component";
 
 
 const routes: Routes = [{path: 'register', component: RegistrationComponent},
@@ -120,7 +121,8 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'editClinicCenterAdministrator', component: EditProfilePageCCAComponent},
   {path: 'newClinicAdmin', component: AddClinicAdminComponent},
   {path: 'allClinicAdmins', component: ShowAllClinicAdminsComponent},
-  {path: 'roomOccupationCalendar', component: RoomOccupationCalendarComponent},
+  {path: 'medicalExamRoomOccupation', component: RoomOccupationCalendarComponent},
+  {path: 'medicalOperationRoomOccupation', component: RoomOccupationCalendarComponent},
   {path: 'createPredefinedExaminations', component: CreatePredefinedExaminationsComponent},
   {path: 'schedulePredefinedExaminations', component: SchedulePredefinedExaminationsComponent},
   {path: 'createMedicalReport', component: CreateMedicalReportComponent},
@@ -138,9 +140,7 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   {path: 'showMedicalHistory/:id', component: ShowMedicalHistoryComponent},
   {path: 'patientMedicalRecord/:id', component: PatientMedicalRecordComponent},
   {path: 'editMedicalReport/:id', component: EditMedicalReportComponent},
-
   {path: 'clinicIncome', component: ClinicIncomeComponent},
-
   {
     path: 'startExam/:id',
     component: BeginExamComponent,
@@ -149,6 +149,7 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
       {path: 'createMedicalReport/:id', component: CreateMedicalReportComponent}
     ]
   },
+  {path: 'clinicsPredefinedExaminations', component: ClinicsPredefinedExamsComponent}
 
 ];
 

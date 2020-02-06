@@ -118,7 +118,6 @@
         <table class="table table-bordered table-striped">
           <thead class="thead-dark">
           <tr>
-            <th scope="col">Id</th>
             <th scope="col">Name</th>
             <th scope="col">Number</th>
             <th scope="col">Select a room</th>
@@ -126,12 +125,11 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let room of examinationRooms">
-            <td>{{ room.id }}</td>
+          <tr *ngFor="let room of searchedRooms">
             <td>{{ room.name}}</td>
             <td>{{ room.number }}</td>
             <td><input type="radio" name="selectClinicRadio"
-                       (change)="selectRoom(room.id)">
+                       (change)="selectRoom(room)">
             <td><a class="nav-link" type="button" (click)="showCalendar(room.id)">
               <fa-icon [icon]="calendar" class="mr-1"></fa-icon>
               <span class="sr-only">(current)</span></a></td>

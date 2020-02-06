@@ -167,6 +167,8 @@ import {ShowMedicalHistoryComponent} from './show-medical-history/showMedicalHis
 import {EditMedicalReportComponent} from './edit-medical-report/editMedicalReport.component';
 import {AgmCoreModule, GoogleMapsAPIWrapper} from '@agm/core';
 import {EditMedicalReportService} from './edit-medical-report/editMedicalReport.service';
+import { ClinicsPredefinedExamsComponent } from './patient-home-page/clinics-predefined-exams/clinics-predefined-exams.component';
+import {ClinicsPredefinedExamsService} from './patient-home-page/clinics-predefined-exams/clinics-predefined-exams.service';
 
 /**
  * Custom angular notifier options
@@ -294,7 +296,8 @@ const customNotifierOptions: NotifierOptions = {
     CreateClinicCenterAdminsComponent,
     ClinicExamsComponent,
     ClinicIncomeComponent,
-    PatientMedicalRecordComponent
+    PatientMedicalRecordComponent,
+    ClinicsPredefinedExamsComponent
   ],
   imports: [
     BrowserModule,
@@ -397,7 +400,8 @@ const customNotifierOptions: NotifierOptions = {
     EditMedicalReportService,
     ClinicExamsService,
     ClinicIncomeService,
-    PatientMedicalRecordService
+    PatientMedicalRecordService,
+    ClinicsPredefinedExamsService
   ],
   bootstrap: [AppComponent],
   exports: [WorkCalendarComponent, RoomOccupationCalendarComponent, ClinicExamsComponent]

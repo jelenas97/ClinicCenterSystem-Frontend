@@ -8,12 +8,16 @@ import {User} from '../../model/user';
 import {Room} from '../../model/room';
 import {OperationRequest} from '../../model/operationRequest';
 import {IDropdownSettings} from 'ng-multiselect-dropdown/multiselect.model';
+import {faArrowDown, faArrowUp, faCalendarAlt} from '@fortawesome/free-solid-svg-icons';
+import {SlideInOutAnimation} from '../../patient-home-page/all-clinics/animations';
 
 
 @Component({
   selector: 'app-schedule-operation',
   templateUrl: './schedule-operation.component.html',
-  styleUrls: ['./schedule-operation.component.css']
+  styleUrls: ['./schedule-operation.component.css'],
+  animations: [SlideInOutAnimation]
+
 })
 export class ScheduleOperationComponent implements OnInit {
 
@@ -24,10 +28,13 @@ export class ScheduleOperationComponent implements OnInit {
   requestId: string;
   request: OperationRequest;
   dateOfOperation: Date;
+  faArrow = faArrowDown;
+  calendar = faCalendarAlt;
 
 
   availableDoctors: Doctor[] = [];
   operationRooms: Room[];
+  searchedRooms: Room[];
   availableTerms: string[];
 
   selectedDate: any;
@@ -41,6 +48,9 @@ export class ScheduleOperationComponent implements OnInit {
   selectedName: string;
   selectedNumber: number;
 
+  animationState = 'out';
+  isSearchHidden = false;
+
   dropdownList: Doctor[] = [];
   selectedItems = [];
   dropdownSettings: IDropdownSettings;
@@ -49,6 +59,8 @@ export class ScheduleOperationComponent implements OnInit {
   doctors: number[] = [];
 
   todayDate: string;
+  realRoom: Room;
+  vaild = true;
 
   constructor(private route: ActivatedRoute, private scheduleOperationService: ScheduleOperationService,
               private userService: UserService, private formBuilder: FormBuilder, private router: Router, private datePipe: DatePipe) {
@@ -71,6 +83,7 @@ export class ScheduleOperationComponent implements OnInit {
       this.scheduleOperationService.getAvailableRooms(this.loggedUser.clinic.id, this.dateOfOperationAsString,
         this.selectedTerm).subscribe(data1 => {
         this.operationRooms = data1;
+        this.searchedRooms = data1;
       });
     });
 
@@ -170,58 +183,87 @@ export class ScheduleOperationComponent implements OnInit {
     return this.userData.controls;
   }
 
-  selectRoom(id: string) {
-    this.selectedRoom = id;
+  selectRoom(room: Room) {
+    this.selectedRoom = room.id;
+    this.realRoom = room;
     document.getElementById('btnSchedule').hidden = false;
   }
 
   scheduleOperation() {
-    document.getElementById('btnSchedule').hidden = true;
-    this.request.price = +this.selectedPrice;
-    this.request.discount = +this.selectedDiscount;
-    console.log(this.request.price);
-    console.log(this.request.discount);
-    if (this.doctors.length === 0) {
-      this.doctors.push(0.5);
-    }
-    this.scheduleOperationService.saveOperation(this.request, this.selectedRoom, this.datePipe.transform(this.request.date, 'yyyy_MM_dd HH:mm:ss'),
-      this.requestId, this.selectedTerm, this.doctors);
-    this.doctors.length = 0;
-    this.router.navigate(['/clinicAdministratorHomePage']);
+    this.scheduleOperationService.getAvailableRooms(this.loggedUser.clinic.id, this.dateOfOperationAsString,
+      this.selectedTerm).subscribe(data1 => {
+      this.operationRooms = data1;
+
+      this.scheduleOperationService.getAvailableDoctorsForOperation(this.datePipe.transform(this.selectedDate, 'yyyy_MM_dd'),
+        this.selectedTerm, this.loggedUser.clinic.id, this.request.doctor.id).subscribe(data => {
+        this.dropdownList = data;
+        console.log(this.dropdownList);
+        console.log(this.doctors);
+        for (const doctor of this.doctors) {
+          if (!this.dropdownList.some((item) => item.id === doctor)) {
+            this.vaild = false;
+          }
+        }
+
+        if (this.operationRooms.some((item) => item.id === this.realRoom.id) && this.vaild) {
+          document.getElementById('btnSchedule').hidden = true;
+          this.request.price = +this.selectedPrice;
+          this.request.discount = +this.selectedDiscount;
+          console.log(this.request.price);
+          console.log(this.request.discount);
+          if (this.doctors.length === 0) {
+            this.doctors.push(0.5);
+          }
+          this.scheduleOperationService.saveOperation(this.request, this.selectedRoom, this.datePipe.transform(this.request.date, 'yyyy_MM_dd HH:mm:ss'),
+            this.requestId, this.selectedTerm, this.doctors);
+          this.doctors.length = 0;
+          this.router.navigate(['/clinicAdministratorHomePage']);
+        } else {
+          alert('nemereeee');
+          this.doctors.length = 0;
+        }
+      });
+
+
+    });
   }
 
   getAvailableDoctors(date: Date, selectedTerm: string) {
     console.log(selectedTerm);
     this.scheduleOperationService.getAvailableDoctorsForOperation(this.datePipe.transform(this.selectedDate, 'yyyy_MM_dd'),
-      selectedTerm, this.loggedUser.clinic.id, this.request.doctor.id).subscribe(data => {
+      this.selectedTerm, this.loggedUser.clinic.id, this.request.doctor.id).subscribe(data => {
       this.dropdownList = data;
-      this.fillDoctors();
     });
     this.hiddenDoctors = true;
   }
 
-  fillDoctors() {
-    console.log(this.availableDoctors);
-    for (const doctor of this.availableDoctors) {
-      this.dropdownList.push({
-        id: doctor.id,
-        firstName: doctor.firstName,
-      });
+
+  onSearchSubmit(selectedName: string, selectedNumber: number) {
+    if (selectedName) {
+      this.searchedRooms = this.operationRooms.filter(x =>
+        x.name.trim().toLowerCase().includes(selectedName.trim().toLowerCase())
+      );
+    } else if (selectedNumber) {
+      this.searchedRooms = this.operationRooms.filter(x =>
+        x.number.toString().includes(selectedNumber.toString()));
+    } else {
+      this.searchedRooms = this.operationRooms;
     }
   }
 
-  onSearchSubmit(selectedName: string, selectedNumber: number) {
-    this.scheduleOperationService.searchRoom(selectedName, selectedNumber).subscribe(data => {
-      this.operationRooms = data;
-    });
+  showSearchRoom($event: MouseEvent) {
+    this.animationState = this.animationState === 'out' ? 'in' : 'out';
+    if (this.isSearchHidden) {
+      this.isSearchHidden = false;
+      this.faArrow = faArrowDown;
+    } else {
+      this.isSearchHidden = true;
+      this.faArrow = faArrowUp;
+    }
   }
 
-  changeRoomName(room: Room, event: any) {
-    room.name = event.target.textContent;
-  }
-
-  changeRoomNumber(room: Room, event: any) {
-    room.number = event.target.textContent;
+  showCalendar(id: string) {
+    this.router.navigate(['medicalOperationRoomOccupation'], {state: {example: id}});
   }
 
 }

@@ -29,6 +29,7 @@ export class AnnualLeaveAndAbsenceComponent implements OnInit {
 
   todayDate: any;
   minDate = undefined;
+  minDate2 = undefined;
 
   ngOnInit(): void {
     this.userService.getMyInfo();
@@ -47,7 +48,12 @@ export class AnnualLeaveAndAbsenceComponent implements OnInit {
     this.minDate = {
       year: this.todayDate.getFullYear(),
       month: this.todayDate.getMonth() + 1,
-      day: this.todayDate.getDate()
+      day: this.todayDate.getDate() + 1
+    };
+    this.minDate2 = {
+      year: this.todayDate.getFullYear(),
+      month: this.todayDate.getMonth() + 1,
+      day: this.todayDate.getDate() + 2
     };
   }
 
@@ -72,7 +78,7 @@ export class AnnualLeaveAndAbsenceComponent implements OnInit {
   this.vacation.userRole = sessionStorage.getItem('role');
   this.annualLeaveAndAbsenceService.saveVacation(this.vacation).subscribe(result => this.gotoVacation());
 
-    this.modalService.open(mymodal, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+  this.modalService.open(mymodal, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -91,5 +97,16 @@ export class AnnualLeaveAndAbsenceComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+
+  setMinDateForLeave() {
+    console.log(this.leaveDate);
+    const datee = moment(this.leaveDate).format('YYYY-MM-DD');
+    this.minDate2 = {
+      year: new Date(datee).getFullYear(),
+      month: new Date(datee).getMonth() + 1,
+      day: new Date(datee).getDate() + 1
+    };
+    console.log(this.minDate2);
   }
 }
