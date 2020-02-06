@@ -33,6 +33,6 @@ export class RecipesComponent implements OnInit {
   }
 
   rejectValidation(id: number) {
-    this.recipesService.removeRecipe(id).subscribe();
+    this.recipesService.removeRecipe(id).subscribe(result => this.ngOnInit());
   }
 }

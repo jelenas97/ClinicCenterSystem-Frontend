@@ -36,7 +36,7 @@ export class EditMedicalReportComponent implements OnInit {
   }
 
   gotoMedicalReport() {
-    this.router.navigate(['/showMedicalHistory/' +  this.medicalReport.patientId ]);
+    this.router.navigate(['/patientMedicalRecord/' +  this.medicalReport.patientId ]);
   }
 
   ngOnInit(): void {
