@@ -26,6 +26,7 @@ export class AuthService {
   private access_token = null;
   private role = null;
   private passwordChanged = null;
+  private enabled = null;
 
   login(user): Observable<any> {
     const loginHeaders = new HttpHeaders({
@@ -39,12 +40,15 @@ export class AuthService {
 
     return this.apiService.post(this.config.login_url, JSON.stringify(body), loginHeaders)
       .pipe(map((res) => {
+        console.log(res);
         this.access_token = res.accessToken;
         this.role = res.role;
         this.passwordChanged = res.passwordChanged;
+        this.enabled = res.enabled;
         sessionStorage.setItem('passwordChanged', this.passwordChanged);
         sessionStorage.setItem('role', this.role);
         sessionStorage.setItem('key', res.accessToken);
+        sessionStorage.setItem('enabled', res.enabled);
         this.loggedIn.next(true);
       }));
   }

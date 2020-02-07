@@ -29,7 +29,10 @@ export class TypesOfMedicalExamComponent implements OnInit {
   removeType(type: any) {
     this.typesOfMedicalExamService.remove(type.id).subscribe(data => {
       this.ngOnInit();
-    });
+    },
+      error => {
+        alert('You cannot remove this room. This type is reserved for examination!');
+      });
   }
 
   changeName(type: TypeOfMedicalExam, event: any) {

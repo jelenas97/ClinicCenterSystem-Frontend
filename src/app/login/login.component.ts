@@ -50,6 +50,7 @@ export class LoginComponent implements OnInit {
   newPassword: string;
   repeatNewPassword: string;
   data: string[] = [];
+  enabled: string;
 
   get cpwd() {
     return this.myGroup.get('repeatNewPassword');
@@ -73,24 +74,33 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(this.userData.value)
       .subscribe(data => {
-          this.role = sessionStorage.getItem('role');
-          this.userService.getMyInfo().subscribe();
-          this.appComponent.ngOnInit();
-          if (this.role === 'ROLE_PATIENT') {
-            this.router.navigate(['/patientHomePage']);
-            this.showNotification('success', 'Welcome ');
-          } else if (this.role === 'ROLE_DOCTOR') {
-            this.router.navigate(['/doctorHomePage']);
-            this.showNotification('success', 'Welcome ');
-          } else if (this.role === 'ROLE_NURSE') {
-            this.router.navigate(['/nurseHomePage']);
-            this.showNotification('success', 'Welcome ');
-          } else if (this.role === 'ROLE_CLINIC_ADMIN') {
-            this.router.navigate(['/clinicAdministratorHomePage']);
-            this.showNotification('success', 'Welcome ');
-          } else if (this.role === 'ROLE_CLINIC_CENTER_ADMIN' || this.role === 'ROLE_CLINIC_CENTER_ADMIN_SUPER') {
-            this.router.navigate(['/ccaHomePage']);
-            this.showNotification('success', 'Welcome ');
+          this.enabled = sessionStorage.getItem('enabled');
+          if (this.enabled === 'true') {
+            this.role = sessionStorage.getItem('role');
+            this.userService.getMyInfo().subscribe();
+            this.user = this.userService.currentUser;
+            console.log(this.enabled);
+
+            this.appComponent.ngOnInit();
+            if (this.role === 'ROLE_PATIENT') {
+              this.router.navigate(['/patientHomePage']);
+              this.showNotification('success', 'Welcome ');
+            } else if (this.role === 'ROLE_DOCTOR') {
+              this.router.navigate(['/doctorHomePage']);
+              this.showNotification('success', 'Welcome ');
+            } else if (this.role === 'ROLE_NURSE') {
+              this.router.navigate(['/nurseHomePage']);
+              this.showNotification('success', 'Welcome ');
+            } else if (this.role === 'ROLE_CLINIC_ADMIN') {
+              this.router.navigate(['/clinicAdministratorHomePage']);
+              this.showNotification('success', 'Welcome ');
+            } else if (this.role === 'ROLE_CLINIC_CENTER_ADMIN' || this.role === 'ROLE_CLINIC_CENTER_ADMIN_SUPER') {
+              this.router.navigate(['/ccaHomePage']);
+              this.showNotification('success', 'Welcome ');
+            }
+          } else {
+            this.showNotification('error', 'You must activate your account first!');
+            this.ngOnInit();
           }
         },
         err => {
