@@ -73,6 +73,7 @@ export class ScheduleExaminationComponent implements OnInit {
       this.selectedDoctorId = this.request.doctor.id;
       this.scheduleExaminationService.getAvailableRooms(this.loggedUser.id, this.dateOfExamAsString, this.selectedTerm).subscribe(data1 => {
         this.examinationRooms = data1;
+        this.searchedRooms = data1;
         this.scheduleExaminationService.getAvailableDoctors(this.request.type.id, this.loggedUser.clinic.id,
           this.dateOfExamAsString, this.selectedDoctorId).subscribe(data2 => {
           this.availableDoctors = data2;
@@ -159,6 +160,7 @@ export class ScheduleExaminationComponent implements OnInit {
   reset() {
     this.scheduleExaminationService.getAvailableRooms(this.loggedUser.id, this.dateOfExamAsString, this.selectedTerm).subscribe(data1 => {
       this.examinationRooms = data1;
+      this.searchedRooms = data1;
     });
     this.hiddenChange = false;
     document.getElementById('btnChange').hidden = false;
@@ -205,15 +207,20 @@ export class ScheduleExaminationComponent implements OnInit {
   }
 
   onSearchRoomSubmit(selectedName: string, selectedNumber: number) {
-    if (selectedName) {
+    if (!selectedNumber && !selectedName) {
+      this.searchedRooms = this.examinationRooms;
+    } else {
+      let num = selectedNumber + '';
+      if (selectedName === undefined || selectedName === null) {
+        selectedName = '';
+      }
+      if (selectedNumber === undefined || selectedNumber === null) {
+        num = '';
+      }
       this.searchedRooms = this.examinationRooms.filter(x =>
         x.name.trim().toLowerCase().includes(selectedName.trim().toLowerCase())
+        && x.number.toString().includes(num)
       );
-    } else if (selectedNumber) {
-      this.searchedRooms = this.examinationRooms.filter(x =>
-        x.number.toString().includes(selectedNumber.toString()));
-    } else {
-      this.searchedRooms = this.examinationRooms;
     }
   }
 

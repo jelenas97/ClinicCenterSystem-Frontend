@@ -238,15 +238,20 @@ export class ScheduleOperationComponent implements OnInit {
 
 
   onSearchSubmit(selectedName: string, selectedNumber: number) {
-    if (selectedName) {
+    if (!selectedNumber && !selectedName) {
+      this.searchedRooms = this.operationRooms;
+    } else {
+      let num = selectedNumber + '';
+      if (selectedName === undefined || selectedName === null) {
+        selectedName = '';
+      }
+      if (selectedNumber === undefined || selectedNumber === null) {
+        num = '';
+      }
       this.searchedRooms = this.operationRooms.filter(x =>
         x.name.trim().toLowerCase().includes(selectedName.trim().toLowerCase())
+        && x.number.toString().includes(num)
       );
-    } else if (selectedNumber) {
-      this.searchedRooms = this.operationRooms.filter(x =>
-        x.number.toString().includes(selectedNumber.toString()));
-    } else {
-      this.searchedRooms = this.operationRooms;
     }
   }
 

@@ -1,7 +1,7 @@
 <div>
   <br>
   <h2 style="text-align: center">All examination requests </h2>
-  <table class="table table-bordered table-striped">
+  <table class="table table-bordered table-striped" id="exam-req-table">
     <thead class="thead-dark">
     <tr>
       <th scope="col">For patient</th>
@@ -14,14 +14,14 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let req of medicalExaminationRequests">
+    <tr *ngFor="let req of medicalExaminationRequests" class="trs">
       <td>{{ req.patient.firstName + ' ' + req.patient.lastName }}</td>
       <td>{{ req.doctor.firstName + ' ' + req.doctor.lastName }}</td>
       <td>{{ req.date | date:'yyyy-MM-dd' }}</td>
       <td>{{ req.duration + ' min' }}</td>
       <td>{{ req.price }}</td>
       <td> {{ req.discount }} </td>
-      <td> <button class="btn btn-success" (click)="schedule(req)"> Schedule </button> </td>
+      <td> <button class="btn btn-success" (click)="schedule(req)" id="req{{req.id}}"> Schedule </button> </td>
     </tr>
     </tbody>
   </table>

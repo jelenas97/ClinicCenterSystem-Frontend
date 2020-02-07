@@ -61,7 +61,6 @@ export class LoginComponent implements OnInit {
     this.user = new User();
     this.notifier = notifierService;
     this.myGroup = new FormGroup({
-      oldPassword: new FormControl('', [Validators.required, Validators.minLength(5)]),
       newPassword: new FormControl('', [Validators.required, Validators.minLength(5)]),
       repeatNewPassword: new FormControl('', [Validators.required, Validators.minLength(5), passwordConfirming])
     });
@@ -74,7 +73,7 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(this.userData.value)
       .subscribe(data => {
-          this.role = sessionStorage.getItem('role');
+          this.role = localStorage.getItem('role');
           this.userService.getMyInfo().subscribe();
           this.appComponent.ngOnInit();
           if (this.role === 'ROLE_PATIENT') {
@@ -96,7 +95,6 @@ export class LoginComponent implements OnInit {
         },
         err => {
           if (err.status === 401) {
-            console.log('sjfskdfjaskjfklawjsdfkljasdf');
           }
           this.showNotification('error', 'Wrong email or password!');
 
@@ -139,7 +137,7 @@ export class LoginComponent implements OnInit {
   checkForChangePassword(mymodal) {
 
     this.authService.checkForChangePassword(this.userData.value).subscribe(data => {
-      this.passwordChanged = sessionStorage.getItem('passwordChanged');
+      this.passwordChanged = localStorage.getItem('passwordChanged');
 
       if (this.passwordChanged === 'false') {
         this.modalService.open(mymodal);
@@ -154,7 +152,6 @@ export class LoginComponent implements OnInit {
   private changePassword(email: string, mymodal) {
     this.data.push(this.oldPassword, this.newPassword, this.repeatNewPassword, email);
     mymodal.newPassword = '';
-    mymodal.oldPassword = '';
     this.modalService.dismissAll();
     this.loginService.changePassword(this.data).subscribe();
   }

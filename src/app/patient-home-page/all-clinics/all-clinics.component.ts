@@ -47,6 +47,7 @@ export class AllClinicsComponent implements OnInit {
   selectedName: string;
   selectedRating: number;
   doctors: UserMapperTwo[] = [];
+  searchedDoctors: UserMapperTwo[] = [];
   hiddenSend: boolean;
   isAnyClinicSelected: boolean;
   isTypeSelected: boolean;
@@ -115,6 +116,7 @@ export class AllClinicsComponent implements OnInit {
     this.selectedClinicId = id;
     this.patientHomePageService.getSearchedDoctors(this.realSelectedOptionById, id, this.realDateAsString).subscribe(data => {
       this.doctors = data;
+      this.searchedDoctors = data;
     });
     this.hiddenHeader = true;
     this.hiddenTerms = true;
@@ -137,13 +139,22 @@ export class AllClinicsComponent implements OnInit {
   }
 
   sendRequest(selectedType: string, selectedDate: string) {
-    this.patientHomePageService.sendRequest(this.realSelectedOptionById, this.selectedDate, this.selectedClinicId,
-      this.selectedDoctorId, this.user.id, this.selectedTerm);
-    this.resetAllForm();
-    this.showNotification('success', 'Request for examination has been sent! ');
-    this.hiddenLabel = true;
-    this.hiddenHeader = true;
-    this.hiddenTerms = true;
+    this.patientHomePageService.getAvailableTermsForDoctor(this.selectedDoctorId, this.realDateAsString).subscribe(data => {
+      this.availableTerms = data;
+
+      if (this.availableTerms.includes(this.selectedTerm)) {
+        this.patientHomePageService.sendRequest(this.realSelectedOptionById, this.selectedDate, this.selectedClinicId,
+          this.selectedDoctorId, this.user.id, this.selectedTerm);
+        this.resetAllForm();
+        this.showNotification('success', 'Request for examination has been sent! ');
+        this.hiddenLabel = true;
+        this.hiddenHeader = true;
+        this.hiddenTerms = true;
+      } else {
+        this.showNotification('warning', 'You must choose another term');
+      }
+    });
+
   }
 
   showSearch($event: MouseEvent) {
@@ -173,10 +184,24 @@ export class AllClinicsComponent implements OnInit {
   }
 
   onSearchDoctorSubmit(selectedFirstName: string, selectedLastName: string, selectedDoctorRating: number) {
-    this.patientHomePageService.getSearchedDoctorsExtended(this.realSelectedOptionById,
-      this.selectedClinicId, this.selectedFirstName, this.selectedLastName, this.selectedDoctorRating).subscribe(data => {
-      this.doctors = data;
-    });
+    if (!selectedFirstName && !selectedLastName && !selectedDoctorRating) {
+      this.searchedDoctors = this.doctors;
+    } else {
+      if (selectedFirstName === undefined || selectedFirstName === null) {
+        selectedFirstName = '';
+      }
+      if (selectedLastName === undefined || selectedLastName === null) {
+        selectedLastName = '';
+      }
+      if (selectedDoctorRating === undefined || selectedDoctorRating === null) {
+        selectedDoctorRating = 0;
+      }
+      this.searchedDoctors = this.doctors.filter(x =>
+        x.firstName.trim().toLowerCase().includes(selectedFirstName.trim().toLowerCase())
+        && x.lastName.trim().toLowerCase().includes(selectedLastName.trim().toLowerCase())
+        && x.averageRating >= selectedDoctorRating
+      );
+    }
   }
 
   showTerms(id: string) {
@@ -246,6 +271,7 @@ export class AllClinicsComponent implements OnInit {
   }
 }
 
+// @ts-ignore
 function compare(a: number | string, b: number | string, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }

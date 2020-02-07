@@ -13,11 +13,11 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(public auth: AuthService) {}
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     console.log('PROBAO INTERSEPT');
-    if (sessionStorage.getItem('key') != null) {
+    if (localStorage.getItem('key') != null) {
       console.log('INTERSEPTOVAO');
       request = request.clone({
         setHeaders: {
-          Authorization: `Bearer ${sessionStorage.getItem('key')}`
+          Authorization: `Bearer ${localStorage.getItem('key')}`
         }
       });
     }

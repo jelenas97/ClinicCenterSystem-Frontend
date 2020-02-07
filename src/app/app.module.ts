@@ -162,11 +162,11 @@ import {NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
 import {keyframes} from '@angular/animations';
 import {PatientMedicalRecordComponent} from './patient-medical-record/patientMedicalRecord.component';
 import {PatientMedicalRecordService} from './patient-medical-record/patientMedicalRecord.service';
-import {EditMedicalReportService} from './edit-medical-report/editMedicalReport.service';
 import {ShowMedicalHistoryService} from './show-medical-history/showMedicalHistory.service';
 import {ShowMedicalHistoryComponent} from './show-medical-history/showMedicalHistory.component';
 import {EditMedicalReportComponent} from './edit-medical-report/editMedicalReport.component';
 import {AgmCoreModule, GoogleMapsAPIWrapper} from '@agm/core';
+import {EditMedicalReportService} from './edit-medical-report/editMedicalReport.service';
 import { ClinicsPredefinedExamsComponent } from './patient-home-page/clinics-predefined-exams/clinics-predefined-exams.component';
 import {ClinicsPredefinedExamsService} from './patient-home-page/clinics-predefined-exams/clinics-predefined-exams.service';
 

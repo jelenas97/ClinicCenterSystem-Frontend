@@ -26,7 +26,7 @@ export class PatientProfileForMedicalStaffComponent implements OnInit {
     this.patientId = this.router.getCurrentNavigation().extras.state.example;
     this.userService.getMyInfo();
     this.user = this.userService.currentUser;
-    this.role = sessionStorage.getItem('role');
+    this.role = localStorage.getItem('role');
 
 
   }
