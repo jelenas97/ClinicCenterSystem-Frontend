@@ -204,10 +204,6 @@ export class ScheduleOperationComponent implements OnInit {
             this.vaild = false;
           }
         }
-        console.log(this.operationRooms);
-        console.log(this.selectedRoom);
-        console.log(this.realRoom.id);
-        console.log(this.vaild);
         if (this.operationRooms.some((item) => item.id === this.realRoom.id) && this.vaild) {
           document.getElementById('btnSchedule').hidden = true;
           this.request.price = +this.selectedPrice;
