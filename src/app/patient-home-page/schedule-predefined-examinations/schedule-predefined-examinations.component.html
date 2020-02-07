@@ -1,7 +1,7 @@
 <div>
   <br>
   <h2 style="text-align: center">All predefined examinations</h2>
-  <table class="table table-bordered table-striped">
+  <table class="table table-bordered table-striped" id = "table-predefined-exams">
     <thead class="thead-dark">
     <tr>
       <th scope="col">Date</th>
@@ -15,7 +15,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let examination of allPredefinedExaminations">
+    <tr *ngFor="let examination of allPredefinedExaminations" class="trs">
       <td>{{ examination.date|date:'yyyy-MM-dd'}}</td>
       <td>{{ examination.medicalExaminationRoom.name + ' ' + examination.medicalExaminationRoom.number }}</td>
       <td>{{ examination.doctor.firstName + ' ' + examination.doctor.lastName }}</td>
@@ -23,7 +23,7 @@
       <td>{{examination.discount}}</td>
       <td>{{examination.clinic.name}}</td>
       <td>{{examination.clinic.clinicAverageRating}}</td>
-      <td> <button (click)="scheduleExamination(examination.id)" class="btn btn-success">Schedule</button> </td>
+      <td> <button (click)="scheduleExamination(examination.id)" id="schedule-predefined-btn{{examination.id}}" class="btn btn-success">Schedule</button> </td>
     </tr>
     </tbody>
   </table>

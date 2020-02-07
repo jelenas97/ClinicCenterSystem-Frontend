@@ -42,9 +42,9 @@ export class AuthService {
         this.access_token = res.accessToken;
         this.role = res.role;
         this.passwordChanged = res.passwordChanged;
-        sessionStorage.setItem('passwordChanged', this.passwordChanged);
-        sessionStorage.setItem('role', this.role);
-        sessionStorage.setItem('key', res.accessToken);
+        localStorage.setItem('passwordChanged', this.passwordChanged);
+        localStorage.setItem('role', this.role);
+        localStorage.setItem('key', res.accessToken);
         this.loggedIn.next(true);
       }));
   }
@@ -76,7 +76,7 @@ export class AuthService {
       .pipe(map((res) => {
         this.passwordChanged = res.passwordChanged;
         console.log(this.passwordChanged);
-        sessionStorage.setItem('passwordChanged', this.passwordChanged);
+        localStorage.setItem('passwordChanged', this.passwordChanged);
         this.loggedIn.next(true);
       }));
 

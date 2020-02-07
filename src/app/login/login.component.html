@@ -17,7 +17,7 @@
       <div class="col-lg-6 offset-3">
         <div class="card">
           <div class="card-body">
-            <form (ngSubmit)="checkForChangePassword(mymodal)" [formGroup]="userData">
+            <form (ngSubmit)="checkForChangePassword(mymodal)" [formGroup]="userData" id = "loginForm">
 
               <div class="form-group">
                 <label for="inputEmail">Email</label>
@@ -41,7 +41,7 @@
               </div>
 
               <div class="text-right">
-                <button type="submit" [disabled]="userData.invalid"
+                <button type="submit" [disabled]="userData.invalid" id="loginbtn"
                         class="btn btn-success">Login
                 </button>
               </div>

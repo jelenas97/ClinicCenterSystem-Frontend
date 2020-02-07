@@ -183,7 +183,7 @@
           </div>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink27" data-toggle="dropdown" aria-haspopup="true"
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink27" data-toggle="dropdown" aria-haspopup="true" id="requests-ca"
              aria-expanded="false">
             <fa-icon [icon]="faAnnualLeave" class="mr-1"></fa-icon>
             Requests
@@ -191,7 +191,7 @@
           <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink27">
             <a class="dropdown-item bg-dark" routerLink="/vacationRequests">Vacation</a>
             <a class="dropdown-item bg-dark" routerLink="/absenceRequests">Absence</a>
-            <a class="dropdown-item bg-dark" routerLink="/medicalExaminationRequests">Examination Requests</a>
+            <a class="dropdown-item bg-dark" routerLink="/medicalExaminationRequests" id="exam-requests-ca">Examination Requests</a>
             <a class="dropdown-item bg-dark" routerLink="medicalOperationRequests">Operation Requests</a>
           </div>
         </li>
@@ -243,7 +243,7 @@
         </li>
 
         <li class="nav-item active">
-          <a class="nav-link" routerLink="/schedulePredefinedExaminations">
+          <a class="nav-link" id="predefinedExamsPatient" routerLink="/schedulePredefinedExaminations">
             <fa-icon [icon]="faSchedule" class="mr-1"></fa-icon>
             Schedule predefined
           </a>

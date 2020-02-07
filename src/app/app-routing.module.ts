@@ -70,7 +70,7 @@ import {ClinicIncomeComponent} from './clinic-administrator-home-page/clinic-inc
 import {ShowMedicalHistoryComponent} from './show-medical-history/showMedicalHistory.component';
 import {EditMedicalReportComponent} from './edit-medical-report/editMedicalReport.component';
 import {PatientMedicalRecordComponent} from './patient-medical-record/patientMedicalRecord.component';
-import {ClinicsPredefinedExamsComponent} from "./patient-home-page/clinics-predefined-exams/clinics-predefined-exams.component";
+import {ClinicsPredefinedExamsComponent} from './patient-home-page/clinics-predefined-exams/clinics-predefined-exams.component';
 
 
 const routes: Routes = [{path: 'register', component: RegistrationComponent},
