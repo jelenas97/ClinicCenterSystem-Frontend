@@ -9,7 +9,7 @@ import {
   faSignInAlt,
   faSignOutAlt,
   faUserCircle,
-  faUserPlus, faUsers, faUsersCog
+  faUserPlus, faUsers, faUsersCog, faList
 } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -36,6 +36,7 @@ export class AppComponent implements OnInit {
   faStartExam = faExternalLinkAlt;
   faAdmins = faUsersCog;
   faMedicament = faPlusSquare;
+  faList = faList;
   user: string;
 
   constructor( private apiService: ApiService, private userService: UserService, private router: Router) {

@@ -33,16 +33,10 @@ export class VacationAndAbsenceViewComponent implements OnInit {
     if (window.location.href.indexOf('vacationRequests') > -1) {
       this.vacationAndAbsenceViewService.getAllVacationRequests(this.user.id).subscribe(data => {
         this.requests = data;
-        for (let i = 0, len = this.requests.length; i < len; i++) {
-           this.userService.getById(this.requests[i].userId).subscribe(data2 => this.requests[i].user = data2);
-        }
       });
     } else {
       this.vacationAndAbsenceViewService.getAllAbsenceRequests(this.user.id).subscribe(data => {
         this.requests = data;
-        for (let i = 0, len = this.requests.length; i < len; i++) {
-          this.userService.getById(this.requests[i].userId).subscribe(data2 => this.requests[i].user = data2);
-        }
       });
     }
 
@@ -56,8 +50,7 @@ export class VacationAndAbsenceViewComponent implements OnInit {
   }
 
   sendApproveMailtoUser(requestVacation: Vacation, id: number): void {
-    this.vacationAndAbsenceViewService.deleteRequest(id).subscribe(result => this.ngOnInit());
-    this.vacationAndAbsenceViewService.sendApproveMail(requestVacation).subscribe(result => this.ngOnInit());
+    this.vacationAndAbsenceViewService.sendApproveMail(requestVacation, id).subscribe(result => this.ngOnInit());
   }
 
 

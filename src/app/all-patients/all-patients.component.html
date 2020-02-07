@@ -1,16 +1,16 @@
 <div class="card my-5">
   <div class="card-body">
     <span class="navbar-brand mb-0 h1 col-lg-10 offset-1">Patients</span>
-    <form id="searchPatient" class="form-group col-lg-10 offset-1" (ngSubmit)="onSearchSubmit(selectedFirstName, selectedLastName, selectedSsn)">
+    <form id="searchPatient" class="form-group col-lg-10 offset-1 border-bottom" (ngSubmit)="onSearchSubmit(selectedFirstName, selectedLastName, selectedSsn)">
       <label style="padding-right: 20px;"> Enter patient first name : </label>
-      <input type="text" [(ngModel)]="selectedFirstName" [ngModelOptions]="{standalone: true}" style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
+      <input type="text" [(ngModel)]="selectedFirstName" [ngModelOptions]="{standalone: true}" style="margin-right: 20px; padding-right: 20px;" class="form-control-sm">
 
       <label style="padding-right: 20px;"> Enter patient last name : </label>
-      <input type="text" [(ngModel)]="selectedLastName" [ngModelOptions]="{standalone: true}" style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
+      <input type="text" [(ngModel)]="selectedLastName" [ngModelOptions]="{standalone: true}" style="margin-right: 20px; padding-right: 20px;" class="form-control-sm">
       <label style="padding-right: 20px;"> Enter patient SSN : </label>
-      <input type="number" [(ngModel)]="selectedSsn" [ngModelOptions]="{standalone: true}" style="padding-left: 20px; padding-right: 20px;" class="form-control-sm">
+      <input type="number" [(ngModel)]="selectedSsn" [ngModelOptions]="{standalone: true}" style="margin-right: 20px; padding-right: 20px;" class="form-control-sm">
       <button type="submit"  class="btn btn-primary"
-              style="margin-left: 45%; width: 150px;">Search </button>
+              style="margin-left: 45%; width: 150px; margin-top: 20px; margin-bottom: 20px;">Search </button>
     </form>
 
     <table matSort (matSortChange)="sortData($event)" class="table table-bordered table-striped col-lg-10 offset-1">

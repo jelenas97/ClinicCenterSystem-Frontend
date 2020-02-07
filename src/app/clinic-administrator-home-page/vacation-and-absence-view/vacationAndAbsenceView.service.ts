@@ -29,8 +29,8 @@ export class VacationAndAbsenceViewService {
     return  this.http.get<Vacation[]>(this.absenceRequestsUrl + '/' + id);
   }
 
-  public sendApproveMail(requestVacation: Vacation) {
-    return this.http.post<Vacation>(this.sendApproveMailUrl, requestVacation);
+  public sendApproveMail(requestVacation: Vacation, id: number) {
+    return this.http.post<Vacation>(this.sendApproveMailUrl + '/' + id, requestVacation);
   }
 
   deleteRequest(id: number) {

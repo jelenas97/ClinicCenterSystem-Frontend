@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Medicament} from '../model/medicament';
 import {MedicamentService} from './medicament.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-medicament',
@@ -11,9 +12,11 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class MedicamentComponent implements OnInit {
   medicament: Medicament;
   medicaments: Medicament[] = [];
+  userData: FormGroup;
+
 
   constructor(private medicamentService: MedicamentService, private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router, private formBuilder: FormBuilder) {
     this.medicament = new Medicament();
     this.medicament.onPrescription = false;
   }
@@ -35,5 +38,15 @@ export class MedicamentComponent implements OnInit {
         }
       }
     });
+    this.userData = this.formBuilder.group({
+      code: ['', [Validators.required, Validators.pattern(/^[0-9]*$/), Validators.minLength(1), Validators.maxLength(4)]],
+      name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]],
+      purpose: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]],
+      description: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/)]]
+    });
+  }
+
+  get f() {
+    return this.userData.controls;
   }
 }
