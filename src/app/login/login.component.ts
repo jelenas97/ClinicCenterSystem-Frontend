@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(this.userData.value)
       .subscribe(data => {
-          this.role = sessionStorage.getItem('role');
+          this.role = localStorage.getItem('role');
           this.userService.getMyInfo().subscribe();
           this.appComponent.ngOnInit();
           if (this.role === 'ROLE_PATIENT') {
@@ -137,7 +137,7 @@ export class LoginComponent implements OnInit {
   checkForChangePassword(mymodal) {
 
     this.authService.checkForChangePassword(this.userData.value).subscribe(data => {
-      this.passwordChanged = sessionStorage.getItem('passwordChanged');
+      this.passwordChanged = localStorage.getItem('passwordChanged');
 
       if (this.passwordChanged === 'false') {
         this.modalService.open(mymodal);

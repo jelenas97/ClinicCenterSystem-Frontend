@@ -28,7 +28,7 @@ export class AllPatientsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.role = sessionStorage.getItem('role');
+    this.role = localStorage.getItem('role');
     this.patientsService.getAll().subscribe(data => {
       this.patients = data;
       this.sortedData = data;

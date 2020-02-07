@@ -25,7 +25,7 @@ export class EditMedicalStaffComponent implements OnInit {
   }
 
   gotoUser() {
-    this.role = sessionStorage.getItem('role');
+    this.role = localStorage.getItem('role');
     if (this.role === 'ROLE_DOCTOR') {
       this.router.navigate(['/doctorProfilePage']);
     } else if (this.role === 'ROLE_NURSE') {
