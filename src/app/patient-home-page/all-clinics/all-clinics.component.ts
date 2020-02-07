@@ -139,13 +139,22 @@ export class AllClinicsComponent implements OnInit {
   }
 
   sendRequest(selectedType: string, selectedDate: string) {
-    this.patientHomePageService.sendRequest(this.realSelectedOptionById, this.selectedDate, this.selectedClinicId,
-      this.selectedDoctorId, this.user.id, this.selectedTerm);
-    this.resetAllForm();
-    this.showNotification('success', 'Request for examination has been sent! ');
-    this.hiddenLabel = true;
-    this.hiddenHeader = true;
-    this.hiddenTerms = true;
+    this.patientHomePageService.getAvailableTermsForDoctor(this.selectedDoctorId, this.realDateAsString).subscribe(data => {
+      this.availableTerms = data;
+
+      if (this.availableTerms.includes(this.selectedTerm)) {
+        this.patientHomePageService.sendRequest(this.realSelectedOptionById, this.selectedDate, this.selectedClinicId,
+          this.selectedDoctorId, this.user.id, this.selectedTerm);
+        this.resetAllForm();
+        this.showNotification('success', 'Request for examination has been sent! ');
+        this.hiddenLabel = true;
+        this.hiddenHeader = true;
+        this.hiddenTerms = true;
+      } else {
+        this.showNotification('warning', 'You must choose another term');
+      }
+    });
+
   }
 
   showSearch($event: MouseEvent) {
@@ -262,6 +271,7 @@ export class AllClinicsComponent implements OnInit {
   }
 }
 
+// @ts-ignore
 function compare(a: number | string, b: number | string, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }

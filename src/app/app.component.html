@@ -33,11 +33,6 @@
             <fa-icon [icon]="faHome" class="mr-1"></fa-icon>
             Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="#">
-            <fa-icon [icon]="faInfo" class="mr-1"></fa-icon>
-            About</a>
-        </li>
       </ul>
 
       <!--ROLE CLINIC CENTER ADMIN-->
@@ -52,6 +47,12 @@
             <fa-icon [icon]="" class="mr-1"></fa-icon>
             Requests</a>
         </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/allPatients">
+            <fa-icon [icon]="faPatients" class="mr-1"></fa-icon>Patients</a>
+        </li>
+
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink19" data-toggle="dropdown" aria-haspopup="true"
              aria-expanded="false">
@@ -63,14 +64,6 @@
             <a class="dropdown-item bg-dark" routerLink="/allClinics">Show all</a>
           </div>
         </li>
-
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/allPatients">
-            <fa-icon [icon]="faPatients" class="mr-1"></fa-icon>Patients</a>
-        </li>
-
-
-
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink190" data-toggle="dropdown" aria-haspopup="true"
@@ -108,11 +101,6 @@
             <fa-icon [icon]="faHome" class="mr-1"></fa-icon>
             Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="#">
-            <fa-icon [icon]="faInfo" class="mr-1"></fa-icon>
-            About</a>
-        </li>
         <li class="nav-item active">
           <a class="nav-link" routerLink="/allPatients">
             <fa-icon [icon]="faPatients" class="mr-1"></fa-icon>
@@ -126,8 +114,8 @@
             Recipes
           </a>
           <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item bg-dark" routerLink="/allRecipes">For Validation</a>
             <a class="dropdown-item bg-dark" routerLink="/allValidatedRecipes">Validated</a>
+            <a class="dropdown-item bg-dark" routerLink="/allRecipes">For Validation</a>
           </div>
         </li>
       </ul>
@@ -140,11 +128,19 @@
             <fa-icon [icon]="faHome" class="mr-1"></fa-icon>
             Home <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="#">
-            <fa-icon [icon]="faInfo" class="mr-1"></fa-icon>
-            About</a>
+
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/typesOfMedicalExam">
+            Examination types <span class="sr-only">(current)</span></a>
         </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/createPredefinedExaminations">
+            <fa-icon [icon]="faStartExam" class="mr-1"></fa-icon>
+            Predefined examination
+          </a>
+        </li>
+
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink30" data-toggle="dropdown" aria-haspopup="true"
              aria-expanded="false">
@@ -167,11 +163,7 @@
             <a class="dropdown-item bg-dark" routerLink="/showAllDoctors">Show all</a>
           </div>
         </li>
-        <li class="nav-item active">
-          <a class="nav-link" routerLink="/typesOfMedicalExam">
-            <fa-icon [icon]="faPatients" class="mr-1"></fa-icon>
-            Examination types <span class="sr-only">(current)</span></a>
-        </li>
+
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink23" data-toggle="dropdown" aria-haspopup="true"
              aria-expanded="false">
@@ -185,7 +177,6 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink27" data-toggle="dropdown" aria-haspopup="true" id="requests-ca"
              aria-expanded="false">
-            <fa-icon [icon]="faAnnualLeave" class="mr-1"></fa-icon>
             Requests
           </a>
           <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink27">
@@ -196,12 +187,7 @@
           </div>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/createPredefinedExaminations">
-            <fa-icon [icon]="faStartExam" class="mr-1"></fa-icon>
-            Create predefined examinations
-          </a>
-        </li>
+
 
       </ul>
 
@@ -213,31 +199,15 @@
             <fa-icon [icon]="faHome" class="mr-1"></fa-icon>
             Home <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="#">
-            <fa-icon [icon]="faInfo" class="mr-1"></fa-icon>
-            About</a>
-        </li>
+
         <li class="nav-item active">
           <a class="nav-link" routerLink="/allClinics">
             <fa-icon [icon]="faClinics" class="mr-1"></fa-icon>
             Clinics <span class="sr-only">(current)</span></a>
         </li>
 
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true"
-             aria-expanded="false">
-            <fa-icon [icon]="faBook" class="mr-1"></fa-icon>
-            History records
-          </a>
-          <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink1">
-            <a class="dropdown-item bg-dark" routerLink="/medicalExams">Medical exam</a>
-            <a class="dropdown-item bg-dark" routerLink="/medicalSurgery">Medical surgery</a>
-          </div>
-        </li>
-
         <li class="nav-item active">
-          <a class="nav-link" routerLink="/medicalRecord">
+          <a class="nav-link" (click)="medicalRecord()">
             <fa-icon [icon]="faRecord" class="mr-1"></fa-icon>
             Medical record <span class="sr-only">(current)</span></a>
         </li>
@@ -258,45 +228,10 @@
             <fa-icon [icon]="faHome" class="mr-1"></fa-icon>
             Home <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="#">
-            <fa-icon [icon]="faInfo" class="mr-1"></fa-icon>
-            About</a>
-        </li>
         <li class="nav-item active">
           <a class="nav-link" routerLink="/allPatients">
             <fa-icon [icon]="faPatients" class="mr-1"></fa-icon>
             Patients <span class="sr-only">(current)</span></a>
-        </li>
-
-        <li class="nav-item active">
-          <a class="nav-link" routerLink="/newMedicalExam">
-            <fa-icon [icon]="faStartExam" class="mr-1"></fa-icon>
-            Start medical exam <span class="sr-only">(current)</span></a>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink4" data-toggle="dropdown" aria-haspopup="true"
-             aria-expanded="false">
-            <fa-icon [icon]="faSchedule" class="mr-1"></fa-icon>
-            Scheduling
-          </a>
-          <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink4">
-            <a class="dropdown-item bg-dark" routerLink="/medicalExamScheduling">Medical exam</a>
-            <a class="dropdown-item bg-dark" routerLink="/medicalSurgeryScheduling">Medical surgery</a>
-          </div>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink45" data-toggle="dropdown" aria-haspopup="true"
-             aria-expanded="false">
-            <fa-icon [icon]="faSchedule" class="mr-1"></fa-icon>
-            Medical Exam Types
-          </a>
-          <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink4">
-            <a class="dropdown-item bg-dark" routerLink="/addTypeOfMedicalExam">New</a>
-            <a class="dropdown-item bg-dark" routerLink="/typesOfMedicalExam">Show All</a>
-          </div>
         </li>
 
       </ul>
@@ -312,8 +247,8 @@
           </a>
           <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink25">
             <a class="dropdown-item bg-dark" routerLink="/nurseProfilePage">Personal info</a>
-            <a class="dropdown-item bg-dark" routerLink="/vacation">Vacation Or Absence</a>
             <a class="dropdown-item bg-dark" routerLink="/workCalendar">Work Calendar</a>
+            <a class="dropdown-item bg-dark" routerLink="/vacation">Vacation Or Absence</a>
           </div>
         </li>
 

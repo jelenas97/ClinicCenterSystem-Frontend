@@ -55,15 +55,6 @@
         </div>
         <div class="modal-body">
           <form [formGroup]="myGroup" (ngSubmit)="changePassword(user.email, mymodal)">
-            <div class="col-lg-12">
-              <label class="col-lg-4" for="oldPassword">Old password:</label>
-              <input class="col-lg-6 " [(ngModel)]="oldPassword" id="oldPassword" formControlName="oldPassword">
-              <mat-error class="col-lg-2" *ngIf="hasError('oldPassword', 'required')" style="color: red">*</mat-error>
-              <mat-error class="col-lg-12" *ngIf="hasError('oldPassword', 'minlength')" style="color: red">
-                <p class="col-lg-8 offset-3 text-center">Must have minimum 5 character</p>
-              </mat-error>
-
-            </div>
 
             <div class="col-lg-12 ">
               <label class="col-lg-4" for="newPassword">New password:</label>
