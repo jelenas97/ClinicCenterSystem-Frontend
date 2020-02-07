@@ -19,4 +19,5 @@ export class MedicalExamination {
   // this is helping field for knowing which is exact rating
   doctorRating: number;
   clinicRating: number;
+  confirmed: boolean;
 }

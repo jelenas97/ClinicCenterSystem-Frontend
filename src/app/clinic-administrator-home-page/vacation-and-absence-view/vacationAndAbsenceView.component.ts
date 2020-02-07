@@ -60,14 +60,6 @@ export class VacationAndAbsenceViewComponent implements OnInit {
     this.vacationAndAbsenceViewService.sendApproveMail(requestVacation).subscribe(result => this.ngOnInit());
   }
 
-  sendRejectMailtoUser(request: Vacation, mymodal) {
-    this.requestId = request.id;
-    this.modalService.open(mymodal, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
@@ -82,5 +74,14 @@ export class VacationAndAbsenceViewComponent implements OnInit {
   onSubmit(mymodal) {
      this.vacationAndAbsenceViewService.sendRejectMail(this.reason, this.requestId).subscribe(result => this.ngOnInit());
      this.modalService.dismissAll();
+  }
+
+  openModal(mymodal, request: Vacation) {
+    this.requestId = request.id;
+    this.modalService.open(mymodal, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
   }
 }
