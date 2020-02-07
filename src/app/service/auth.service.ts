@@ -45,10 +45,10 @@ export class AuthService {
         this.role = res.role;
         this.passwordChanged = res.passwordChanged;
         this.enabled = res.enabled;
-        sessionStorage.setItem('passwordChanged', this.passwordChanged);
-        sessionStorage.setItem('role', this.role);
-        sessionStorage.setItem('key', res.accessToken);
-        sessionStorage.setItem('enabled', res.enabled);
+        localStorage.setItem('passwordChanged', this.passwordChanged);
+        localStorage.setItem('role', this.role);
+        localStorage.setItem('key', res.accessToken);
+        localStorage.setItem('enabled', res.enabled);
         this.loggedIn.next(true);
       }));
   }
@@ -80,7 +80,7 @@ export class AuthService {
       .pipe(map((res) => {
         this.passwordChanged = res.passwordChanged;
         console.log(this.passwordChanged);
-        sessionStorage.setItem('passwordChanged', this.passwordChanged);
+        localStorage.setItem('passwordChanged', this.passwordChanged);
         this.loggedIn.next(true);
       }));
 

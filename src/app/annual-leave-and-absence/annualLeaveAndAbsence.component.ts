@@ -75,7 +75,7 @@ export class AnnualLeaveAndAbsenceComponent implements OnInit {
   this.vacation.leaveDate = this.date;
   this.vacation.returnDate = this.dateSec;
 
-  this.vacation.userRole = sessionStorage.getItem('role');
+  this.vacation.userRole = localStorage.getItem('role');
   this.annualLeaveAndAbsenceService.saveVacation(this.vacation).subscribe(result => this.gotoVacation());
 
   this.modalService.open(mymodal, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
