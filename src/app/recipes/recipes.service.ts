@@ -8,9 +8,11 @@ import {Recipe} from '../model/recipe';
 export class RecipesService {
 
   private readonly recipesUrl: string;
+  private readonly validateUrl: string;
 
   constructor(private http: HttpClient) {
     this.recipesUrl = 'http://localhost:8080/allRecipes';
+    this.validateUrl = 'http://localhost:8080/validate';
   }
 
   public getAll(): Observable<Recipe[]> {
@@ -18,7 +20,7 @@ export class RecipesService {
   }
 
   public validate(id: number) {
-    return this.http.get<Recipe>(this.recipesUrl + '/' + id);
+    return this.http.get<Recipe>(this.validateUrl + '/' + id);
   }
 
   public removeRecipe(id: number) {

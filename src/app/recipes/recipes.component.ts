@@ -31,4 +31,8 @@ export class RecipesComponent implements OnInit {
     this.ngOnInit();
     this.router.navigate(['/allRecipes']);
   }
+
+  rejectValidation(id: number) {
+    this.recipesService.removeRecipe(id).subscribe(result => this.ngOnInit());
+  }
 }

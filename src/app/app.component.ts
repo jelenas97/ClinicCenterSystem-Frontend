@@ -1,19 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from './service/user.service';
-import {Observable} from 'rxjs';
 import {ApiService} from './service/api.service';
 import {Router} from '@angular/router';
 import {
-  faBookMedical,
   faClinicMedical, faClipboardList,
   faExternalLinkAlt,
-  faHome, faInfoCircle, faNotesMedical, faPlaneDeparture, faPlusSquare, faPrescriptionBottleAlt,
+  faHome, faNotesMedical, faPlusSquare, faPrescriptionBottleAlt,
   faSignInAlt,
   faSignOutAlt,
   faUserCircle,
   faUserPlus, faUsers, faUsersCog
 } from '@fortawesome/free-solid-svg-icons';
-import {VacationAndAbsenceViewService} from './clinic-administrator-home-page/vacation-and-absence-view/vacationAndAbsenceView.service';
+
 
 
 
@@ -29,25 +27,23 @@ export class AppComponent implements OnInit {
   faRegister = faUserPlus;
   faLogin = faSignInAlt;
   faHome = faHome;
-  faInfo = faInfoCircle;
   faClinics = faClinicMedical;
   faPatients = faUsers;
   faPrescription = faPrescriptionBottleAlt;
   faUserCircle = faUserCircle;
-  faBook = faBookMedical;
   faRecord = faNotesMedical;
   faSchedule = faClipboardList;
   faStartExam = faExternalLinkAlt;
   faAdmins = faUsersCog;
   faMedicament = faPlusSquare;
-  faAnnualLeave = faPlaneDeparture;
+  user: string;
 
-  constructor( private apiService: ApiService, private userService: UserService, private router: Router,
-               private vacationAndAbsenceViewService: VacationAndAbsenceViewService) {}
+  constructor( private apiService: ApiService, private userService: UserService, private router: Router) {
+
+  }
 
   ngOnInit(): void {
     this.role = sessionStorage.getItem('role');
-    console.log(this.role);
   }
 
   logout() {
@@ -55,5 +51,11 @@ export class AppComponent implements OnInit {
     sessionStorage.clear();
     this.router.navigate(['/login']);
     this.ngOnInit();
+  }
+
+  medicalRecord() {
+    this.userService.getMyInfo();
+    this.user = this.userService.currentUser.id;
+    this.router.navigate(['/patientMedicalRecord/' + this.user]);
   }
 }

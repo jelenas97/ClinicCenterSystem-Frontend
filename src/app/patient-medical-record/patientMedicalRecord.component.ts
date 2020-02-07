@@ -6,6 +6,7 @@ import {User} from '../model/user';
 import {UserService} from '../service/user.service';
 import {MedicalHistory} from '../model/medicalHistory';
 import {Sort} from '@angular/material/sort';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -19,6 +20,8 @@ export class PatientMedicalRecordComponent implements OnInit {
   private medicalRecord: MedicalRecord;
   private medicalHistory: MedicalHistory[];
   private sortedData: MedicalHistory[];
+  currUser: any;
+  faEdit = faEdit;
 
 
   constructor(private activatedRoute: ActivatedRoute, private patientMedicalRecordService: PatientMedicalRecordService,
@@ -27,6 +30,10 @@ export class PatientMedicalRecordComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.userService.getMyInfo();
+    this.currUser = this.userService.currentUser;
+
     this.activatedRoute.paramMap.subscribe(params => {
       this.patientId = params.get('id');
       this.patientMedicalRecordService.getById(this.patientId).subscribe(data2 => {
