@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<div class="col-lg-4 offset-2 mt-5" >
+<div class="col-lg-4 offset-1 mt-5" >
 <h4>Medical record for {{patient.firstName}} {{patient.lastName}}</h4>
 
 <div class="card">
@@ -46,17 +46,18 @@
 </div>
 </div>
 
-<div class="col-lg-8 mt-5 offset-2">
+<div class="col-lg-10 mt-5 offset-1">
   <table matSort (matSortChange)="sortData($event)" class="table table-borderless table-sm table-striped">
     <thead class="bg-success text-white">
     <tr>
       <th mat-sort-header="clinicName" scope="col">Clinic Name</th>
       <th mat-sort-header="doctorName" scope="col">Doctor</th>
-      <th mat-sort-header="dateExam" scope="col">Medical Exam Date</th>
+      <th mat-sort-header="dateExam" scope="col">Exam Date</th>
       <th scope="col">Report</th>
       <th mat-sort-header="diagnosis" scope="col">Diagnosis</th>
       <th mat-sort-header="medicament" scope="col">Medicament</th>
       <th scope="col">Therapy</th>
+      <th scope="col">Edit</th>
     </tr>
     </thead>
     <tbody>
@@ -71,6 +72,7 @@
       <td *ngIf="medExam.medicament != null">{{ medExam.medicament}}</td>
       <td *ngIf="medExam.therapy == null">No therapy has been given!</td>
       <td *ngIf="medExam.therapy != null">{{ medExam.therapy}}</td>
+      <td><button *ngIf="medExam.doctorId == currUser.id" class="btn" routerLink="/editMedicalReport/{{medExam.id}}" type="button"><fa-icon [icon]="faEdit" class="mt-0"></fa-icon></button></td>
     </tr>
     </tbody>
   </table>

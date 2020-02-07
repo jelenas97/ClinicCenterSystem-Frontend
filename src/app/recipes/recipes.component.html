@@ -15,7 +15,7 @@
       <td>{{ recipe.medicamentName }}</td>
       <td>{{ recipe.description }}</td>
       <td class="text-center"><button class="btn btn-success" (click)="validateRecipe(recipe.id)"  type="button">Validate</button></td>
-      <td class="text-center"><button class="btn btn-danger" type="button">Reject</button></td>
+      <td class="text-center"><button class="btn btn-danger" (click)="rejectValidation(recipe.id)" type="button">Reject</button></td>
     </tr>
     </tbody>
   </table>
