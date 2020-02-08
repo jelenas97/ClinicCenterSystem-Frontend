@@ -97,6 +97,7 @@ export class AllClinicsComponent implements OnInit {
     } else {
       this.patientHomePageService.getSearchedClinics(this.realSelectedOptionById, selectedName, selectedRating).subscribe(data => {
         this.clinics = data;
+        this.sortedData = data;
       });
     }
   }

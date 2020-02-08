@@ -61,7 +61,7 @@
           </a>
           <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink19">
             <a class="dropdown-item bg-dark" routerLink="/newClinic">New</a>
-            <a class="dropdown-item bg-dark" routerLink="/allClinics">Show all</a>
+            <a class="dropdown-item bg-dark" routerLink="/showAllClinics">Show all</a>
           </div>
         </li>
 
@@ -168,6 +168,7 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink23" data-toggle="dropdown" aria-haspopup="true"
              aria-expanded="false">
+            <fa-icon [icon]="faRoom" class="mr-1"></fa-icon>
             Rooms
           </a>
           <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink23">
@@ -178,6 +179,7 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink27" data-toggle="dropdown" aria-haspopup="true" id="requests-ca"
              aria-expanded="false">
+            <fa-icon [icon]="faList" class="mr-1"></fa-icon>
             Requests
           </a>
           <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink27">
@@ -204,7 +206,7 @@
         <li class="nav-item active">
           <a class="nav-link" routerLink="/allClinics">
             <fa-icon [icon]="faClinics" class="mr-1"></fa-icon>
-            Clinics <span class="sr-only">(current)</span></a>
+            Schedule examinations and see clinics <span class="sr-only">(current)</span></a>
         </li>
 
         <li class="nav-item active">

@@ -31,7 +31,7 @@ export class TypesOfMedicalExamComponent implements OnInit {
       this.ngOnInit();
     },
       error => {
-        alert('You cannot remove this room. This type is reserved for examination!');
+        alert('You cannot remove this type. This type is reserved for examination!');
       });
   }
 
