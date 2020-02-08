@@ -19,9 +19,6 @@ export class ClinicComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.clinicService.getAllAdmins().subscribe(data => {
-      this.clinicAdmins = data;
-    });
   }
 
   onSubmit() {

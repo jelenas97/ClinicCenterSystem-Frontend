@@ -13,63 +13,75 @@
 
     <div class="card">
       <div class="card-body">
-        <form (ngSubmit)="onSubmit()" #medicamentForm="ngForm">
+        <form (ngSubmit)="onSubmit()" [formGroup]="userData">
 
           <div class="row">
-          <div class="form-group col-lg-6">
-            <label for="code">Code</label>
-            <input type="text" [(ngModel)]="medicament.code"
-                   class="form-control"
-                   id="code"
-                   name="code"
-                   placeholder="Enter medicament code"
-                   required #name="ngModel">
-          </div>
+            <div class="form-group col-lg-6">
+              <label for="code">Code</label>
+              <input type="text" [(ngModel)]="medicament.code"
+                     [ngClass]="{'is-invalid': f.code.touched && f.code.errors, 'is-valid': f.code.touched && f.code.valid}"
+                     class="form-control"
+                     id="code"
+                     name="code" formControlName="code"
+                     placeholder="Enter medicament code"
+                     required>
+              <span style="color: red"
+                    *ngIf="f.code.invalid && f.code.touched">Code must be numbers</span>
+            </div>
 
-          <div class="form-group col-lg-6">
-            <label for="name">Name</label>
-            <input type="text" [(ngModel)]="medicament.name"
-                   class="form-control"
-                   id="name"
-                   name="name"
-                   placeholder="Enter medicament name"
-                   required #name="ngModel">
-          </div>
-          </div>
-
-          <div class="row">
-          <div class="form-group col-lg-6">
-            <label for="purpose">Purpose</label>
-            <input type="text" [(ngModel)]="medicament.purpose"
-                   class="form-control"
-                   id="purpose"
-                   name="purpose"
-                   placeholder="Enter purpose"
-                   required #name="ngModel">
-          </div>
-
-          <div class="form-group col-lg-6">
-            <label for="description">Description</label>
-            <input type="text" [(ngModel)]="medicament.description"
-                   class="form-control"
-                   id="description"
-                   name="description"
-                   placeholder="Enter description"
-                   required #name="ngModel">
-          </div>
+            <div class="form-group col-lg-6">
+              <label for="name">Name</label>
+              <input type="text" [(ngModel)]="medicament.name"
+                     [ngClass]="{'is-invalid': f.name.touched && f.name.errors, 'is-valid': f.name.touched && f.name.valid}"
+                     class="form-control"
+                     id="name"
+                     name="name" formControlName="name"
+                     placeholder="Enter medicament name"
+                     required>
+              <span style="color: red"
+                    *ngIf="f.name.invalid && f.name.touched">Enter valid name</span>
+            </div>
           </div>
 
           <div class="row">
-          <div class="form-check col-lg-6">
-            <input type="checkbox" [(ngModel)]="medicament.onPrescription" class="form-check-input mt-2 ml-1"
-                   id="onPrescription" name="onPrescription"
-                   style="width: 18px; height: 18px" required #name="ngModel">
-            <label class="form-check-label ml-4 mt-1 pl-2" for="onPrescription">On Prescription</label>
+            <div class="form-group col-lg-6">
+              <label for="purpose">Purpose</label>
+              <input type="text" [(ngModel)]="medicament.purpose"
+                     [ngClass]="{'is-invalid': f.purpose.touched && f.purpose.errors, 'is-valid': f.purpose.touched && f.purpose.valid}"
+                     class="form-control"
+                     id="purpose"
+                     name="purpose" formControlName="purpose"
+                     placeholder="Enter purpose"
+                     required>
+              <span style="color: red"
+                    *ngIf="f.purpose.invalid && f.purpose.touched">Enter valid purpose</span>
+            </div>
+
+            <div class="form-group col-lg-6">
+              <label for="description">Description</label>
+              <input type="text" [(ngModel)]="medicament.description"
+                     [ngClass]="{'is-invalid': f.description.touched && f.description.errors, 'is-valid': f.description.touched && f.description.valid}"
+                     class="form-control"
+                     id="description"
+                     name="description" formControlName="description"
+                     placeholder="Enter description"
+                     required>
+              <span style="color: red"
+                    *ngIf="f.description.invalid && f.description.touched">Enter valid description</span>
+            </div>
           </div>
 
-          <div class="text-right col-lg-6">
-            <button type="submit" class="btn btn-success col-lg-3">Save</button>
-          </div>
+          <div class="row">
+            <div class="form-check col-lg-6">
+              <input type="checkbox" [(ngModel)]="medicament.onPrescription" class="form-check-input mt-2 ml-1"
+                     id="onPrescription" name="onPrescription"
+                     style="width: 18px; height: 18px" required #name="ngModel">
+              <label class="form-check-label ml-4 mt-1 pl-2" for="onPrescription">On Prescription</label>
+            </div>
+
+            <div class="text-right col-lg-6">
+              <button type="submit" class="btn btn-success col-lg-3" [disabled]="userData.invalid">Save</button>
+            </div>
           </div>
 
         </form>
@@ -78,26 +90,26 @@
   </div>
 
   <div class="col-lg-10 offset-1 mt-4">
-      <table class="table table-borderless table-sm table-striped">
-        <thead class="bg-success text-white">
-        <tr>
-          <th scope="col">Code</th>
-          <th scope="col">Medicament Name</th>
-          <th scope="col">Purpose</th>
-          <th scope="col">Description</th>
-          <th scope="col">On Prescription</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let medicament of medicaments">
-          <td>{{medicament.code}}</td>
-          <td>{{medicament.name}}</td>
-          <td>{{medicament.purpose}}</td>
-          <td>{{ medicament.description}}</td>
-          <td>{{medicament.onPrescriptionWord}}</td>
-        </tr>
-        </tbody>
-      </table>
+    <table class="table table-borderless table-sm table-striped">
+      <thead class="bg-success text-white">
+      <tr>
+        <th scope="col">Code</th>
+        <th scope="col">Medicament Name</th>
+        <th scope="col">Purpose</th>
+        <th scope="col">Description</th>
+        <th scope="col">On Prescription</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let medicament of medicaments">
+        <td>{{medicament.code}}</td>
+        <td>{{medicament.name}}</td>
+        <td>{{medicament.purpose}}</td>
+        <td>{{ medicament.description}}</td>
+        <td>{{medicament.onPrescriptionWord}}</td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 
 </div>

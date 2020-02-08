@@ -7,20 +7,20 @@
         because {{request.reason}} </p>
       <div class="text-right">
         <button class="btn btn-success" (click)="sendApproveMailtoUser(request, request.id)">Approve</button>
-        <button class="btn btn-danger ml-3" (click)="sendRejectMailtoUser(request, mymodal)" >Reject</button>
+        <button class="btn btn-danger ml-3" (click)="openModal(mymodal, request)" >Reject</button>
       </div>
     </div>
   </div>
 </div>
 
-<div class="mt-5 text-center">
+<div class="mt-lg-5 text-center">
   <ng-template #mymodal let-modal>
     <div class="modal-body">
-      <form (click)="onSubmit(mymodal)">
+      <form >
       <p>Write reason for rejection: </p>
-      <textarea class="ml-4" [formControl]="subscriptionFormModalReason" [(ngModel)]="reason" rows="4" cols="55"></textarea>
+      <textarea class="ml-4" [formControl]="subscriptionFormModalReason" [(ngModel)]="reason" rows="4" cols="45"></textarea>
        <div class="text-right">
-         <button type="submit" class="btn btn-success">Send</button>
+         <button type="submit" class="btn btn-success" (click)="onSubmit(mymodal)">Send</button>
        </div>
       </form>
     </div>

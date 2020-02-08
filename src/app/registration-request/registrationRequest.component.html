@@ -21,9 +21,7 @@
           <button class="btn-info" routerLink="/registrationRequest/{{request.id}}">See more info</button>
         </td>
         <td>
-          <form><input type="text" placeholder="Reason for rejecting" required id="reason" #reason>
-            <button class="btn-danger" (click)="rejectRequest(request.id, reason.value)">Reject</button>
-          </form>
+            <button class="btn-danger" (click)="openModal(mymodal, request.id)">Reject</button>
         </td>
         <td>
           <button class="btn-success" (click)="acceptRequest(request)">Accept</button>
@@ -32,4 +30,19 @@
       </tbody>
     </table>
   </div>
+</div>
+
+<div class="mt-lg-5 text-center">
+  <ng-template #mymodal let-modal>
+    <div class="modal-body">
+      <form >
+        <p>Write reason for rejection: </p>
+        <textarea class="ml-4" [formControl]="subscriptionFormModalReason" [(ngModel)]="reason" rows="4" cols="45"></textarea>
+        <div class="text-right">
+          <button type="submit" class="btn btn-success" (click)="rejectRequest()">Send</button>
+        </div>
+      </form>
+    </div>
+
+  </ng-template>
 </div>
