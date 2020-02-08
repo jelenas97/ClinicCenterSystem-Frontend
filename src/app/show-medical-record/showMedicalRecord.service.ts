@@ -14,7 +14,7 @@ export class ShowMedicalRecordService {
 
   constructor(private http: HttpClient) {
     this.url = 'http://localhost:8080/showMedicalRecord/';
-    this.patientUrl = 'http://localhost:8080/getPatient/';
+    this.patientUrl = 'http://localhost:8080/getPatientFromExam/';
   }
 
   public getById(id: string): Observable<MedicalRecord> {

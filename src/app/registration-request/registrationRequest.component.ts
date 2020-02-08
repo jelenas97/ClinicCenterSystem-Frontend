@@ -4,6 +4,9 @@ import {RegistrationRequestService} from './registrationRequest.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {UserService} from '../service/user.service';
+import {NotifierService} from 'angular-notifier';
+import {User} from '../model/user';
 
 
 @Component({
@@ -18,9 +21,14 @@ export class RegistrationRequestComponent implements OnInit {
   validatingForm: FormGroup;
   requestId: number;
   closeResult: string;
+  notifier: NotifierService;
+  users: User[] = [];
+  emails: string[] = [];
+  ssns: string[] = [];
 
   constructor(private registrationRequestService: RegistrationRequestService, private route: ActivatedRoute, private router: Router,
-              private modalService: NgbModal) {
+              private modalService: NgbModal, private userService: UserService, private notifierService: NotifierService) {
+    this.notifier = notifierService;
   }
 
   ngOnInit(): void {
@@ -34,8 +42,25 @@ export class RegistrationRequestComponent implements OnInit {
   }
 
   acceptRequest(request: RegistrationRequest) {
-    console.log(request.email);
-    this.registrationRequestService.save(request).subscribe(result => this.ngOnInit());
+
+    this.userService.getAll().subscribe(data => {
+      this.users = data;
+
+      // tslint:disable-next-line:prefer-for-of
+      for (let i = 0; i < this.users.length; i++) {
+        this.emails.push(this.users[i].email.toString());
+        this.ssns.push(this.users[i].ssn.toString());
+      }
+
+      if (this.emails.includes(request.email)) {
+        this.showNotification('warning', 'This email is already in use. Write mail to user');
+      } else if (this.ssns.includes(request.ssn.toString())) {
+        this.showNotification('warning', 'This ssn is already exist. Write mail to user');
+      } else {
+        this.registrationRequestService.save(request).subscribe(result => this.ngOnInit());
+      }
+    });
+
   }
 
 
@@ -45,16 +70,8 @@ export class RegistrationRequestComponent implements OnInit {
     this.modalService.dismissAll();
   }
 
-  private gotoRegistrationRequest() {
-    this.router.navigate(['/registrationRequests']);
-  }
-
   get subscriptionFormModalReason() {
     return this.validatingForm.get('subscriptionFormModalReason');
-  }
-
-  onSubmit(mymodal) {
-
   }
 
   openModal(mymodal, id: number) {
@@ -74,5 +91,9 @@ export class RegistrationRequestComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+
+  public showNotification(type: string, message: string): void {
+    this.notifier.notify(type, message);
   }
 }

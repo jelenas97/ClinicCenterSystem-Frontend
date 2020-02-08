@@ -4,10 +4,12 @@ import {RegistrationService} from './registration.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {DisplayMessage} from '../shared/models/display-message';
-import {Subject} from 'rxjs';
 import {AuthService} from '../service/auth.service';
 import {UserService} from '../service/user.service';
 import {ModalDismissReasons, NgbModal, NgbModalOptions} from '@ng-bootstrap/ng-bootstrap';
+import {NotifierService} from 'angular-notifier';
+import {RegistrationRequestService} from '../registration-request/registrationRequest.service';
+import {RegistrationRequest} from '../model/registrationRequest';
 
 
 @Component({
@@ -19,17 +21,20 @@ export class RegistrationComponent implements OnInit {
   user: User;
   userData: FormGroup;
   passwordRepeat: string;
-
+  notifier: NotifierService;
   submitted = false;
   notification: DisplayMessage;
-  returnUrl: string;
-  private ngUnsubscribe: Subject<void> = new Subject<void>();
   closeResult: string;
   modalOptions: NgbModalOptions;
+  requests: RegistrationRequest[] = [];
+  ssns: string[] = [];
+  emails: string[] = [];
 
   constructor(private registerService: RegistrationService, private route: ActivatedRoute, private router: Router,
               private formBuilder: FormBuilder, private authService: AuthService, private userService: UserService,
-              private modalService: NgbModal) {
+              private modalService: NgbModal, private notifierService: NotifierService,
+              private regReq: RegistrationRequestService) {
+    this.notifier = notifierService;
     this.user = new User();
     this.modalOptions = {
       backdrop: 'static',
@@ -38,7 +43,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   onSubmit() {
-    this.registerService.save(this.user).subscribe(result => this.gotoUser());
+
   }
 
   gotoUser() {
@@ -92,21 +97,36 @@ export class RegistrationComponent implements OnInit {
     this.notification = undefined;
     this.submitted = true;
 
+    this.regReq.getAll().subscribe(data => {
+      this.requests = data;
+      // tslint:disable-next-line:prefer-for-of
+      for (let i = 0; i < this.requests.length; i++) {
+        this.emails.push(this.requests[i].email.toString());
+        this.ssns.push(this.requests[i].ssn.toString());
+      }
 
-    this.authService.registration(this.userData.value)
-      .subscribe(data => {
-          // this.userService.getMyInfo().subscribe();
-          this.router.navigate(['/login']);
-        },
-        error => {
-          this.submitted = false;
-          this.notification = {msgType: 'error', msgBody: 'Incorrect email or password'};
+      if (this.emails.includes(this.user.email)) {
+        this.showNotification('warning', 'This email is already in use');
+      } else if (this.ssns.includes(this.user.ssn)) {
+        this.showNotification('warning', 'This ssn is already exist');
+      } else {
+        // this.registerService.save(this.user).subscribe(result => this.gotoUser());
+        this.authService.registration(this.userData.value)
+          .subscribe(data2 => {
+              this.router.navigate(['/login']);
+            },
+            error => {
+              this.submitted = false;
+              this.notification = {msgType: 'error', msgBody: 'Incorrect email or password'};
+            });
+
+        this.modalService.open(mymodal, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+          this.closeResult = `Closed with: ${result}`;
+        }, (reason) => {
+          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
         });
+      }
 
-    this.modalService.open(mymodal, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
 
@@ -118,5 +138,9 @@ export class RegistrationComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+
+  public showNotification(type: string, message: string): void {
+    this.notifier.notify(type, message);
   }
 }

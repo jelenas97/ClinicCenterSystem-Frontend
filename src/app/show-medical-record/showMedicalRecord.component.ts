@@ -13,7 +13,6 @@ import {MedicalExamination} from '../model/medicalExamination';
 
 export class ShowMedicalRecordComponent implements OnInit {
   medicalRecord: MedicalRecord;
-  medicalRecordId: string;
   patient: User;
   private exam: MedicalExamination;
   private examId: string;
@@ -31,7 +30,7 @@ export class ShowMedicalRecordComponent implements OnInit {
         this.showMedicalRecordService.getById(this.exam.patient.id).subscribe(data2 => {
           this.medicalRecord = data2;
         });
-        this.showMedicalRecordService.getByPatientId(this.exam.patient.id).subscribe(data3 => {
+        this.showMedicalRecordService.getByPatientId(this.exam.id).subscribe(data3 => {
           this.patient = data3;
         });
       });
