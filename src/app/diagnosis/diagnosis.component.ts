@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
 import {Diagnosis} from '../model/diagnosis';
 import {DiagnosisService} from './diagnosis.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {NotifierService} from 'angular-notifier';
 
 @Component({
   selector: 'app-diagnosis',
@@ -13,13 +13,31 @@ export class DiagnosisComponent implements OnInit {
   diagnosis: Diagnosis;
   diagnoses: Diagnosis[] = [];
   userData: FormGroup;
+  diagnosesCodes: string[] = [];
+  notifier: NotifierService;
 
-  constructor(private diagnosisService: DiagnosisService, private formBuilder: FormBuilder) {
+  constructor(private diagnosisService: DiagnosisService, private formBuilder: FormBuilder,
+              private notifierService: NotifierService) {
     this.diagnosis = new Diagnosis();
+    this.notifier = notifierService;
   }
 
   onSubmit() {
-    this.diagnosisService.save(this.diagnosis).subscribe(result => this.ngOnInit());
+    this.diagnosisService.getAll().subscribe(data => {
+      this.diagnoses = data;
+
+      // tslint:disable-next-line:prefer-for-of
+      for (let i = 0; i < this.diagnoses.length; i++) {
+        this.diagnosesCodes.push(this.diagnoses[i].code.toString());
+      }
+
+      if (this.diagnosesCodes.includes(this.diagnosis.code.toString())) {
+        this.showNotification('warning', 'Diagnosis code is already in use!');
+      } else {
+        this.diagnosisService.save(this.diagnosis).subscribe(result => this.ngOnInit());
+      }
+
+    });
   }
 
   ngOnInit(): void {
@@ -36,5 +54,9 @@ export class DiagnosisComponent implements OnInit {
 
   get f() {
     return this.userData.controls;
+  }
+
+  public showNotification(type: string, message: string): void {
+    this.notifier.notify(type, message);
   }
 }

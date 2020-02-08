@@ -13,8 +13,7 @@ export class ProfilePageComponent implements OnInit {
 
   user: User;
 
-  constructor(private patientHomePageService: PatientHomePageService, private activatedRoute: ActivatedRoute,
-              private userService: UserService) {
+  constructor(private patientHomePageService: PatientHomePageService, private userService: UserService) {
   }
 
   ngOnInit() {

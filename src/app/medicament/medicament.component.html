@@ -75,7 +75,7 @@
             <div class="form-check col-lg-6">
               <input type="checkbox" [(ngModel)]="medicament.onPrescription" class="form-check-input mt-2 ml-1"
                      id="onPrescription" name="onPrescription"
-                     style="width: 18px; height: 18px" required #name="ngModel">
+                     style="width: 18px; height: 18px" required #name="ngModel" [ngModelOptions]="{standalone: true}">
               <label class="form-check-label ml-4 mt-1 pl-2" for="onPrescription">On Prescription</label>
             </div>
 

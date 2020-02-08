@@ -5,6 +5,7 @@
       <tr>
         <th scope="col">First Name</th>
         <th scope="col">Last Name</th>
+        <th scope="col">Ssn</th>
         <th scope="col">Email</th>
         <th scope="col"></th>
         <th scope="col"></th>
@@ -16,15 +17,16 @@
       <tr *ngFor="let request of requests">
         <td>{{ request.firstName }}</td>
         <td>{{ request.lastName }}</td>
+        <td>{{ request.ssn }}</td>
         <td><a href="mailto:{{ request.email }}">{{ request.email }}</a></td>
         <td>
-          <button class="btn-info" routerLink="/registrationRequest/{{request.id}}">See more info</button>
+          <button class="btn btn-info"  routerLink="/registrationRequest/{{request.id}}">See more info</button>
         </td>
         <td>
-            <button class="btn-danger" (click)="openModal(mymodal, request.id)">Reject</button>
+            <button class="btn btn-danger"(click)="openModal(mymodal, request.id)">Reject</button>
         </td>
         <td>
-          <button class="btn-success" (click)="acceptRequest(request)">Accept</button>
+          <button class="btn btn-success" (click)="acceptRequest(request)">Accept</button>
         </td>
       </tr>
       </tbody>
