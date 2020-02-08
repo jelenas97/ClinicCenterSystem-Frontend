@@ -13,28 +13,35 @@
 
     <div class="card">
       <div class="card-body">
-        <form (ngSubmit)="onSubmit()" #diagnosisForm="ngForm">
+        <form (ngSubmit)="onSubmit()" [formGroup]="userData">
 
           <div class="row">
             <div class="form-group col-lg-6">
               <label for="code">Code</label>
               <input type="text" [(ngModel)]="diagnosis.code"
+                     [ngClass]="{'is-invalid': f.code.touched && f.code.errors, 'is-valid': f.code.touched && f.code.valid}"
                      class="form-control"
                      id="code"
-                     name="code"
+                     name="code" formControlName="code"
                      placeholder="Enter code"
-                     required #name="ngModel">
+                     required>
+              <span style="color: red"
+                    *ngIf="f.code.invalid && f.code.touched">Code must be numbers</span>
             </div>
 
             <div class="form-group col-lg-6">
               <label for="name">Name</label>
               <input type="text" [(ngModel)]="diagnosis.name"
+                     [ngClass]="{'is-invalid': f.name.touched && f.name.errors, 'is-valid': f.name.touched && f.name.valid}"
                      class="form-control"
                      id="name"
-                     name="name"
+                     name="name" formControlName="name"
                      placeholder="Enter name"
-                     required #name="ngModel">
+                     required>
+              <span style="color: red"
+                    *ngIf="f.name.invalid && f.name.touched">Enter valid name</span>
             </div>
+
           </div>
 
           <div class="row">
@@ -42,27 +49,35 @@
             <div class="form-group col-lg-6">
               <label for="group">Group</label>
               <input type="text" [(ngModel)]="diagnosis.group"
+                     [ngClass]="{'is-invalid': f.group.touched && f.group.errors, 'is-valid': f.group.touched && f.group.valid}"
                      class="form-control"
                      id="group"
-                     name="group"
+                     name="group" formControlName="group"
                      placeholder="Enter group"
-                     required #name="ngModel">
+                     required>
+              <span style="color: red"
+                    *ngIf="f.group.invalid && f.group.touched">Enter valid group</span>
             </div>
+
 
             <div class="form-group col-lg-6">
               <label for="description">Description</label>
               <input type="text" [(ngModel)]="diagnosis.description"
+                     [ngClass]="{'is-invalid': f.description.touched && f.description.errors, 'is-valid': f.description.touched && f.description.valid}"
                      class="form-control"
                      id="description"
-                     name="description"
+                     name="description" formControlName="description"
                      placeholder="Enter description"
-                     required #name="ngModel">
+                     required>
+              <span style="color: red"
+                    *ngIf="f.description.invalid && f.description.touched">Enter valid description</span>
             </div>
+
           </div>
 
           <div class="row">
             <div class="text-right col-lg-12">
-              <button type="submit" class="btn btn-success col-lg-2">Save</button>
+              <button type="submit" class="btn btn-success col-lg-2" [disabled]="userData.invalid">Save</button>
             </div>
           </div>
 

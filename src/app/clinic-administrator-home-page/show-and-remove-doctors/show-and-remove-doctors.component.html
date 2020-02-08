@@ -56,7 +56,7 @@
       <td>{{ doctor.address }}</td>
       <td>{{ doctor.averageRating }}</td>
       <td [hidden]="doctor.hasExam"> <button class="btn-danger" (click)="removeDoctor(doctor.id)"> Remove from system </button> </td>
-      <td [hidden]="!doctor.hasExam"> Cannot remove : doctor has an exam </td>
+      <td [hidden]="!doctor.hasExam"> Cannot remove : doctor is scheduled </td>
     </tr>
     </tbody>
   </table>
