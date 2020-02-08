@@ -14,7 +14,8 @@ export class OperationRoomsComponent implements OnInit {
   selectedName: string;
   selectedNumber: number;
 
-  constructor(private roomsService: OperationRoomsService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private roomsService: OperationRoomsService, private route: ActivatedRoute, private router: Router) {
+  }
 
   ngOnInit(): void {
     this.roomsService.getAll().subscribe(data => {
@@ -38,8 +39,11 @@ export class OperationRoomsComponent implements OnInit {
 
   removeRoom(room: Room) {
     this.roomsService.remove(room.id).subscribe(data => {
-      this.ngOnInit();
-    });
+        this.ngOnInit();
+      },
+      error => {
+        alert('Cannot remove room. It is scheduled!');
+      });
   }
 
   addRoomPage() {

@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
 import {RegistrationComponent} from './registration/registration.component';
 import {MedicamentComponent} from './medicament/medicament.component';
 import {LoginComponent} from './login/login.component';
@@ -71,6 +71,7 @@ import {ShowMedicalHistoryComponent} from './show-medical-history/showMedicalHis
 import {EditMedicalReportComponent} from './edit-medical-report/editMedicalReport.component';
 import {PatientMedicalRecordComponent} from './patient-medical-record/patientMedicalRecord.component';
 import {ClinicsPredefinedExamsComponent} from './patient-home-page/clinics-predefined-exams/clinics-predefined-exams.component';
+import {ShowAllClinicsComponent} from './clinic-center-administrator-home-page/show-all-clinics/show-all-clinics.component';
 
 
 const routes: Routes = [{path: 'register', component: RegistrationComponent},
@@ -149,7 +150,8 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
       {path: 'createMedicalReport/:id', component: CreateMedicalReportComponent}
     ]
   },
-  {path: 'clinicsPredefinedExaminations', component: ClinicsPredefinedExamsComponent}
+  {path: 'clinicsPredefinedExaminations', component: ClinicsPredefinedExamsComponent},
+  {path: 'showAllClinics', component: ShowAllClinicsComponent}
 
 ];
 
@@ -157,4 +159,5 @@ const routes: Routes = [{path: 'register', component: RegistrationComponent},
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
