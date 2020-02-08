@@ -16,7 +16,7 @@
     </thead>
     <tbody>
     <tr *ngFor="let examination of allPredefinedExaminations" class="trs">
-      <td>{{ examination.date|date:'yyyy-MM-dd'}}</td>
+      <td id="exam-id">{{ examination.date|date:'yyyy-MM-dd'}}</td>
       <td>{{ examination.medicalExaminationRoom.name + ' ' + examination.medicalExaminationRoom.number }}</td>
       <td>{{ examination.doctor.firstName + ' ' + examination.doctor.lastName }}</td>
       <td>{{ examination.price }}</td>
