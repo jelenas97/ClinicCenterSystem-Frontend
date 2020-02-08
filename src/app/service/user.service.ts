@@ -12,9 +12,8 @@ import {HttpClient} from '@angular/common/http';
 export class UserService {
 
   currentUser;
-  myself$: Observable<User>;
-
   private readonly userByIdUrl: string;
+  private readonly users: string;
 
 
   constructor(
@@ -23,6 +22,7 @@ export class UserService {
     private http: HttpClient,
   ) {
     this.userByIdUrl = 'http://localhost:8080/users/';
+    this.users = 'http://localhost:8080/users';
   }
 
   initUser() {
@@ -53,7 +53,7 @@ export class UserService {
 
 
   getAll() {
-    return this.apiService.get(this.config.users_url);
+    return this.http.get<User[]>(this.users);
   }
 
   getById(id: number): Observable<User> {
