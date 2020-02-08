@@ -34,6 +34,7 @@ export class RegistrationRequestComponent implements OnInit {
   }
 
   acceptRequest(request: RegistrationRequest) {
+    console.log(request.email);
     this.registrationRequestService.save(request).subscribe(result => this.ngOnInit());
   }
 

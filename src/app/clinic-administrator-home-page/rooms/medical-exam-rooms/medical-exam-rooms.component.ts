@@ -38,7 +38,10 @@ export class MedicalExamRoomsComponent implements OnInit {
   removeRoom(room: Room) {
     this.roomsService.remove(room.id).subscribe(data => {
       this.ngOnInit();
-    });
+    },
+      error => {
+        alert('Cannot remove room. It is scheduled!');
+      });
   }
 
   addRoomPage() {
