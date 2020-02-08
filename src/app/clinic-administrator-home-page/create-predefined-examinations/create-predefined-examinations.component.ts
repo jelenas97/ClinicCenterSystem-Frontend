@@ -81,7 +81,9 @@ export class CreatePredefinedExaminationsComponent implements OnInit {
     this.createPredefinedExaminationsService.savePredefinedMedicalExamination(this.datePipe.transform(this.selectedDate, 'yyyy_MM_dd'),
       this.selectedType,
       this.selectedDuration, this.selectedPrice, this.selectedDoctor, this.selectedRoom,
-      this.selectedDiscount, this.selectedTerm, this.loggedUser.clinic.id).subscribe();
+      this.selectedDiscount, this.selectedTerm, this.loggedUser.clinic.id).subscribe(
+    );
+    this.router.navigate(['clinicAdministratorHomePage']);
   }
 
   onSelectChange($event: Event) {

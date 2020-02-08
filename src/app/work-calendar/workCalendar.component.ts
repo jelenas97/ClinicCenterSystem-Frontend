@@ -33,7 +33,7 @@ const colors: any = {
   templateUrl: './workCalendar.component.html',
   encapsulation: ViewEncapsulation.None
 })
-export class WorkCalendarComponent  implements OnInit {
+export class WorkCalendarComponent implements OnInit {
 
   private user: User;
   private exams: MedicalExamination[] = [];
@@ -45,7 +45,8 @@ export class WorkCalendarComponent  implements OnInit {
     this.userService.getMyInfo();
     this.user = this.userService.currentUser;
   }
-  @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
+
+  @ViewChild('modalContent', {static: true}) modalContent: TemplateRef<any>;
 
   faPrevious = faArrowLeft;
   faNext = faArrowRight;
@@ -57,29 +58,31 @@ export class WorkCalendarComponent  implements OnInit {
 
   refresh: Subject<any> = new Subject();
 
-  events: CalendarEvent [] = [ ];
+  events: CalendarEvent [] = [];
 
   activeDayIsOpen = true;
 
   fillCalendar(): void {
     for (const exam of this.exams) {
-      // @ts-ignore
-      const datum = new Date(exam.date + 30 * 60 * 1000);
-      this.events = [
-        ...this.events,
-        {
-          title: exam.type.name + ' ' + exam.patient.firstName + ' ' + exam.patient.lastName,
-          start: new Date(exam.date),
-          end: datum,
-          color: colors.red,
-          id: exam.id,
-        }
-      ];
+      if (exam.confirmed) {
+        // @ts-ignore
+        const datum = new Date(exam.date + 30 * 60 * 1000);
+        this.events = [
+          ...this.events,
+          {
+            title: exam.type.name + ' ' + exam.patient.firstName + ' ' + exam.patient.lastName,
+            start: new Date(exam.date),
+            end: datum,
+            color: colors.red,
+            id: exam.id,
+          }
+        ];
+      }
     }
 
   }
 
-  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+  dayClicked({date, events}: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
       if (
         (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||

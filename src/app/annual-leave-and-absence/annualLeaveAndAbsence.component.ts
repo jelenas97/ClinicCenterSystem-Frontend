@@ -86,7 +86,7 @@ export class AnnualLeaveAndAbsenceComponent implements OnInit {
   }
 
   gotoVacation() {
-    this.router.navigate(['/vacation']);
+    this.router.navigate(['/doctorHomePage']);
   }
 
   private getDismissReason(reason: any): string {
