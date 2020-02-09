@@ -58,7 +58,7 @@
 
             <div class="col-lg-12 ">
               <label class="col-lg-4" for="newPassword">New password:</label>
-              <input class="col-lg-6" [(ngModel)]="newPassword" id="newPassword" formControlName="newPassword">
+              <input class="col-lg-6" [(ngModel)]="newPassword" id="newPassword" formControlName="newPassword" type="password">
               <mat-error class="col-lg-2" *ngIf="hasError('newPassword', 'required')" style="color: red">*</mat-error>
               <mat-error class="col-lg-12" *ngIf="hasError('newPassword', 'minlength')" style="color: red">
                 <p class="col-lg-8 offset-3 text-center">Must have minimum 5 character</p>
@@ -68,7 +68,7 @@
             <div class="col-lg-12">
               <label class="col-lg-4" for="repeatNewPassword">Repeat new password:</label>
               <input class="col-lg-6" [(ngModel)]="repeatNewPassword" id="repeatNewPassword"
-                     formControlName="repeatNewPassword">
+                     formControlName="repeatNewPassword" type="password">
               <mat-error class="col-lg-2" *ngIf="hasError('repeatNewPassword', 'required')" style="color: red">*
               </mat-error>
               <mat-error class="col-lg-12" *ngIf="hasError('repeatNewPassword', 'minlength')" style="color: red">

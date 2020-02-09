@@ -43,6 +43,9 @@ export class RatingsComponent implements OnInit {
   }
 
   rateClinic(exam: MedicalExamination) {
+    if (exam.clinicRating === undefined) {
+      exam.clinicRating = 10;
+    }
     this.patientHomePageService.rateClinic(exam.id, exam.clinicRating, exam.clinic.id);
     this.redirectTo('ratings');
     this.showNotification('success', 'You have successfully rated Clinic.');
@@ -55,6 +58,9 @@ export class RatingsComponent implements OnInit {
   }
 
   rateDoctor(exam: MedicalExamination) {
+    if (exam.doctorRating === undefined) {
+      exam.doctorRating = 10;
+    }
     this.patientHomePageService.rateDoctor(exam.id, exam.doctorRating, exam.doctor.id);
     this.redirectTo('ratings');
     this.showNotification('success', 'You have successfully rated Doctor.');

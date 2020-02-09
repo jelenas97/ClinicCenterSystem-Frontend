@@ -3,6 +3,8 @@ import {Medicament} from '../model/medicament';
 import {MedicamentService} from './medicament.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {DisplayMessage} from '../shared/models/display-message';
+import {NotifierService} from 'angular-notifier';
 
 @Component({
   selector: 'app-medicament',
@@ -13,16 +15,33 @@ export class MedicamentComponent implements OnInit {
   medicament: Medicament;
   medicaments: Medicament[] = [];
   userData: FormGroup;
+  medicamentIds: string[] = [];
+  notification: DisplayMessage;
+  notifier: NotifierService;
 
 
   constructor(private medicamentService: MedicamentService, private route: ActivatedRoute,
-              private router: Router, private formBuilder: FormBuilder) {
+              private router: Router, private formBuilder: FormBuilder, private notifierService: NotifierService) {
+    this.notifier = notifierService;
     this.medicament = new Medicament();
     this.medicament.onPrescription = false;
   }
 
   onSubmit() {
-    this.medicamentService.save(this.medicament).subscribe(result => this.ngOnInit());
+    this.medicamentService.getAll().subscribe(data => {
+      this.medicaments = data;
+      // tslint:disable-next-line:prefer-for-of
+      for (let i = 0; i < this.medicaments.length; i++) {
+        this.medicamentIds.push(this.medicaments[i].code.toString());
+      }
+      if (this.medicamentIds.includes(this.medicament.code.toString())) {
+        this.showNotification('warning', 'This medicament code is already exists!');
+      } else {
+        this.medicamentService.save(this.medicament).subscribe(result => this.ngOnInit());
+      }
+    });
+
+
   }
 
   ngOnInit(): void {
@@ -34,7 +53,6 @@ export class MedicamentComponent implements OnInit {
           this.medicaments[i].onPrescriptionWord = 'Yes';
         } else {
           this.medicaments[i].onPrescriptionWord = 'No';
-
         }
       }
     });
@@ -48,5 +66,9 @@ export class MedicamentComponent implements OnInit {
 
   get f() {
     return this.userData.controls;
+  }
+
+  public showNotification(type: string, message: string): void {
+    this.notifier.notify(type, message);
   }
 }
