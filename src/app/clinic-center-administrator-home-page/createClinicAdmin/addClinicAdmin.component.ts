@@ -4,6 +4,8 @@ import {User} from '../../model/user';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AddClinicAdminService} from './addClinicAdmin.service';
 import {Clinic} from '../../model/clinic';
+import {UserService} from '../../service/user.service';
+import {NotifierService} from 'angular-notifier';
 
 @Component({
   selector: 'app-add-clinic-admin',
@@ -16,10 +18,16 @@ export class AddClinicAdminComponent implements OnInit {
   userData: FormGroup;
   clinics: Clinic[];
   selectedClinic: string;
+  notifier: NotifierService;
+  ssns: string[] = [];
+  emails: string[] = [];
+  users: User[] = [];
 
   constructor(private addClinicAdminService: AddClinicAdminService, private route: ActivatedRoute,
-              private router: Router, private formBuilder: FormBuilder) {
+              private router: Router, private formBuilder: FormBuilder, private userService: UserService,
+              private notifierService: NotifierService) {
     this.clinicAdmin = new User();
+    this.notifier = notifierService;
   }
 
   ngOnInit() {
@@ -59,9 +67,28 @@ export class AddClinicAdminComponent implements OnInit {
   }
 
   addClinicAdmin(selectedClinic: string) {
-    this.addClinicAdminService.addClinicAdmin(this.clinicAdmin, selectedClinic).subscribe(data => {
-      this.router.navigate(['/allClinicAdmins']);
+    this.userService.getAll().subscribe(data => {
+      this.users = data;
+      // tslint:disable-next-line:prefer-for-of
+      for (let i = 0; i < this.users.length; i++) {
+        this.ssns.push(this.users[i].ssn.toString());
+        this.emails.push(this.users[i].email.toString());
+      }
+
+      if (this.emails.includes(this.clinicAdmin.email)) {
+        this.showNotification('warning', 'This email is already in use. Write mail to user');
+      } else if (this.ssns.includes(this.clinicAdmin.ssn)) {
+        this.showNotification('warning', 'This ssn is already exist. Write mail to user');
+      } else {
+        this.addClinicAdminService.addClinicAdmin(this.clinicAdmin, selectedClinic).subscribe(data2 => {
+          this.router.navigate(['/allClinicAdmins']);
+        });
+      }
     });
+  }
+
+  public showNotification(type: string, message: string): void {
+    this.notifier.notify(type, message);
   }
 
 }

@@ -4,6 +4,7 @@ import {AddDoctorService} from './add-doctor.service';
 import {User} from '../../model/user';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../service/user.service';
+import {NotifierService} from 'angular-notifier';
 
 @Component({
   selector: 'app-add-doctor',
@@ -13,14 +14,19 @@ import {UserService} from '../../service/user.service';
 export class AddDoctorComponent implements OnInit {
 
   loggedUser: User;
-
+  notifier: NotifierService;
+  ssns: string[] = [];
+  emails: string[] = [];
+  users: User[] = [];
   private readonly doctor: User;
   userData: FormGroup;
 
 
   constructor(private addDoctorService: AddDoctorService, private route: ActivatedRoute,
-              private router: Router, private formBuilder: FormBuilder, private userService: UserService) {
+              private router: Router, private formBuilder: FormBuilder, private userService: UserService,
+              private notifierService: NotifierService) {
     this.doctor = new User();
+    this.notifier = notifierService;
   }
 
   ngOnInit() {
@@ -86,10 +92,29 @@ export class AddDoctorComponent implements OnInit {
   }
 
   addDoctor() {
-    console.log(this.doctor);
-    this.addDoctorService.addDoctor(this.doctor, this.loggedUser.clinic.id).subscribe(data => {
-      this.router.navigate(['/showAllDoctors']);
+    this.userService.getAll().subscribe(data => {
+      this.users = data;
+      // tslint:disable-next-line:prefer-for-of
+      for (let i = 0; i < this.users.length; i++) {
+        this.ssns.push(this.users[i].ssn.toString());
+        this.emails.push(this.users[i].email.toString());
+      }
+
+      if (this.emails.includes(this.doctor.email)) {
+        this.showNotification('warning', 'This email is already in use. Write mail to user');
+      } else if (this.ssns.includes(this.doctor.ssn)) {
+        this.showNotification('warning', 'This ssn is already exist. Write mail to user');
+      } else {
+        this.addDoctorService.addDoctor(this.doctor, this.loggedUser.clinic.id).subscribe(data2 => {
+          this.router.navigate(['/showAllDoctors']);
+        });
+
+      }
     });
+  }
+
+  public showNotification(type: string, message: string): void {
+    this.notifier.notify(type, message);
   }
 
 }
