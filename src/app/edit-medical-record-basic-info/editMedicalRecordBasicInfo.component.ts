@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {EditMedicalRecordBasicInfoService} from './editMedicalRecordBasicInfo.service';
 import {MedicalRecord} from '../model/medicalRecord';
+import {MedicalExamination} from '../model/medicalExamination';
 
 @Component({
   selector: 'app-edit-medical-record-basic-info',
@@ -11,7 +12,8 @@ import {MedicalRecord} from '../model/medicalRecord';
 export class EditMedicalRecordBasicInfoComponent implements  OnInit {
   medicalRecord: MedicalRecord;
   medicalRecordData: FormGroup;
-  medicalRecordId: string;
+  medicalExamId: string;
+  exam: MedicalExamination;
 
   constructor(private editMedicalRecordBasicInfoService: EditMedicalRecordBasicInfoService,
               private route: ActivatedRoute, private router: Router,
@@ -25,7 +27,7 @@ export class EditMedicalRecordBasicInfoComponent implements  OnInit {
   }
 
   gotoUser() {
-    this.router.navigate(['/startExam/' + this.medicalRecordId]).then(r => Error);
+    this.router.navigate(['/startExam/' + this.medicalExamId]).then(r => Error);
   }
 
   ngOnInit(): void {
@@ -38,11 +40,13 @@ export class EditMedicalRecordBasicInfoComponent implements  OnInit {
     });
 
     this.route.paramMap.subscribe(params => {
-      this.medicalRecordId = params.get('id');
-    });
-
-    this.editMedicalRecordBasicInfoService.getByPatientId(this.medicalRecordId).subscribe(data => {
-      this.medicalRecord = data;
+      this.medicalExamId = params.get('id');
+      this.editMedicalRecordBasicInfoService.getMedicalExam(this.medicalExamId).subscribe(data => {
+        this.exam = data;
+        this.editMedicalRecordBasicInfoService.getByPatientId(this.exam.patient.id).subscribe(data2 => {
+          this.medicalRecord = data2;
+        });
+      });
     });
   }
 }

@@ -36,10 +36,11 @@ describe('SchedulePredefinedExaminationsComponent', () => {
 
     exams = [{id: '1', medicalExaminationRoom : new Room(), date: '2020-02-05 03:00:00.000000', duration: 30, price: 1000,
       doctor: new User(), clinic: new Clinic(), discount: 0,  patient : new User(), type : new TypeOfMedicalExam(),
-      clinicRated: true, clinicRating : 10, doctorRated: true, doctorRating : 6},
+      clinicRated: true, clinicRating : 10, doctorRated: true, doctorRating : 6, confirmed: true},
       {id: '2', medicalExaminationRoom : new Room(), date: '2020-02-06 03:20:00.000000',
         duration: 30, price: 2000, doctor: new User(), clinic: new Clinic(), discount: 0,
-        patient : new User(), type : new TypeOfMedicalExam(), clinicRated: true, clinicRating : 10, doctorRated: true, doctorRating : 6}];
+        patient : new User(), type : new TypeOfMedicalExam(), clinicRated: true, clinicRating : 10, doctorRated: true, doctorRating : 6,
+        confirmed: true}];
     component.allPredefinedExaminations = exams;
     fixture.detectChanges();
   });
